@@ -1,4 +1,5 @@
 [![CI Status](https://github.com/AY2122S1-CS2103T-W12-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2122S1-CS2103T-W12-2/tp/actions/workflows/gradle.yml)
+[![codecov](https://codecov.io/gh/AY2122S1-CS2103T-W12-2/tp/branch/master/graph/badge.svg?token=MORDANUUIH)](https://codecov.io/gh/AY2122S1-CS2103T-W12-2/tp)
 
 # SWEe-book
 **SWEe-book** is a desktop app that makes it easier for students to
