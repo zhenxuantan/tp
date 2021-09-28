@@ -177,11 +177,11 @@ Format: `socials g/GROUP`
 Examples:
 * `socials g/CS2103T` returns contact information of groupmates in CS2103T
   * Output: (Note: the icons are clickable in the SWEe-book app.)
-    * Alina 
-    * Chen Yuan
-    * Zhen Xuan
-    * Ambrose 
-    * Joseph
+    * Alina <img src="images/github.png" width="25" height="25"/> <img src="images/tele.jpeg" width="25" height="25"/> <img src="images/mail.png" width="25" height="25"/>
+    * Chen Yuan <img src="images/github.png" width="25" height="25"/> <img src="images/tele.jpeg" width="25" height="25"/> <img src="images/mail.png" width="25" height="25"/>
+    * Zhen Xuan <img src="images/github.png" width="25" height="25"/> <img src="images/tele.jpeg" width="25" height="25"/> <img src="images/mail.png" width="25" height="25"/>
+    * Ambrose <img src="images/github.png" width="25" height="25"/> <img src="images/tele.jpeg" width="25" height="25"/> <img src="images/mail.png" width="25" height="25"/>
+    * Joseph <img src="images/github.png" width="25" height="25"/> <img src="images/tele.jpeg" width="25" height="25"/> <img src="images/mail.png" width="25" height="25"/>
   * `socials g/CS2101` returns contact information of groupmates in CS2101  
 
 ### Sorting tasks: `sort`
@@ -196,8 +196,8 @@ Format: `sort p/PARAMETER o/ORDER`
 Examples:
 If the following is in the task list:
 | Type        | Description | Date & Time     |
-| ----------- | ----------- | -----------     |
-| `Todo`      | user guide  |      -          |
+| ----------- | ----------- | --------------- |
+| `Todo`      | user guide  |        -        |
 | `Deadline`  | quiz        | 25-09-2020 2359 |
 | `Event`     | test        | 21-09-2020 2359 |
 | `Event`     | exam        | 22-09-2020 2359 |
