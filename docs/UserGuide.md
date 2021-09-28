@@ -283,4 +283,4 @@ Action | Format, Examples
 **Socials** | `socials g/GROUP`
 **Sort Tasks** | `sort p/PARAMETER o/ORDER` <br> e.g. `sort p/desc o/1`
 **Filter Tasks** | `filter g/Group`
-** List Tasks** | `listtasks [date/DATE]`
+**List Tasks** | `listtasks [date/DATE]`
