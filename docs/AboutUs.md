@@ -28,31 +28,29 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Yeu Chen Yuan
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/cyyeu)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Code quality
+* Responsibilities: Ensure overall adherence to coding standards. 
 
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
+### Ambrose Boo
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ambroseboo)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Scheduling and Tracking
+* Responsibilities: In charge of defining, assigning and tracking project tasks.
+
+### Tan Zhen Xuan
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](https://github.com/zhenxuantan)]
+
+* Role: UI/UX
+* Responsibilities: Responsible for the UI/UX component of the SWEe-book app.
