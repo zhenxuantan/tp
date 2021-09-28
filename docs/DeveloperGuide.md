@@ -52,9 +52,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  System shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  System deletes the person
 
     Use case ends.
 
@@ -66,12 +66,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. System shows an error message.
 
       Use case resumes at step 2.
 
+**Use case (UC02): Add a person**
 
-**Use case (UCXX): Add a task**
+**MSS**
+
+1.  User adds a person
+2.  System shows the details of the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The details are invalid or incomplete.
+
+    * 2a1. System shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case (UC03): Edit a person's particulars**
+
+**MSS**
+
+1. User requests to list persons
+2. System shows a list of persons
+3. User requests to edit a specific person in the list
+4. System shows the details of the updated person
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The details are invalid or incomplete.
+
+    * 3a1. System shows an error message.
+
+      Use case resumes at step 3.
+
+**Use case (UC04): Find a person / a group of people**
+
+**MSS**
+
+1. User requests to find a person / a group of people using some keywords
+2. System shows a list of persons pertaining to the keywords
+
+   Use case ends.
+
+**Use case (UC05): Add a task**
 
 **MSS**
 
@@ -88,7 +132,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 
-**Use case (UCXX): Delete a task**
+**Use case (UC06): Delete a task**
 
 1. User keys in an index.
 2. The task of specified index in task list is removed.
@@ -102,7 +146,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case (UCXX): Have an overview of group mates' contact details**
+**Use case (UC07): Have an overview of group mates' contact details**
 
 1. User keys in a group of which its members' contact details are needed.
 2. System displays the contact information of the group members of specified group
@@ -116,7 +160,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case (UCXX): Have a list of tasks**
+**Use case (UC08): Have a list of tasks**
 
 1. User keys in the command `listtasks`.
 2. System displays the list of tasks.
@@ -130,7 +174,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case (UCXX): Sort tasks**
+**Use case (UC09): Sort tasks**
 
 1. User keys in the parameter (desc, due, added) and order (0, 1). 
 2. System displays the tasks in the sorted order specified.
@@ -144,7 +188,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case (UCXX): Filter tasks**
+**Use case (UC10): Filter tasks**
 
 1. User keys in a group of which its related tasks are needed.
 2. System displays the tasks pertaining to the group specified.
@@ -161,9 +205,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. System should respond within three seconds.
+5. System still works even if the data file is missing.
+6. If the data file is corrupted, the corrupted file is overwritten with an empty data file.
+7. System will not collect any information from the user to abide by the Personal Data Protection Act.
 
 *{More to be added}*
 
