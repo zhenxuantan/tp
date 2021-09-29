@@ -20,7 +20,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Joseph Nathanael
 
-<img src="images/josephnathanael.png" width="200px">
+<img src="images/josephn37.png" width="200px">
 
 [[github](http://github.com/JosephN37)]
 
@@ -38,7 +38,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ambrose Boo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ambroseboo.png" width="200px">
 
 [[github](https://github.com/ambroseboo)]
 
