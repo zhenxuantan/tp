@@ -142,7 +142,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Adding a Task : `addtask`
+### Adding a Task : `addtask` [coming soon]
 
 Adds a new task (determined by what is inputted for type/TYPE) with task description as specified by d/DESCRIPTION 
 for the group specified by g/GROUP.
@@ -156,7 +156,7 @@ Examples:
 * `addtask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02`
 * `addtask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02`
 
-### Deleting a task/deadline: `deletetask`
+### Deleting a task/deadline: `deletetask` [coming soon]
 
 Format: `deletetask index`
 
@@ -167,7 +167,7 @@ Deletes the task at the specified `INDEX`.
 Examples:
 * `deletetask 1 deletes the 1st task or deadline in the task list.`
 
-### Retrieving contact information of a group: `socials`
+### Retrieving contact information of a group: `socials` [coming soon]
 Retrieves contact information of groupmates by the specified `g/GROUP`.
 This includes their Github, Telegram, Email, etc..
 
@@ -184,7 +184,7 @@ Examples:
     * Joseph <img src="images/github.png" width="25" height="25"/> <img src="images/tele.jpeg" width="25" height="25"/> <img src="images/mail.png" width="25" height="25"/>
   * `socials g/CS2101` returns contact information of groupmates in CS2101  
 
-### Sorting tasks: `sort`
+### Sorting tasks: `sort` [coming soon]
 Sort tasks based on their description or their deadlines (chronologically, or the reverse), or by time added.
 
 Format: `sort p/PARAMETER o/ORDER`
@@ -205,7 +205,7 @@ If the following is in the task list:
 * `sort p/desc o/1` returns tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam` 
 * `sort p/due o/1` returns returns tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
 
-### Filtering tasks by modules: filter
+### Filtering tasks by modules: filter [coming soon]
 Filter tasks based on the different modules (either CS2101 or CS2103T)
 
 Format: `filter g/Group`
@@ -218,7 +218,7 @@ Examples:
 * `filter CS2101` shows all the tasks related to CS2101 group
 * `filter CS2103T` shows all the tasks related to CS2103T group
 
-### Listing all tasks: listtasks
+### Listing all tasks: listtasks [coming soon]
 Shows a list of all tasks in the address book. Optional argument to fill in the day that the tasks are due.
 
 Format: `listtasks [date/DATE]`
@@ -278,9 +278,9 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-**Add Task** | `addtask d/DESCRIPTION g/GROUP type/TYPE [date/DATE]`
-**Delete Task** | `deletetask index`
-**Socials** | `socials g/GROUP`
-**Sort Tasks** | `sort p/PARAMETER o/ORDER` <br> e.g. `sort p/desc o/1`
-**Filter Tasks** | `filter g/Group`
-**List Tasks** | `listtasks [date/DATE]`
+**Add Task (coming soon)** | `addtask d/DESCRIPTION g/GROUP type/TYPE [date/DATE]`
+**Delete Task (coming soon)** | `deletetask index`
+**Socials (coming soon)** | `socials g/GROUP`
+**Sort Tasks (coming soon)** | `sort p/PARAMETER o/ORDER` <br> e.g. `sort p/desc o/1`
+**Filter Tasks (coming soon)** | `filter g/Group`
+**List Tasks (coming soon)** | `listtasks [date/DATE]`
