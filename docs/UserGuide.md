@@ -203,7 +203,7 @@ If the following is in the task list:
 | `Event`     | exam        | 22-09-2020 2359 |
 
 * `sort p/desc o/1` returns tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam` 
-* `sort p/due o/`1` returns returns tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
+* `sort p/due o/1` returns returns tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
 
 ### Filtering tasks by modules: filter
 Filter tasks based on the different modules (either CS2101 or CS2103T)
