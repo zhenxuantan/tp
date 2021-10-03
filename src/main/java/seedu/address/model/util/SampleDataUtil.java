@@ -6,12 +6,20 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskRecords;
+import seedu.address.model.TaskRecords;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Date;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Group;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskType;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -46,6 +54,21 @@ public class SampleDataUtil {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static Task[] getSampleTasks() {
+        return new Task[] {
+                new Deadline(new Description("Project Meeting"), new Group("CS2101"), new Date("2021-11-11"),
+                        new TaskType("deadline"))
+        };
+    }
+
+    public static ReadOnlyTaskRecords getSampleTaskRecords() {
+        TaskRecords sampleTr = new TaskRecords();
+        for (Task sampleTask : getSampleTasks()) {
+            sampleTr.addTask(sampleTask);
+        }
+        return sampleTr;
     }
 
     /**

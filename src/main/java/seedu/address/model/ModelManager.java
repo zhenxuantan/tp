@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,23 +24,27 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Task> taskList;
+    private final TaskRecords tasks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyTaskRecords tasks) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, userPrefs, tasks);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.tasks = new TaskRecords(tasks);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        taskList = new FilteredList<>(this.tasks.getTaskList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new TaskRecords());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -111,6 +117,30 @@ public class ModelManager implements Model {
 
         addressBook.setPerson(target, editedPerson);
     }
+
+    //=========== TaskRecords ================================================================================
+
+    public void setTaskRecords(ReadOnlyTaskRecords records) {
+        this.tasks.resetData(records);
+    }
+
+    @Override
+    public ReadOnlyTaskRecords getTaskList() {
+        return tasks;
+    }
+
+    @Override
+    public void addTask(Task toAdd) {
+        tasks.addTask(toAdd);
+    }
+
+    //=========== Task List Accessors =============================================================
+
+    @Override
+    public ObservableList<Task> getTasks() {
+        return taskList;
+    }
+
 
     //=========== Filtered Person List Accessors =============================================================
 
