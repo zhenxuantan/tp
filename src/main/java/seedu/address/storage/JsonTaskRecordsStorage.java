@@ -32,6 +32,12 @@ public class JsonTaskRecordsStorage implements TaskRecordsStorage {
         return readTaskRecords(filePath);
     }
 
+    /**
+     * Read in task records from filepath specified.
+     * @param filePath Data file path
+     * @return TaskRecords which may be present or not
+     * @throws DataConversionException If there is any data conversion error
+     */
     public Optional<ReadOnlyTaskRecords> readTaskRecords(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
@@ -54,6 +60,12 @@ public class JsonTaskRecordsStorage implements TaskRecordsStorage {
         saveTaskRecords(taskRecords, filePath);
     }
 
+    /**
+     * Save in task records into local data.
+     * @param taskRecords Task records to be saved
+     * @param filePath File path of local data file
+     * @throws IOException For any error with IO
+     */
     public void saveTaskRecords(ReadOnlyTaskRecords taskRecords, Path filePath) throws IOException {
         requireNonNull(taskRecords);
         requireNonNull(filePath);

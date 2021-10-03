@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class TaskType {
-    public static final String MESSAGE_CONSTRAINTS = "Type of task can be either todo or event or deadline, " +
-            "and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Type of task can be either todo or event or deadline, "
+            + "and it should not be blank";
 
     public final String taskType;
 

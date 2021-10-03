@@ -17,7 +17,6 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Group;
-import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskType;
 
 /**
@@ -150,7 +149,7 @@ public class ParserUtil {
      */
     public static Group parseGroup(String group) throws ParseException {
         requireNonNull(group);
-        String trimmedGroup= group.trim();
+        String trimmedGroup = group.trim();
         if (!Group.isValidGroup(trimmedGroup)) {
             throw new ParseException(Group.MESSAGE_CONSTRAINTS);
         }

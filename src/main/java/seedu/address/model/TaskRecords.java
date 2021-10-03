@@ -2,12 +2,9 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
@@ -19,11 +16,19 @@ public class TaskRecords implements ReadOnlyTaskRecords {
     }
     public TaskRecords() {}
 
+    /**
+     * Self function to get current Task records.
+     * @param existingRecords Current TaskRecords.
+     */
     public TaskRecords(ReadOnlyTaskRecords existingRecords) {
         this();
         resetData(existingRecords);
     }
 
+    /**
+     * Resets Task List to the newData provided.
+     * @param newData Data to change to.
+     */
     public void resetData(ReadOnlyTaskRecords newData) {
         requireNonNull(newData);
         setTasks(newData.getTaskList());
@@ -37,6 +42,7 @@ public class TaskRecords implements ReadOnlyTaskRecords {
         records.add(toAdd);
     }
 
+    @Override
     public String toString() {
         return records.asUnmodifiableObservableList().size() + " tasks";
         // TODO: refine later

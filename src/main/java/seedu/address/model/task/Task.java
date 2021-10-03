@@ -7,6 +7,13 @@ public class Task {
     protected Date date;
     protected boolean isDone;
 
+    /**
+     * Constructor for Task.
+     * @param description Description of task
+     * @param group Group of task
+     * @param type Type of task (Deadline, Event, Todo)
+     * @param date Date of task
+     */
     public Task(Description description, Group group, TaskType type, Date date) {
         this.description = description;
         this.group = group;
