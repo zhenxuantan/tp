@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.FilterTaskCriterion;
 import seedu.address.model.task.Task;
 
 /**
@@ -131,6 +132,11 @@ public class ModelManager implements Model {
     @Override
     public void addTask(Task toAdd) {
         tasks.addTask(toAdd);
+    }
+
+    @Override
+    public ReadOnlyTaskRecords filterTask(FilterTaskCriterion toFilter) {
+        return (ReadOnlyTaskRecords) tasks.filterTask(toFilter);
     }
 
     //=========== Task List Accessors =============================================================

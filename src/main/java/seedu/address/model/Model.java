@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.FilterTaskCriterion;
 import seedu.address.model.task.Task;
 
 /**
@@ -83,6 +84,8 @@ public interface Model {
 
     ObservableList<Task> getTasks();
 
+    ReadOnlyTaskRecords filterTask(FilterTaskCriterion toFilter);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -91,4 +94,5 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
 }

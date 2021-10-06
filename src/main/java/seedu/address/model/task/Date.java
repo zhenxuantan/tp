@@ -42,4 +42,8 @@ public class Date {
         }
         return date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
     }
+
+    public int compare(Date date){
+        return this.date.compareTo(date.date);
+    }
 }

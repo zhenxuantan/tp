@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.task.FilterTaskCriterion;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
@@ -51,5 +52,10 @@ public class TaskRecords implements ReadOnlyTaskRecords {
     @Override
     public ObservableList<Task> getTaskList() {
         return records.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Task> filterTask(FilterTaskCriterion toFilter) {
+        return records.filterTask(toFilter);
     }
 }

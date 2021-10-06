@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Iterator;
 import java.util.List;
 
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -47,5 +48,56 @@ public class TaskList implements Iterable<Task> {
     @Override
     public Iterator<Task> iterator() {
         return internalList.iterator();
+    }
+
+    public ObservableList<Task> filterTask(FilterTaskCriterion toFilter) {
+        requireNonNull(toFilter);
+        ObservableList<Task> filteredTaskList = internalList;
+        Character firstChar = toFilter.toString().charAt(0);
+        switch(firstChar){
+            case 'd':
+                Date date = new Date(toFilter.toString().substring(5));
+                filteredTaskList = filterByDate(date);
+                break;
+            case 't':
+                TaskType taskType = new TaskType(toFilter.toString().substring(5));
+                filteredTaskList = filterByType(taskType);
+                break;
+            case 'g':
+                Group group = new Group(toFilter.toString().substring(2));
+                filteredTaskList = filterByGroup(group);
+                break;
+        }
+        return filteredTaskList;
+    }
+
+    private ObservableList<Task> filterByGroup(Group group) {
+        ObservableList<Task> filteredList = internalList;
+        for (Task task : internalList) {
+            if(!task.getGroup().equalTo(group)){
+                filteredList.remove(task);
+            }
+        }
+        return filteredList;
+    }
+
+    private ObservableList<Task> filterByType(TaskType taskType) {
+        ObservableList<Task> filteredList = internalList;
+        for (Task task : internalList) {
+            if(!task.getTaskType().equalTo(taskType)){
+                filteredList.remove(task);
+            }
+        }
+        return filteredList;
+    }
+
+    private ObservableList<Task> filterByDate(Date date) {
+        ObservableList<Task> filteredList = internalList;
+        for (Task task : internalList) {
+            if(task.getDate().compare(date) != 0){
+                filteredList.remove(task);
+            }
+        }
+        return filteredList;
     }
 }

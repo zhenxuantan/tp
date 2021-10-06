@@ -37,4 +37,8 @@ public class TaskType {
     public String toString() {
         return taskType;
     }
+
+    public boolean equalTo(TaskType taskType){
+        return this.taskType.equals(taskType.toString());
+    }
 }
