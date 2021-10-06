@@ -57,9 +57,8 @@ public class SampleDataUtil {
     }
 
     public static Task[] getSampleTasks() {
-        return new Task[] {
-                new Deadline(new Description("Project Meeting"), new Group("CS2101"), new Date("2021-11-11"),
-                        new TaskType("deadline"))
+        return new Task[] { new Deadline(new Description("Project Meeting"), new Group("CS2101"),
+                new Date("2021-11-11"), new TaskType("deadline"))
         };
     }
 

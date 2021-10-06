@@ -54,7 +54,8 @@ class JsonAdaptedTask {
      */
     public Task toModelType() throws IllegalValueException {
         if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
         if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
@@ -70,7 +71,8 @@ class JsonAdaptedTask {
         final Group modelGroup = new Group(group);
 
         if (taskType == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TaskType.class.getSimpleName()));
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, TaskType.class.getSimpleName()));
         }
         if (!TaskType.isValidTaskType(taskType)) {
             throw new IllegalValueException(TaskType.MESSAGE_CONSTRAINTS);
@@ -103,10 +105,10 @@ class JsonAdaptedTask {
         case "deadline":
             task = new Deadline(modelDescription, modelGroup, modelDate, modelTaskType);
             if (checkIsDone(status)) {
-            task.markAsDone();
+                task.markAsDone();
+                return task;
+            }
             return task;
-        }
-        return task;
         default:
             throw new IllegalValueException(TaskType.MESSAGE_CONSTRAINTS);
         }

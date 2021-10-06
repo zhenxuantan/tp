@@ -9,6 +9,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return this.symbol + super.toString() + " (at: " + date.toString() +")";
+        return this.symbol + super.toString() + " (at: " + date.toString() + ")";
     }
 }

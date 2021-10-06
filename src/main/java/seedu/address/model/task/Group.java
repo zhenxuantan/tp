@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class Group {
-    public static final String MESSAGE_CONSTRAINTS = "Group can be either CS2101 or CS2103T, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Group can be either CS2101 or CS2103T, and it should not be blank";
 
     public final String group;
 
