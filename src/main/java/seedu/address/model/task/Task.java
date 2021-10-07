@@ -57,4 +57,23 @@ public class Task {
     public String toString() {
         return String.format("%1$s %2$s", getStatusIcon(), description.toString());
     }
+
+    /**
+     * Comparator for the task's description.
+     * @param otherTask the otherTask
+     * @return an integer for comparison
+     */
+    public int compareDescription(Task otherTask) {
+        return this.getDescription().toString().toLowerCase()
+            .compareTo(otherTask.getDescription().toString().toLowerCase());
+    }
+
+    /**
+     * Comparator for the task's date.
+     * @param otherTask the otherTask
+     * @return an integer for comparison
+     */
+    public int compareDate(Task otherTask) {
+        return this.getDate().date.compareTo(otherTask.getDate().date);
+    }
 }
