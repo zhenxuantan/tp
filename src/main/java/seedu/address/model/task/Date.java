@@ -1,5 +1,8 @@
 package seedu.address.model.task;
 
+import javafx.application.Application;
+import seedu.address.MainApp;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -11,6 +14,7 @@ public class Date {
     public static final String MESSAGE_CONSTRAINTS = "Date should be in YYYY-MM-DD, and it should not be blank";
 
     public final LocalDate date;
+    public final String dateString;
 
     /**
      * Constructs an {@code Date}.
@@ -21,6 +25,7 @@ public class Date {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         this.date = LocalDate.parse(date);
+        this.dateString = date;
     }
 
     /**
@@ -43,7 +48,19 @@ public class Date {
         return date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
     }
 
+    public LocalDate getLocalDate(){ return this.date; }
+
     public int compare(Date date){
-        return this.date.compareTo(date.date);
+        return this.date.compareTo(date.getLocalDate());
     }
+
+    /**
+     *
+     * @return String representation of date , i.e. "YYYY-MM-DD"
+     */
+    public String getString(){
+        return this.dateString;
+    }
+
+
 }

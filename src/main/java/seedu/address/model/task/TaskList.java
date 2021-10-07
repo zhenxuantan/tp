@@ -52,7 +52,7 @@ public class TaskList implements Iterable<Task> {
 
     public ObservableList<Task> filterTask(FilterTaskCriterion toFilter) {
         requireNonNull(toFilter);
-        ObservableList<Task> filteredTaskList = internalList;
+        ObservableList<Task> filteredTaskList = FXCollections.observableArrayList();
         Character firstChar = toFilter.toString().charAt(0);
         switch(firstChar){
             case 'd':
@@ -75,30 +75,30 @@ public class TaskList implements Iterable<Task> {
     }
 
     private ObservableList<Task> filterByGroup(Group group) {
-        ObservableList<Task> filteredList = internalList;
+        ObservableList<Task> filteredList = FXCollections.observableArrayList();
         for (Task task : internalList) {
-            if(!task.getGroup().equalTo(group)){
-                filteredList.remove(task);
+            if(task.getGroup().equalTo(group)){
+                filteredList.add(task);
             }
         }
         return filteredList;
     }
 
     private ObservableList<Task> filterByType(TaskType taskType) {
-        ObservableList<Task> filteredList = internalList;
+        ObservableList<Task> filteredList = FXCollections.observableArrayList();
         for (Task task : internalList) {
-            if(!task.getTaskType().equalTo(taskType)){
-                filteredList.remove(task);
+            if(task.getTaskType().equalTo(taskType)){
+                filteredList.add(task);
             }
         }
         return filteredList;
     }
 
     private ObservableList<Task> filterByDate(Date date) {
-        ObservableList<Task> filteredList = internalList;
+        ObservableList<Task> filteredList = FXCollections.observableArrayList();
         for (Task task : internalList) {
-            if(task.getDate().compare(date) != 0){
-                filteredList.remove(task);
+            if(task.getDate().compare(date) == 0){
+                filteredList.add(task);
             }
         }
         return filteredList;

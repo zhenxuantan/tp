@@ -21,7 +21,7 @@ public class FilterTaskCommandParser {
         }
         if (arePrefixesPresent(argMultimap, PREFIX_DATE)){
             Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-            return new FilterTaskCommand(new FilterTaskCriterion(PREFIX_DATE + date.toString()));
+            return new FilterTaskCommand(new FilterTaskCriterion(PREFIX_DATE + date.getString()));
         }
         if (arePrefixesPresent(argMultimap, PREFIX_TASKTYPE)){
             TaskType taskType = ParserUtil.parseTaskType(argMultimap.getValue(PREFIX_TASKTYPE).get());

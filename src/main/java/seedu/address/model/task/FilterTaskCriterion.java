@@ -1,11 +1,14 @@
 package seedu.address.model.task;
 
+import javafx.application.Application;
+import seedu.address.MainApp;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class FilterTaskCriterion {
     public static final String MESSAGE_CONSTRAINTS =
-            "FilterTaskCriterion can be either 'g/GROUP', 'd/DATE' or 'type/TASKTYPE'";
+            "FilterTaskCriterion can be either 'g/GROUP', 'date/DATE' or 'type/TASKTYPE'";
 
     public final String filterTaskCriterion;
 
@@ -48,5 +51,8 @@ public class FilterTaskCriterion {
         return filterTaskCriterion;
     }
 
+    public static void main(String[] args) {
+        System.out.println(FilterTaskCriterion.isValidCriterion("date/1212-12-12"));
+    }
 
 }
