@@ -12,10 +12,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.social.GitHub;
+import seedu.address.model.person.social.Telegram;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.Group;
+import seedu.address.model.group.Group;
 import seedu.address.model.task.TaskType;
 
 /**
@@ -171,4 +173,44 @@ public class ParserUtil {
         }
         return new Date(trimmedDate);
     }
+
+    /**
+     * Parses a username of the form "username" or "@username".
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param username The username.
+     * @return The cleaned username.
+     */
+    public static String parseUsername(String username) {
+        requireNonNull(username);
+        String trimmedUsername = username.trim();
+        if (trimmedUsername.charAt(0) == '@') { // removes any prepended '@' if it is present
+            trimmedUsername = trimmedUsername.substring(1);
+        }
+        return trimmedUsername;
+    }
+
+    /**
+     * Returns a Telegram object that corresponds to the username.
+     *
+     * @param username The Telegram username.
+     * @return The Telegram object.
+     */
+    public static Telegram parseTelegram(String username) {
+        return new Telegram(parseUsername(username));
+    }
+
+    /**
+     * Returns a GitHub object that corresponds to the username.
+     *
+     * @param username The GitHub username.
+     * @return The GitHub object.
+     */
+    public static GitHub parseGitHub(String username) {
+        return new GitHub(parseUsername(username));
+    }
+
+
+
+
 }

@@ -1,12 +1,14 @@
-package seedu.address.model.task;
+package seedu.address.model.group;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.tag.Tag;
+
 public class Group {
     public static final String MESSAGE_CONSTRAINTS =
             "Group can be either CS2101 or CS2103T, and it should not be blank";
-
+    private static final String[] VALID_GROUPS = {"CS2103T", "CS2101"};
     public final String group;
 
     /**
@@ -24,8 +26,7 @@ public class Group {
      * Returns true if a given string is a valid group.
      */
     public static boolean isValidGroup(String test) {
-        String[] validGroups = {"CS2103T", "CS2101"};
-        for (String validGroup : validGroups) {
+        for (String validGroup : VALID_GROUPS) {
             if (test.equalsIgnoreCase(validGroup)) {
                 return true;
             }
@@ -36,5 +37,17 @@ public class Group {
     @Override
     public String toString() {
         return group;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Group // instanceof handles nulls
+                && group.equalsIgnoreCase(((Group) other).group)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return group.hashCode();
     }
 }
