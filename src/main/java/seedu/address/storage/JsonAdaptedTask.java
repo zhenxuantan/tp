@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import java.time.format.DateTimeFormatter;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,9 +14,6 @@ import seedu.address.model.task.Group;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskType;
 import seedu.address.model.task.Todo;
-
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 /**
  * Jackson-friendly version of {@link Task}.
