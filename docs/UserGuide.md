@@ -138,6 +138,17 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Filtering persons by a specified group: `group` [coming soon]
+Retrieves the list of people to those who are in the specified group.
+
+Format: `group GROUP_NAME`
+* `GROUP_NAME` refers to one of the 2 groups: CS2101 or CS2103T.
+* `GROUP_NAME` is not case-sensitive.
+
+Examples:
+* `group CS2103T` returns people in CS2103T
+* `group CS2101` returns people in CS2101
+
 ### Adding a Task : `addtask` [coming soon]
 
 Adds a new task (determined by what is inputted for type/TYPE) with task description as specified by d/DESCRIPTION 
@@ -162,23 +173,6 @@ Deletes the task at the specified `INDEX`.
 
 Examples:
 * `deletetask 1 deletes the 1st task or deadline in the task list.`
-
-### Retrieving contact information of a group: `socials` [coming soon]
-Retrieves contact information of groupmates by the specified `g/GROUP`.
-This includes their Github, Telegram, Email, etc..
-
-Format: `socials g/GROUP`
-* `GROUP` refers to one of the 2 groups: CS2101 or CS2103T
-
-Examples:
-* `socials g/CS2103T` returns contact information of groupmates in CS2103T
-  * Output: (Note: the icons are clickable in the SWEe-book app.)
-    * Alina <img src="images/github.png" width="25" height="25"/> <img src="images/tele.jpeg" width="25" height="25"/> <img src="images/mail.png" width="25" height="25"/>
-    * Chen Yuan <img src="images/github.png" width="25" height="25"/> <img src="images/tele.jpeg" width="25" height="25"/> <img src="images/mail.png" width="25" height="25"/>
-    * Zhen Xuan <img src="images/github.png" width="25" height="25"/> <img src="images/tele.jpeg" width="25" height="25"/> <img src="images/mail.png" width="25" height="25"/>
-    * Ambrose <img src="images/github.png" width="25" height="25"/> <img src="images/tele.jpeg" width="25" height="25"/> <img src="images/mail.png" width="25" height="25"/>
-    * Joseph <img src="images/github.png" width="25" height="25"/> <img src="images/tele.jpeg" width="25" height="25"/> <img src="images/mail.png" width="25" height="25"/>
-  * `socials g/CS2101` returns contact information of groupmates in CS2101  
 
 ### Sorting tasks: `sort` [coming soon]
 Sort tasks based on their description or their deadlines (chronologically, or the reverse), or by time added.
