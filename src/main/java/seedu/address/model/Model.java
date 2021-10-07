@@ -84,6 +84,9 @@ public interface Model {
 
     ObservableList<Task> getTasks();
 
+    /**
+     * returns a filtered tasklist according to the specified FilterTaskCriterion
+     */
     ObservableList<Task> filterTask(FilterTaskCriterion toFilter);
 
     /** Returns an unmodifiable view of the filtered person list */

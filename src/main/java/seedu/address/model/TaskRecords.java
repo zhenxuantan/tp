@@ -54,6 +54,11 @@ public class TaskRecords implements ReadOnlyTaskRecords {
         return records.asUnmodifiableObservableList();
     }
 
+    /**
+     *
+     * @param toFilter A FilterTaskCriterion
+     * @return ObservableList of filtered tasks
+     */
     @Override
     public ObservableList<Task> filterTask(FilterTaskCriterion toFilter) {
         return records.filterTask(toFilter);

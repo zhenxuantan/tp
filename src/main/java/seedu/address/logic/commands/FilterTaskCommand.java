@@ -23,7 +23,7 @@ public class FilterTaskCommand extends Command {
     private final FilterTaskCriterion toFilter;
 
     /**
-     * Creates an AddTaskCommand to add the specified {@code Task}
+     * Creates FilterTaskCommand to filter according to the specified {@code filterTaskCriterion}
      */
     public FilterTaskCommand(FilterTaskCriterion filterTaskCriterion) {
         requireNonNull(filterTaskCriterion);

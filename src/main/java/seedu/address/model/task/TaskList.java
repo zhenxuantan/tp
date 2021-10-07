@@ -50,6 +50,11 @@ public class TaskList implements Iterable<Task> {
         return internalList.iterator();
     }
 
+    /**
+     *
+     * @param toFilter A FilterTaskCriterion
+     * @return ObservableList of filtered tasks
+     */
     public ObservableList<Task> filterTask(FilterTaskCriterion toFilter) {
         requireNonNull(toFilter);
         ObservableList<Task> filteredTaskList = FXCollections.observableArrayList();

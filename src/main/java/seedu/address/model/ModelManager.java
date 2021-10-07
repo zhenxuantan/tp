@@ -134,11 +134,6 @@ public class ModelManager implements Model {
         tasks.addTask(toAdd);
     }
 
-    @Override
-    public ObservableList<Task> filterTask(FilterTaskCriterion toFilter) {
-        return tasks.filterTask(toFilter);
-    }
-
     //=========== Task List Accessors =============================================================
 
     @Override
@@ -146,6 +141,10 @@ public class ModelManager implements Model {
         return taskList;
     }
 
+    @Override
+    public ObservableList<Task> filterTask(FilterTaskCriterion toFilter) {
+        return tasks.filterTask(toFilter);
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 
