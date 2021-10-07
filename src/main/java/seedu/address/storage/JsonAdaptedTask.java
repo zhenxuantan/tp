@@ -13,6 +13,9 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskType;
 import seedu.address.model.task.Todo;
 
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 /**
  * Jackson-friendly version of {@link Task}.
  */
@@ -33,7 +36,7 @@ class JsonAdaptedTask {
         this.status = status;
         this.group = group;
         this.date = date;
-        this.taskType = taskType;
+        this.taskType = taskType.toLowerCase();
     }
 
     /**
@@ -79,12 +82,17 @@ class JsonAdaptedTask {
         }
         final TaskType modelTaskType = new TaskType(taskType);
 
+        DateTimeFormatter storageDtf = DateTimeFormatter.ofPattern("MMM dd yyyy");
+        DateTimeFormatter commandDtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        String formattedDate = commandDtf.format(storageDtf.parse(date)).toString();
+
         final Date modelDate;
-        if (date != null) {
-            if (!Date.isValidDate(date)) {
+        if (formattedDate != null) {
+            if (!Date.isValidDate(formattedDate)) {
                 throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
             }
-            modelDate = new Date(date);
+            modelDate = new Date(formattedDate);
         } else {
             modelDate = null;
         }

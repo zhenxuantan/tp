@@ -11,6 +11,7 @@ public class Date {
     public static final String MESSAGE_CONSTRAINTS = "Date should be in YYYY-MM-DD, and it should not be blank";
 
     public final LocalDate date;
+    private static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("MMM dd yyyy");
 
     /**
      * Constructs an {@code Date}.

@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import java.util.Locale;
+
 public class Task {
     protected Description description;
     protected Group group;
@@ -56,5 +58,14 @@ public class Task {
     @Override
     public String toString() {
         return String.format("%1$s %2$s", getStatusIcon(), description.toString());
+    }
+
+    public int compareDescription(Task otherTask) {
+        return this.getDescription().toString().toLowerCase()
+            .compareTo(otherTask.getDescription().toString().toLowerCase());
+    }
+
+    public int compareDate(Task otherTask) {
+        return this.getDate().date.compareTo(otherTask.getDate().date);
     }
 }
