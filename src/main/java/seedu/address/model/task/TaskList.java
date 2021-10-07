@@ -68,6 +68,9 @@ public class TaskList implements Iterable<Task> {
                 filteredTaskList = filterByGroup(group);
                 break;
         }
+        for (Task task : filteredTaskList) {
+            System.out.println(task.toString());
+        }
         return filteredTaskList;
     }
 

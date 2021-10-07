@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.FilterTaskCriterion;
@@ -7,7 +8,7 @@ import seedu.address.model.task.Task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+
 
 public class FilterTaskCommand extends Command {
     public static final String COMMAND_WORD = "filterTask";
@@ -32,8 +33,11 @@ public class FilterTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        model.filterTask(toFilter);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toFilter.toString()));
+        String returnMessage = String.format(MESSAGE_SUCCESS, toFilter.toString()) + "\n";
+        ObservableList<Task> filteredTaskList = model.filterTask(toFilter);
+        for (Task task : filteredTaskList) {
+            returnMessage = returnMessage + task.toString() + "\n";
+        }
+        return new CommandResult(returnMessage);
     }
 }

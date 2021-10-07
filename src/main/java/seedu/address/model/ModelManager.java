@@ -135,8 +135,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlyTaskRecords filterTask(FilterTaskCriterion toFilter) {
-        return (ReadOnlyTaskRecords) tasks.filterTask(toFilter);
+    public ObservableList<Task> filterTask(FilterTaskCriterion toFilter) {
+        return tasks.filterTask(toFilter);
     }
 
     //=========== Task List Accessors =============================================================
