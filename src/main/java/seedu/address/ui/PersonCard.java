@@ -1,13 +1,19 @@
 package seedu.address.ui;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.social.GitHub;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -39,9 +45,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label telegram;
+    private Hyperlink telegram;
     @FXML
-    private Label github;
+    private Hyperlink github;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -54,9 +60,30 @@ public class PersonCard extends UiPart<Region> {
         group.setText(person.getGroup().group);
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
-        telegram.setText(person.getTelegram().toString());
-        github.setText(person.getGitHub().toString());
+        String telegramURL = person.getTelegram().toString();
+        String githubURL = person.getGitHub().toString();
+        telegram.setOnAction(e -> {
+            openWebpage(telegramURL);
+        });
+        github.setOnAction(e -> {
+            openWebpage(githubURL);
+        });
+    }
 
+    /**
+     * Loads a webpage by the specified url on the user's default browser
+     * Adapted from https://stackoverflow.com/a/5226244
+     *
+     * @param url The url to load.
+     */
+    public static void openWebpage(String url) {
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            try {
+                Desktop.getDesktop().browse(new URI(url));
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
