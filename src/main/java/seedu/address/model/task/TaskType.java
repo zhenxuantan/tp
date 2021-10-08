@@ -38,7 +38,7 @@ public class TaskType {
         return taskType;
     }
 
-    public boolean equalTo(TaskType taskType){
+    public boolean equalTo(TaskType taskType) {
         return this.taskType.toLowerCase().equals(taskType.toString().toLowerCase());
     }
 }

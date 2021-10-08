@@ -1,8 +1,5 @@
 package seedu.address.model.task;
 
-import javafx.application.Application;
-import seedu.address.MainApp;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -29,19 +26,19 @@ public class FilterTaskCriterion {
     public static boolean isValidCriterion(String test) {
         boolean isValid;
         Character firstChar = test.charAt(0);
-        switch(firstChar){
-            case 'd':
-                isValid = Date.isValidDate(test.substring(5));
-                break;
-            case 't':
-                isValid = TaskType.isValidTaskType(test.substring(5));
-                break;
-            case 'g':
-                isValid = Group.isValidGroup(test.substring(2));
-                break;
-            default:
-                isValid = false;
-                break;
+        switch(firstChar) {
+        case 'd':
+            isValid = Date.isValidDate(test.substring(5));
+            break;
+        case 't':
+            isValid = TaskType.isValidTaskType(test.substring(5));
+            break;
+        case 'g':
+            isValid = Group.isValidGroup(test.substring(2));
+            break;
+        default:
+            isValid = false;
+            break;
         }
         return isValid;
     }

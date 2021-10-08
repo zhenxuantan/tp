@@ -1,8 +1,5 @@
 package seedu.address.model.task;
 
-import javafx.application.Application;
-import seedu.address.MainApp;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -50,17 +47,18 @@ public class Date {
         return date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
     }
 
-    public LocalDate getLocalDate(){ return this.date; }
-
-    public int compare(Date date){
-        return this.date.compareTo(date.getLocalDate());
+    public LocalDate getLocalDate() {
+        return this.date;
     }
+
+    public int compare(Date date) {
+        return this.date.compareTo(date.getLocalDate()); }
 
     /**
      *
      * @return String representation of date , i.e. "YYYY-MM-DD"
      */
-    public String getString(){
+    public String getString() {
         return this.dateString;
     }
 

@@ -6,7 +6,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Iterator;
 import java.util.List;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -59,19 +58,21 @@ public class TaskList implements Iterable<Task> {
         requireNonNull(toFilter);
         ObservableList<Task> filteredTaskList = FXCollections.observableArrayList();
         Character firstChar = toFilter.toString().charAt(0);
-        switch(firstChar){
-            case 'd':
-                Date date = new Date(toFilter.toString().substring(5));
-                filteredTaskList = filterByDate(date);
-                break;
-            case 't':
-                TaskType taskType = new TaskType(toFilter.toString().substring(5));
-                filteredTaskList = filterByType(taskType);
-                break;
-            case 'g':
-                Group group = new Group(toFilter.toString().substring(2));
-                filteredTaskList = filterByGroup(group);
-                break;
+        switch(firstChar) {
+        case 'd':
+            Date date = new Date(toFilter.toString().substring(5));
+            filteredTaskList = filterByDate(date);
+            break;
+        case 't':
+            TaskType taskType = new TaskType(toFilter.toString().substring(5));
+            filteredTaskList = filterByType(taskType);
+            break;
+        case 'g':
+            Group group = new Group(toFilter.toString().substring(2));
+            filteredTaskList = filterByGroup(group);
+            break;
+        default:
+            break;
         }
         for (Task task : filteredTaskList) {
             System.out.println(task.toString());
@@ -82,7 +83,7 @@ public class TaskList implements Iterable<Task> {
     private ObservableList<Task> filterByGroup(Group group) {
         ObservableList<Task> filteredList = FXCollections.observableArrayList();
         for (Task task : internalList) {
-            if(task.getGroup().equalTo(group)){
+            if (task.getGroup().equalTo(group)) {
                 filteredList.add(task);
             }
         }
@@ -92,7 +93,7 @@ public class TaskList implements Iterable<Task> {
     private ObservableList<Task> filterByType(TaskType taskType) {
         ObservableList<Task> filteredList = FXCollections.observableArrayList();
         for (Task task : internalList) {
-            if(task.getTaskType().equalTo(taskType)){
+            if (task.getTaskType().equalTo(taskType)) {
                 filteredList.add(task);
             }
         }
@@ -102,7 +103,7 @@ public class TaskList implements Iterable<Task> {
     private ObservableList<Task> filterByDate(Date date) {
         ObservableList<Task> filteredList = FXCollections.observableArrayList();
         for (Task task : internalList) {
-            if(task.getDate().compare(date) == 0){
+            if (task.getDate().compare(date) == 0) {
                 filteredList.add(task);
             }
         }

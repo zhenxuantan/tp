@@ -38,7 +38,7 @@ public class Group {
         return group;
     }
 
-    public boolean equalTo(Group group){
+    public boolean equalTo(Group group) {
         return this.group.equals(group.toString());
     }
 }
