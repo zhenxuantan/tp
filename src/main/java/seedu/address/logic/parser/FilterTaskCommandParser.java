@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKTYPE;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FilterTaskCommand;
-import seedu.address.logic.commands.SortTasksCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.FilterTaskCriterion;
