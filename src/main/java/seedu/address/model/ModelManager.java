@@ -133,6 +133,11 @@ public class ModelManager implements Model {
         tasks.addTask(toAdd);
     }
 
+    @Override
+    public Task deleteTask(int index) {
+        return tasks.deleteTask(index);
+    }
+
     //=========== Task List Accessors =============================================================
 
     @Override

@@ -17,11 +17,11 @@ public class TaskType {
     public TaskType(String taskType) {
         requireNonNull(taskType);
         checkArgument(isValidTaskType(taskType), MESSAGE_CONSTRAINTS);
-        this.taskType = taskType;
+        this.taskType = taskType.toLowerCase();
     }
 
     /**
-     * Returns true if a given string is a valid group.
+     * Returns true if a given string is a valid task type.
      */
     public static boolean isValidTaskType(String test) {
         String[] validTaskTypes = {"todo", "event", "deadline"};

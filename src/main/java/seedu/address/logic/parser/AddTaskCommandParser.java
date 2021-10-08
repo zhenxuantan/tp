@@ -24,8 +24,8 @@ import seedu.address.model.task.Todo;
  */
 public class AddTaskCommandParser {
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddTaskCommand
+     * and returns an AddTaskCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddTaskCommand parse(String args) throws ParseException {
@@ -45,13 +45,13 @@ public class AddTaskCommandParser {
 
         Task toAdd;
         switch (taskType.toString()) {
-        case "Todo":
+        case "todo":
             toAdd = new Todo(description, group, taskType, date);
             return new AddTaskCommand(toAdd);
-        case "Event":
+        case "event":
             toAdd = new Event(description, group, date, taskType);
             return new AddTaskCommand(toAdd);
-        case "Deadline":
+        case "deadline":
             toAdd = new Deadline(description, group, date, taskType);
             return new AddTaskCommand(toAdd);
         default:

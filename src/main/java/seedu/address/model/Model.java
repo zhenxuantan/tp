@@ -80,6 +80,7 @@ public interface Model {
     ReadOnlyTaskRecords getTaskList();
 
     void addTask(Task toAdd);
+    Task deleteTask(int index);
 
     ObservableList<Task> getTasks();
 

@@ -42,6 +42,16 @@ public class TaskRecords implements ReadOnlyTaskRecords {
         records.add(toAdd);
     }
 
+    /**
+     * Returns deleted task.
+     * @param index index of task to be deleted.
+     * @return deleted Task
+     */
+    public Task deleteTask(int index) {
+        Task toDelete = records.delete(index);
+        return toDelete;
+    }
+
     @Override
     public String toString() {
         return records.asUnmodifiableObservableList().size() + " tasks";
