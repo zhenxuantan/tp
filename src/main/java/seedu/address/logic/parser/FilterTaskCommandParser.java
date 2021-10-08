@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKTYPE;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FilterTaskCommand;
+import seedu.address.logic.commands.SortTasksCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.FilterTaskCriterion;
@@ -43,7 +44,7 @@ public class FilterTaskCommandParser {
             Group group = ParserUtil.parseGroup(argMultimap.getValue(PREFIX_GROUP).get());
             return new FilterTaskCommand(new FilterTaskCriterion(PREFIX_GROUP + group.toString()));
         }
-        throw new ParseException(FilterTaskCriterion.MESSAGE_CONSTRAINTS);
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTaskCommand.MESSAGE_USAGE));
     }
 
     /**

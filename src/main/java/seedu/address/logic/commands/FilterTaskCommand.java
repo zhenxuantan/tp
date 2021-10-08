@@ -12,12 +12,12 @@ import seedu.address.model.task.Task;
 public class FilterTaskCommand extends Command {
     public static final String COMMAND_WORD = "filterTask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": filters tasks based on specified criterion. "
-            + "Parameters: " + "FILTER_CRITERION"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": filters tasks based on specified criterion.\n"
+            + "Parameters: " + "FILTER_CRITERION\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_GROUP + "CS2101 ";
 
-    public static final String MESSAGE_SUCCESS = "filtered tasks by %1$s criterion";
+    public static final String MESSAGE_SUCCESS = "filtered tasks by %1$s criterion:";
 
     private final FilterTaskCriterion toFilter;
 
