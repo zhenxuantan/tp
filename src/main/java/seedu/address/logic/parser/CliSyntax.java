@@ -16,4 +16,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_TASKTYPE = new Prefix("type/");
     public static final Prefix PREFIX_PARAMETER = new Prefix("param/");
     public static final Prefix PREFIX_ORDER = new Prefix("o/");
+    public static final Prefix PREFIX_INDEX = new Prefix("index/");
 }
