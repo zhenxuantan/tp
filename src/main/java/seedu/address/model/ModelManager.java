@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.FilterTaskCriterion;
 import seedu.address.model.task.Task;
 
 /**
@@ -145,6 +146,10 @@ public class ModelManager implements Model {
         return taskList;
     }
 
+    @Override
+    public ObservableList<Task> filterTask(FilterTaskCriterion toFilter) {
+        return tasks.filterTask(toFilter);
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 

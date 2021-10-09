@@ -12,6 +12,7 @@ public class Date {
     private static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("MMM dd yyyy");
 
     public final LocalDate date;
+    public final String dateString;
 
 
     /**
@@ -23,6 +24,7 @@ public class Date {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         this.date = LocalDate.parse(date);
+        this.dateString = date;
     }
 
     /**
@@ -44,4 +46,21 @@ public class Date {
         }
         return date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
     }
+
+    public LocalDate getLocalDate() {
+        return this.date;
+    }
+
+    public int compare(Date date) {
+        return this.date.compareTo(date.getLocalDate()); }
+
+    /**
+     *
+     * @return String representation of date , i.e. "YYYY-MM-DD"
+     */
+    public String getString() {
+        return this.dateString;
+    }
+
+
 }
