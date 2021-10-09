@@ -16,7 +16,6 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Adds a task to the list.
-     * The person must not already exist in the list.
      */
     public void add(Task toAdd) {
         requireNonNull(toAdd);
@@ -35,6 +34,16 @@ public class TaskList implements Iterable<Task> {
     public void setTasks(List<Task> tasks) {
         requireAllNonNull(tasks);
         internalList.setAll(tasks);
+    }
+
+    /**
+     * Deletes a task in records.
+     *
+     * @param index index of task to be deleted.
+     */
+    public Task delete(int index) {
+        Task removedTask = internalList.remove(index);
+        return removedTask;
     }
 
     /**
