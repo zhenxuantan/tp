@@ -19,6 +19,7 @@ import seedu.address.model.ReadOnlyTaskRecords;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskRecords;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.FilterTaskCriterion;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
@@ -136,6 +137,10 @@ public class AddTaskCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public ObservableList<Task> filterTask(FilterTaskCriterion toFilter) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
 
