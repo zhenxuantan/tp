@@ -13,7 +13,7 @@ public class GroupPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return person.getGroup().equals(group);
+        return person.getGroups().contains(group);
     }
 
     @Override

@@ -143,6 +143,22 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> groups} into a {@code Set<Group>}.
+     * Used for addressbook.
+     */
+    public static Set<Group> parseGroups(Collection<String> groups) throws ParseException {
+        requireNonNull(groups);
+        if (groups.size() == 0) {
+            throw new ParseException(Group.MESSAGE_CONSTRAINTS);
+        }
+        final Set<Group> groupSet = new HashSet<>();
+        for (String group : groups) {
+            groupSet.add(parseGroup(group));
+        }
+        return groupSet;
+    }
+
+    /**
      * Parses a {@code String taskType} into an {@code TaskType}.
      * Leading and trailing whitespaces will be trimmed.
      *

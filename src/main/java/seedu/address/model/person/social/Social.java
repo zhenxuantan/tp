@@ -21,10 +21,12 @@ public abstract class Social {
         this.username = username;
     }
 
-
+    public String toUrl() {
+        return baseUrl + username;
+    }
     @Override
     public String toString() {
-        return baseUrl + username;
+        return "@" + username;
     }
 
     @Override

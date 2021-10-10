@@ -9,8 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -37,7 +40,8 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_GROUP + "GROUP] "
+            + "[" + PREFIX_GROUP + "GROUP1] "
+            + "[" + PREFIX_GROUP + "GROUP2] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_TELEGRAM + "TELEGRAM] "
@@ -76,13 +80,13 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Group updatedGroup = editPersonDescriptor.getGroup().orElse(personToEdit.getGroup());
+        Set<Group> updatedGroups = editPersonDescriptor.getGroups().orElse(personToEdit.getGroups());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Telegram updatedTele = editPersonDescriptor.getTelegram().orElse(personToEdit.getTelegram());
         GitHub updatedGit = editPersonDescriptor.getGitHub().orElse(personToEdit.getGitHub());
 
-        return new Person(updatedName, updatedGroup, updatedPhone, updatedEmail, updatedTele, updatedGit);
+        return new Person(updatedName, updatedGroups, updatedPhone, updatedEmail, updatedTele, updatedGit);
     }
 
     @Override
@@ -130,7 +134,7 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Group group;
+        private Set<Group> groups;
         private Phone phone;
         private Email email;
         private Telegram tg;
@@ -144,7 +148,7 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setGroup(toCopy.group);
+            setGroups(toCopy.groups);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setTelegram(toCopy.tg);
@@ -155,7 +159,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, group, phone, email, tg, gh);
+            return CollectionUtil.isAnyNonNull(name, groups, phone, email, tg, gh);
         }
 
         public Optional<Name> getName() {
@@ -182,12 +186,12 @@ public class EditCommand extends Command {
             this.email = email;
         }
 
-        public Optional<Group> getGroup() {
-            return Optional.ofNullable(group);
+        public Optional<Set<Group>> getGroups() {
+            return (groups != null) ? Optional.of(Collections.unmodifiableSet(groups)) : Optional.empty();
         }
 
-        public void setGroup(Group group) {
-            this.group = group;
+        public void setGroups(Set<Group> groups) {
+            this.groups = (groups != null) ? new HashSet<>(groups) : null;
         }
 
         public Optional<Telegram> getTelegram() {
@@ -222,7 +226,7 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getGroup().equals(e.getGroup())
+                    && getGroups().equals(e.getGroups())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getTelegram().equals(e.getTelegram())

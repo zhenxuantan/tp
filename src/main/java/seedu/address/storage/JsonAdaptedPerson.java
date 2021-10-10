@@ -1,5 +1,11 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,6 +17,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.social.GitHub;
 import seedu.address.model.person.social.Telegram;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -20,7 +27,7 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
-    private final String group;
+    private final List<JsonAdaptedGroup> groups = new ArrayList<>();
     private final String phone;
     private final String email;
     private final String telegram;
@@ -30,11 +37,11 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("group") String group,
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("groups") List<JsonAdaptedGroup> groups,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
             @JsonProperty("telegram") String telegram, @JsonProperty("github") String github) {
         this.name = name;
-        this.group = group;
+        this.groups.addAll(groups);
         this.phone = phone;
         this.email = email;
         this.telegram = telegram;
@@ -46,7 +53,9 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        group = source.getGroup().group;
+        groups.addAll(source.getGroups().stream()
+                .map(JsonAdaptedGroup::new)
+                .collect(Collectors.toSet()));
         phone = source.getPhone().value;
         email = source.getEmail().value;
         telegram = source.getTelegram().username;
@@ -67,13 +76,16 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        if (group == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Group.class.getSimpleName()));
-        }
-        if (!Group.isValidGroup(group)) {
+        if (groups.size() == 0) {
             throw new IllegalValueException(Group.MESSAGE_CONSTRAINTS);
         }
-        final Group modelGroup = new Group(group);
+        final Set<Group> modelGroups = new HashSet<>();
+        for (JsonAdaptedGroup group : groups) {
+            modelGroups.add(group.toModelType());
+        }
+        if (modelGroups.size() > 2) {
+            throw new IllegalValueException(Group.MESSAGE_CONSTRAINTS);
+        }
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -103,7 +115,7 @@ class JsonAdaptedPerson {
         }
         final GitHub modelGithub = new GitHub(github);
 
-        return new Person(modelName, modelGroup, modelPhone, modelEmail, modelTelegram, modelGithub);
+        return new Person(modelName, modelGroups, modelPhone, modelEmail, modelTelegram, modelGithub);
     }
 
 }

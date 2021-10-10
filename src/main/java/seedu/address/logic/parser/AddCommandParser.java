@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
@@ -41,13 +42,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Group group = ParserUtil.parseGroup(argMultimap.getValue(PREFIX_GROUP).get());
+        Set<Group> groups = ParserUtil.parseGroups(argMultimap.getAllValues(PREFIX_GROUP));
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Telegram tele = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
         GitHub git = ParserUtil.parseGitHub(argMultimap.getValue(PREFIX_GITHUB).get());
 
-        Person person = new Person(name, group, phone, email, tele, git);
+        Person person = new Person(name, groups, phone, email, tele, git);
 
         return new AddCommand(person);
     }

@@ -15,7 +15,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.social.GitHub;
 import seedu.address.model.person.social.Telegram;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
@@ -28,22 +27,22 @@ import seedu.address.model.task.TaskType;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Group("CS2103T"),
+            new Person(new Name("Alex Yeoh"), getGroupSet("CS2103T"),
                     new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new Telegram("alexyeoh"), new GitHub("alexyeoh")),
-            new Person(new Name("Bernice Yu"), new Group("CS2103T"),
+            new Person(new Name("Bernice Yu"), getGroupSet("CS2103T"),
                     new Phone("99272758"), new Email("berniceyu@example.com"),
                     new Telegram("berniceyu"), new GitHub("berniceyu")),
-            new Person(new Name("Charlotte Oliveiro"), new Group("CS2103T"),
+            new Person(new Name("Charlotte Oliveiro"), getGroupSet("CS2103T"),
                     new Phone("93210283"), new Email("charlotte@example.com"),
                     new Telegram("charlotteoliverio"), new GitHub("charlotteoliverio")),
-            new Person(new Name("David Li"), new Group("CS2103T"),
+            new Person(new Name("David Li"), getGroupSet("CS2103T"),
                     new Phone("91031282"), new Email("lidavid@example.com"),
                     new Telegram("davidli"), new GitHub("davidli")),
-            new Person(new Name("Irfan Ibrahim"), new Group("CS2103T"),
+            new Person(new Name("Irfan Ibrahim"), getGroupSet("CS2103T", "CS2101"),
                     new Phone("92492021"), new Email("irfan@example.com"),
                     new Telegram("irfan"), new GitHub("irfan")),
-            new Person(new Name("Roy Balakrishnan"), new Group("CS2103T"),
+            new Person(new Name("Roy Balakrishnan"), getGroupSet("CS2103T", "CS2101"),
                     new Phone("92624417"), new Email("royb@example.com"),
                     new Telegram("roybalakrishnan"), new GitHub("roybalakrishnan"))
         };
@@ -72,11 +71,11 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a tag set containing the list of strings given.
+     * Returns a group set containing the list of strings given.
      */
-    public static Set<Tag> getTagSet(String... strings) {
+    public static Set<Group> getGroupSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
+                .map(Group::new)
                 .collect(Collectors.toSet());
     }
 

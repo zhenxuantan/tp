@@ -4,10 +4,12 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
@@ -36,7 +38,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label group;
+    private FlowPane groups;
     @FXML
     private Label phone;
     @FXML
@@ -54,14 +56,21 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        group.setText(person.getGroup().group);
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
-        String telegramUrl = person.getTelegram().toString();
-        String githubUrl = person.getGitHub().toString();
+
+        person.getGroups().stream()
+                .sorted(Comparator.comparing(group -> group.group))
+                .forEach(group -> groups.getChildren().add(new Label(group.group)));
+
+        telegram.setText("Telegram: " + person.getTelegram().toString());
+        String telegramUrl = person.getTelegram().toUrl();
         telegram.setOnAction(e -> {
             openWebpage(telegramUrl);
         });
+
+        github.setText("GitHub: " + person.getGitHub().toString());
+        String githubUrl = person.getGitHub().toUrl();
         github.setOnAction(e -> {
             openWebpage(githubUrl);
         });
