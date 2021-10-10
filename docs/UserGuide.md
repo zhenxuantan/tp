@@ -50,9 +50,6 @@ SWEe-book is a **desktop app for managing contacts, optimized for use via a Comm
 * Items in square brackets are optional.<br>
   e.g `type/TYPE [date/DATE]` can be used as `type/deadline [date/2021-09-11]` or as `type/deadline`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
@@ -77,7 +74,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME g/GROUP p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERNAME gh/GITHUB_USERNAME`
+Format: `add n/NAME g/GROUP1 [g/GROUP2] p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERNAME gh/GITHUB_USERNAME`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Usernames can optionally be prepended with '@'. SWEe-book takes care of it!
@@ -85,7 +82,7 @@ Usernames can optionally be prepended with '@'. SWEe-book takes care of it!
 
 Examples:
 * `add n/John Doe g/CS2103T p/98765432 e/johnd@example.com tg/@johndoe gh/johndoe`
-* `add n/Betsy Crowe p/92221234 g/CS2101 e/betsycrowe@example.com tg/betsyyy gh/crowebetsy`
+* `add n/Betsy Crowe p/92221234 g/CS2103T g/CS2101 e/betsycrowe@example.com tg/betsyyy gh/crowebetsy`
 
 ### Listing all persons : `list`
 
@@ -97,7 +94,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [g/GROUP] [p/PHONE] [e/EMAIL] [tg/TELEGRAM] [gh/GITHUB]`
+Format: `edit INDEX [n/NAME] [g/GROUP1] [g/GROUP2] [p/PHONE] [e/EMAIL] [tg/TELEGRAM] [gh/GITHUB]`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -138,7 +135,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Filtering persons by a specified group: `group` [coming soon]
+### Filtering persons by a specified group: `group`
 Retrieves the list of people to those who are in the specified group.
 
 Format: `group GROUP_NAME`
@@ -149,7 +146,7 @@ Examples:
 * `group CS2103T` returns people in CS2103T
 * `group CS2101` returns people in CS2101
 
-### Adding a Task : `addtask` [coming soon]
+### Adding a Task : `addtask`
 
 Adds a new task (determined by what is inputted for type/TYPE) with task description as specified by d/DESCRIPTION 
 for the group specified by g/GROUP.
@@ -163,7 +160,7 @@ Examples:
 * `addtask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02`
 * `addtask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02`
 
-### Deleting a task/deadline: `deletetask` [coming soon]
+### Deleting a task/deadline: `deletetask`
 
 Format: `deletetask index`
 
@@ -174,7 +171,7 @@ Deletes the task at the specified `INDEX`.
 Examples:
 * `deletetask 1 deletes the 1st task or deadline in the task list.`
 
-### Sorting tasks: `sort` [coming soon]
+### Sorting tasks: `sort` 
 Sort tasks based on their description or their deadlines (chronologically, or the reverse), or by time added.
 
 Format: `sort p/PARAMETER o/ORDER`
@@ -195,7 +192,7 @@ If the following is in the task list:
 * `sort p/desc o/1` returns tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam` 
 * `sort p/due o/1` returns returns tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
 
-### Filtering tasks by modules: filter [coming soon]
+### Filtering tasks by modules: filter 
 Filter tasks based on the different modules (either CS2101 or CS2103T)
 
 Format: `filter g/Group`
@@ -208,7 +205,7 @@ Examples:
 * `filter CS2101` shows all the tasks related to CS2101 group
 * `filter CS2103T` shows all the tasks related to CS2103T group
 
-### Listing all tasks: listtasks [coming soon]
+### Listing all tasks: listtasks 
 Shows a list of all tasks in the address book. Optional argument to fill in the day that the tasks are due.
 
 Format: `listtasks [date/DATE]`
@@ -261,16 +258,16 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME g/GROUP1 [g/GROUP2] p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERNAME gh/GITHUB_USERNAME` <br> e.g., `add n/John Doe g/CS2103T p/98765432 e/johnd@example.com tg/@johndoe gh/johndoe`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [g/GROUP1] [g/GROUP2] [p/PHONE] [e/EMAIL] [tg/TELEGRAM] [gh/GITHUB]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Group** | `group GROUP` <br> e.g., `group CS2103T`
 **List** | `list`
 **Help** | `help`
-**Add Task (coming soon)** | `addtask d/DESCRIPTION g/GROUP type/TYPE [date/DATE]`
-**Delete Task (coming soon)** | `deletetask index`
-**Socials (coming soon)** | `socials g/GROUP`
-**Sort Tasks (coming soon)** | `sort p/PARAMETER o/ORDER` <br> e.g. `sort p/desc o/1`
-**Filter Tasks (coming soon)** | `filter g/Group`
-**List Tasks (coming soon)** | `listtasks [date/DATE]`
+**Add Task** | `addtask d/DESCRIPTION g/GROUP type/TYPE [date/DATE]`
+**Delete Task** | `deletetask index`
+**Sort Tasks** | `sort p/PARAMETER o/ORDER` <br> e.g., `sort p/desc o/1`
+**Filter Tasks** | `filter g/Group`
+**List Tasks** | `listtasks [date/DATE]`
