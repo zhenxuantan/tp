@@ -190,15 +190,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case (UC10): Filter tasks**
 
-1. User keys in a group of which its related tasks are needed.
-2. System displays the tasks pertaining to the group specified.
+1. User keys in a filter criterion.
+2. System displays the tasks pertaining to the criterion specified.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. User keys in an invalid group.
-    * 1a1. System displays an error message about invalid group. Use case ends.
+* 1a. User keys in an invalid criterion.
+    * 1a1. System displays an error message about invalid criterion. Use case ends.
 
 
 *{More to be added}*
