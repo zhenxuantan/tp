@@ -16,6 +16,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.social.GitHub;
+import seedu.address.model.person.social.Social;
 import seedu.address.model.person.social.Telegram;
 
 /**
@@ -106,11 +107,17 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Telegram.class.getSimpleName()));
         }
+        if (!Social.isValidUsername(telegram)) {
+            throw new IllegalValueException(Social.MESSAGE_CONSTRAINTS);
+        }
         final Telegram modelTelegram = new Telegram(telegram);
 
         if (github == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     GitHub.class.getSimpleName()));
+        }
+        if (!Social.isValidUsername(github)) {
+            throw new IllegalValueException(Social.MESSAGE_CONSTRAINTS);
         }
         final GitHub modelGithub = new GitHub(github);
 

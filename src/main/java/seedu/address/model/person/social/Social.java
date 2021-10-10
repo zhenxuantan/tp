@@ -1,11 +1,16 @@
 package seedu.address.model.person.social;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * This class encapsulates a URL to an online profile.
  */
 public abstract class Social {
+    public static final String MESSAGE_CONSTRAINTS = "Username may only contain alphanumeric characters "
+        + "or single hyphens/underscores, and cannot begin or end with a hyphen/underscores.";
+    // Adapted from https://github.com/regexhq/regex-username
+    private static final String VALIDATION_REGEX = "^([a-zA-Z\\d]+[-_])*[a-zA-Z\\d]+$";
     public final String username;
     private final String baseUrl; // the base url that is to be prepended to the username, that gives the user profile.
 
@@ -17,10 +22,21 @@ public abstract class Social {
      */
     public Social(String baseurl, String username) {
         requireAllNonNull(baseurl, username);
+        checkArgument(isValidUsername(username), MESSAGE_CONSTRAINTS);
         this.baseUrl = baseurl;
         this.username = username;
     }
 
+    /**
+     * Checks if the username is valid. Note that this is just a baseline check,
+     * and may not fufill requirement of all platforms.
+     *
+     * @param test The username to be checked.
+     * @return True if the username is valid.
+     */
+    public static boolean isValidUsername(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
     /**
      * Returns the profile URL.
      *
@@ -29,6 +45,7 @@ public abstract class Social {
     public String toUrl() {
         return baseUrl + username;
     }
+
     @Override
     public String toString() {
         return "@" + username;

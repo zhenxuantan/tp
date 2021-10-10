@@ -17,6 +17,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.social.GitHub;
+import seedu.address.model.person.social.Social;
 import seedu.address.model.person.social.Telegram;
 
 public class JsonAdaptedPersonTest {
@@ -24,6 +25,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_GROUP = "cs1234";
+    private static final String INVALID_USERNAME = "-foo";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -31,8 +33,8 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedGroup> VALID_GROUPS = BENSON.getGroups().stream()
             .map(JsonAdaptedGroup::new)
             .collect(Collectors.toList());
-    private static final String VALID_TELEGRAM = BENSON.getTelegram().toString();
-    private static final String VALID_GITHUB = BENSON.getGitHub().toString();
+    private static final String VALID_TELEGRAM = BENSON.getTelegram().username;
+    private static final String VALID_GITHUB = BENSON.getGitHub().username;
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
@@ -107,6 +109,14 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
+    public void toModelType_invalidTelegram_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME,
+                VALID_GROUPS, VALID_PHONE, VALID_EMAIL, INVALID_USERNAME, VALID_GITHUB);
+        String expectedMessage = Social.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
     public void toModelType_nullGithub_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_GROUPS, VALID_PHONE, VALID_EMAIL,
                 VALID_TELEGRAM, null);
@@ -114,4 +124,11 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
+    @Test
+    public void toModelType_invalidGithub_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME,
+                VALID_GROUPS, VALID_PHONE, VALID_EMAIL, VALID_TELEGRAM, INVALID_USERNAME);
+        String expectedMessage = Social.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
 }

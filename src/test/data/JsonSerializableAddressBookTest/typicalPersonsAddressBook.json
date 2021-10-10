@@ -18,8 +18,8 @@
       ],
       "phone": "98765432",
       "email": "johnd@example.com",
-      "telegram": "@Bensonmeirer",
-      "github": "@benson"
+      "telegram": "Bensonmeirer",
+      "github": "benson"
     },
     {
       "name": "Carl Kurz",
@@ -29,8 +29,8 @@
       ],
       "phone": "95352563",
       "email": "heinz@example.com",
-      "telegram": "@carl",
-      "github": "@carl"
+      "telegram": "carl",
+      "github": "carl"
     },
     {
       "name": "Daniel Meier",

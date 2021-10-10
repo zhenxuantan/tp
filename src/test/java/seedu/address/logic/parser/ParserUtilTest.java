@@ -23,6 +23,7 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_GROUP = "CS1234";
+    private static final String INVALID_USERNAME = "-foo";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -171,21 +172,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseUsername_validValueWithAtSymbol_returnsValueWithoutSymbol() {
+    public void parseUsername_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseUsername(INVALID_USERNAME));
+    }
+
+    @Test
+    public void parseUsername_validValueWithAtSymbol_returnsValueWithoutSymbol() throws Exception {
         String expectedUsername = VALID_USERNAME_WITHOUT_AT;
         String actualUsername = ParserUtil.parseUsername(VALID_USERNAME_WITH_AT);
         assertEquals(expectedUsername, actualUsername);
     }
 
     @Test
-    public void parseUsername_validValueWithoutAtSymbol_returnsValueWithoutSymbol() {
+    public void parseUsername_validValueWithoutAtSymbol_returnsValueWithoutSymbol() throws Exception {
         String expectedUsername = VALID_USERNAME_WITHOUT_AT;
         String actualUsername = ParserUtil.parseUsername(VALID_USERNAME_WITHOUT_AT);
         assertEquals(expectedUsername, actualUsername);
     }
 
     @Test
-    public void parseUsername_validValueWithWhitespace_returnsTrimmedUsername() {
+    public void parseUsername_validValueWithWhitespace_returnsTrimmedUsername() throws Exception {
         String usernameWithWhitespace = WHITESPACE + VALID_USERNAME_WITHOUT_AT + WHITESPACE;
         String actualUsername = ParserUtil.parseUsername(VALID_USERNAME_WITHOUT_AT);
         assertEquals(VALID_USERNAME_WITHOUT_AT, actualUsername);

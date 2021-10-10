@@ -16,6 +16,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.social.GitHub;
+import seedu.address.model.person.social.Social;
 import seedu.address.model.person.social.Telegram;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Description;
@@ -176,12 +177,17 @@ public class ParserUtil {
      *
      * @param username The username.
      * @return The cleaned username.
+     * @throws ParseException if the given {@code username} is invalid.
      */
-    public static String parseUsername(String username) {
+    public static String parseUsername(String username) throws ParseException {
         requireNonNull(username);
         String trimmedUsername = username.trim();
         if (trimmedUsername.charAt(0) == '@') { // removes any prepended '@' if it is present
             trimmedUsername = trimmedUsername.substring(1);
+        }
+
+        if (!Social.isValidUsername(trimmedUsername)) {
+            throw new ParseException(Social.MESSAGE_CONSTRAINTS);
         }
         return trimmedUsername;
     }
@@ -192,7 +198,7 @@ public class ParserUtil {
      * @param username The Telegram username.
      * @return The Telegram object.
      */
-    public static Telegram parseTelegram(String username) {
+    public static Telegram parseTelegram(String username) throws ParseException {
         return new Telegram(parseUsername(username));
     }
 
@@ -202,11 +208,7 @@ public class ParserUtil {
      * @param username The GitHub username.
      * @return The GitHub object.
      */
-    public static GitHub parseGitHub(String username) {
+    public static GitHub parseGitHub(String username) throws ParseException {
         return new GitHub(parseUsername(username));
     }
-
-
-
-
 }
