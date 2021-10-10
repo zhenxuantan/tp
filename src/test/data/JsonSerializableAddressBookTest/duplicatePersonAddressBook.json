@@ -1,14 +1,18 @@
 {
   "persons": [ {
     "name": "Alice Pauline",
+    "group": "CS2103T",
     "phone": "94351253",
     "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
-  }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street"
-  } ]
+    "github": "alice",
+    "telegram": "alice"
+  },
+    {
+      "name": "Alice Pauline",
+      "group": "CS2103T",
+      "phone": "94351253",
+      "email": "pauline@example.com",
+      "github": "alice1",
+      "telegram": "alice1"
+    } ]
 }

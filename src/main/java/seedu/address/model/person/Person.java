@@ -2,16 +2,11 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.model.group.Group;
 import seedu.address.model.person.social.GitHub;
 import seedu.address.model.person.social.Telegram;
-import seedu.address.model.tag.Tag;
-
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -32,7 +27,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Group group, Phone phone, Email email, Telegram tele, GitHub git) {
-        requireAllNonNull(name, group, phone, email,tele, git);
+        requireAllNonNull(name, group, phone, email, tele, git);
         this.name = name;
         this.group = group;
         this.phone = phone;

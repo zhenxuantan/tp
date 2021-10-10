@@ -2,7 +2,6 @@ package seedu.address.model.group;
 
 import java.util.function.Predicate;
 
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 public class GroupPredicate implements Predicate<Person> {

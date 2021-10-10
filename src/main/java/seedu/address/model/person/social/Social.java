@@ -6,8 +6,8 @@ import static java.util.Objects.requireNonNull;
  * This class encapsulates a URL to an online profile.
  */
 public abstract class Social {
-    private String baseUrl; // the base url that is to be prepended to the username, that gives the user profile.
-    public String username;
+    public final String username;
+    private final String baseUrl; // the base url that is to be prepended to the username, that gives the user profile.
 
     /**
      * Constructor for the Social class.

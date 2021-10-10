@@ -1,19 +1,16 @@
 package seedu.address.ui;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.social.GitHub;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -60,13 +57,13 @@ public class PersonCard extends UiPart<Region> {
         group.setText(person.getGroup().group);
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
-        String telegramURL = person.getTelegram().toString();
-        String githubURL = person.getGitHub().toString();
+        String telegramUrl = person.getTelegram().toString();
+        String githubUrl = person.getGitHub().toString();
         telegram.setOnAction(e -> {
-            openWebpage(telegramURL);
+            openWebpage(telegramUrl);
         });
         github.setOnAction(e -> {
-            openWebpage(githubURL);
+            openWebpage(githubUrl);
         });
     }
 

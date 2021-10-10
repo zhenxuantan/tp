@@ -16,6 +16,7 @@ public class Group {
      */
     public Group(String group) {
         requireNonNull(group);
+        group = group.toUpperCase();
         checkArgument(isValidGroup(group), MESSAGE_CONSTRAINTS);
         this.group = group;
     }
