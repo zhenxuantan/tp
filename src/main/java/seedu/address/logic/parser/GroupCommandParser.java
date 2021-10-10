@@ -8,7 +8,7 @@ import seedu.address.model.group.Group;
 import seedu.address.model.group.GroupPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new GroupCommand object
  */
 public class GroupCommandParser implements Parser<GroupCommand> {
 

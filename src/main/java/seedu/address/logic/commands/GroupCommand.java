@@ -7,6 +7,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.GroupPredicate;
 
+/**
+ * Retrieves people from the same specified group.
+ */
 public class GroupCommand extends Command {
 
     public static final String COMMAND_WORD = "group";
@@ -17,6 +20,11 @@ public class GroupCommand extends Command {
 
     private final GroupPredicate predicate;
 
+    /**
+     * Constructor of the GroupCommand class.
+     *
+     * @param predicate The predicate to filter the list of people.
+     */
     public GroupCommand(GroupPredicate predicate) {
         this.predicate = predicate;
     }

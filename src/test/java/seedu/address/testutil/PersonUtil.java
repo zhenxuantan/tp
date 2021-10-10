@@ -29,11 +29,14 @@ public class PersonUtil {
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_GROUP + person.getGroup().group + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_TELEGRAM + person.getTelegram().username + " ");
         sb.append(PREFIX_GITHUB + person.getGitHub().username + " ");
+
+        person.getGroups().stream().forEach(
+            s -> sb.append(PREFIX_GROUP + s.group + " ")
+        );
 
         return sb.toString();
     }
@@ -46,9 +49,12 @@ public class PersonUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getGroup().ifPresent(group -> sb.append(PREFIX_GROUP).append(group.group).append(" "));
         descriptor.getTelegram().ifPresent(tele -> sb.append(PREFIX_TELEGRAM).append(tele.username).append(" "));
         descriptor.getGitHub().ifPresent(git -> sb.append(PREFIX_GITHUB).append(git.username).append(" "));
+        descriptor.getGroups().ifPresent(groups ->
+                groups.forEach(s -> sb.append(PREFIX_GROUP).append(s.group).append((" ")))
+        );
+
         return sb.toString();
     }
 }

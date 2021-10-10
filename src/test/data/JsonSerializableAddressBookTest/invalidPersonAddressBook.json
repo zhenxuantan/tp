@@ -1,7 +1,9 @@
 {
   "persons": [ {
     "name": "Hans Muster",
-    "group": "CS2103T",
+    "groups": [
+      "CS2103T"
+    ],
     "phone": "9482424",
     "email": "invalid@email!3e",
     "telegram": "hans",

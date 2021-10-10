@@ -19,7 +19,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_AMY_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_AMY_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -90,6 +91,9 @@ public class EditCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
+        // valid groups followed by an invalid group.
+        assertParseFailure(parser, "1" + GROUP_DESC_AMY + INVALID_GROUP_DESC, Group.MESSAGE_CONSTRAINTS);
+
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_PHONE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
@@ -103,7 +107,7 @@ public class EditCommandParserTest {
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
-                .withGroup(VALID_GROUP_BOB).withGitHub(VALID_GITHUB_BOB).withTelegram(VALID_TELEGRAM_AMY).build();
+                .withGroups(VALID_GROUP_BOB).withGitHub(VALID_GITHUB_BOB).withTelegram(VALID_TELEGRAM_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -144,7 +148,8 @@ public class EditCommandParserTest {
 
         // group
         userInput = targetIndex.getOneBased() + GROUP_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withGroup(VALID_GROUP_AMY).build();
+        descriptor = new EditPersonDescriptorBuilder().withGroups(VALID_GROUP_AMY_CS2101,
+                VALID_GROUP_AMY_CS2103T).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -174,6 +179,13 @@ public class EditCommandParserTest {
         userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC
                 + PHONE_DESC_BOB;
         descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // an iovalid group followed by 2 valid groups
+        userInput = targetIndex.getOneBased() + GROUP_DESC_BOB + GROUP_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder().withGroups(VALID_GROUP_AMY_CS2101,
+                VALID_GROUP_AMY_CS2103T).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

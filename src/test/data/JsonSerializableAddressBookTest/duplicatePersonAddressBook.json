@@ -1,18 +1,24 @@
 {
-  "persons": [ {
-    "name": "Alice Pauline",
-    "group": "CS2103T",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "github": "alice",
-    "telegram": "alice"
-  },
+  "persons": [
     {
       "name": "Alice Pauline",
-      "group": "CS2103T",
+      "groups": [
+        "CS2103T"
+      ],
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "github": "alice",
+      "telegram": "alice"
+    },
+    {
+      "name": "Alice Pauline",
+      "groups": [
+        "CS2101"
+      ],
       "phone": "94351253",
       "email": "pauline@example.com",
       "github": "alice1",
       "telegram": "alice1"
-    } ]
+    }
+  ]
 }

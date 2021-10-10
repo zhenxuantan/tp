@@ -4,6 +4,9 @@ import java.util.function.Predicate;
 
 import seedu.address.model.person.Person;
 
+/**
+ * Tests that a {@code Person}'s {@code Group} matches the specified group.
+ */
 public class GroupPredicate implements Predicate<Person> {
     private Group group;
 

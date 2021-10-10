@@ -1,6 +1,6 @@
 package seedu.address.model.person.social;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * This class encapsulates a URL to an online profile.
@@ -16,11 +16,16 @@ public abstract class Social {
      * @param username The username of the user on that platform.
      */
     public Social(String baseurl, String username) {
-        requireNonNull(baseurl, username);
+        requireAllNonNull(baseurl, username);
         this.baseUrl = baseurl;
         this.username = username;
     }
 
+    /**
+     * Returns the profile URL.
+     *
+     * @return the profile URL.
+     */
     public String toUrl() {
         return baseUrl + username;
     }

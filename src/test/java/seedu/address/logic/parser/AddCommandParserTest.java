@@ -5,7 +5,6 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.GROUP_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.GROUP_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GROUP_DESC;
@@ -62,17 +61,17 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + GROUP_DESC_BOB + TELEGRAM_DESC_BOB + GITHUB_DESC_BOB, new AddCommand(expectedPerson));
 
-        // multiple group - last group accepted
+        // multiple groups - last groups accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + GROUP_DESC_AMY + GROUP_DESC_BOB + TELEGRAM_DESC_BOB + GITHUB_DESC_BOB,
+                        + GROUP_DESC_BOB + GROUP_DESC_BOB + TELEGRAM_DESC_BOB + GITHUB_DESC_BOB,
                 new AddCommand(expectedPerson));
 
-        // multiple telegram - last telegram accepted
+        // multiple telegrams - last telegram accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + GROUP_DESC_BOB + TELEGRAM_DESC_AMY
                 + TELEGRAM_DESC_BOB + GITHUB_DESC_BOB, new AddCommand(expectedPerson));
 
-        // multiple github - last github accepted
+        // multiple githubs - last github accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + GROUP_DESC_BOB + TELEGRAM_DESC_BOB
                 + GITHUB_DESC_AMY + GITHUB_DESC_BOB, new AddCommand(expectedPerson));

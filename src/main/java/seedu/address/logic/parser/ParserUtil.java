@@ -2,8 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -15,7 +17,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.social.GitHub;
 import seedu.address.model.person.social.Telegram;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.TaskType;
@@ -86,33 +87,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
-    }
-
-    /**
      * Parses a {@code String description} into an {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -152,9 +126,15 @@ public class ParserUtil {
             throw new ParseException(Group.MESSAGE_CONSTRAINTS);
         }
         final Set<Group> groupSet = new HashSet<>();
-        for (String group : groups) {
-            groupSet.add(parseGroup(group));
+        List<String> groupList = new ArrayList<>(groups);
+        if (groupList.size() > 2) { // we only take the last 2 group arguments if there are more than 2
+            groupList = groupList.subList(groupList.size() - 2, groupList.size());
         }
+        for (String groupName : groupList) {
+            groupSet.add(parseGroup(groupName));
+        }
+
+        assert groupSet.size() <= Group.VALID_GROUPS.length;
         return groupSet;
     }
 

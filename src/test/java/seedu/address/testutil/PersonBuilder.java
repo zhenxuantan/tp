@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -7,6 +10,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.social.GitHub;
 import seedu.address.model.person.social.Telegram;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -16,12 +20,13 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_GROUP = "CS2103T";
+    public static final String DEFAULT_GROUP_CS2101 = "CS2101";
+    public static final String DEFAULT_GROUP_CS22103T = "CS2103T";
     public static final String DEFAULT_TELEGRAM = "amybee";
     public static final String DEFAULT_GITHUB = "amybee";
 
     private Name name;
-    private Group group;
+    private Set<Group> groups;
     private Phone phone;
     private Email email;
     private Telegram tele;
@@ -32,7 +37,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        group = new Group(DEFAULT_GROUP);
+        groups = SampleDataUtil.getGroupSet(DEFAULT_GROUP_CS2101, DEFAULT_GROUP_CS22103T);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         tele = new Telegram(DEFAULT_TELEGRAM);
@@ -44,7 +49,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
-        group = personToCopy.getGroup();
+        groups = new HashSet<>(personToCopy.getGroups());
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         tele = personToCopy.getTelegram();
@@ -79,8 +84,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Group} of the {@code Person} that we are building.
      */
-    public PersonBuilder withGroup(String group) {
-        this.group = new Group(group);
+    public PersonBuilder withGroups(String... groups) {
+        this.groups = SampleDataUtil.getGroupSet(groups);
         return this;
     }
 
@@ -102,7 +107,7 @@ public class PersonBuilder {
 
 
     public Person build() {
-        return new Person(name, group, phone, email, tele, git);
+        return new Person(name, groups, phone, email, tele, git);
     }
 
 }

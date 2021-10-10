@@ -3,10 +3,13 @@ package seedu.address.model.group;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * This class encapsulates a group. A group can be CS2103T or CS2101.
+ */
 public class Group {
     public static final String MESSAGE_CONSTRAINTS =
             "Group can be either CS2101 or CS2103T, and it should not be blank";
-    private static final String[] VALID_GROUPS = {"CS2103T", "CS2101"};
+    public static final String[] VALID_GROUPS = {"CS2103T", "CS2101"};
     public final String group;
 
     /**

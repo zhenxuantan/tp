@@ -33,7 +33,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_GROUP_AMY = "CS2103T";
+    public static final String VALID_GROUP_AMY_CS2103T = "CS2103T";
+    public static final String VALID_GROUP_AMY_CS2101 = "CS2101";
     public static final String VALID_GROUP_BOB = "CS2101";
     public static final String VALID_TELEGRAM_AMY = "amy";
     public static final String VALID_TELEGRAM_BOB = "bob";
@@ -47,7 +48,8 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String GROUP_DESC_AMY = " " + PREFIX_GROUP + VALID_GROUP_AMY;
+    public static final String GROUP_DESC_AMY = " " + PREFIX_GROUP + VALID_GROUP_AMY_CS2103T
+            + " " + PREFIX_GROUP + VALID_GROUP_AMY_CS2101;
     public static final String GROUP_DESC_BOB = " " + PREFIX_GROUP + VALID_GROUP_BOB;
     public static final String TELEGRAM_DESC_AMY = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_AMY;
     public static final String TELEGRAM_DESC_BOB = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_BOB;
@@ -69,10 +71,11 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withGroup(VALID_GROUP_AMY).withTelegram(VALID_TELEGRAM_AMY).withGitHub(VALID_GITHUB_AMY).build();
+                .withGroups(VALID_GROUP_AMY_CS2103T, VALID_GROUP_AMY_CS2101)
+                .withTelegram(VALID_TELEGRAM_AMY).withGitHub(VALID_GITHUB_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withGroup(VALID_GROUP_BOB).withTelegram(VALID_TELEGRAM_BOB).withGitHub(VALID_GITHUB_BOB).build();
+                .withGroups(VALID_GROUP_BOB).withTelegram(VALID_TELEGRAM_BOB).withGitHub(VALID_GITHUB_BOB).build();
     }
 
     /**
