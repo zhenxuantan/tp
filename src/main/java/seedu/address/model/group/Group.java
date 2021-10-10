@@ -3,8 +3,6 @@ package seedu.address.model.group;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.tag.Tag;
-
 public class Group {
     public static final String MESSAGE_CONSTRAINTS =
             "Group can be either CS2101 or CS2103T, and it should not be blank";
