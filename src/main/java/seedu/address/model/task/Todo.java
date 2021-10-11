@@ -11,6 +11,6 @@ public class Todo extends Task {
 
     @Override
     public String toString() {
-        return this.symbol + super.toString();
+        return this.symbol + super.toString() + " (finish at: " + date.toString() + ")";
     }
 }
