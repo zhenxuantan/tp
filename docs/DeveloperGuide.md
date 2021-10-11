@@ -119,8 +119,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User keys in a task 
-2. System shows the details of the task added to task list
+1. User keys in a task.
+2. System shows the details of the task added to task list.
 
     Use case ends.
 
@@ -134,8 +134,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case (UC06): Delete a task**
 
-1. User requests to list tasks
-2. System shows a list of tasks
+1. User requests to list tasks.
+2. System shows a list of tasks.
 3. User keys in an index.
 4. The task of specified index in task list is removed.
     
