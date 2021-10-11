@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.FilterTaskCriterion;
+import seedu.address.model.task.SortTaskCriterion;
 import seedu.address.model.task.Task;
 
 /**
@@ -149,6 +150,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Task> filterTask(FilterTaskCriterion toFilter) {
         return tasks.filterTask(toFilter);
+    }
+
+    @Override
+    public ObservableList<Task> sortTask(SortTaskCriterion toSort) {
+        return tasks.sortTask(toSort);
     }
 
     //=========== Filtered Person List Accessors =============================================================

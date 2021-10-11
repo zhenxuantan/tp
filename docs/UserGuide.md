@@ -175,22 +175,22 @@ Examples:
 Sort tasks based on their description or their deadlines (chronologically, or the reverse), or by time added.
 
 Format: `sort p/PARAMETER o/ORDER`
-* The sort is case-insensitive. e.g CS2030 will be lexicographically identical to cs2103
-* PARAMETER includes desc (for description), due (for deadline / time of event), and added (for date added)
-* ORDER includes 0 for ascending order (0-9 and A-Z, oldest to newest) and 1 for descending order(Z-A and 9-0 / newest to oldest)
+* The sort is case-insensitive. e.g CS2103 will be lexicographically identical to cs2103
+* PARAMETER includes 'desc' (for description), 'date' (for deadline / time of event), 'added' (for date added) and 'group'.
+* ORDER includes 'a' for ascending order (0-9 and A-Z, oldest to newest) and 'd' for descending order(Z-A and 9-0 / newest to oldest)
 * For tasks with no due dates, they are always at the back of any sort
 
 Examples:
 If the following is in the task list:
-| Type        | Description | Date & Time     |
-| ----------- | ----------- | --------------- |
-| `Todo`      | user guide  |        -        |
-| `Deadline`  | quiz        | 25-09-2020 2359 |
-| `Event`     | test        | 21-09-2020 2359 |
-| `Event`     | exam        | 22-09-2020 2359 |
+| Type        | Description | Date       |
+| ----------- | ----------- | ---------- |
+| `Todo`      | user guide  | -          |
+| `Deadline`  | quiz        | 25-09-2020 |
+| `Event`     | test        | 21-09-2020 |
+| `Event`     | exam        | 22-09-2020 |
 
 * `sort p/desc o/1` returns tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam` 
-* `sort p/due o/1` returns returns tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
+* `sort p/date o/1` returns returns tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
 
 ### Filtering tasks by modules: filterTask 
 Filter tasks based on a criterion

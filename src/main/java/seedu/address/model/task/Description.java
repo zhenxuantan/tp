@@ -37,4 +37,17 @@ public class Description {
         return description;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Description) {
+            return description.equals(((Description) obj).description);
+        } else {
+            return false;
+        }
+    }
+
+    public int compareTo(Description otherDesc) {
+        return description.toLowerCase().compareTo(otherDesc.description.toLowerCase());
+    }
+
 }

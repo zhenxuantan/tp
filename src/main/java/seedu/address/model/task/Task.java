@@ -66,8 +66,7 @@ public class Task {
      * @return an integer for comparison
      */
     public int compareDescription(Task otherTask) {
-        return this.getDescription().toString().toLowerCase()
-            .compareTo(otherTask.getDescription().toString().toLowerCase());
+        return this.getDescription().compareTo(otherTask.getDescription());
     }
 
     /**
@@ -76,6 +75,35 @@ public class Task {
      * @return an integer for comparison
      */
     public int compareDate(Task otherTask) {
-        return this.getDate().date.compareTo(otherTask.getDate().date);
+        return this.getDate().compareTo(otherTask.getDate());
+    }
+
+    /**
+     * Comparator for the task's group.
+     * @param otherTask the otherTask
+     * @return an integer for comparison
+     */
+    public int compareGroup(Task otherTask) {
+        return this.getGroup().compareTo(otherTask.getGroup());
+    }
+
+    /**
+     * Equals method.
+     *
+     * @param obj the object
+     * @return true if they are equal
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Task) {
+            Task otherTask = (Task) obj;
+            return getDescription().equals(otherTask.getDescription())
+                && getGroup().equals(otherTask.getGroup())
+                && getTaskType().equals(otherTask.getTaskType())
+                && getDate().equals(otherTask.getDate())
+                && isDone == otherTask.isDone;
+        } else {
+            return false;
+        }
     }
 }
