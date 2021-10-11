@@ -98,7 +98,7 @@ class JsonAdaptedTask {
 
         switch (taskType) {
         case "todo":
-            Task task = new Todo(modelDescription, modelGroup, modelTaskType, modelDate);
+            Task task = new Todo(modelDescription, modelGroup, modelDate, modelTaskType);
             if (checkIsDone(status)) {
                 task.markAsDone();
             }

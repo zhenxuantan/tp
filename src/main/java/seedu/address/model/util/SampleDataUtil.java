@@ -18,8 +18,10 @@ import seedu.address.model.person.social.Telegram;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Event;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskType;
+import seedu.address.model.task.Todo;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -57,8 +59,17 @@ public class SampleDataUtil {
     }
 
     public static Task[] getSampleTasks() {
-        return new Task[] { new Deadline(new Description("Project Meeting"), new Group("CS2101"),
-                new Date("2021-11-11"), new TaskType("deadline"))
+        return new Task[] {
+            new Deadline(new Description("OP1 script"), new Group("CS2101"),
+                new Date("2021-11-11"), new TaskType("deadline")),
+            new Deadline(new Description("Update User Guide"), new Group("CS2103T"),
+                new Date("2021-12-11"), new TaskType("deadline")),
+            new Event(new Description("Project Meeting"), new Group("CS2103T"),
+                new Date("2021-12-21"), new TaskType("event")),
+            new Event(new Description("OP1 Presentation"), new Group("CS2101"),
+                new Date("2021-11-21"), new TaskType("event")),
+            new Todo(new Description("Create slides"), new Group("CS2101"),
+                new Date("2021-11-17"), new TaskType("todo"))
         };
     }
 

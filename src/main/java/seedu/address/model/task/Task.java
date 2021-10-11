@@ -16,7 +16,7 @@ public class Task {
      * @param type Type of task (Deadline, Event, Todo)
      * @param date Date of task
      */
-    public Task(Description description, Group group, TaskType type, Date date) {
+    public Task(Description description, Group group, Date date, TaskType type) {
         this.description = description;
         this.group = group;
         this.type = type;
