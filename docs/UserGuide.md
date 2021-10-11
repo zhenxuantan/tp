@@ -192,18 +192,17 @@ If the following is in the task list:
 * `sort p/desc o/1` returns tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam` 
 * `sort p/due o/1` returns returns tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
 
-### Filtering tasks by modules: filter 
-Filter tasks based on the different modules (either CS2101 or CS2103T)
+### Filtering tasks by modules: filterTask 
+Filter tasks based on a criterion
 
 Format: `filter g/Group`
-* Filters the task by the specified `g/Group`
-* `g/Group` refers to one of the 2 groups: CS2101 and CS2103T
-* `g/Group` must be either of the 2 groups stated above
-* Tasks corresponding to the group specified will be shown
+* Filters the task by the specified `FILTER_CRITERION`
+* `FILTER_CRITERION` refers to either `g/GROUP`, `date/DATE` or `type/TASKTYPE`
+* Tasks corresponding to the criterion specified will be shown
 
 Examples:
-* `filter CS2101` shows all the tasks related to CS2101 group
-* `filter CS2103T` shows all the tasks related to CS2103T group
+* `filterTask g/CS2101` shows all the tasks related to CS2101 group
+* `filterTask date/2021-10-10` shows all the tasks with date of 10 Oct 2021
 
 ### Listing all tasks: listtasks 
 Shows a list of all tasks in the address book. Optional argument to fill in the day that the tasks are due.
