@@ -19,7 +19,7 @@ title: Developer Guide
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts of group mates and daily tasks faster than a typical mouse/GUI driven app
+**Value proposition**: Manage contacts of group mates and daily tasks faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -34,10 +34,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-| `* * *`  | user                                       | Add a new task/deadline to the list | So that I can keep track of the tasks that needs to be done       |
+| `*`      | user                                       | Add a new task/deadline to the list | So that I can keep track of the tasks that needs to be done       |
 | `* * *`  | new user                                   | Have an overview of my groupmate details like telegram, email and name.  | So I can easily contact them |
 | `* * *`  | forgetful user                             | have a list of tasks           | So that I can follow up on it and not miss out tasks                   |
-| `* * *`  | user                                       | delete a task/deadline in the list | So that I can keep delete the tasks that are already done          |
+| `*`      | user                                       | delete a task/deadline in the list | So that I can keep delete the tasks that are already done          |
 | `* * *`  | long term user                             | quickly check deadlines in order of priority (sort) | Clear the tasks due one at a time                 |
 | `* * *`  | user                                       | filter the task according to the different modules | I know what I can do for each module               |
 
@@ -119,23 +119,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User keys in a task. 
-2. The task is added to the task list.
+1. User keys in a task 
+2. System shows the details of the task added to task list
 
     Use case ends.
 
 **Extensions**
 
-* 1a. User keys in an incorrect command format.
-    * 1a1. System displays an error message about the incorrect format.
+* 2a. The task details are invalid or incomplete.
+    * 2a1. System shows an error message about the incorrect or missing details.
     
     Use case ends.
 
 
 **Use case (UC06): Delete a task**
 
-1. User keys in an index.
-2. The task of specified index in task list is removed.
+1. User requests to list tasks
+2. System shows a list of tasks
+3. User keys in an index.
+4. The task of specified index in task list is removed.
     
     Use case ends.
 
