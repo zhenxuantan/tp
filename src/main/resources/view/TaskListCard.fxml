@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -21,33 +19,25 @@
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
       <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="id" styleClass="cell_big_label">
+        <Label fx:id="id" styleClass="cell_big_label" text="\$id">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" minWidth="-Infinity" styleClass="cell_big_label" text="\$first" HBox.hgrow="ALWAYS" />
-        <FlowPane fx:id="groups" />
+            <HBox>
+               <children>
+                  <Label fx:id="group" styleClass="group_badge" text="\$group" />
+                  <Label fx:id="taskType" styleClass="taskType_badge" text="\$taskType" />
+               </children>
+            </HBox>
+         <Label fx:id="description" styleClass="cell_big_label" text="\$description" />
       </HBox>
          <HBox>
             <children>
-               <VBox prefWidth="100.0" HBox.hgrow="ALWAYS">
-                  <children>
-                  <Label fx:id="phone" prefHeight="25.0" styleClass="cell_small_label" text="\$phone" />
-                  <Label fx:id="email" prefHeight="25.0" styleClass="cell_small_label" text="\$email" />
-                  </children>
-               </VBox>
-               <VBox prefWidth="100.0" HBox.hgrow="ALWAYS">
-                  <children>
-                  <Hyperlink fx:id="telegram" prefHeight="25.0" text="Telegram" />
-                  <Hyperlink fx:id="github" prefHeight="25.0" text="Github" />
-                  </children>
-               </VBox>
+            <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
+               <Label fx:id="done" styleClass="cell_small_label" text="\$done" />
             </children>
-            <padding>
-               <Insets top="5.0" />
-            </padding>
          </HBox>
     </VBox>
       <rowConstraints>

@@ -71,7 +71,7 @@ public class LogicManager implements Logic {
         return model.getTaskList();
     }
 
-    public ObservableList<Task> getTasks() {
+    public ObservableList<Task> getFilteredTaskList() {
         return model.getTasks();
     }
 

@@ -350,3 +350,21 @@
     -fx-font-size: 11;
 }
 
+.group_badge {
+    -fx-text-fill: white;
+    -fx-background-color: #3e7b91;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+.taskType_badge {
+    -fx-text-fill: white;
+    -fx-background-color: #4B0082;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
