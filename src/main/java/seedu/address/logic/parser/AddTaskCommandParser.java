@@ -10,11 +10,11 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.group.Group;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Event;
-import seedu.address.model.task.Group;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskType;
 import seedu.address.model.task.Todo;

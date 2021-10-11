@@ -9,9 +9,9 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FilterTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.group.Group;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.FilterTaskCriterion;
-import seedu.address.model.task.Group;
 import seedu.address.model.task.TaskType;
 
 /**

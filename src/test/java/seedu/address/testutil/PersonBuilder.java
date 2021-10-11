@@ -3,11 +3,13 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.social.GitHub;
+import seedu.address.model.person.social.Telegram;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -18,20 +20,28 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_GROUP_CS2101 = "CS2101";
+    public static final String DEFAULT_GROUP_CS22103T = "CS2103T";
+    public static final String DEFAULT_TELEGRAM = "amybee";
+    public static final String DEFAULT_GITHUB = "amybee";
 
     private Name name;
+    private Set<Group> groups;
     private Phone phone;
     private Email email;
-    private Set<Tag> tags;
+    private Telegram tele;
+    private GitHub git;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
+        groups = SampleDataUtil.getGroupSet(DEFAULT_GROUP_CS2101, DEFAULT_GROUP_CS22103T);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        tags = new HashSet<>();
+        tele = new Telegram(DEFAULT_TELEGRAM);
+        git = new GitHub(DEFAULT_GITHUB);
     }
 
     /**
@@ -39,9 +49,12 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
+        groups = new HashSet<>(personToCopy.getGroups());
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        tags = new HashSet<>(personToCopy.getTags());
+        tele = personToCopy.getTelegram();
+        git = personToCopy.getGitHub();
+
     }
 
     /**
@@ -49,14 +62,6 @@ public class PersonBuilder {
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -76,8 +81,33 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Group} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGroups(String... groups) {
+        this.groups = SampleDataUtil.getGroupSet(groups);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Telegram} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTelegram(String username) {
+        this.tele = new Telegram(username);
+        return this;
+    }
+
+    /**
+     * Sets the {@code GitHub} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGitHub(String username) {
+        this.git = new GitHub(username);
+        return this;
+    }
+
+
     public Person build() {
-        return new Person(name, phone, email, tags);
+        return new Person(name, groups, phone, email, tele, git);
     }
 
 }

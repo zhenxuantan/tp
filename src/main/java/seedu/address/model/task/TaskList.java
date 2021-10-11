@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.group.Group;
 
 public class TaskList implements Iterable<Task> {
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
@@ -92,7 +93,7 @@ public class TaskList implements Iterable<Task> {
     private ObservableList<Task> filterByGroup(Group group) {
         ObservableList<Task> filteredList = FXCollections.observableArrayList();
         for (Task task : internalList) {
-            if (task.getGroup().equalTo(group)) {
+            if (task.getGroup().equals(group)) {
                 filteredList.add(task);
             }
         }
