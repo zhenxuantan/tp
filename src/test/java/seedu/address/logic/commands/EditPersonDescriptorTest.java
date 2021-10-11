@@ -5,9 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -46,8 +48,16 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different tags -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        // different group -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withGroups(VALID_GROUP_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different telegram -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTelegram(VALID_TELEGRAM_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different github -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withGitHub(VALID_GITHUB_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

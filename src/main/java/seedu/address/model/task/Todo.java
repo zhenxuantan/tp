@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import seedu.address.model.group.Group;
+
 public class Todo extends Task {
     private final String symbol = "[T]";
 

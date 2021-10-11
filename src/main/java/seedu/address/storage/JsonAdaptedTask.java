@@ -6,11 +6,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.group.Group;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Event;
-import seedu.address.model.task.Group;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskType;
 import seedu.address.model.task.Todo;
