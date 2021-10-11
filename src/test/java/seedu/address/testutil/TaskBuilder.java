@@ -63,6 +63,6 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(description, group, type, date);
+        return new Task(description, group, date, type);
     }
 }

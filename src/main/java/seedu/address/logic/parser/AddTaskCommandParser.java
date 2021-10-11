@@ -46,7 +46,7 @@ public class AddTaskCommandParser {
         Task toAdd;
         switch (taskType.toString()) {
         case "todo":
-            toAdd = new Todo(description, group, taskType, date);
+            toAdd = new Todo(description, group, date, taskType);
             return new AddTaskCommand(toAdd);
         case "event":
             toAdd = new Event(description, group, date, taskType);
