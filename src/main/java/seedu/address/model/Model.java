@@ -84,8 +84,6 @@ public interface Model {
     void addTask(Task toAdd);
     Task deleteTask(int index);
 
-    ObservableList<Task> getTasks();
-
     /**
      * returns a filtered tasklist according to the specified FilterTaskCriterion
      */
@@ -105,4 +103,5 @@ public interface Model {
      */
     ObservableList<Task> sortTask(SortTaskCriterion toSort);
 
+    ObservableList<Task> getTasks();
 }
