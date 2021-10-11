@@ -38,7 +38,12 @@ public class TaskType {
         return taskType;
     }
 
-    public boolean equalTo(TaskType taskType) {
-        return this.taskType.toLowerCase().equals(taskType.toString().toLowerCase());
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof TaskType) {
+            return taskType.toLowerCase().equals(((TaskType) obj).taskType.toLowerCase());
+        } else {
+            return false;
+        }
     }
 }

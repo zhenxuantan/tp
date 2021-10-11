@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.FilterTaskCriterion;
+import seedu.address.model.task.SortTaskCriterion;
 import seedu.address.model.task.Task;
 
 /**
@@ -98,5 +99,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns a sorted tasklist according to the specified SortedTaskCriterion
+     */
+    ObservableList<Task> sortTask(SortTaskCriterion toSort);
 
 }

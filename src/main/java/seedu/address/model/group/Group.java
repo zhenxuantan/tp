@@ -52,4 +52,8 @@ public class Group {
     public int hashCode() {
         return group.hashCode();
     }
+
+    public int compareTo(Group otherGroup) {
+        return this.group.toLowerCase().compareTo(otherGroup.group.toLowerCase());
+    }
 }

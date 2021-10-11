@@ -62,5 +62,16 @@ public class Date {
         return this.dateString;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Date) {
+            return date.equals(((Date) obj).date);
+        } else {
+            return false;
+        }
+    }
 
+    public int compareTo(Date otherDate) {
+        return date.compareTo(otherDate.date);
+    }
 }

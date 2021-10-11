@@ -4,19 +4,16 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARAMETER;
 
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.SortTasksCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.SortTaskCriterion;
 
 /**
  * Parses input arguments and creates a new AddTaskCommand object
  */
 public class SortTasksCommandParser {
-
-    private static final String[] PARAMETERS = {"d", "date", "added"};
-    private static final String[] ORDERS = {"a", "d"};
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -32,15 +29,10 @@ public class SortTasksCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortTasksCommand.MESSAGE_USAGE));
         }
 
-        String param = argMultimap.getValue(PREFIX_PARAMETER).get();
+        String param = argMultimap.getValue(PREFIX_PARAMETER).get().toLowerCase();
         String order = argMultimap.getValue(PREFIX_ORDER).get().toLowerCase();
 
-        if (Arrays.asList(PARAMETERS).contains(param)
-            && (Arrays.asList(ORDERS).contains(order))) {
-            return new SortTasksCommand(param, order);
-        } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortTasksCommand.MESSAGE_USAGE));
-        }
+        return new SortTasksCommand(new SortTaskCriterion(param, order));
     }
 
     /**
