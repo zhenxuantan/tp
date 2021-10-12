@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.SortTasksCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.SortTaskCriterion;
+import seedu.address.model.task.SortTaskComparator;
 
 /**
  * Parses input arguments and creates a new AddTaskCommand object
@@ -32,7 +32,7 @@ public class SortTasksCommandParser {
         String param = argMultimap.getValue(PREFIX_PARAMETER).get().toLowerCase();
         String order = argMultimap.getValue(PREFIX_ORDER).get().toLowerCase();
 
-        return new SortTasksCommand(new SortTaskCriterion(param, order));
+        return new SortTasksCommand(new SortTaskComparator(param, order));
     }
 
     /**

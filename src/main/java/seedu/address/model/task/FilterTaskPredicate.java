@@ -9,7 +9,7 @@ import seedu.address.model.group.Group;
 
 public class FilterTaskPredicate implements Predicate<Task> {
     public static final String MESSAGE_CONSTRAINTS =
-            "FilterTaskCriterion can be either 'g/GROUP', 'date/DATE' or 'type/TASKTYPE'";
+            "FilterTaskPredicate can be either 'g/GROUP', 'date/DATE' or 'type/TASKTYPE'";
 
     private final String paramAndKeywords;
 
@@ -25,7 +25,7 @@ public class FilterTaskPredicate implements Predicate<Task> {
     }
 
     /**
-     * Returns true if a given string is a valid FilterTaskCriterion.
+     * Returns true if a given string is a valid FilterTaskPredicate.
      */
     public static boolean isValidCriterion(String test) {
         boolean isValid;

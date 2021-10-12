@@ -15,7 +15,7 @@ public class FilterTaskCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_GROUP + "CS2101 ";
 
-    public static final String MESSAGE_SUCCESS = "filtered tasks by %1$s";
+    public static final String MESSAGE_SUCCESS = "Filtered tasks by %1$s";
 
     private final FilterTaskPredicate predicate;
 

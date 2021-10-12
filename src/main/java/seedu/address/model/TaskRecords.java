@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.task.SortTaskCriterion;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
@@ -64,13 +63,4 @@ public class TaskRecords implements ReadOnlyTaskRecords {
         return records.asUnmodifiableObservableList();
     }
 
-    /**
-     * Sorts the taskList
-     *
-     * @param toSort A SortTaskCriterion
-     * @return ObservableList of sorted tasks
-     */
-    public ObservableList<Task> sortTask(SortTaskCriterion toSort) {
-        return records.sortTask(toSort);
-    }
 }

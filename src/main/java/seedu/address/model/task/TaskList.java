@@ -3,8 +3,6 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -60,55 +58,6 @@ public class TaskList implements Iterable<Task> {
         return internalList.iterator();
     }
 
-    /**
-     * Returns a sorted taskList based on the given SortTaskCriterion
-     *
-     * @param toSort A SortTaskCriterion
-     * @return ObservableList of sorted tasks
-     */
-    public ObservableList<Task> sortTask(SortTaskCriterion toSort) {
-        requireNonNull(toSort);
-        boolean isAscending = toSort.getAscending();
-        switch (toSort.getParam()) {
-        case "desc":
-            return sortByDesc(isAscending);
-        case "date":
-            return sortByDate(isAscending);
-        case "added":
-            return sortByAdded(isAscending);
-        case "group":
-            return sortByGroup(isAscending);
-        default:
-            return FXCollections.observableArrayList();
-        }
-    }
-
-    private ObservableList<Task> sortByDesc(boolean isAscending) {
-        ArrayList<Task> modifiableTaskList = new ArrayList<>(internalList);
-        modifiableTaskList.sort((t1, t2) -> isAscending ? t1.compareDescription(t2) : t2.compareDescription(t1));
-        return FXCollections.observableArrayList(modifiableTaskList);
-    }
-
-    private ObservableList<Task> sortByDate(boolean isAscending) {
-        ArrayList<Task> modifiableTaskList = new ArrayList<>(internalList);
-        modifiableTaskList.sort((t1, t2) -> isAscending ? t1.compareDate(t2) : t2.compareDate(t1));
-        return FXCollections.observableArrayList(modifiableTaskList);
-    }
-
-    private ObservableList<Task> sortByAdded(boolean isAscending) {
-        ArrayList<Task> modifiableTaskList = new ArrayList<>(internalList);
-        if (!isAscending) {
-            Collections.reverse(modifiableTaskList);
-        }
-        return FXCollections.observableArrayList(modifiableTaskList);
-    }
-
-    private ObservableList<Task> sortByGroup(boolean isAscending) {
-        ArrayList<Task> modifiableTaskList = new ArrayList<>(internalList);
-        modifiableTaskList.sort((t1, t2) -> isAscending ? t1.compareGroup(t2) : t2.compareGroup(t1));
-        return FXCollections.observableArrayList(modifiableTaskList);
-    }
-
     @Override
     public boolean equals(Object other) {
         if (other instanceof TaskList) {
@@ -117,4 +66,5 @@ public class TaskList implements Iterable<Task> {
             return false;
         }
     }
+
 }

@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.SortTaskCriterion;
+import seedu.address.model.task.SortTaskComparator;
 import seedu.address.model.task.Task;
 
 /**
@@ -95,9 +95,9 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Returns a sorted tasklist according to the specified SortedTaskCriterion
+     * Updates TaskList according to the specified SortTaskComparator
      */
-    ObservableList<Task> sortTask(SortTaskCriterion toSort);
+    public void updateSortedTaskList(SortTaskComparator comparator);
 
     ObservableList<Task> getTasks();
 
