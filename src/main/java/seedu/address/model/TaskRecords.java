@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.task.FilterTaskCriterion;
 import seedu.address.model.task.SortTaskCriterion;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
@@ -46,11 +45,11 @@ public class TaskRecords implements ReadOnlyTaskRecords {
 
     /**
      * Returns deleted task.
-     * @param index index of task to be deleted.
+     * @param task task to be deleted.
      * @return deleted Task
      */
-    public Task deleteTask(int index) {
-        Task toDelete = records.delete(index);
+    public Task deleteTask(Task task) {
+        Task toDelete = records.delete(task);
         return toDelete;
     }
 
@@ -63,15 +62,6 @@ public class TaskRecords implements ReadOnlyTaskRecords {
     @Override
     public ObservableList<Task> getTaskList() {
         return records.asUnmodifiableObservableList();
-    }
-
-    /**
-     *
-     * @param toFilter A FilterTaskCriterion
-     * @return ObservableList of filtered tasks
-     */
-    public ObservableList<Task> filterTask(FilterTaskCriterion toFilter) {
-        return records.filterTask(toFilter);
     }
 
     /**

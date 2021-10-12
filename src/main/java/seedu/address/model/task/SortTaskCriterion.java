@@ -13,7 +13,6 @@ public class SortTaskCriterion {
     public static final String[] PARAMETERS = {"desc", "date", "added", "group"};
     public static final String[] ORDERS = {"a", "d"};
 
-
     private final String param;
     private final boolean ascending;
 

@@ -13,7 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.task.FilterTaskCriterion;
+import seedu.address.model.task.FilterTaskPredicate;
 import seedu.address.model.task.Task;
 
 /**
@@ -33,7 +33,7 @@ public class FilterTaskCommandTest {
         ModelManager expectedModel =
                 new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskRecords());
         Task toFilter = DEADLINE1;
-        FilterTaskCriterion criterion = new FilterTaskCriterion("date/" + toFilter.getDate().getString());
+        FilterTaskPredicate criterion = new FilterTaskPredicate("date/" + toFilter.getDate().getString());
         FilterTaskCommand command = new FilterTaskCommand(criterion);
         String expectedMessage = command.execute(expectedModel).getFeedbackToUser();
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -45,7 +45,7 @@ public class FilterTaskCommandTest {
         ModelManager expectedModel =
                 new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskRecords());
         Task toFilter = EVENT1;
-        FilterTaskCriterion criterion = new FilterTaskCriterion("type/" + toFilter.getTaskType().toString());
+        FilterTaskPredicate criterion = new FilterTaskPredicate("type/" + toFilter.getTaskType().toString());
         FilterTaskCommand command = new FilterTaskCommand(criterion);
         String expectedMessage = command.execute(expectedModel).getFeedbackToUser();
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -56,7 +56,7 @@ public class FilterTaskCommandTest {
         ModelManager expectedModel =
                 new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskRecords());
         Task toFilter = EVENT1;
-        FilterTaskCriterion criterion = new FilterTaskCriterion("g/" + toFilter.getGroup().toString());
+        FilterTaskPredicate criterion = new FilterTaskPredicate("g/" + toFilter.getGroup().toString());
         FilterTaskCommand command = new FilterTaskCommand(criterion);
         String expectedMessage = command.execute(expectedModel).getFeedbackToUser();
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
