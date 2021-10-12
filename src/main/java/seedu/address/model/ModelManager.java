@@ -157,6 +157,12 @@ public class ModelManager implements Model {
         return tasks.sortTask(toSort);
     }
 
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        taskList.setPredicate(predicate);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
