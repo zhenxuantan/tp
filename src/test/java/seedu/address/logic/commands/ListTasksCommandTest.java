@@ -1,7 +1,11 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
@@ -14,10 +18,23 @@ import seedu.address.model.UserPrefs;
  */
 public class ListTasksCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new TaskRecords());
+    private Model model;
+    private Model expectedModel;
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new TaskRecords());
+        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new TaskRecords());
+    }
 
     @Test
-    public void execute() {
-        //TODO
+    public void execute_listIsNotFiltered_showsSameList() {
+        assertCommandSuccess(new ListTasksCommand(), model, ListTasksCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_listIsFiltered_showsEverything() {
+        showPersonAtIndex(model, INDEX_FIRST_TASK);
+        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
