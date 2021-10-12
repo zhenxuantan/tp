@@ -11,7 +11,7 @@ import seedu.address.logic.commands.FilterTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
 import seedu.address.model.task.Date;
-import seedu.address.model.task.FilterTaskCriterion;
+import seedu.address.model.task.FilterTaskPredicate;
 import seedu.address.model.task.TaskType;
 
 /**
@@ -33,15 +33,15 @@ public class FilterTaskCommandParser {
         }
         if (arePrefixesPresent(argMultimap, PREFIX_DATE)) {
             Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-            return new FilterTaskCommand(new FilterTaskCriterion(PREFIX_DATE + date.getString()));
+            return new FilterTaskCommand(new FilterTaskPredicate(PREFIX_DATE + date.getString()));
         }
         if (arePrefixesPresent(argMultimap, PREFIX_TASKTYPE)) {
             TaskType taskType = ParserUtil.parseTaskType(argMultimap.getValue(PREFIX_TASKTYPE).get());
-            return new FilterTaskCommand(new FilterTaskCriterion(PREFIX_TASKTYPE + taskType.toString()));
+            return new FilterTaskCommand(new FilterTaskPredicate(PREFIX_TASKTYPE + taskType.toString()));
         }
         if (arePrefixesPresent(argMultimap, PREFIX_GROUP)) {
             Group group = ParserUtil.parseGroup(argMultimap.getValue(PREFIX_GROUP).get());
-            return new FilterTaskCommand(new FilterTaskCriterion(PREFIX_GROUP + group.toString()));
+            return new FilterTaskCommand(new FilterTaskPredicate(PREFIX_GROUP + group.toString()));
         }
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTaskCommand.MESSAGE_USAGE));
     }

@@ -11,7 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.task.SortTaskCriterion;
+import seedu.address.model.task.SortTaskComparator;
 
 /**
  * Contains integration tests (interaction with the Model).
@@ -29,7 +29,7 @@ public class SortTasksCommandTest {
     public void execute_validSortTaskCriterion_success() throws CommandException {
         ModelManager expectedModel =
             new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskRecords());
-        SortTaskCriterion criterion = new SortTaskCriterion("desc", "d");
+        SortTaskComparator criterion = new SortTaskComparator("desc", "d");
         SortTasksCommand command = new SortTasksCommand(criterion);
         String expectedMessage = command.execute(model).getFeedbackToUser();
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

@@ -40,7 +40,8 @@ public class DeleteTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX);
         }
 
-        Task toDelete = model.deleteTask(targetIndex.getZeroBased());
+        Task toDelete = taskList.get(targetIndex.getZeroBased());
+        model.deleteTask(toDelete);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete.toString()));
     }
 }

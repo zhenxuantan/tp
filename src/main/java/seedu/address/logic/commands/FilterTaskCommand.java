@@ -3,11 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 
-import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.task.FilterTaskCriterion;
-import seedu.address.model.task.Task;
+import seedu.address.model.task.FilterTaskPredicate;
 
 public class FilterTaskCommand extends Command {
     public static final String COMMAND_WORD = "filterTask";
@@ -17,26 +15,23 @@ public class FilterTaskCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_GROUP + "CS2101 ";
 
-    public static final String MESSAGE_SUCCESS = "filtered tasks by %1$s criterion:";
+    public static final String MESSAGE_SUCCESS = "Filtered tasks by %1$s";
 
-    private final FilterTaskCriterion toFilter;
+    private final FilterTaskPredicate predicate;
 
     /**
      * Creates FilterTaskCommand to filter according to the specified {@code filterTaskCriterion}
      */
-    public FilterTaskCommand(FilterTaskCriterion filterTaskCriterion) {
-        requireNonNull(filterTaskCriterion);
-        toFilter = filterTaskCriterion;
+    public FilterTaskCommand(FilterTaskPredicate predicate) {
+        requireNonNull(predicate);
+        this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        String returnMessage = String.format(MESSAGE_SUCCESS, toFilter.toString()) + "\n";
-        ObservableList<Task> filteredTaskList = model.filterTask(toFilter);
-        for (Task task : filteredTaskList) {
-            returnMessage = returnMessage + task.toString() + "\n";
-        }
+        String returnMessage = String.format(MESSAGE_SUCCESS, predicate.toString()) + "\n";
+        model.updateFilteredTaskList(predicate);
         return new CommandResult(returnMessage);
     }
 }

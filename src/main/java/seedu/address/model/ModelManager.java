@@ -9,11 +9,11 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.FilterTaskCriterion;
-import seedu.address.model.task.SortTaskCriterion;
+import seedu.address.model.task.SortTaskComparator;
 import seedu.address.model.task.Task;
 
 /**
@@ -25,7 +25,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Task> taskList;
+    private final FilteredList<Task> filteredTaskList;
+    private final SortedList<Task> sortedTaskList;
     private final TaskRecords tasks;
 
     /**
@@ -41,7 +42,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.tasks = new TaskRecords(tasks);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        taskList = new FilteredList<>(this.tasks.getTaskList());
+        filteredTaskList = new FilteredList<>(this.tasks.getTaskList());
+        sortedTaskList = new SortedList<>(filteredTaskList);
     }
 
     public ModelManager() {
@@ -136,31 +138,29 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Task deleteTask(int index) {
-        return tasks.deleteTask(index);
+    public Task deleteTask(Task task) {
+        return tasks.deleteTask(task);
     }
 
     //=========== Task List Accessors =============================================================
 
     @Override
     public ObservableList<Task> getTasks() {
-        return taskList;
+        return sortedTaskList;
     }
 
     @Override
-    public ObservableList<Task> filterTask(FilterTaskCriterion toFilter) {
-        return tasks.filterTask(toFilter);
-    }
-
-    @Override
-    public ObservableList<Task> sortTask(SortTaskCriterion toSort) {
-        return tasks.sortTask(toSort);
+    public void updateSortedTaskList(SortTaskComparator comparator) {
+        requireNonNull(comparator);
+        filteredTaskList.setPredicate(null);
+        sortedTaskList.setComparator(comparator);
     }
 
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
-        taskList.setPredicate(predicate);
+        sortedTaskList.setComparator(null);
+        filteredTaskList.setPredicate(predicate);
     }
 
     //=========== Filtered Person List Accessors =============================================================

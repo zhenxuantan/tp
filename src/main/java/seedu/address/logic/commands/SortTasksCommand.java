@@ -4,11 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARAMETER;
 
-import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.task.SortTaskCriterion;
-import seedu.address.model.task.Task;
+import seedu.address.model.task.SortTaskComparator;
 
 public class SortTasksCommand extends Command {
     public static final String COMMAND_WORD = "sortTasks";
@@ -23,27 +21,24 @@ public class SortTasksCommand extends Command {
         + PREFIX_ORDER + "a\n"
         + "Sorts the tasks by description in ascending order (lexicographical / chronological order)";
 
-    public static final String MESSAGE_SUCCESS = "Got it. I've sorted the list.";
+    public static final String MESSAGE_SUCCESS = "Sorted tasks by %1$s";
 
-    private SortTaskCriterion toSort;
+    private final SortTaskComparator comparator;
 
     /**
      * Constructor for SortTasksCommand
-     * @param sortTaskCriterion the criterion in which the tasks are going to be sorted by.
+     * @param comparator the comparator to compare tasks.
      */
-    public SortTasksCommand(SortTaskCriterion sortTaskCriterion) {
-        requireNonNull(sortTaskCriterion);
-        this.toSort = sortTaskCriterion;
+    public SortTasksCommand(SortTaskComparator comparator) {
+        requireNonNull(comparator);
+        this.comparator = comparator;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        StringBuilder returnMessage = new StringBuilder("Your sorted tasks: \n");
+        String returnMessage = String.format(MESSAGE_SUCCESS, comparator.toString()) + "\n";
         requireNonNull(model);
-        ObservableList<Task> sortedTaskList = model.sortTask(toSort);
-        for (Task t : sortedTaskList) {
-            returnMessage.append(t.toString()).append("\n");
-        }
-        return new CommandResult(returnMessage.toString());
+        model.updateSortedTaskList(comparator);
+        return new CommandResult(returnMessage);
     }
 }
