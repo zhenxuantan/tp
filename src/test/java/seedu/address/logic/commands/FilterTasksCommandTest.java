@@ -19,13 +19,13 @@ import seedu.address.model.task.Task;
 /**
  * Contains integration tests (interaction with the Model).
  */
-public class FilterTaskCommandTest {
+public class FilterTasksCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskRecords());
 
     @Test
     public void constructor_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new FilterTaskCommand(null));
+        assertThrows(NullPointerException.class, () -> new FilterTasksCommand(null));
     }
 
     @Test
@@ -34,7 +34,7 @@ public class FilterTaskCommandTest {
                 new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskRecords());
         Task toFilter = DEADLINE1;
         FilterTaskPredicate criterion = new FilterTaskPredicate("date/" + toFilter.getDate().getString());
-        FilterTaskCommand command = new FilterTaskCommand(criterion);
+        FilterTasksCommand command = new FilterTasksCommand(criterion);
         String expectedMessage = command.execute(expectedModel).getFeedbackToUser();
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
 
@@ -46,7 +46,7 @@ public class FilterTaskCommandTest {
                 new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskRecords());
         Task toFilter = EVENT1;
         FilterTaskPredicate criterion = new FilterTaskPredicate("type/" + toFilter.getTaskType().toString());
-        FilterTaskCommand command = new FilterTaskCommand(criterion);
+        FilterTasksCommand command = new FilterTasksCommand(criterion);
         String expectedMessage = command.execute(expectedModel).getFeedbackToUser();
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
@@ -57,7 +57,7 @@ public class FilterTaskCommandTest {
                 new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskRecords());
         Task toFilter = EVENT1;
         FilterTaskPredicate criterion = new FilterTaskPredicate("g/" + toFilter.getGroup().toString());
-        FilterTaskCommand command = new FilterTaskCommand(criterion);
+        FilterTasksCommand command = new FilterTasksCommand(criterion);
         String expectedMessage = command.execute(expectedModel).getFeedbackToUser();
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }

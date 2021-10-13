@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKTYPE;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.FilterTaskCommand;
+import seedu.address.logic.commands.FilterTasksCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
 import seedu.address.model.task.Date;
@@ -15,35 +15,35 @@ import seedu.address.model.task.FilterTaskPredicate;
 import seedu.address.model.task.TaskType;
 
 /**
- * Parses input arguments and creates a new FilterTaskCommand object
+ * Parses input arguments and creates a new FilterTasksCommand object
  */
 public class FilterTaskCommandParser {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FilterTaskCommand
-     * and returns a FilterTaskCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FilterTasksCommand
+     * and returns a FilterTasksCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public FilterTaskCommand parse(String args) throws ParseException {
+    public FilterTasksCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_GROUP, PREFIX_TASKTYPE, PREFIX_DATE);
 
         if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTaskCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTasksCommand.MESSAGE_USAGE));
         }
         if (arePrefixesPresent(argMultimap, PREFIX_DATE)) {
             Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-            return new FilterTaskCommand(new FilterTaskPredicate(PREFIX_DATE + date.getString()));
+            return new FilterTasksCommand(new FilterTaskPredicate(PREFIX_DATE + date.getString()));
         }
         if (arePrefixesPresent(argMultimap, PREFIX_TASKTYPE)) {
             TaskType taskType = ParserUtil.parseTaskType(argMultimap.getValue(PREFIX_TASKTYPE).get());
-            return new FilterTaskCommand(new FilterTaskPredicate(PREFIX_TASKTYPE + taskType.toString()));
+            return new FilterTasksCommand(new FilterTaskPredicate(PREFIX_TASKTYPE + taskType.toString()));
         }
         if (arePrefixesPresent(argMultimap, PREFIX_GROUP)) {
             Group group = ParserUtil.parseGroup(argMultimap.getValue(PREFIX_GROUP).get());
-            return new FilterTaskCommand(new FilterTaskPredicate(PREFIX_GROUP + group.toString()));
+            return new FilterTasksCommand(new FilterTaskPredicate(PREFIX_GROUP + group.toString()));
         }
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTaskCommand.MESSAGE_USAGE));
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTasksCommand.MESSAGE_USAGE));
     }
 
     /**

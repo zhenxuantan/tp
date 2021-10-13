@@ -7,8 +7,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.FilterTaskPredicate;
 
-public class FilterTaskCommand extends Command {
-    public static final String COMMAND_WORD = "filterTask";
+public class FilterTasksCommand extends Command {
+    public static final String COMMAND_WORD = "filterTasks";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": filters tasks based on specified criterion.\n"
             + "Parameters: " + "FILTER_CRITERION\n"
@@ -20,9 +20,9 @@ public class FilterTaskCommand extends Command {
     private final FilterTaskPredicate predicate;
 
     /**
-     * Creates FilterTaskCommand to filter according to the specified {@code filterTaskCriterion}
+     * Creates FilterTasksCommand to filter according to the specified {@code filterTaskCriterion}
      */
-    public FilterTaskCommand(FilterTaskPredicate predicate) {
+    public FilterTasksCommand(FilterTaskPredicate predicate) {
         requireNonNull(predicate);
         this.predicate = predicate;
     }
