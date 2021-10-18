@@ -192,29 +192,26 @@ If the following is in the task list:
 * `sort p/desc o/1` returns tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam` 
 * `sort p/date o/1` returns returns tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
 
-### Filtering tasks by modules: filterTask 
+### Filtering tasks by modules: filterTasks
 Filter tasks based on a criterion
 
-Format: `filter g/Group`
+Format: `filterTasks [g/Group] [date/DATE] [type/TASKTYPE]`
 * Filters the task by the specified `FILTER_CRITERION`
 * `FILTER_CRITERION` refers to either `g/GROUP`, `date/DATE` or `type/TASKTYPE`
 * Tasks corresponding to the criterion specified will be shown
 
 Examples:
-* `filterTask g/CS2101` shows all the tasks related to CS2101 group
-* `filterTask date/2021-10-10` shows all the tasks with date of 10 Oct 2021
+* `filterTasks g/CS2101` shows all the tasks related to CS2101 group
+* `filterTasks date/2021-10-10` shows all the tasks with date of 10 Oct 2021
 
-### Listing all tasks: listtasks 
-Shows a list of all tasks in the address book. Optional argument to fill in the day that the tasks are due.
+### Listing all tasks: listTasks 
+Shows a list of all tasks in the address book.
 
-Format: `listtasks [date/DATE]`
-* `DATE` will be in `YYYY-MM-DD` format
-* Lists tasks that are not past the date that is attached to them (pending tasks)
-* Can query for tasks were on a past date
+Format: `listTasks`
+* Lists all tasks for the current user 
 
 Examples:
-* `listtasks date/2020-11-02` returns all tasks on 02 Nov 2020
-* `listtasks` returns all tasks
+* `listTasks` returns all tasks
 
 ### Clearing all entries : `clear`
 
