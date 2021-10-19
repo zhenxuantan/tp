@@ -61,4 +61,15 @@ public class FilterTaskCommandTest {
         String expectedMessage = command.execute(expectedModel).getFeedbackToUser();
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
+
+    @Test
+    public void execute_validDesc_success() throws CommandException {
+        ModelManager expectedModel =
+                new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskRecords());
+        Task toFilter = EVENT1;
+        FilterTaskPredicate criterion = new FilterTaskPredicate("d/" + toFilter.getDescription().toString());
+        FilterTaskCommand command = new FilterTaskCommand(criterion);
+        String expectedMessage = command.execute(expectedModel).getFeedbackToUser();
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
 }

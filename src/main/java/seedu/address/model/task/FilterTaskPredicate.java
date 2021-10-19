@@ -87,22 +87,22 @@ public class FilterTaskPredicate implements Predicate<Task> {
         String prefix = criterion[0];
         String suffix = criterion[1];
         String string;
-        switch(prefix){
-            case "date":
-                string = "DATE";
-                break;
-            case "type":
-                string = "TASKTYPE";
-                break;
-            case "g":
-                string = "GROUP";
-                break;
-            case "d":
-                string = "DESCRIPTION";
-                break;
-            default:
-                string = "";
-                break;
+        switch(prefix) {
+        case "date":
+            string = "DATE";
+            break;
+        case "type":
+            string = "TASKTYPE";
+            break;
+        case "g":
+            string = "GROUP";
+            break;
+        case "d":
+            string = "DESCRIPTION";
+            break;
+        default:
+            string = "";
+            break;
         }
         return string + " " + suffix.toUpperCase() + " criterion: ";
     }
