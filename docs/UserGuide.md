@@ -197,7 +197,7 @@ Filter tasks based on a criterion
 
 Format: `filterTasks [g/Group] [date/DATE] [type/TASKTYPE]`
 * Filters the task by the specified `FILTER_CRITERION`
-* `FILTER_CRITERION` refers to either `g/GROUP`, `date/DATE` or `type/TASKTYPE`
+* `FILTER_CRITERION` refers to either `g/GROUP`, `date/DATE`, `type/TASKTYPE` or`d/DESCRIPTION`
 * Tasks corresponding to the criterion specified will be shown
 
 Examples:
