@@ -1,7 +1,6 @@
 ---
-| layout | title |
-| ------ | ----- |
-| page |Developer Guide |
+layout: page
+title: Developer Guide
 ---
 * Table of Contents
 {:toc}
@@ -54,7 +53,7 @@ The sections below give more details of each component.
 ### Logic component
 Here's a (partial) class diagram of the `Logic` component:
 
-![Logic Class diagram](images/logicClassDiagram.png)
+![Logic Class diagram](images/LogicClassDiagram.png)
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
@@ -74,7 +73,31 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddTaskCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 
 ### Model component
-{to be completed}
+### Overview
+![Model class](images/SweebookModelClassDiagram.png)
+
+The `Model` component,
+
+* stores the address book and list of tasks (contained in UniquePersonList and TaskList respectively)
+* stores the currently 'selected' `Person` and `Task` objects (e.g., results of a search query) as separate _filtered_ lists which is exposed to outsiders as an unmodifiable `ObservableList<Person>` or `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+### Person and tasks models
+![Person and tasks class](images/PersonAndTasksClassDiagram.png)
+
+Going more in depth into the `Person` and `Task` models,
+* they share a `Group` class, which can be either `CS2103T` or `CS2101`
+
+Specifically for `Person`,
+* the model stores the phone number, email and socials
+* socials refer to their Telegram and Github usernames
+
+Lastly, specfically for `Task`,
+* a task has a date (to specify a deadline or time of event), description, priority, and recurring frequency
+* recurring frequency can be in terms of weekly, monthly and yearly
+* priority can be low, medium or high priorities
+* a task can be instantiated as a `Todo`, `Deadlne` or `Event`
 
 ### Storage component
 {to be completed}
