@@ -20,6 +20,7 @@ import seedu.address.model.person.social.Social;
 import seedu.address.model.person.social.Telegram;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Priority;
 import seedu.address.model.task.RecurringFrequency;
 import seedu.address.model.task.TaskType;
 
@@ -226,5 +227,17 @@ public class ParserUtil {
             throw new ParseException(RecurringFrequency.MESSAGE_CONSTRAINTS);
         }
         return new RecurringFrequency(trimmedRecurringFrequency);
+    }
+
+    public static Priority parsePriority(String priority) throws ParseException {
+        if (priority == null) {
+            return new Priority("2");
+        }
+
+        if (!Priority.isValidPriority(priority)) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Priority(priority);
     }
 }

@@ -7,14 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.group.Group;
-import seedu.address.model.task.Date;
-import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Event;
-import seedu.address.model.task.RecurringFrequency;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskType;
-import seedu.address.model.task.Todo;
+import seedu.address.model.task.*;
 
 /**
  * Jackson-friendly version of {@link Task}.
@@ -28,18 +21,21 @@ class JsonAdaptedTask {
     private final String date;
     private final String taskType;
     private final String recurringFrequency;
+    private final String priority;
 
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("description") String description, @JsonProperty("status") String status,
                            @JsonProperty("group") String group, @JsonProperty("date") String date,
                            @JsonProperty("taskType") String taskType,
-                           @JsonProperty("recurringFrequency") String recurringFrequency) {
+                           @JsonProperty("recurringFrequency") String recurringFrequency,
+                           @JsonProperty("priority") String priority) {
         this.description = description;
         this.status = status;
         this.group = group;
         this.date = date;
         this.taskType = taskType.toLowerCase();
         this.recurringFrequency = recurringFrequency;
+        this.priority = priority;
     }
 
     /**
@@ -52,6 +48,7 @@ class JsonAdaptedTask {
         date = source.getDate().toString();
         taskType = source.getTaskType().taskType;
         recurringFrequency = source.getRecurringFrequency().toString();
+        priority = source.getPriority().priority;
     }
 
     /**
@@ -101,6 +98,16 @@ class JsonAdaptedTask {
             modelDate = null;
         }
 
+        final Priority modelPriority;
+        if (priority == null) {
+            modelPriority = new Priority("2");
+        } else {
+            if (!Priority.isValidPriority(priority)) {
+                throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
+            }
+            modelPriority = new Priority(priority);
+        }
+
         if (recurringFrequency == null) {
             throw new IllegalValueException(String.format(
                     MISSING_FIELD_MESSAGE_FORMAT, RecurringFrequency.class.getSimpleName()));
@@ -112,19 +119,22 @@ class JsonAdaptedTask {
 
         switch (taskType) {
         case "todo":
-            Task task = new Todo(modelDescription, modelGroup, modelDate, modelTaskType, modelRecurringFreq);
+            Task task = new Todo(modelDescription, modelGroup, modelDate, modelTaskType,
+                modelRecurringFreq, modelPriority);
             if (checkIsDone(status)) {
                 task.markAsDone();
             }
             return task;
         case "event":
-            task = new Event(modelDescription, modelGroup, modelDate, modelTaskType, modelRecurringFreq);
+            task = new Event(modelDescription, modelGroup, modelDate, modelTaskType,
+                modelRecurringFreq, modelPriority);
             if (checkIsDone(status)) {
                 task.markAsDone();
             }
             return task;
         case "deadline":
-            task = new Deadline(modelDescription, modelGroup, modelDate, modelTaskType, modelRecurringFreq);
+            task = new Deadline(modelDescription, modelGroup, modelDate, modelTaskType,
+                modelRecurringFreq, modelPriority);
             if (checkIsDone(status)) {
                 task.markAsDone();
                 return task;

@@ -9,6 +9,7 @@ public class Task {
     protected Date date;
     protected boolean isDone;
     protected RecurringFrequency recurringFrequency;
+    protected Priority priority;
 
     /**
      * Constructor for Task.
@@ -17,13 +18,15 @@ public class Task {
      * @param type Type of task (Deadline, Event, Todo)
      * @param date Date of task
      */
-    public Task(Description description, Group group, Date date, TaskType type, RecurringFrequency recurringFrequency) {
+    public Task(Description description, Group group, Date date, TaskType type,
+                RecurringFrequency recurringFrequency, Priority priority) {
         this.description = description;
         this.group = group;
         this.type = type;
         this.date = date;
         this.isDone = false;
         this.recurringFrequency = recurringFrequency;
+        this.priority = priority;
     }
 
     /**
@@ -48,6 +51,9 @@ public class Task {
     }
     public RecurringFrequency getRecurringFrequency() {
         return recurringFrequency;
+    }
+    public Priority getPriority() {
+        return priority;
     }
 
     /**

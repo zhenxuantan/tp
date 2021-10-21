@@ -1,25 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING_FREQUENCY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKTYPE;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddRecurringTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
-import seedu.address.model.task.Date;
-import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Event;
-import seedu.address.model.task.RecurringFrequency;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskType;
-import seedu.address.model.task.Todo;
+import seedu.address.model.task.*;
 
 public class AddRecurringTaskCommandParser {
     /**
@@ -30,7 +19,7 @@ public class AddRecurringTaskCommandParser {
     public AddRecurringTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_GROUP, PREFIX_TASKTYPE, PREFIX_DATE,
-                        PREFIX_RECURRING_FREQUENCY);
+                        PREFIX_RECURRING_FREQUENCY, PREFIX_PRIORITY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_GROUP, PREFIX_TASKTYPE,
                 PREFIX_RECURRING_FREQUENCY) || !argMultimap.getPreamble().isEmpty()) {
@@ -45,17 +34,18 @@ public class AddRecurringTaskCommandParser {
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         RecurringFrequency recurringFrequency =
                 ParserUtil.parseRecurringFrequency(argMultimap.getValue(PREFIX_RECURRING_FREQUENCY).get());
+        Priority priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
 
         Task toAdd;
         switch (taskType.toString()) {
         case "todo":
-            toAdd = new Todo(description, group, date, taskType, recurringFrequency);
+            toAdd = new Todo(description, group, date, taskType, recurringFrequency, priority);
             return new AddRecurringTaskCommand(toAdd);
         case "event":
-            toAdd = new Event(description, group, date, taskType, recurringFrequency);
+            toAdd = new Event(description, group, date, taskType, recurringFrequency, priority);
             return new AddRecurringTaskCommand(toAdd);
         case "deadline":
-            toAdd = new Deadline(description, group, date, taskType, recurringFrequency);
+            toAdd = new Deadline(description, group, date, taskType, recurringFrequency, priority);
             return new AddRecurringTaskCommand(toAdd);
         default:
             throw new ParseException(TaskType.MESSAGE_CONSTRAINTS);
