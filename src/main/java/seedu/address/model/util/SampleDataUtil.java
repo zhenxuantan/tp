@@ -19,6 +19,7 @@ import seedu.address.model.task.Date;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Event;
+import seedu.address.model.task.RecurringFrequency;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskType;
 import seedu.address.model.task.Todo;
@@ -43,10 +44,10 @@ public class SampleDataUtil {
                     new Telegram("davidli"), new GitHub("davidli")),
             new Person(new Name("Irfan Ibrahim"), getGroupSet("CS2103T", "CS2101"),
                     new Phone("92492021"), new Email("irfan@example.com"),
-                    new Telegram("irfan"), new GitHub("irfan")),
+                        new Telegram("irfan"), new GitHub("irfan")),
             new Person(new Name("Roy Balakrishnan"), getGroupSet("CS2103T", "CS2101"),
-                    new Phone("92624417"), new Email("royb@example.com"),
-                    new Telegram("roybalakrishnan"), new GitHub("roybalakrishnan"))
+                        new Phone("92624417"), new Email("royb@example.com"),
+                        new Telegram("roybalakrishnan"), new GitHub("roybalakrishnan"))
         };
     }
 
@@ -61,15 +62,15 @@ public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
             new Deadline(new Description("OP1 script"), new Group("CS2101"),
-                new Date("2021-11-11"), new TaskType("deadline")),
+                    new Date("2021-11-11"), new TaskType("deadline"), new RecurringFrequency("none")),
             new Deadline(new Description("Update User Guide"), new Group("CS2103T"),
-                new Date("2021-12-11"), new TaskType("deadline")),
+                    new Date("2021-12-11"), new TaskType("deadline"), new RecurringFrequency("none")),
             new Event(new Description("Project Meeting"), new Group("CS2103T"),
-                new Date("2021-12-21"), new TaskType("event")),
+                    new Date("2021-12-21"), new TaskType("event"), new RecurringFrequency("none")),
             new Event(new Description("OP1 Presentation"), new Group("CS2101"),
-                new Date("2021-11-21"), new TaskType("event")),
+                    new Date("2021-11-21"), new TaskType("event"), new RecurringFrequency("none")),
             new Todo(new Description("Create slides"), new Group("CS2101"),
-                new Date("2021-11-17"), new TaskType("todo"))
+                    new Date("2021-11-17"), new TaskType("todo"), new RecurringFrequency("none"))
         };
     }
 

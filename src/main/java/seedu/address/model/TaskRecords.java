@@ -42,6 +42,10 @@ public class TaskRecords implements ReadOnlyTaskRecords {
         records.add(toAdd);
     }
 
+    public void updateRecurringTasks() {
+        records.updateRecurringTasksDates();
+    }
+
     /**
      * Returns deleted task.
      * @param task task to be deleted.

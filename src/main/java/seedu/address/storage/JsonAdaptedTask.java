@@ -11,6 +11,7 @@ import seedu.address.model.task.Date;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Event;
+import seedu.address.model.task.RecurringFrequency;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskType;
 import seedu.address.model.task.Todo;
@@ -26,16 +27,19 @@ class JsonAdaptedTask {
     private final String group;
     private final String date;
     private final String taskType;
+    private final String recurringFrequency;
 
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("description") String description, @JsonProperty("status") String status,
                            @JsonProperty("group") String group, @JsonProperty("date") String date,
-                           @JsonProperty("taskType") String taskType) {
+                           @JsonProperty("taskType") String taskType,
+                           @JsonProperty("recurringFrequency") String recurringFrequency) {
         this.description = description;
         this.status = status;
         this.group = group;
         this.date = date;
         this.taskType = taskType.toLowerCase();
+        this.recurringFrequency = recurringFrequency;
     }
 
     /**
@@ -47,6 +51,7 @@ class JsonAdaptedTask {
         group = source.getGroup().group;
         date = source.getDate().toString();
         taskType = source.getTaskType().taskType;
+        recurringFrequency = source.getRecurringFrequency().toString();
     }
 
     /**
@@ -96,21 +101,30 @@ class JsonAdaptedTask {
             modelDate = null;
         }
 
+        if (recurringFrequency == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, RecurringFrequency.class.getSimpleName()));
+        }
+        if (!RecurringFrequency.isValidRecurringFrequency(recurringFrequency)) {
+            throw new IllegalValueException(RecurringFrequency.MESSAGE_CONSTRAINTS);
+        }
+        final RecurringFrequency modelRecurringFreq = new RecurringFrequency(recurringFrequency);
+
         switch (taskType) {
         case "todo":
-            Task task = new Todo(modelDescription, modelGroup, modelDate, modelTaskType);
+            Task task = new Todo(modelDescription, modelGroup, modelDate, modelTaskType, modelRecurringFreq);
             if (checkIsDone(status)) {
                 task.markAsDone();
             }
             return task;
         case "event":
-            task = new Event(modelDescription, modelGroup, modelDate, modelTaskType);
+            task = new Event(modelDescription, modelGroup, modelDate, modelTaskType, modelRecurringFreq);
             if (checkIsDone(status)) {
                 task.markAsDone();
             }
             return task;
         case "deadline":
-            task = new Deadline(modelDescription, modelGroup, modelDate, modelTaskType);
+            task = new Deadline(modelDescription, modelGroup, modelDate, modelTaskType, modelRecurringFreq);
             if (checkIsDone(status)) {
                 task.markAsDone();
                 return task;

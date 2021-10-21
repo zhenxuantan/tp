@@ -4,11 +4,12 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING_FREQUENCY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKTYPE;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddTaskCommand;
+import seedu.address.logic.commands.AddRecurringTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
 import seedu.address.model.task.Date;
@@ -20,22 +21,21 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskType;
 import seedu.address.model.task.Todo;
 
-/**
- * Parses input arguments and creates a new AddTaskCommand object
- */
-public class AddTaskCommandParser {
+public class AddRecurringTaskCommandParser {
     /**
-     * Parses the given {@code String} of arguments in the context of the AddTaskCommand
-     * and returns an AddTaskCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddRecurringTaskCommand
+     * and returns an AddRecurringTaskCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddTaskCommand parse(String args) throws ParseException {
+    public AddRecurringTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_GROUP, PREFIX_TASKTYPE, PREFIX_DATE);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_GROUP, PREFIX_TASKTYPE, PREFIX_DATE,
+                        PREFIX_RECURRING_FREQUENCY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_GROUP, PREFIX_TASKTYPE)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
+        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_GROUP, PREFIX_TASKTYPE,
+                PREFIX_RECURRING_FREQUENCY) || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddRecurringTaskCommand.MESSAGE_USAGE));
         }
 
 
@@ -43,19 +43,20 @@ public class AddTaskCommandParser {
         Group group = ParserUtil.parseGroup(argMultimap.getValue(PREFIX_GROUP).get());
         TaskType taskType = ParserUtil.parseTaskType(argMultimap.getValue(PREFIX_TASKTYPE).get());
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-        RecurringFrequency recurringFrequency = new RecurringFrequency("none");
+        RecurringFrequency recurringFrequency =
+                ParserUtil.parseRecurringFrequency(argMultimap.getValue(PREFIX_RECURRING_FREQUENCY).get());
 
         Task toAdd;
         switch (taskType.toString()) {
         case "todo":
             toAdd = new Todo(description, group, date, taskType, recurringFrequency);
-            return new AddTaskCommand(toAdd);
+            return new AddRecurringTaskCommand(toAdd);
         case "event":
             toAdd = new Event(description, group, date, taskType, recurringFrequency);
-            return new AddTaskCommand(toAdd);
+            return new AddRecurringTaskCommand(toAdd);
         case "deadline":
             toAdd = new Deadline(description, group, date, taskType, recurringFrequency);
-            return new AddTaskCommand(toAdd);
+            return new AddRecurringTaskCommand(toAdd);
         default:
             throw new ParseException(TaskType.MESSAGE_CONSTRAINTS);
         }
@@ -68,5 +69,4 @@ public class AddTaskCommandParser {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

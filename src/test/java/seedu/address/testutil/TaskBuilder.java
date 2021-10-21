@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import seedu.address.model.group.Group;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.RecurringFrequency;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskType;
 
@@ -14,11 +15,13 @@ public class TaskBuilder {
     public static final String DEFAULT_GROUP = "cs2101";
     public static final String DEFAULT_TYPE = "deadline";
     public static final String DEFAULT_DATE = "2021-12-12";
+    public static final String DEFAULT_RECURRING_FREQUENCY = "none";
 
     private Description description;
     private Group group;
     private TaskType type;
     private Date date;
+    private RecurringFrequency recurringFrequency;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -28,6 +31,7 @@ public class TaskBuilder {
         group = new Group(DEFAULT_GROUP);
         type = new TaskType(DEFAULT_TYPE);
         date = new Date(DEFAULT_DATE);
+        recurringFrequency = new RecurringFrequency(DEFAULT_RECURRING_FREQUENCY);
     }
 
     /**
@@ -63,6 +67,6 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(description, group, date, type);
+        return new Task(description, group, date, type, recurringFrequency);
     }
 }

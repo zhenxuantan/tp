@@ -8,6 +8,7 @@ public class Task {
     protected TaskType type;
     protected Date date;
     protected boolean isDone;
+    protected RecurringFrequency recurringFrequency;
 
     /**
      * Constructor for Task.
@@ -16,12 +17,13 @@ public class Task {
      * @param type Type of task (Deadline, Event, Todo)
      * @param date Date of task
      */
-    public Task(Description description, Group group, Date date, TaskType type) {
+    public Task(Description description, Group group, Date date, TaskType type, RecurringFrequency recurringFrequency) {
         this.description = description;
         this.group = group;
         this.type = type;
         this.date = date;
         this.isDone = false;
+        this.recurringFrequency = recurringFrequency;
     }
 
     /**
@@ -32,20 +34,20 @@ public class Task {
     public String getStatusIcon() {
         return isDone ? "[X]" : "[ ]";
     }
-
     public Description getDescription() {
         return description;
     }
-
     public Group getGroup() {
         return group;
     }
-
     public Date getDate() {
         return date;
     }
     public TaskType getTaskType() {
         return type;
+    }
+    public RecurringFrequency getRecurringFrequency() {
+        return recurringFrequency;
     }
 
     /**
@@ -67,6 +69,31 @@ public class Task {
      */
     public int compareDescription(Task otherTask) {
         return this.getDescription().compareTo(otherTask.getDescription());
+    }
+
+    /**
+     * Updates a recurring task's date to the current week/month/year.
+     */
+    public void updateRecurringTaskDate() {
+        switch (recurringFrequency.toString()) {
+        case "week":
+            if (date.isLastWeek()) {
+                this.date = date.getDateForThisWeek();
+            }
+            break;
+        case "month":
+            if (date.isLastMonth()) {
+                this.date = date.getDateForThisMonth();
+            }
+            break;
+        case "year":
+            if (date.isLastYear()) {
+                this.date = date.getDateForThisYear();
+            }
+            break;
+        default:
+            break;
+        }
     }
 
     /**
@@ -98,10 +125,11 @@ public class Task {
         if (obj instanceof Task) {
             Task otherTask = (Task) obj;
             return getDescription().equals(otherTask.getDescription())
-                && getGroup().equals(otherTask.getGroup())
-                && getTaskType().equals(otherTask.getTaskType())
-                && getDate().equals(otherTask.getDate())
-                && isDone == otherTask.isDone;
+                    && getGroup().equals(otherTask.getGroup())
+                    && getTaskType().equals(otherTask.getTaskType())
+                    && getDate().equals(otherTask.getDate())
+                    && isDone == otherTask.isDone
+                    && getRecurringFrequency().equals(otherTask.getRecurringFrequency());
         } else {
             return false;
         }

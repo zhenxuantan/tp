@@ -20,6 +20,7 @@ import seedu.address.model.person.social.Social;
 import seedu.address.model.person.social.Telegram;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.RecurringFrequency;
 import seedu.address.model.task.TaskType;
 
 /**
@@ -210,5 +211,20 @@ public class ParserUtil {
      */
     public static GitHub parseGitHub(String username) throws ParseException {
         return new GitHub(parseUsername(username));
+    }
+
+    /**
+     * Parses a {@code String recurringFrequency} into an {@code recurringFrequency}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code recurringFrequency} is invalid.
+     */
+    public static RecurringFrequency parseRecurringFrequency(String recurringFrequency) throws ParseException {
+        requireNonNull(recurringFrequency);
+        String trimmedRecurringFrequency = recurringFrequency.trim();
+        if (!RecurringFrequency.isValidRecurringFrequency(trimmedRecurringFrequency)) {
+            throw new ParseException(RecurringFrequency.MESSAGE_CONSTRAINTS);
+        }
+        return new RecurringFrequency(trimmedRecurringFrequency);
     }
 }
