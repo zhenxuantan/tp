@@ -37,6 +37,8 @@ public class TaskCard extends UiPart<Region> {
     private Label date;
     @FXML
     private Label group;
+    @FXML
+    private Label recurringFrequency;
 
     /**
      * Creates a {@code TaskCard} with the given {@code Task} and index to display.
@@ -50,6 +52,7 @@ public class TaskCard extends UiPart<Region> {
         done.setText(task.getStatusIcon());
         date.setText(task.getDate().toString());
         group.setText(task.getGroup().toString());
+        recurringFrequency.setText(task.getRecurringFrequency().display());
     }
 
     @Override

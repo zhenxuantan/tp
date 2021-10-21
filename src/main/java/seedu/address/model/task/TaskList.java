@@ -47,6 +47,17 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
+     * Updates all recurring tasks' dates.
+     */
+    public void updateRecurringTasksDates() {
+        for (Task t : internalList) {
+            if (t.getRecurringFrequency().isRecurring()) {
+                t.updateRecurringTaskDate();
+            }
+        }
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Task> asUnmodifiableObservableList() {

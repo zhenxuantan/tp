@@ -39,6 +39,9 @@
                <Label fx:id="done" styleClass="cell_small_label" text="\$done" />
             </children>
          </HBox>
+        <HBox>
+            <Label fx:id="recurringFrequency" styleClass="cell_small_label" text="\$recurringFrequency" />
+        </HBox>
     </VBox>
       <rowConstraints>
          <RowConstraints />
