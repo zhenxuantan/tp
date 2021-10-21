@@ -5,8 +5,6 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package PersonAndTasks <<Rectangle>>{
-
-
 Class Person
 Class Phone
 Class Email
@@ -53,7 +51,4 @@ Github --|> Social
 Phone -right[hidden]- Email
 Email -right[hidden]- Telegram
 Telegram -right[hidden]- Github
-
-
-
 @enduml
