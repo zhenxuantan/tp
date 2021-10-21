@@ -49,7 +49,7 @@ public class Priority {
         return priority;
     }
 
-    public int compare(Priority priority) {
+    public int compareTo(Priority priority) {
         return Integer.compare(this.priorityInt, (priority.getPriorityInt())); }
 
     /**
@@ -62,12 +62,22 @@ public class Priority {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Date) {
+        if (obj instanceof Priority) {
             return priorityInt == ((Priority) obj).getPriorityInt();
         } else {
             return false;
         }
     }
 
+    public String getPriorityIcon() {
+        switch (priority) {
+        case "low":
+            return "!";
+        case "med":
+            return "!!";
+        default:
+            return "!!!";
+        }
+    }
 
 }

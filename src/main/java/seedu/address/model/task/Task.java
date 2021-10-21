@@ -57,6 +57,9 @@ public class Task {
     public Priority getPriority() {
         return priority;
     }
+    public String getPriorityIcon() {
+        return priority.getPriorityIcon();
+    }
 
     /**
      * Marks task as done.
@@ -116,6 +119,21 @@ public class Task {
             return -1;
         } else {
             return this.getDate().compareTo(otherTask.getDate());
+        }
+    }
+
+    /**
+     * Comparator for the task's priority.
+     * @param otherTask the otherTask
+     * @return an integer for comparison
+     */
+    public int comparePriority(Task otherTask) {
+        if (isNull(getPriority())) {
+            return 1;
+        } else if (isNull(otherTask.getPriority())) {
+            return -1;
+        } else {
+            return this.getPriority().compareTo(otherTask.getPriority());
         }
     }
 

@@ -41,6 +41,8 @@ public class TaskCard extends UiPart<Region> {
     private Label group;
     @FXML
     private Label recurringFrequency;
+    @FXML
+    private Label priority;
 
     /**
      * Creates a {@code TaskCard} with the given {@code Task} and index to display.
@@ -55,6 +57,14 @@ public class TaskCard extends UiPart<Region> {
         date.setText(isNull(task.getDate()) ? "" : task.getDate().toString());
         group.setText(task.getGroup().toString());
         recurringFrequency.setText(task.getRecurringFrequency().display());
+        priority.setText(task.getPriorityIcon());
+        if (task.getPriorityIcon().equals("!")) {
+            priority.setStyle("-fx-text-fill: white; -fx-background-color: green");
+        } else if (task.getPriorityIcon().equals("!!")) {
+            priority.setStyle("-fx-text-fill: black; -fx-background-color: orange");
+        } else {
+            priority.setStyle("-fx-text-fill: white; -fx-background-color: maroon");
+        }
     }
 
     @Override

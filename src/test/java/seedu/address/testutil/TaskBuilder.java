@@ -1,7 +1,12 @@
 package seedu.address.testutil;
 
 import seedu.address.model.group.Group;
-import seedu.address.model.task.*;
+import seedu.address.model.task.Date;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.RecurringFrequency;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskType;
 
 /**
  * A utility class to help with building Task objects.
@@ -65,6 +70,9 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Priority} of the {@code Task} that we are building.
+     */
     public TaskBuilder withPriority(String priority) {
         this.priority = new Priority(priority);
         return this;
