@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -9,7 +10,7 @@ import seedu.address.model.group.Group;
 
 public class FilterTaskPredicate implements Predicate<Task> {
     public static final String MESSAGE_CONSTRAINTS =
-            "FilterTaskPredicate can be either 'g/GROUP', 'date/DATE' or 'type/TASKTYPE'";
+            "FilterTaskPredicate can be either 'g/GROUP', 'date/DATE', 'type/TASKTYPE' or 'pty/PRIORITY'";
 
     private final String paramAndKeywords;
 
@@ -40,6 +41,9 @@ public class FilterTaskPredicate implements Predicate<Task> {
         case 'g':
             isValid = Group.isValidGroup(test.substring(2));
             break;
+        case 'p':
+            isValid = Priority.isValidPriority(test.substring(4));
+            break;
         default:
             isValid = false;
             break;
@@ -54,13 +58,24 @@ public class FilterTaskPredicate implements Predicate<Task> {
         switch(firstChar) {
         case 'd':
             Date date = new Date(paramAndKeywords.substring(5));
-            return task.getDate().equals(date);
+            if (isNull(task.getDate())) {
+                return false;
+            } else {
+                return task.getDate().equals(date);
+            }
         case 't':
             TaskType taskType = new TaskType(paramAndKeywords.substring(5));
             return task.getTaskType().equals(taskType);
         case 'g':
             Group group = new Group(paramAndKeywords.substring(2));
             return task.getGroup().equals(group);
+        case 'p':
+            Priority priority = new Priority(paramAndKeywords.substring(4));
+            if (isNull(task.getPriority())) {
+                return false;
+            } else {
+                return task.getPriority().equals(priority);
+            }
         default:
             return false;
         }
@@ -75,7 +90,7 @@ public class FilterTaskPredicate implements Predicate<Task> {
 
     @Override
     public String toString() {
-        return paramAndKeywords.replace("/", " criterion: ");
+        return paramAndKeywords.replace("/", ", criterion: ");
     }
 
 

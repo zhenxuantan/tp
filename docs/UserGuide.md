@@ -151,15 +151,17 @@ Examples:
 Adds a new task (determined by what is inputted for type/TYPE) with task description as specified by d/DESCRIPTION 
 for the group specified by g/GROUP due at date specified by date/DATE.
 
-Format: `addtask d/DESCRIPTION g/GROUP type/TYPE date/DATE`
-* `GROUP` refers to one of the 2 groups: CS2101 or CS2103T
-* `TYPE` refers to one of the 3 types of tasks: todo, event or deadline
-* `DATE` is in YYYY-MM-DD format
+Format: `addtask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
+* `GROUP` refers to one of the 2 groups: `CS2101` or `CS2103T`
+* `TYPE` refers to one of the 3 types of tasks: `todo`, `event` or `deadline`
+* `DATE` is in YYYY-MM-DD format and is only needed for events or deadlines (i.e. `DATE` is optional for todo tasks)
+* `PRIORITY` refers to one of the 3 levels of priorities / importance of the task: `low`, `med` (default) or `high`
+* `RECURRING_FREQUENCY` refers to one of the 3 different frequencies that the task could occur: `week`, `month` or `year` (where `week` means that the task is recurring weekly)
 
 Examples:
-* `addTask d/Project meeting g/CS2103T type/todo date/2022-11-11`
-* `addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02`
-* `addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02`
+* `addTask d/Project meeting g/CS2103T type/todo pty/low`
+* `addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high`
+* `addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month`
 
 ### Deleting a task/deadline: `deleteTask`
 
@@ -177,17 +179,19 @@ Sort tasks based on their description or their deadlines (chronologically, or th
 
 Format: `sort p/PARAMETER o/ORDER`
 * The sort is case-insensitive. e.g CS2103 will be lexicographically identical to cs2103
-* PARAMETER includes 'desc' (for description), 'date' (for deadline / time of event), 'added' (for date added) and 'group'.
+* PARAMETER includes 'desc' (for description), 'date' (for deadline / time of event), and 'group'.
 * ORDER includes 'a' for ascending order (0-9 and A-Z, oldest to newest) and 'd' for descending order(Z-A and 9-0 / newest to oldest)
+* When the tasks are sorted by date, 'todo' tasks will always be at the bottom of the list.
 
 Examples:
-If the following is in the task list:
-| Type        | Description | Date       |
-| ----------- | ----------- | ---------- |
-| `Todo`      | user guide  | 28-09-2020 |
-| `Deadline`  | quiz        | 25-09-2020 |
-| `Event`     | test        | 21-09-2020 |
-| `Event`     | exam        | 22-09-2020 |
+If the following are in the task list:
+ 
+Type | Description | Date 
+ ----- | ----- | ----- 
+ `Todo`| user guide  | 28-09-2020 
+ `Deadline`| quiz | 25-09-2020
+ `Event` | test | 21-09-2020
+ `Event` | exam | 22-09-2020
 
 * `sort p/desc o/1` returns tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam` 
 * `sort p/date o/1` returns returns tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
@@ -197,7 +201,7 @@ Filter tasks based on a criterion
 
 Format: `filterTasks [g/Group] [date/DATE] [type/TASKTYPE]`
 * Filters the task by the specified `FILTER_CRITERION`
-* `FILTER_CRITERION` refers to either `g/GROUP`, `date/DATE`, `type/TASKTYPE` or`d/DESCRIPTION`
+* `FILTER_CRITERION` refers to either `g/GROUP`, `date/DATE`, `type/TASKTYPE`, `d/DESCRIPTION` or `pty/PRIORITY`
 * Tasks corresponding to the criterion specified will be shown
 
 Examples:
@@ -262,7 +266,7 @@ Action | Format, Examples
 **Group** | `group GROUP` <br> e.g., `group CS2103T`
 **List** | `list`
 **Help** | `help`
-**Add Task** | `addTask d/DESCRIPTION g/GROUP type/TYPE date/DATE`
+**Add Task** | `addTask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
 **Delete Task** | `deleteTask index`
 **Sort Tasks** | `sort p/PARAMETER o/ORDER` <br> e.g., `sort p/desc o/1`
 **Filter Tasks** | `filter g/Group`

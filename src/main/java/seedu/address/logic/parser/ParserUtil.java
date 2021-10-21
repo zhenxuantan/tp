@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import seedu.address.model.person.social.Social;
 import seedu.address.model.person.social.Telegram;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Priority;
 import seedu.address.model.task.RecurringFrequency;
 import seedu.address.model.task.TaskType;
 
@@ -162,7 +164,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code date} is invalid.
      */
     public static Date parseDate(String date) throws ParseException {
-        if (date.equals(null)) {
+        if (isNull(date)) {
             return null;
         }
         String trimmedDate = date.trim();
@@ -226,5 +228,22 @@ public class ParserUtil {
             throw new ParseException(RecurringFrequency.MESSAGE_CONSTRAINTS);
         }
         return new RecurringFrequency(trimmedRecurringFrequency);
+    }
+
+    /**
+     * Parses a {@code String priority} into a {@code Priority}.
+     *
+     * @throws ParseException if the given {@code priority} is invalid.
+     */
+    public static Priority parsePriority(String priority) throws ParseException {
+        if (priority == null) {
+            return new Priority("med");
+        }
+
+        if (!Priority.isValidPriority(priority)) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Priority(priority);
     }
 }

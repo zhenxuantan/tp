@@ -32,6 +32,10 @@ public class SortTasksCommandParser {
         String param = argMultimap.getValue(PREFIX_PARAMETER).get().toLowerCase();
         String order = argMultimap.getValue(PREFIX_ORDER).get().toLowerCase();
 
+        if (!SortTaskComparator.isValidComparator(param, order)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortTasksCommand.MESSAGE_USAGE));
+        }
+
         return new SortTasksCommand(new SortTaskComparator(param, order));
     }
 

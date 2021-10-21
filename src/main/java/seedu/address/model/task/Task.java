@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.isNull;
+
 import seedu.address.model.group.Group;
 
 public class Task {
@@ -9,6 +11,7 @@ public class Task {
     protected Date date;
     protected boolean isDone;
     protected RecurringFrequency recurringFrequency;
+    protected Priority priority;
 
     /**
      * Constructor for Task.
@@ -17,13 +20,15 @@ public class Task {
      * @param type Type of task (Deadline, Event, Todo)
      * @param date Date of task
      */
-    public Task(Description description, Group group, Date date, TaskType type, RecurringFrequency recurringFrequency) {
+    public Task(Description description, Group group, Date date, TaskType type,
+                RecurringFrequency recurringFrequency, Priority priority) {
         this.description = description;
         this.group = group;
         this.type = type;
         this.date = date;
         this.isDone = false;
         this.recurringFrequency = recurringFrequency;
+        this.priority = priority;
     }
 
     /**
@@ -48,6 +53,12 @@ public class Task {
     }
     public RecurringFrequency getRecurringFrequency() {
         return recurringFrequency;
+    }
+    public Priority getPriority() {
+        return priority;
+    }
+    public String getPriorityIcon() {
+        return priority.getPriorityIcon();
     }
 
     /**
@@ -102,7 +113,28 @@ public class Task {
      * @return an integer for comparison
      */
     public int compareDate(Task otherTask) {
-        return this.getDate().compareTo(otherTask.getDate());
+        if (isNull(getDate())) {
+            return 1;
+        } else if (isNull(otherTask.getDate())) {
+            return -1;
+        } else {
+            return this.getDate().compareTo(otherTask.getDate());
+        }
+    }
+
+    /**
+     * Comparator for the task's priority.
+     * @param otherTask the otherTask
+     * @return an integer for comparison
+     */
+    public int comparePriority(Task otherTask) {
+        if (isNull(getPriority())) {
+            return 1;
+        } else if (isNull(otherTask.getPriority())) {
+            return -1;
+        } else {
+            return this.getPriority().compareTo(otherTask.getPriority());
+        }
     }
 
     /**
@@ -127,7 +159,8 @@ public class Task {
             return getDescription().equals(otherTask.getDescription())
                     && getGroup().equals(otherTask.getGroup())
                     && getTaskType().equals(otherTask.getTaskType())
-                    && getDate().equals(otherTask.getDate())
+                    && ((isNull(getDate()) && isNull(otherTask.getDate()))
+                    || getDate().equals(otherTask.getDate()))
                     && isDone == otherTask.isDone
                     && getRecurringFrequency().equals(otherTask.getRecurringFrequency());
         } else {

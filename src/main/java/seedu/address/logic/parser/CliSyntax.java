@@ -15,6 +15,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_DATE = new Prefix("date/");
     public static final Prefix PREFIX_GROUP = new Prefix("g/");
     public static final Prefix PREFIX_TASKTYPE = new Prefix("type/");
+    public static final Prefix PREFIX_PRIORITY = new Prefix("pty/");
     public static final Prefix PREFIX_PARAMETER = new Prefix("param/");
     public static final Prefix PREFIX_ORDER = new Prefix("o/");
     public static final Prefix PREFIX_INDEX = new Prefix("index/");

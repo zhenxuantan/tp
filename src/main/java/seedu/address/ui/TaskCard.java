@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.isNull;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -39,6 +41,8 @@ public class TaskCard extends UiPart<Region> {
     private Label group;
     @FXML
     private Label recurringFrequency;
+    @FXML
+    private Label priority;
 
     /**
      * Creates a {@code TaskCard} with the given {@code Task} and index to display.
@@ -50,9 +54,17 @@ public class TaskCard extends UiPart<Region> {
         description.setText(task.getDescription().toString());
         taskType.setText(task.getTaskType().toString());
         done.setText(task.getStatusIcon());
-        date.setText(task.getDate().toString());
+        date.setText(isNull(task.getDate()) ? "" : task.getDate().toString());
         group.setText(task.getGroup().toString());
         recurringFrequency.setText(task.getRecurringFrequency().display());
+        priority.setText(task.getPriorityIcon());
+        if (task.getPriorityIcon().equals("!")) {
+            priority.setStyle("-fx-text-fill: white; -fx-background-color: green");
+        } else if (task.getPriorityIcon().equals("!!")) {
+            priority.setStyle("-fx-text-fill: black; -fx-background-color: orange");
+        } else {
+            priority.setStyle("-fx-text-fill: white; -fx-background-color: maroon");
+        }
     }
 
     @Override

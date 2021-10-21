@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING_FREQUENCY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKTYPE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -18,7 +20,10 @@ public class AddTaskCommand extends Command {
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_GROUP + "GROUP "
             + PREFIX_TASKTYPE + "TASKTYPE "
-            + "[" + PREFIX_DATE + "DATE]\n"
+            + "[" + PREFIX_DATE + "DATE]"
+            + "[" + PREFIX_RECURRING_FREQUENCY + "RECURRING_FREQUENCY]"
+            + "[" + PREFIX_PRIORITY + "PRIORITY]\n"
+
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "Project Meeting "
             + PREFIX_GROUP + "CS2101 "

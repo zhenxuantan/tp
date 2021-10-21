@@ -19,6 +19,7 @@ import seedu.address.model.task.Date;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Event;
+import seedu.address.model.task.Priority;
 import seedu.address.model.task.RecurringFrequency;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskType;
@@ -62,15 +63,20 @@ public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
             new Deadline(new Description("OP1 script"), new Group("CS2101"),
-                    new Date("2021-11-11"), new TaskType("deadline"), new RecurringFrequency("none")),
+                    new Date("2021-11-11"), new TaskType("deadline"), new RecurringFrequency("none"),
+            new Priority("2")),
             new Deadline(new Description("Update User Guide"), new Group("CS2103T"),
-                    new Date("2021-12-11"), new TaskType("deadline"), new RecurringFrequency("none")),
+                    new Date("2021-12-11"), new TaskType("deadline"),
+                new RecurringFrequency("none"), new Priority("2")),
             new Event(new Description("Project Meeting"), new Group("CS2103T"),
-                    new Date("2021-12-21"), new TaskType("event"), new RecurringFrequency("none")),
+                    new Date("2021-12-21"), new TaskType("event"),
+                new RecurringFrequency("none"), new Priority("2")),
             new Event(new Description("OP1 Presentation"), new Group("CS2101"),
-                    new Date("2021-11-21"), new TaskType("event"), new RecurringFrequency("none")),
+                    new Date("2021-11-21"), new TaskType("event"), new RecurringFrequency("none"),
+                new Priority("2")),
             new Todo(new Description("Create slides"), new Group("CS2101"),
-                    new Date("2021-11-17"), new TaskType("todo"), new RecurringFrequency("none"))
+                    new Date("2021-11-17"), new TaskType("todo"), new RecurringFrequency("none"),
+                new Priority("2"))
         };
     }
 
