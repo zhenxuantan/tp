@@ -11,7 +11,7 @@ public class SortTaskComparator implements Comparator<Task> {
         "SortTaskComparator can either have 'desc', 'date' or 'group' as PARAM in param/PARAM and"
             + "'a' (ascending) or 'd' (descending) as ORDER in o/ORDER.";
 
-    public static final String[] PARAMETERS = {"desc", "date", "added", "group"};
+    public static final String[] PARAMETERS = {"desc", "date", "group"};
     public static final String[] ORDERS = {"a", "d"};
 
     private final String param;

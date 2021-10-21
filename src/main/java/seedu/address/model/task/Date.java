@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -42,8 +43,8 @@ public class Date {
 
     @Override
     public String toString() {
-        if (date.equals(null)) {
-            return "";
+        if (isNull(date)) {
+            return null;
         }
         return date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
     }
@@ -51,9 +52,6 @@ public class Date {
     public LocalDate getLocalDate() {
         return this.date;
     }
-
-    public int compare(Date date) {
-        return this.date.compareTo(date.getLocalDate()); }
 
     /**
      *

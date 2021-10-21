@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.isNull;
+
 import seedu.address.model.group.Group;
 
 public class Task {
@@ -108,7 +110,13 @@ public class Task {
      * @return an integer for comparison
      */
     public int compareDate(Task otherTask) {
-        return this.getDate().compareTo(otherTask.getDate());
+        if (isNull(getDate())) {
+            return 1;
+        } else if (isNull(otherTask.getDate())) {
+            return -1;
+        } else {
+            return this.getDate().compareTo(otherTask.getDate());
+        }
     }
 
     /**
@@ -133,7 +141,8 @@ public class Task {
             return getDescription().equals(otherTask.getDescription())
                     && getGroup().equals(otherTask.getGroup())
                     && getTaskType().equals(otherTask.getTaskType())
-                    && getDate().equals(otherTask.getDate())
+                    && ((isNull(getDate()) && isNull(otherTask.getDate()))
+                    || getDate().equals(otherTask.getDate()))
                     && isDone == otherTask.isDone
                     && getRecurringFrequency().equals(otherTask.getRecurringFrequency());
         } else {

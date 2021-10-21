@@ -3,8 +3,11 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Arrays;
+
 public class Priority {
-    public static final String MESSAGE_CONSTRAINTS = "Priority should be 1, 2 or 3.";
+    public static final String MESSAGE_CONSTRAINTS = "Priority should be low, med or high.";
+    public static final String[] PRIORITIES = new String[]{"low", "med", "high"};
 
     public final String priority;
     public final int priorityInt;
@@ -17,16 +20,16 @@ public class Priority {
     public Priority(String priority) {
         requireNonNull(priority);
         checkArgument(isValidPriority(priority), MESSAGE_CONSTRAINTS);
-        this.priorityInt = Integer.parseInt(priority);
-        switch (priorityInt) {
-        case 1:
-            this.priority = "low";
+        this.priority = priority;
+        switch (priority) {
+        case "low":
+            priorityInt = 1;
             break;
-        case 3:
-            this.priority = "high";
+        case "high":
+            priorityInt = 3;
             break;
         default:
-            this.priority = "med";
+            priorityInt = 2;
         }
     }
 
@@ -35,8 +38,7 @@ public class Priority {
      */
     public static boolean isValidPriority(String test) {
         try {
-            int i = Integer.parseInt(test);
-            return i > 0 && i < 4;
+            return Arrays.stream(PRIORITIES).anyMatch(p -> p.equals(test));
         } catch (NumberFormatException e) {
             return false;
         }

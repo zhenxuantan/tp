@@ -15,7 +15,15 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.social.GitHub;
 import seedu.address.model.person.social.Telegram;
-import seedu.address.model.task.*;
+import seedu.address.model.task.Date;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Event;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.RecurringFrequency;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskType;
+import seedu.address.model.task.Todo;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

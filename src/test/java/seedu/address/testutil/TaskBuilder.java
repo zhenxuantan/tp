@@ -1,11 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.group.Group;
-import seedu.address.model.task.Date;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.RecurringFrequency;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskType;
+import seedu.address.model.task.*;
 
 /**
  * A utility class to help with building Task objects.
@@ -16,12 +12,14 @@ public class TaskBuilder {
     public static final String DEFAULT_TYPE = "deadline";
     public static final String DEFAULT_DATE = "2021-12-12";
     public static final String DEFAULT_RECURRING_FREQUENCY = "none";
+    public static final String DEFAULT_PRIORITY = "med";
 
     private Description description;
     private Group group;
     private TaskType type;
     private Date date;
     private RecurringFrequency recurringFrequency;
+    private Priority priority;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -32,6 +30,7 @@ public class TaskBuilder {
         type = new TaskType(DEFAULT_TYPE);
         date = new Date(DEFAULT_DATE);
         recurringFrequency = new RecurringFrequency(DEFAULT_RECURRING_FREQUENCY);
+        priority = new Priority(DEFAULT_PRIORITY);
     }
 
     /**
@@ -66,7 +65,12 @@ public class TaskBuilder {
         return this;
     }
 
+    public TaskBuilder withPriority(String priority) {
+        this.priority = new Priority(priority);
+        return this;
+    }
+
     public Task build() {
-        return new Task(description, group, date, type, recurringFrequency);
+        return new Task(description, group, date, type, recurringFrequency, priority);
     }
 }

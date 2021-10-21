@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.isNull;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -50,7 +52,7 @@ public class TaskCard extends UiPart<Region> {
         description.setText(task.getDescription().toString());
         taskType.setText(task.getTaskType().toString());
         done.setText(task.getStatusIcon());
-        date.setText(task.getDate().toString());
+        date.setText(isNull(task.getDate()) ? "" : task.getDate().toString());
         group.setText(task.getGroup().toString());
         recurringFrequency.setText(task.getRecurringFrequency().display());
     }

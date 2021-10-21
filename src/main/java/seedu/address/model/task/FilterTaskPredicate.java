@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -54,7 +55,11 @@ public class FilterTaskPredicate implements Predicate<Task> {
         switch(firstChar) {
         case 'd':
             Date date = new Date(paramAndKeywords.substring(5));
-            return task.getDate().equals(date);
+            if (isNull(task.getDate())) {
+                return false;
+            } else {
+                return task.getDate().equals(date);
+            }
         case 't':
             TaskType taskType = new TaskType(paramAndKeywords.substring(5));
             return task.getTaskType().equals(taskType);

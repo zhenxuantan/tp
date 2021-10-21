@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
@@ -163,7 +164,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code date} is invalid.
      */
     public static Date parseDate(String date) throws ParseException {
-        if (date.equals(null)) {
+        if (isNull(date)) {
             return null;
         }
         String trimmedDate = date.trim();
@@ -229,9 +230,14 @@ public class ParserUtil {
         return new RecurringFrequency(trimmedRecurringFrequency);
     }
 
+    /**
+     * Parses a {@code String priority} into a {@code Priority}.
+     *
+     * @throws ParseException if the given {@code priority} is invalid.
+     */
     public static Priority parsePriority(String priority) throws ParseException {
         if (priority == null) {
-            return new Priority("2");
+            return new Priority("med");
         }
 
         if (!Priority.isValidPriority(priority)) {

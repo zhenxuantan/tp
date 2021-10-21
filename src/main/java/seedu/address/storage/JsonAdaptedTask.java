@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static java.util.Objects.isNull;
+
 import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -7,7 +9,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.group.Group;
-import seedu.address.model.task.*;
+import seedu.address.model.task.Date;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Event;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.RecurringFrequency;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskType;
+import seedu.address.model.task.Todo;
 
 /**
  * Jackson-friendly version of {@link Task}.
@@ -45,7 +55,7 @@ class JsonAdaptedTask {
         description = source.getDescription().description;
         status = source.getStatusIcon();
         group = source.getGroup().group;
-        date = source.getDate().toString();
+        date = isNull(source.getDate()) ? null : source.getDate().toString();
         taskType = source.getTaskType().taskType;
         recurringFrequency = source.getRecurringFrequency().toString();
         priority = source.getPriority().priority;
@@ -86,10 +96,10 @@ class JsonAdaptedTask {
         DateTimeFormatter storageDtf = DateTimeFormatter.ofPattern("MMM dd yyyy");
         DateTimeFormatter commandDtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        String formattedDate = commandDtf.format(storageDtf.parse(date)).toString();
+        String formattedDate = isNull(date) ? null : commandDtf.format(storageDtf.parse(date)).toString();
 
         final Date modelDate;
-        if (formattedDate != null) {
+        if (!isNull(formattedDate)) {
             if (!Date.isValidDate(formattedDate)) {
                 throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
             }
@@ -100,7 +110,7 @@ class JsonAdaptedTask {
 
         final Priority modelPriority;
         if (priority == null) {
-            modelPriority = new Priority("2");
+            modelPriority = new Priority("med");
         } else {
             if (!Priority.isValidPriority(priority)) {
                 throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
