@@ -1,9 +1,86 @@
 ---
-layout: page
-title: Developer Guide
+| layout | title |
+| ------ | ----- |
+| page |Developer Guide |
 ---
 * Table of Contents
 {:toc}
+  
+---
+## **Design**
+
+### Architecture
+![Architecture diagram](images/ArchitectureDiagram.png)
+
+Given below is a quick overview of main components and how they interact with each other.
+
+**Main components of the architecture**
+
+**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+
+The rest of the App consists of four components.
+
+* [**`UI`**](#ui-component): The UI of the App.
+* [**`Logic`**](#logic-component): The command executor.
+* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+
+How the architecture components interact with each other
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues the 
+command `addTask d/project meeting g/CS2101 type/event date/2021-10-10`.
+
+![addTask Sequence diagram](images/ArchitectureSequenceDiagramAddTask1.png)
+
+
+Each of the four main components (also shown in the diagram above),
+
+* defines its *API* in an `interface` with the same name as the Component.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+
+![Component managers](images/ComponentManagers.png)
+
+The sections below give more details of each component.
+
+### UI component
+{to be completed}
+
+### Logic component
+Here's a (partial) class diagram of the `Logic` component:
+
+![Logic Class diagram](images/logicClassDiagram.png)
+
+How the `Logic` component works:
+1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddTaskCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a task).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("addTask d/project meeting g/CS2101 type/event date/2021-10-10")` API call.
+
+![Interactions Inside the Logic Component for the `addTask d/project meeting g/CS2101 type/event date/2021-10-10` Command](images/AddTaskSequenceDiagram.png)
+
+Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+
+![Parser class](images/ParserClasses.png)
+
+How the parsing works:
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddTaskCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+
+### Model component
+{to be completed}
+
+### Storage component
+{to be completed}
+
+
+---
   
 ## **Appendix: Requirements**
 
