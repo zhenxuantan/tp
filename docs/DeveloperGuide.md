@@ -133,10 +133,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-| `*`      | user                                       | Add a new task/deadline to the list | So that I can keep track of the tasks that needs to be done       |
+| `*`      | user                                       | Add a new task to the list | So that I can keep track of the tasks that needs to be done       |
 | `* * *`  | new user                                   | Have an overview of my groupmate details like telegram, email and name.  | So I can easily contact them |
 | `* * *`  | forgetful user                             | have a list of tasks           | So that I can follow up on it and not miss out tasks                   |
-| `*`      | user                                       | delete a task/deadline in the list | So that I can keep delete the tasks that are already done          |
+| `*`      | user                                       | delete a task in the list      | So that I can delete the tasks that are no longer needed               |
+| `*`      | user                                       | mark a task in the list as done | So that I can keep track of which tasks are done or not yet done      |
 | `* * *`  | long term user                             | quickly check deadlines in order of priority (sort) | Clear the tasks due one at a time                 |
 | `* * *`  | user                                       | filter the task according to the different modules | I know what I can do for each module               |
 
@@ -301,6 +302,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. User keys in an invalid criterion.
     * 1a1. System displays an error message about invalid criterion. Use case ends.
 
+**Use case (UC11): Mark a task as done**
+
+1. User requests to list tasks.
+2. System shows a list of tasks.
+3. User keys in an index.
+4. The task of specified index in task list is marked as done.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User keys in an invalid index.
+    * 1a1. System displays an error message about invalid index.
+
+  Use case ends.
 
 *{More to be added}*
 
@@ -325,4 +341,3 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |**CLI**|Command-Line Interface|
 |**Group**| a group of either CS2103T or CS2101 students|
 |**Index**| the ordering of task in the task list|
-
