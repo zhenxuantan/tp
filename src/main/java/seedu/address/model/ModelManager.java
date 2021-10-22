@@ -41,6 +41,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.tasks = new TaskRecords(tasks);
+        this.tasks.updateRecurringTasks();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTaskList = new FilteredList<>(this.tasks.getTaskList());
         sortedTaskList = new SortedList<>(filteredTaskList);

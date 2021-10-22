@@ -8,10 +8,10 @@ import java.util.Comparator;
 
 public class SortTaskComparator implements Comparator<Task> {
     public static final String MESSAGE_CONSTRAINTS =
-        "SortTaskComparator can either have 'desc', 'date' or 'group' as PARAM in param/PARAM and"
+        "SortTaskComparator can either have 'desc', 'date', 'group' or 'pty' as PARAM in param/PARAM and"
             + "'a' (ascending) or 'd' (descending) as ORDER in o/ORDER.";
 
-    public static final String[] PARAMETERS = {"desc", "date", "added", "group"};
+    public static final String[] PARAMETERS = {"desc", "date", "group", "pty"};
     public static final String[] ORDERS = {"a", "d"};
 
     private final String param;
@@ -52,6 +52,8 @@ public class SortTaskComparator implements Comparator<Task> {
             return isAscending ? task1.compareDate(task2) : task2.compareDate(task1);
         case "group":
             return isAscending ? task1.compareGroup(task2) : task2.compareGroup(task1);
+        case "pty":
+            return isAscending ? task1.comparePriority(task2) : task2.comparePriority(task1);
         default:
             return 0;
         }
@@ -70,6 +72,9 @@ public class SortTaskComparator implements Comparator<Task> {
             break;
         case "group":
             parameter = "group";
+            break;
+        case "pty":
+            parameter = "priority";
             break;
         default:
             break;

@@ -5,7 +5,9 @@
       "status": "[ ]",
       "group": "CS2103T",
       "date": "44339900",
-      "taskType": "deadline"
+      "taskType": "deadline",
+      "recurringFrequency": "none",
+      "priority": "med"
     }
   ]
 }

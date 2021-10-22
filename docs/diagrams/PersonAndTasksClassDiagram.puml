@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package PersonAndTasks <<Rectangle>>{
+Class Person
+Class Phone
+Class Email
+Class Github
+Class Telegram
+Class "{abstract}\nSocial" as Social
+
+Class Group
+
+Class Task
+Class Todo
+Class Deadline
+Class Event
+Class Priority
+Class Date
+Class Description
+class RecurringFrequency
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside --> Person
+HiddenOutside -[hidden]- Group
+HiddenOutside --> Task
+
+Task -right-> "1" Group : is for >
+Person -left-> "1..2" Group : is in >
+
+Task --> Date
+Task --> Description
+Task --> RecurringFrequency
+Task --> Priority
+
+Todo --|> Task
+Deadline --|> Task
+Event --|> Task
+
+Person --> Phone
+Person --> Email
+Person --> Telegram
+Person --> Github
+Telegram --|> Social
+Github --|> Social
+
+Phone -right[hidden]- Email
+Email -right[hidden]- Telegram
+Telegram -right[hidden]- Github
+@enduml

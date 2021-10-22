@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static java.util.Objects.isNull;
+
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -12,6 +14,8 @@ import seedu.address.model.task.Date;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Event;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.RecurringFrequency;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskType;
 import seedu.address.model.task.Todo;
@@ -27,16 +31,22 @@ class JsonAdaptedTask {
     private final String group;
     private final String date;
     private final String taskType;
+    private final String recurringFrequency;
+    private final String priority;
 
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("description") String description, @JsonProperty("status") String status,
                            @JsonProperty("group") String group, @JsonProperty("date") String date,
-                           @JsonProperty("taskType") String taskType) {
+                           @JsonProperty("taskType") String taskType,
+                           @JsonProperty("recurringFrequency") String recurringFrequency,
+                           @JsonProperty("priority") String priority) {
         this.description = description;
         this.status = status;
         this.group = group;
         this.date = date;
         this.taskType = taskType;
+        this.recurringFrequency = recurringFrequency;
+        this.priority = priority;
     }
 
     /**
@@ -46,8 +56,10 @@ class JsonAdaptedTask {
         description = source.getDescription().description;
         status = source.getStatusIcon();
         group = source.getGroup().group;
-        date = source.getDate().toString();
+        date = isNull(source.getDate()) ? null : source.getDate().toString();
         taskType = source.getTaskType().taskType;
+        recurringFrequency = source.getRecurringFrequency().toString();
+        priority = source.getPriority().priority;
     }
 
     /**
@@ -81,9 +93,8 @@ class JsonAdaptedTask {
             throw new IllegalValueException(TaskType.MESSAGE_CONSTRAINTS);
         }
         final TaskType modelTaskType = new TaskType(taskType);
-
         final Date modelDate;
-        if (date != null) {
+        if (!isNull(date)) {
             try {
                 DateTimeFormatter storageDtf = DateTimeFormatter.ofPattern("MMM dd yyyy");
                 DateTimeFormatter commandDtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -97,21 +108,43 @@ class JsonAdaptedTask {
             modelDate = null;
         }
 
+        final Priority modelPriority;
+        if (priority == null) {
+            modelPriority = new Priority("med");
+        } else {
+            if (!Priority.isValidPriority(priority)) {
+                throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
+            }
+            modelPriority = new Priority(priority);
+        }
+
+        if (recurringFrequency == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, RecurringFrequency.class.getSimpleName()));
+        }
+        if (!RecurringFrequency.isValidRecurringFrequency(recurringFrequency)) {
+            throw new IllegalValueException(RecurringFrequency.MESSAGE_CONSTRAINTS);
+        }
+        final RecurringFrequency modelRecurringFreq = new RecurringFrequency(recurringFrequency);
+
         switch (taskType) {
         case "todo":
-            Task task = new Todo(modelDescription, modelGroup, modelDate, modelTaskType);
+            Task task = new Todo(modelDescription, modelGroup, modelDate, modelTaskType,
+                modelRecurringFreq, modelPriority);
             if (checkIsDone(status)) {
                 task.markAsDone();
             }
             return task;
         case "event":
-            task = new Event(modelDescription, modelGroup, modelDate, modelTaskType);
+            task = new Event(modelDescription, modelGroup, modelDate, modelTaskType,
+                modelRecurringFreq, modelPriority);
             if (checkIsDone(status)) {
                 task.markAsDone();
             }
             return task;
         case "deadline":
-            task = new Deadline(modelDescription, modelGroup, modelDate, modelTaskType);
+            task = new Deadline(modelDescription, modelGroup, modelDate, modelTaskType,
+                modelRecurringFreq, modelPriority);
             if (checkIsDone(status)) {
                 task.markAsDone();
                 return task;

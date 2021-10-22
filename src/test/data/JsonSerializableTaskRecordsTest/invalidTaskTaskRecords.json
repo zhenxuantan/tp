@@ -4,6 +4,8 @@
     "status" : "[ ]",
     "group" : "CS2101",
     "date" : "Dec 03 2021",
-    "taskType" : "dead"
+    "taskType" : "dead",
+    "recurringFrequency": "none",
+    "priority": "med"
   } ]
 }

@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.isNull;
+
 import seedu.address.model.group.Group;
 
 public class Task {
@@ -8,6 +10,8 @@ public class Task {
     protected TaskType type;
     protected Date date;
     protected boolean isDone;
+    protected RecurringFrequency recurringFrequency;
+    protected Priority priority;
 
     /**
      * Constructor for Task.
@@ -16,12 +20,15 @@ public class Task {
      * @param type Type of task (Deadline, Event, Todo)
      * @param date Date of task
      */
-    public Task(Description description, Group group, Date date, TaskType type) {
+    public Task(Description description, Group group, Date date, TaskType type,
+                RecurringFrequency recurringFrequency, Priority priority) {
         this.description = description;
         this.group = group;
         this.type = type;
         this.date = date;
         this.isDone = false;
+        this.recurringFrequency = recurringFrequency;
+        this.priority = priority;
     }
 
     /**
@@ -32,20 +39,26 @@ public class Task {
     public String getStatusIcon() {
         return isDone ? "[X]" : "[ ]";
     }
-
     public Description getDescription() {
         return description;
     }
-
     public Group getGroup() {
         return group;
     }
-
     public Date getDate() {
         return date;
     }
     public TaskType getTaskType() {
         return type;
+    }
+    public RecurringFrequency getRecurringFrequency() {
+        return recurringFrequency;
+    }
+    public Priority getPriority() {
+        return priority;
+    }
+    public String getPriorityIcon() {
+        return priority.getPriorityIcon();
     }
 
     /**
@@ -70,12 +83,58 @@ public class Task {
     }
 
     /**
+     * Updates a recurring task's date to the current week/month/year.
+     */
+    public void updateRecurringTaskDate() {
+        switch (recurringFrequency.toString()) {
+        case "week":
+            if (date.isLastWeek()) {
+                this.date = date.getDateForThisWeek();
+            }
+            break;
+        case "month":
+            if (date.isLastMonth()) {
+                this.date = date.getDateForThisMonth();
+            }
+            break;
+        case "year":
+            if (date.isLastYear()) {
+                this.date = date.getDateForThisYear();
+            }
+            break;
+        default:
+            break;
+        }
+    }
+
+    /**
      * Comparator for the task's date.
      * @param otherTask the otherTask
      * @return an integer for comparison
      */
     public int compareDate(Task otherTask) {
-        return this.getDate().compareTo(otherTask.getDate());
+        if (isNull(getDate())) {
+            return 1;
+        } else if (isNull(otherTask.getDate())) {
+            return -1;
+        } else {
+            return this.getDate().compareTo(otherTask.getDate());
+        }
+    }
+
+    /**
+     * Comparator for the task's priority.
+     * @param otherTask the otherTask
+     * @return an integer for comparison
+     */
+    public int comparePriority(Task otherTask) {
+        if (isNull(getPriority())) {
+            return 1;
+        } else if (isNull(otherTask.getPriority())) {
+            return -1;
+        } else {
+            return this.getPriority().compareTo(otherTask.getPriority());
+        }
     }
 
     /**
@@ -98,10 +157,12 @@ public class Task {
         if (obj instanceof Task) {
             Task otherTask = (Task) obj;
             return getDescription().equals(otherTask.getDescription())
-                && getGroup().equals(otherTask.getGroup())
-                && getTaskType().equals(otherTask.getTaskType())
-                && getDate().equals(otherTask.getDate())
-                && isDone == otherTask.isDone;
+                    && getGroup().equals(otherTask.getGroup())
+                    && getTaskType().equals(otherTask.getTaskType())
+                    && ((isNull(getDate()) && isNull(otherTask.getDate()))
+                    || getDate().equals(otherTask.getDate()))
+                    && isDone == otherTask.isDone
+                    && getRecurringFrequency().equals(otherTask.getRecurringFrequency());
         } else {
             return false;
         }
