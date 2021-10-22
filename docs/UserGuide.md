@@ -5,7 +5,7 @@ title: User Guide
 
 SWEe-book is a **desktop app for CS2103T/CS2101 Computer Science students to manage contacts and tasks pertaining to CS2103T/CS2101 module, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
 If you can type fast, SWEe-book can get your contact management and task management done faster than traditional GUI apps.
-SWEe-book offers one-stop integration solution to your group work management.
+SWEe-book offers **one-stop integration solution to your group work management.**
 
 
 * Table of Contents
@@ -22,7 +22,7 @@ SWEe-book offers one-stop integration solution to your group work management.
 1. Copy the file to the folder you want to use as the _home folder_ for your SWEe-book.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/UISS.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -66,7 +66,7 @@ SWEe-book offers one-stop integration solution to your group work management.
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -122,7 +122,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find alex david'](images/findAlexDavidResult1.png)
 
 ### Deleting a person : `delete`
 
