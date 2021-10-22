@@ -168,7 +168,7 @@ Examples:
 
 ### Deleting a task/deadline: `deleteTask`
 
-Format: `deleteTask index`
+Format: `deleteTask INDEX`
 
 Deletes the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list using listTasks.
@@ -177,10 +177,10 @@ Deletes the task at the specified `INDEX`.
 Examples:
 * `deleteTask 1` deletes the 1st task in the task list.
 
-### Sorting tasks: `sort`
+### Sorting tasks: `sortTasks`
 Sort tasks based on their description or their deadlines (chronologically, or the reverse), or by time added.
 
-Format: `sort p/PARAMETER o/ORDER`
+Format: `sortTasks param/PARAMETER o/ORDER`
 * The sort is case-insensitive. e.g CS2103 will be lexicographically identical to cs2103
 * PARAMETER includes 'desc' (for description), 'date' (for deadline / time of event), and 'group'.
 * ORDER includes 'a' for ascending order (0-9 and A-Z, oldest to newest) and 'd' for descending order(Z-A and 9-0 / newest to oldest)
@@ -196,13 +196,13 @@ Type | Description | Date
  `Event` | test | 21-09-2020
  `Event` | exam | 22-09-2020
 
-* `sort p/desc o/1` returns tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam`
-* `sort p/date o/1` returns returns tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
+* `sortTasks param/desc o/a` returns tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam`
+* `sortTasks param/date o/a` returns returns tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
 
 ### Filtering tasks by modules: `filterTasks`
 Filter tasks based on a criterion
 
-Format: `filterTasks [g/Group] [date/DATE] [type/TASKTYPE]`
+Format: `filterTasks FILTER_CRITERION`
 * Filters the task by the specified `FILTER_CRITERION`
 * `FILTER_CRITERION` refers to either `g/GROUP`, `date/DATE`, `type/TASKTYPE`, `d/DESCRIPTION` or `pty/PRIORITY`
 * Tasks corresponding to the criterion specified will be shown
