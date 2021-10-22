@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/cyyeu)]
 
 * Role: Code quality
-* Responsibilities: Ensure overall adherence to coding standards. 
+* Responsibilities: Ensure overall adherence to coding standards.
 
 ### Ambrose Boo
 

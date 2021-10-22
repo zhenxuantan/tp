@@ -1,0 +1,27 @@
+{
+  "tasks" : [ {
+    "description" : "Update User Guide",
+    "status" : "[ ]",
+    "group" : "CS2103T",
+    "date" : "Dec 11 2021",
+    "taskType" : "deadline",
+    "recurringFrequency": "none",
+    "priority": "med"
+  }, {
+    "description" : "Project Meeting",
+    "status" : "[ ]",
+    "group" : "CS2103T",
+    "date" : "Dec 21 2021",
+    "taskType" : "event",
+    "recurringFrequency": "none",
+    "priority": "med"
+  }, {
+    "description" : "Task with invalid group",
+    "status" : "[ ]",
+    "group" : "bu83333",
+    "date" : "Nov 21 2021",
+    "taskType" : "event",
+    "recurringFrequency": "none",
+    "priority": "med"
+  } ]
+}

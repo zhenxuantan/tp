@@ -20,6 +20,12 @@ public class TypicalTasks {
     public static final Task DEADLINE2 = new TaskBuilder().withDescription("Deadline 2")
         .withGroup("cs2103t").withTaskType("deadline").withDate("2022-07-01").build();
 
+    // Manually add
+    public static final Task EVENT2 = new TaskBuilder().withDescription("Event 2")
+        .withGroup("cs2103t").withTaskType("event").withDate("2022-09-01").build();
+    public static final Task TODO2 = new TaskBuilder().withDescription("todo 2")
+        .withGroup("cs2101").withTaskType("todo").withDate("2023-01-21").build();
+
     private TypicalTasks() {} // prevents instantiation
 
     /**

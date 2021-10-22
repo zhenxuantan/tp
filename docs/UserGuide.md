@@ -148,7 +148,7 @@ Examples:
 
 ### Adding a Task : `addTask`
 
-Adds a new task (determined by what is inputted for type/TYPE) with task description as specified by d/DESCRIPTION 
+Adds a new task (determined by what is inputted for type/TYPE) with task description as specified by d/DESCRIPTION
 for the group specified by g/GROUP due at date specified by date/DATE.
 
 Format: `addtask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
@@ -174,7 +174,7 @@ Deletes the task at the specified `INDEX`.
 Examples:
 * `deleteTask 1` deletes the 1st task in the task list.
 
-### Sorting tasks: `sort` 
+### Sorting tasks: `sort`
 Sort tasks based on their description or their deadlines (chronologically, or the reverse), or by time added.
 
 Format: `sort p/PARAMETER o/ORDER`
@@ -185,15 +185,15 @@ Format: `sort p/PARAMETER o/ORDER`
 
 Examples:
 If the following are in the task list:
- 
-Type | Description | Date 
- ----- | ----- | ----- 
- `Todo`| user guide  | 28-09-2020 
+
+Type | Description | Date
+ ----- | ----- | -----
+ `Todo`| user guide  | 28-09-2020
  `Deadline`| quiz | 25-09-2020
  `Event` | test | 21-09-2020
  `Event` | exam | 22-09-2020
 
-* `sort p/desc o/1` returns tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam` 
+* `sort p/desc o/1` returns tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam`
 * `sort p/date o/1` returns returns tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
 
 ### Filtering tasks by modules: filterTasks
@@ -208,11 +208,11 @@ Examples:
 * `filterTasks g/CS2101` shows all the tasks related to CS2101 group
 * `filterTasks date/2021-10-10` shows all the tasks with date of 10 Oct 2021
 
-### Listing all tasks: listTasks 
+### Listing all tasks: listTasks
 Shows a list of all tasks in the address book.
 
 Format: `listTasks`
-* Lists all tasks for the current user 
+* Lists all tasks for the current user
 
 Examples:
 * `listTasks` returns all tasks
