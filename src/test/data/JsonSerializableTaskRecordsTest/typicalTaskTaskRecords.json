@@ -1,0 +1,27 @@
+{
+  "tasks" : [ {
+    "description" : "Deadline 1",
+    "status" : "[ ]",
+    "group" : "CS2101",
+    "date" : "Dec 03 2021",
+    "taskType" : "deadline"
+  }, {
+    "description" : "event 1",
+    "status" : "[ ]",
+    "group" : "CS2103T",
+    "date" : "Feb 03 2022",
+    "taskType" : "event"
+  }, {
+      "description": "todo 1",
+      "status": "[ ]",
+      "group": "CS2101",
+      "date": "Oct 29 2022",
+      "taskType": "todo"
+    }, {
+    "description": "Deadline 2",
+    "status": "[ ]",
+    "group": "CS2103T",
+    "date": "Jul 01 2022",
+    "taskType": "deadline"
+  } ]
+}

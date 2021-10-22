@@ -14,14 +14,14 @@ import seedu.address.model.TaskRecords;
 import seedu.address.model.task.Task;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable TaskRecords that is serializable to JSON format.
  */
 @JsonRootName(value = "taskrecords")
 class JsonSerializableTaskRecords {
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableTaskRecords} with the given persons.
      */
     @JsonCreator
     public JsonSerializableTaskRecords(@JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
@@ -29,16 +29,16 @@ class JsonSerializableTaskRecords {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyTaskRecords} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableATaskRecords}.
      */
     public JsonSerializableTaskRecords(ReadOnlyTaskRecords source) {
         tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this TaskRecords into the model's {@code TaskRecords} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

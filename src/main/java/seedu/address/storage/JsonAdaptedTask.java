@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -35,7 +36,7 @@ class JsonAdaptedTask {
         this.status = status;
         this.group = group;
         this.date = date;
-        this.taskType = taskType.toLowerCase();
+        this.taskType = taskType;
     }
 
     /**
@@ -81,17 +82,17 @@ class JsonAdaptedTask {
         }
         final TaskType modelTaskType = new TaskType(taskType);
 
-        DateTimeFormatter storageDtf = DateTimeFormatter.ofPattern("MMM dd yyyy");
-        DateTimeFormatter commandDtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-        String formattedDate = commandDtf.format(storageDtf.parse(date)).toString();
-
         final Date modelDate;
-        if (formattedDate != null) {
-            if (!Date.isValidDate(formattedDate)) {
+        if (date != null) {
+            try {
+                DateTimeFormatter storageDtf = DateTimeFormatter.ofPattern("MMM dd yyyy");
+                DateTimeFormatter commandDtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+                String formattedDate = commandDtf.format(storageDtf.parse(date));
+                modelDate = new Date(formattedDate);
+            } catch (DateTimeParseException e) {
                 throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
             }
-            modelDate = new Date(formattedDate);
         } else {
             modelDate = null;
         }
