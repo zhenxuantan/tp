@@ -64,19 +64,19 @@ public class SampleDataUtil {
         return new Task[] {
             new Deadline(new Description("OP1 script"), new Group("CS2101"),
                     new Date("2021-11-11"), new TaskType("deadline"), new RecurringFrequency("none"),
-            new Priority("2")),
+            new Priority("med")),
             new Deadline(new Description("Update User Guide"), new Group("CS2103T"),
                     new Date("2021-12-11"), new TaskType("deadline"),
-                new RecurringFrequency("none"), new Priority("2")),
+                new RecurringFrequency("none"), new Priority("med")),
             new Event(new Description("Project Meeting"), new Group("CS2103T"),
                     new Date("2021-12-21"), new TaskType("event"),
-                new RecurringFrequency("none"), new Priority("2")),
+                new RecurringFrequency("none"), new Priority("med")),
             new Event(new Description("OP1 Presentation"), new Group("CS2101"),
                     new Date("2021-11-21"), new TaskType("event"), new RecurringFrequency("none"),
-                new Priority("2")),
+                new Priority("med")),
             new Todo(new Description("Create slides"), new Group("CS2101"),
                     new Date("2021-11-17"), new TaskType("todo"), new RecurringFrequency("none"),
-                new Priority("2"))
+                new Priority("med"))
         };
     }
 
