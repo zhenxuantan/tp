@@ -3,7 +3,10 @@ layout: page
 title: User Guide
 ---
 
-SWEe-book is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SWEe-book can get your contact management and task management done faster than traditional GUI apps.
+SWEe-book is a **desktop app for CS2103T/CS2101 Computer Science students to manage contacts and tasks pertaining to CS2103T/CS2101 module, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, SWEe-book can get your contact management and task management done faster than traditional GUI apps.
+SWEe-book offers one-stop integration solution to your group work management.
+
 
 * Table of Contents
 {:toc}
@@ -196,7 +199,7 @@ Type | Description | Date
 * `sort p/desc o/1` returns tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam`
 * `sort p/date o/1` returns returns tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
 
-### Filtering tasks by modules: filterTasks
+### Filtering tasks by modules: `filterTasks`
 Filter tasks based on a criterion
 
 Format: `filterTasks [g/Group] [date/DATE] [type/TASKTYPE]`
@@ -208,7 +211,7 @@ Examples:
 * `filterTasks g/CS2101` shows all the tasks related to CS2101 group
 * `filterTasks date/2021-10-10` shows all the tasks with date of 10 Oct 2021
 
-### Listing all tasks: listTasks
+### Listing all tasks: `listTasks`
 Shows a list of all tasks in the address book.
 
 Format: `listTasks`
@@ -268,6 +271,6 @@ Action | Format, Examples
 **Help** | `help`
 **Add Task** | `addTask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
 **Delete Task** | `deleteTask index`
-**Sort Tasks** | `sort p/PARAMETER o/ORDER` <br> e.g., `sort p/desc o/1`
-**Filter Tasks** | `filter g/Group`
+**Sort Tasks** | `sortTasks p/PARAMETER o/ORDER` <br> e.g., `sortTasks p/desc o/1`
+**Filter Tasks** | `filterTasks FILTER_CRITERION` <br> e.g., `filterTasks g/CS2101`
 **List Tasks** | `listtasks [date/DATE]`
