@@ -4,7 +4,6 @@ title: Developer Guide
 ---
 * Table of Contents
 {:toc}
-  
 ---
 ## **Design**
 
@@ -30,7 +29,7 @@ The rest of the App consists of four components.
 
 How the architecture components interact with each other
 
-The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues the 
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues the
 command `addTask d/project meeting g/CS2101 type/event date/2021-10-10`.
 
 ![addTask Sequence diagram](images/ArchitectureSequenceDiagramAddTask1.png)
@@ -104,7 +103,7 @@ Lastly, specfically for `Task`,
 
 
 ---
-  
+
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -228,7 +227,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The task details are invalid or incomplete.
     * 2a1. System shows an error message about the incorrect or missing details.
-    
+ 
     Use case ends.
 
 
@@ -238,7 +237,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. System shows a list of tasks.
 3. User keys in an index.
 4. The task of specified index in task list is removed.
-    
+  
     Use case ends.
 
 **Extensions**
@@ -278,7 +277,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case (UC09): Sort tasks**
 
-1. User keys in the parameter (desc, due, added) and order (0, 1). 
+1. User keys in the parameter (desc, due, added) and order (0, 1).
 2. System displays the tasks in the sorted order specified.
 
     Use case ends.
@@ -320,7 +319,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 | **Term** | **Meaning** |
-| ---- | --------| 
+| ---- | --------|
 |**Mainstream OS**| Windows, Linux, Unix, OS-X |
 |**Private contact detail**| A contact detail that is not meant to be shared with others|
 |**CLI**|Command-Line Interface|
