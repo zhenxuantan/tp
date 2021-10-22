@@ -46,7 +46,7 @@ public class Date {
         if (isNull(date)) {
             return null;
         }
-        return date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        return date.format(DTF);
     }
 
     public LocalDate getLocalDate() {
