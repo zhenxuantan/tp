@@ -10,8 +10,8 @@ import seedu.address.model.group.Group;
 
 public class FilterTaskPredicate implements Predicate<Task> {
     public static final String MESSAGE_CONSTRAINTS =
-            "FilterTaskPredicate can be either 'g/GROUP', 'date/DATE', 'type/TASKTYPE', 'pty/PRIORITY', " +
-                    "or 'd/DESCRIPTION' ";
+            "FilterTaskPredicate can be either 'g/GROUP', 'date/DATE', 'type/TASKTYPE', 'pty/PRIORITY', "
+                    + "or 'd/DESCRIPTION' ";
 
     private final String paramAndKeywords;
 

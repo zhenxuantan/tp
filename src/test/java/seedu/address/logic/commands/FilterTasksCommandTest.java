@@ -68,7 +68,7 @@ public class FilterTasksCommandTest {
                 new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskRecords());
         Task toFilter = EVENT1;
         FilterTaskPredicate criterion = new FilterTaskPredicate("d/" + toFilter.getDescription().toString());
-        FilterTaskCommand command = new FilterTaskCommand(criterion);
+        FilterTasksCommand command = new FilterTasksCommand(criterion);
         String expectedMessage = command.execute(expectedModel).getFeedbackToUser();
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
