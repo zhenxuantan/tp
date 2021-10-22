@@ -143,6 +143,12 @@ public class ModelManager implements Model {
         return tasks.deleteTask(task);
     }
 
+    @Override
+    public void doneTask(Task task) {
+        task.markAsDone();
+    }
+
+
     //=========== Task List Accessors =============================================================
 
     @Override

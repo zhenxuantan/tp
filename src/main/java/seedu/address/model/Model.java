@@ -82,8 +82,10 @@ public interface Model {
     ReadOnlyTaskRecords getTaskList();
 
     void addTask(Task toAdd);
+
     Task deleteTask(Task task);
 
+    void doneTask(Task task);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
