@@ -10,23 +10,20 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
-public class DeleteTaskCommand extends Command {
-    public static final String COMMAND_WORD = "deleteTask";
+public class DoneTaskCommand extends Command {
+    public static final String COMMAND_WORD = "doneTask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes task at specified index. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks task at specified index as done. "
         + "Parameters: "
-        + "INDEX (must be a positive integer\n"
+        + "INDEX (must be a positive integer)\n"
         + "Example: " + COMMAND_WORD + " "
         + "1";
 
-    public static final String MESSAGE_SUCCESS = "Noted! I've removed this task:\n\t %1$s\n\t";
+    public static final String MESSAGE_SUCCESS = "Noted! I've marked this task as done:\n\t %1$s\n\t";
 
     private final Index targetIndex;
 
-    /**
-     * Creates an DeleteTaskCommand to add the specified {@code Task}
-     */
-    public DeleteTaskCommand(Index index) {
+    public DoneTaskCommand(Index index) {
         this.targetIndex = index;
     }
 
@@ -39,8 +36,8 @@ public class DeleteTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX);
         }
 
-        Task toDelete = taskList.get(targetIndex.getZeroBased());
-        model.deleteTask(toDelete);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete.toString()));
+        Task doneTask = taskList.get(targetIndex.getZeroBased());
+        model.doneTask(doneTask);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, doneTask.toString()));
     }
 }
