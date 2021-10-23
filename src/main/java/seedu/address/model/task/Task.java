@@ -86,7 +86,7 @@ public class Task {
      * Updates a recurring task's date to the current week/month/year.
      */
     public void updateRecurringTaskDate() {
-        switch (recurringFrequency.getFirstString()) {
+        switch (recurringFrequency.toString()) {
         case "week":
             if (date.isLastWeek()) {
                 this.date = date.getDateForThisWeek();

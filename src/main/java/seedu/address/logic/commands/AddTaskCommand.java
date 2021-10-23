@@ -20,15 +20,16 @@ public class AddTaskCommand extends Command {
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_GROUP + "GROUP "
             + PREFIX_TASKTYPE + "TASKTYPE "
-            + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_RECURRING_FREQUENCY + "RECURRING_FREQUENCY] "
+            + "[" + PREFIX_DATE + "DATE]"
+            + "[" + PREFIX_RECURRING_FREQUENCY + "RECURRING_FREQUENCY]"
             + "[" + PREFIX_PRIORITY + "PRIORITY]\n"
+
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "Project Meeting "
             + PREFIX_GROUP + "CS2101 "
             + PREFIX_TASKTYPE + "Event "
-            + PREFIX_DATE + "2021-11-11 "
-            + PREFIX_RECURRING_FREQUENCY + "week monday";
+            + PREFIX_DATE + "2021-11-11 ";
+
     public static final String MESSAGE_SUCCESS = "Got it. I've added this task:\n %1$s \n\t";
 
     private final Task toAdd;
