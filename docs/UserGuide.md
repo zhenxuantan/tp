@@ -3,7 +3,10 @@ layout: page
 title: User Guide
 ---
 
-SWEe-book is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SWEe-book can get your contact management and task management done faster than traditional GUI apps.
+SWEe-book is a **desktop app for CS2103T/CS2101 Computer Science students to manage contacts and tasks pertaining to CS2103T/CS2101 module, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, SWEe-book can get your contact management and task management done faster than traditional GUI apps.
+SWEe-book offers **one-stop integration solution to your group work management.**
+
 
 * Table of Contents
 {:toc}
@@ -19,7 +22,7 @@ SWEe-book is a **desktop app for managing contacts, optimized for use via a Comm
 1. Copy the file to the folder you want to use as the _home folder_ for your SWEe-book.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/UISS.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -63,7 +66,7 @@ SWEe-book is a **desktop app for managing contacts, optimized for use via a Comm
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -119,7 +122,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find alex david'](images/findAlexDavidResult1.png)
 
 ### Deleting a person : `delete`
 
@@ -185,10 +188,10 @@ Marks the task at the specified `INDEX` as done.
 Examples:
 * `doneTask 1` marks the 1st task in the task list as done.
 
-### Sorting tasks: `sort`
+### Sorting tasks: `sortTasks`
 Sort tasks based on their description or their deadlines (chronologically, or the reverse), or by time added.
 
-Format: `sort p/PARAMETER o/ORDER`
+Format: `sortTasks param/PARAMETER o/ORDER`
 * The sort is case-insensitive. e.g CS2103 will be lexicographically identical to cs2103
 * PARAMETER includes 'desc' (for description), 'date' (for deadline / time of event), and 'group'.
 * ORDER includes 'a' for ascending order (0-9 and A-Z, oldest to newest) and 'd' for descending order(Z-A and 9-0 / newest to oldest)
@@ -204,13 +207,13 @@ Type | Description | Date
  `Event` | test | 21-09-2020
  `Event` | exam | 22-09-2020
 
-* `sort p/desc o/1` returns tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam`
-* `sort p/date o/1` returns returns tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
+* `sortTasks param/desc o/a` returns tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam`
+* `sortTasks param/date o/a` returns returns tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
 
-### Filtering tasks by modules: filterTasks
+### Filtering tasks by modules: `filterTasks`
 Filter tasks based on a criterion
 
-Format: `filterTasks [g/Group] [date/DATE] [type/TASKTYPE]`
+Format: `filterTasks FILTER_CRITERION`
 * Filters the task by the specified `FILTER_CRITERION`
 * `FILTER_CRITERION` refers to either `g/GROUP`, `date/DATE`, `type/TASKTYPE`, `d/DESCRIPTION` or `pty/PRIORITY`
 * Tasks corresponding to the criterion specified will be shown
@@ -219,7 +222,7 @@ Examples:
 * `filterTasks g/CS2101` shows all the tasks related to CS2101 group
 * `filterTasks date/2021-10-10` shows all the tasks with date of 10 Oct 2021
 
-### Listing all tasks: listTasks
+### Listing all tasks: `listTasks`
 Shows a list of all tasks in the address book.
 
 Format: `listTasks`
@@ -280,6 +283,6 @@ Action | Format, Examples
 **Add Task** | `addTask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
 **Delete Task** | `deleteTask index`
 **Done Task** | `doneTask index`
-**Sort Tasks** | `sort p/PARAMETER o/ORDER` <br> e.g., `sort p/desc o/1`
-**Filter Tasks** | `filter g/Group`
+**Sort Tasks** | `sortTasks p/PARAMETER o/ORDER` <br> e.g., `sortTasks p/desc o/1`
+**Filter Tasks** | `filterTasks FILTER_CRITERION` <br> e.g., `filterTasks g/CS2101`
 **List Tasks** | `listtasks [date/DATE]`
