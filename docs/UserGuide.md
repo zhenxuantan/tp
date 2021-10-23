@@ -163,6 +163,23 @@ Examples:
 * `addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high`
 * `addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month`
 
+### Editing a task: `editTask`
+
+Edits an existing task in the task list.
+
+Format: `editTask INDEX [d/DESCRIPTION] [g/GROUP] [type/TYPE] [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, ...
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* To set a recurring task to be non-recurring, specify `recurring/none`.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Please specify a date if you are changing a todo with no associated date into a deadline/event or recurring task!
+</div>
+
+Examples:
+* `editTask 1 d/OP2 rehearsal g/CS2101 type/Event date/2021-11-11` Edits the description, group, type of task, date of the first task in the task list.
+
 ### Deleting a task: `deleteTask`
 
 Format: `deleteTask INDEX`
