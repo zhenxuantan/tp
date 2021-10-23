@@ -163,16 +163,27 @@ Examples:
 * `addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high`
 * `addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month`
 
-### Deleting a task/deadline: `deleteTask`
+### Deleting a task: `deleteTask`
 
-Format: `deleteTask index`
+Format: `deleteTask INDEX`
 
 Deletes the task at the specified `INDEX`.
-* The index refers to the index number shown in the displayed task list using listTasks.
+* The index refers to the index number shown in the displayed task list.
 * The index must be a positive integer 1, 2, 3, …
 
 Examples:
 * `deleteTask 1` deletes the 1st task in the task list.
+
+### Marking a task as done: `doneTask`
+
+Format: `doneTask INDEX`
+
+Marks the task at the specified `INDEX` as done.
+* The index refers to the index number shown in the displayed task list.
+* The index must be a positive integer 1, 2, 3, …
+
+Examples:
+* `doneTask 1` marks the 1st task in the task list as done.
 
 ### Sorting tasks: `sort`
 Sort tasks based on their description or their deadlines (chronologically, or the reverse), or by time added.
@@ -231,11 +242,11 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+SWEe-book data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+SWEe-book data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
@@ -268,6 +279,7 @@ Action | Format, Examples
 **Help** | `help`
 **Add Task** | `addTask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
 **Delete Task** | `deleteTask index`
+**Done Task** | `doneTask index`
 **Sort Tasks** | `sort p/PARAMETER o/ORDER` <br> e.g., `sort p/desc o/1`
 **Filter Tasks** | `filter g/Group`
 **List Tasks** | `listtasks [date/DATE]`
