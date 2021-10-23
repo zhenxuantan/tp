@@ -18,7 +18,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_PRIORITY = new Prefix("pty/");
     public static final Prefix PREFIX_PARAMETER = new Prefix("param/");
     public static final Prefix PREFIX_ORDER = new Prefix("o/");
-    public static final Prefix PREFIX_INDEX = new Prefix("index/");
     public static final Prefix PREFIX_RECURRING_FREQUENCY = new Prefix("recurring/");
 
 }

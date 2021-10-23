@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKTYPE;
@@ -12,6 +13,7 @@ import seedu.address.logic.commands.FilterTasksCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
 import seedu.address.model.task.Date;
+import seedu.address.model.task.Description;
 import seedu.address.model.task.FilterTaskPredicate;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.TaskType;
@@ -28,7 +30,8 @@ public class FilterTaskCommandParser {
      */
     public FilterTasksCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_GROUP, PREFIX_TASKTYPE, PREFIX_DATE, PREFIX_PRIORITY);
+                ArgumentTokenizer.tokenize(args, PREFIX_GROUP, PREFIX_TASKTYPE, PREFIX_DATE, PREFIX_PRIORITY,
+                        PREFIX_DESCRIPTION);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTasksCommand.MESSAGE_USAGE));
@@ -49,7 +52,12 @@ public class FilterTaskCommandParser {
             Priority priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
             return new FilterTasksCommand(new FilterTaskPredicate(PREFIX_PRIORITY + priority.toString()));
         }
+        if (arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
+            Description desc = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+            return new FilterTasksCommand(new FilterTaskPredicate(PREFIX_DESCRIPTION + desc.toString()));
+        }
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTasksCommand.MESSAGE_USAGE));
+
     }
 
     /**

@@ -10,7 +10,8 @@ import seedu.address.model.group.Group;
 
 public class FilterTaskPredicate implements Predicate<Task> {
     public static final String MESSAGE_CONSTRAINTS =
-            "FilterTaskPredicate can be either 'g/GROUP', 'date/DATE', 'type/TASKTYPE' or 'pty/PRIORITY'";
+            "FilterTaskPredicate can be either 'g/GROUP', 'date/DATE', 'type/TASKTYPE', 'pty/PRIORITY', "
+                    + "or 'd/DESCRIPTION' ";
 
     private final String paramAndKeywords;
 
@@ -30,19 +31,23 @@ public class FilterTaskPredicate implements Predicate<Task> {
      */
     public static boolean isValidCriterion(String test) {
         boolean isValid;
-        Character firstChar = test.charAt(0);
-        switch(firstChar) {
-        case 'd':
+        String[] criterion = test.split("/");
+        String prefix = criterion[0];
+        switch(prefix) {
+        case "date":
             isValid = Date.isValidDate(test.substring(5));
             break;
-        case 't':
+        case "type":
             isValid = TaskType.isValidTaskType(test.substring(5));
             break;
-        case 'g':
+        case "g":
             isValid = Group.isValidGroup(test.substring(2));
             break;
-        case 'p':
+        case "pty":
             isValid = Priority.isValidPriority(test.substring(4));
+            break;
+        case "d":
+            isValid = Description.isValidDescription(test.substring(2));
             break;
         default:
             isValid = false;
@@ -54,28 +59,32 @@ public class FilterTaskPredicate implements Predicate<Task> {
     @Override
     public boolean test(Task task) {
         requireNonNull(task);
-        Character firstChar = paramAndKeywords.charAt(0);
-        switch(firstChar) {
-        case 'd':
+        String[] criterion = paramAndKeywords.split("/");
+        String prefix = criterion[0];
+        switch(prefix) {
+        case "date":
             Date date = new Date(paramAndKeywords.substring(5));
             if (isNull(task.getDate())) {
                 return false;
             } else {
                 return task.getDate().equals(date);
             }
-        case 't':
+        case "type":
             TaskType taskType = new TaskType(paramAndKeywords.substring(5));
             return task.getTaskType().equals(taskType);
-        case 'g':
+        case "g":
             Group group = new Group(paramAndKeywords.substring(2));
             return task.getGroup().equals(group);
-        case 'p':
+        case "pty":
             Priority priority = new Priority(paramAndKeywords.substring(4));
             if (isNull(task.getPriority())) {
                 return false;
             } else {
                 return task.getPriority().equals(priority);
             }
+        case "d":
+            Description description = new Description(paramAndKeywords.substring(2));
+            return task.getDescription().contains(description);
         default:
             return false;
         }
@@ -90,8 +99,33 @@ public class FilterTaskPredicate implements Predicate<Task> {
 
     @Override
     public String toString() {
-        return paramAndKeywords.replace("/", ", criterion: ");
-    }
+        String[] criterion = paramAndKeywords.split("/");
+        String prefix = criterion[0];
+        String suffix = criterion[1];
+        String string;
+        switch(prefix) {
+        case "date":
+            string = "DATE";
+            break;
+        case "type":
+            string = "TASKTYPE";
+            break;
+        case "g":
+            string = "GROUP";
+            break;
+        case "d":
+            string = "DESCRIPTION";
+            suffix = "\"" + suffix + "\"";
+            break;
+        case "pty":
+            string = "PRIORITY";
+            break;
+        default:
+            string = "";
+            break;
+        }
+        return string + " " + suffix.toUpperCase() + " criterion: ";
 
+    }
 
 }

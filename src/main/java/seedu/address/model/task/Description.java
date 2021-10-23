@@ -50,4 +50,8 @@ public class Description {
         return description.toLowerCase().compareTo(otherDesc.description.toLowerCase());
     }
 
+    public boolean contains(Description desc) {
+        return description.toLowerCase().contains(desc.toString().toLowerCase());
+    }
+
 }

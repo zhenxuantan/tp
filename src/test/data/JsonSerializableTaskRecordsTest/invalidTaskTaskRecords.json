@@ -1,0 +1,11 @@
+{
+  "tasks" : [ {
+    "description" : "Deadline 1",
+    "status" : "[ ]",
+    "group" : "CS2101",
+    "date" : "Dec 03 2021",
+    "taskType" : "dead",
+    "recurringFrequency": "none",
+    "priority": "med"
+  } ]
+}

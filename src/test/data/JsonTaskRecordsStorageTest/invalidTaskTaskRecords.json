@@ -1,0 +1,13 @@
+{
+  "tasks": [
+    {
+      "description": "Task with invalid date",
+      "status": "[ ]",
+      "group": "CS2103T",
+      "date": "44339900",
+      "taskType": "deadline",
+      "recurringFrequency": "none",
+      "priority": "med"
+    }
+  ]
+}

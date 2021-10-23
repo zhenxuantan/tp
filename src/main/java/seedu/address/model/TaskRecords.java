@@ -67,4 +67,10 @@ public class TaskRecords implements ReadOnlyTaskRecords {
         return records.asUnmodifiableObservableList();
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof TaskRecords // instanceof handles nulls
+            && records.equals(((TaskRecords) other).records));
+    }
 }
