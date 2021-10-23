@@ -34,6 +34,7 @@ public class DoneTaskCommandTest {
         expectedModel.doneTask(doneTask);
 
         assertCommandSuccess(doneTaskCommand, model, expectedMessage, expectedModel);
+        model.undoDoneTask(doneTask);
     }
 
     @Test

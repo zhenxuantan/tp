@@ -148,6 +148,11 @@ public class ModelManager implements Model {
         task.markAsDone();
     }
 
+    @Override
+    public void undoDoneTask(Task task) {
+        task.markAsUndone();
+    }
+
 
     //=========== Task List Accessors =============================================================
 

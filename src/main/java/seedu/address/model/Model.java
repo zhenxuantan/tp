@@ -87,6 +87,8 @@ public interface Model {
 
     void doneTask(Task task);
 
+    void undoDoneTask(Task task);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

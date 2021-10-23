@@ -68,6 +68,10 @@ public class Task {
         isDone = true;
     }
 
+    public void markAsUndone() {
+        isDone = false;
+    }
+
     @Override
     public String toString() {
         return String.format("%1$s %2$s", getStatusIcon(), description.toString());
