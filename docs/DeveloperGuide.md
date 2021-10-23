@@ -104,6 +104,40 @@ Lastly, specfically for `Task`,
 
 ---
 
+## **Implementation**
+
+This section describes some noteworthy details on how certain features are implemented.
+
+### Recurring Tasks feature
+The recurring task feature allows users to add tasks that can be repeated by week, month, or year. It is facilitated
+by `RecurringFrequency`, which is a optional component of `Task`. Additionally, the following operations are implemented
+in `Task`, `TaskList`, `TaskRecords` and `Date`:
+* `Task#updateRecurringTaskDate()` - Task updates its Date to the current week/month/year, based on the
+  recurringFrequency of the Task.
+* `Date#isLastWeek()`, `Date#isLastMonth()`, `Date#isLastYear()` - Checks current Date of Task against real-time date.
+* `Date#getDateForThisWeek()`, `Date#getDateForThisMonth()`, `Date#getDateForThisYear()` - Updates Date to be within
+  current week/month/year.
+* `TaskList#updateRecurringTasksDates()` - Iterates through list of Tasks and updates its Date if Task is recurring.
+* `TaskRecords#updateRecurringTasks()` - Calls for TaskList to update recurring Tasks.
+
+`TaskRecords#updateRecurringTasks()` is used in the `ModelManager` on boot-up of the application to update all Tasks, if
+required.
+
+Do note that `Date` is required for a `Task` to be recurring. Notably, `Date` is optional for `Todo`.
+
+Given below is an example usage scenario of how a recurring task is added and how it behaves upon re-launching of
+the addressbook application.
+
+* Step 1. The user launches the application. A recurring `Task` is added, where the user specifies the
+  `recurringFrequency` to be weekly, and the `Date` to be from the previous week. The `Task` is added, but the `Date` is
+  not updated yet, even if it is not of the current week. The `recurringFrequency` of the task is marked as `week`.
+* Step 2. The user re-launches the application. `ModelManager` calls `TaskRecords#updateRecurringTasks()`, which then 
+  calls `TaskList#updateRecurringTasksDates()`, which then calls `Task#updateRecurringTaskDate()` on the task added. 
+  Since the `Task` added was recurring (its `recurringFrequency` is marked as `week`, its `Date` is updated to the 
+  current week, with the same day.
+* Step 3. The user then launches the application a week after. The `Task` is updated similarly to Step 2, and since it 
+  is checked against real-time, it is updated to the current week.
+
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -212,25 +246,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to find a person / a group of people using some keywords
 2. System shows a list of persons pertaining to the keywords
-
-   Use case ends.
+   
+  Use case ends.
 
 **Use case (UC05): Add a task**
 
 **MSS**
 
 1. User keys in a task.
-2. System shows the details of the task added to task list.
+2. System shows the details of the task added to task list. 
 
-    Use case ends.
+  Use case ends.
 
 **Extensions**
 
 * 2a. The task details are invalid or incomplete.
     * 2a1. System shows an error message about the incorrect or missing details.
- 
-    Use case ends.
 
+  Use case ends.
 
 **Use case (UC06): Delete a task**
 
@@ -238,8 +271,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. System shows a list of tasks.
 3. User keys in an index.
 4. The task of specified index in task list is removed.
-  
-    Use case ends.
+   
+  Use case ends.
 
 **Extensions**
 
@@ -266,8 +299,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User keys in the command `listtasks`.
 2. System displays the list of tasks.
-
-   Use case ends.
+   
+  Use case ends.
 
 **Extensions**
 
@@ -281,7 +314,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User keys in the parameter (desc, due, added) and order (0, 1).
 2. System displays the tasks in the sorted order specified.
 
-    Use case ends.
+  Use case ends.
 
 **Extensions**
 
@@ -295,7 +328,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User keys in a filter criterion.
 2. System displays the tasks pertaining to the criterion specified.
 
-    Use case ends.
+  Use case ends.
 
 **Extensions**
 
@@ -309,7 +342,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User keys in an index.
 4. The task of specified index in task list is marked as done.
 
-   Use case ends.
+  Use case ends.
 
 **Extensions**
 
