@@ -104,6 +104,42 @@ Lastly, specfically for `Task`,
 
 ---
 
+## **Implementation**
+
+This section describes some noteworthy details on how certain features are implemented.
+
+### Recurring Tasks feature
+The recurring task feature allows users to add tasks that can be repeated by week, month, or year. It is facilitated
+by `RecurringFrequency`, which is a optional component of `Task`. Additionally, the following operations are implemented
+in `Task`, `TaskList`, `TaskRecords` and `Date`:
+* `Task#updateRecurringTaskDate()` - Task updates its Date to the current week/month/year, based on the 
+  recurringFrequency of the Task.
+* `Date#isLastWeek()`, `Date#isLastMonth()`, `Date#isLastYear()` - Checks current Date of Task against real-time date.
+* `Date#getDateForThisWeek()`, `Date#getDateForThisMonth()`, `Date#getDateForThisYear()` - Updates Date to be within
+  current week/month/year.
+* `TaskList#updateRecurringTasksDates()` - Iterates through list of Tasks and updates its Date if Task is recurring.
+* `TaskRecords#updateRecurringTasks()` - Calls for TaskList to update recurring Tasks.
+
+`TaskRecords#updateRecurringTasks()` is used in the `ModelManager` on boot-up of the application to update all Tasks, if
+required.
+
+Do note that `Date` is required for a `Task` to be recurring. Notably, `Date` is optional for `Todo`.
+
+Given below is an example usage scenario of how a recurring task is added and how it behaves upon re-launching of
+the addressbook application.
+
+* Step 1. The user launches the application. A recurring `Task` is added, where the user specifies the 
+  `recurringFrequency` to be weekly, and the `Date` to be from the previous week. The `Task` is added, but the `Date` is
+  not updated yet, even if it is not of the current week. The `recurringFrequency` of the task is marked as `week`.
+  
+* Step 2. The user re-launches the application. `ModelManager` calls `TaskRecords#updateRecurringTasks()`, which then 
+  calls `TaskList#updateRecurringTasksDates()`, which then calls `Task#updateRecurringTaskDate()` on the task added. 
+  Since the `Task` added was recurring (its `recurringFrequency` is marked as `week`, its `Date` is updated to the 
+  current week, with the same day.
+  
+* Step 3. The user then launches the application a week after. The `Task` is updated similarly to Step 2, and since it 
+  is checked against real-time, it is updated to the current week.
+
 ## **Appendix: Requirements**
 
 ### Product scope
