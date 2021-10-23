@@ -85,6 +85,8 @@ public interface Model {
 
     Task deleteTask(Task task);
 
+    void setTask(Task target, Task editedTask);
+
     void doneTask(Task task);
 
     void undoDoneTask(Task task);

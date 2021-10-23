@@ -144,6 +144,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        tasks.setTask(target, editedTask);
+    }
+
+    @Override
     public void doneTask(Task task) {
         task.markAsDone();
     }

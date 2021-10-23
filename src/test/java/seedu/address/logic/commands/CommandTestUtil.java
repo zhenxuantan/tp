@@ -2,11 +2,16 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING_FREQUENCY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASKTYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -20,13 +25,16 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.FilterTaskPredicate;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
+    // address book
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -62,9 +70,6 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_GROUP_DESC = " " + PREFIX_GROUP + "CS2122"; // group must be cs2103t or cs2101
 
-    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
-    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
@@ -78,13 +83,81 @@ public class CommandTestUtil {
                 .withGroups(VALID_GROUP_BOB).withTelegram(VALID_TELEGRAM_BOB).withGitHub(VALID_GITHUB_BOB).build();
     }
 
+    // tasks
+    public static final String VALID_DESCRIPTION_TODO = "Update DG";
+    public static final String VALID_DESCRIPTION_DEADLINE = "v1.3 milestone";
+    public static final String VALID_DESCRIPTION_EVENT = "Project meeting";
+    public static final String VALID_PRIORITY_LOW = "low";
+    public static final String VALID_PRIORITY_MED = "med";
+    public static final String VALID_PRIORITY_HIGH = "high";
+    public static final String VALID_TASK_TYPE_TODO = "todo";
+    public static final String VALID_TASK_TYPE_DEADLINE = "deadline";
+    public static final String VALID_TASK_TYPE_EVENT = "event";
+    public static final String VALID_DATE_1 = "2021-11-11";
+    public static final String VALID_DATE_2 = "2021-11-12";
+    public static final String VALID_DATE_3 = "2021-11-13";
+    public static final String VALID_RECURRING_FREQUENCY_WEEK = "week";
+    public static final String VALID_RECURRING_FREQUENCY_MONTH = "month";
+    public static final String VALID_RECURRING_FREQUENCY_YEAR = "year";
+    public static final String VALID_GROUP_CS2103T = "CS2103T";
+    public static final String VALID_GROUP_CS2101 = "CS2101";
+
+    public static final String DESCRIPTION_DESC_TODO = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_TODO;
+    public static final String DESCRIPTION_DESC_DEADLINE = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_DEADLINE;
+    public static final String DESCRIPTION_DESC_EVENT = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_EVENT;
+    public static final String PRIORITY_DESC_TODO = " " + PREFIX_PRIORITY + VALID_PRIORITY_LOW;
+    public static final String PRIORITY_DESC_DEADLINE = " " + PREFIX_PRIORITY + VALID_PRIORITY_MED;
+    public static final String PRIORITY_DESC_EVENT = " " + PREFIX_PRIORITY + VALID_PRIORITY_HIGH;
+    public static final String TASK_TYPE_DESC_TODO = " " + PREFIX_TASKTYPE + VALID_TASK_TYPE_TODO;
+    public static final String TASK_TYPE_DESC_DEADLINE = " " + PREFIX_TASKTYPE + VALID_TASK_TYPE_DEADLINE;
+    public static final String TASK_TYPE_DESC_EVENT = " " + PREFIX_TASKTYPE + VALID_TASK_TYPE_EVENT;
+    public static final String DATE_DESC_TODO = " " + PREFIX_DATE + VALID_DATE_1;
+    public static final String DATE_DESC_DEADLINE = " " + PREFIX_DATE + VALID_DATE_2;
+    public static final String DATE_DESC_EVENT = " " + PREFIX_DATE + VALID_DATE_3;
+    public static final String RECURRING_FREQUENCY_DESC_TODO = " " + PREFIX_RECURRING_FREQUENCY
+            + VALID_RECURRING_FREQUENCY_WEEK;
+    public static final String RECURRING_FREQUENCY_DESC_DEADLINE = " " + PREFIX_RECURRING_FREQUENCY
+            + VALID_RECURRING_FREQUENCY_MONTH;
+    public static final String RECURRING_FREQUENCY_DESC_EVENT = " " + PREFIX_RECURRING_FREQUENCY
+            + VALID_RECURRING_FREQUENCY_YEAR;
+    public static final String GROUP_DESC_TODO = " " + PREFIX_GROUP + VALID_GROUP_CS2101;
+    public static final String GROUP_DESC_DEADLINE = " " + PREFIX_GROUP + VALID_GROUP_CS2103T;
+    public static final String GROUP_DESC_EVENT = " " + PREFIX_GROUP + VALID_GROUP_CS2101;
+
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // empty description not allowed
+    // priority is only low, med, or high
+    public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "extreme";
+    public static final String INVALID_TASK_TYPE_DESC = " " + PREFIX_TASKTYPE + "aaa"; // should be todo/deadline/event
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "2021-20-20"; // invalid month
+    // should be only week/month/year
+    public static final String INVALID_RECURRING_FREQUENCY_DESC = " " + PREFIX_RECURRING_FREQUENCY + "biweekly";
+
+    public static final EditTaskCommand.EditTaskDescriptor DESC_TODO;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_DEADLINE;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_EVENT;
+    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
+    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    static {
+        DESC_TODO = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_TODO).withDate(VALID_DATE_1)
+                .withPriority(VALID_PRIORITY_LOW).withTaskType(VALID_TASK_TYPE_TODO).withGroup(VALID_GROUP_CS2101)
+                .withRecurringFrequency(VALID_RECURRING_FREQUENCY_WEEK).build();
+        DESC_DEADLINE = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_DEADLINE)
+                .withDate(VALID_DATE_2)
+                .withPriority(VALID_PRIORITY_MED).withTaskType(VALID_TASK_TYPE_DEADLINE).withGroup(VALID_GROUP_CS2103T)
+                .withRecurringFrequency(VALID_RECURRING_FREQUENCY_MONTH).build();
+        DESC_EVENT = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_EVENT).withDate(VALID_DATE_3)
+                .withPriority(VALID_PRIORITY_HIGH).withTaskType(VALID_TASK_TYPE_EVENT).withGroup(VALID_GROUP_CS2101)
+                .withRecurringFrequency(VALID_RECURRING_FREQUENCY_YEAR).build();
+    }
+
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -132,6 +205,22 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show the task at the given {@code targetIndex} in the
+     * {@code model}'s task records.
+     * TODO: Implement duplicate detection for tasks so this method only shows a unique task
+     */
+    public static void showTaskAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getTasks().size());
+
+        Task task = model.getTasks().get(targetIndex.getZeroBased());
+        model.updateFilteredTaskList(
+                new FilterTaskPredicate(PREFIX_DESCRIPTION.getPrefix()
+                        + task.getDescription().description));
+
+        assertEquals(1, model.getTasks().size());
     }
 
 }

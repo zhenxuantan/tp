@@ -56,6 +56,16 @@ public class TaskRecords implements ReadOnlyTaskRecords {
         return toDelete;
     }
 
+    /**
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the task list.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+
+        records.setTask(target, editedTask);
+    }
+
     @Override
     public String toString() {
         return records.asUnmodifiableObservableList().size() + " tasks";

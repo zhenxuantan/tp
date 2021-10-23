@@ -39,6 +39,18 @@ public class TaskBuilder {
     }
 
     /**
+     * Initializes the TaskBuilder with the data of {@code taskToCopy}.
+     */
+    public TaskBuilder(Task taskToCopy) {
+        description = taskToCopy.getDescription();
+        group = taskToCopy.getGroup();
+        type = taskToCopy.getTaskType();
+        date = taskToCopy.getDate();
+        recurringFrequency = taskToCopy.getRecurringFrequency();
+        priority = taskToCopy.getPriority();
+    }
+
+    /**
      * Sets the {@code Description} of the {@code Task} that we are building.
      */
     public TaskBuilder withDescription(String description) {

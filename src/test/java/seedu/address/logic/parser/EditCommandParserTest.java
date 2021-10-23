@@ -95,7 +95,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + GROUP_DESC_AMY + INVALID_GROUP_DESC, Group.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_PHONE_AMY,
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + INVALID_PHONE_DESC,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -183,7 +183,7 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // an iovalid group followed by 2 valid groups
-        userInput = targetIndex.getOneBased() + GROUP_DESC_BOB + GROUP_DESC_AMY;
+        userInput = targetIndex.getOneBased() + INVALID_GROUP_DESC + GROUP_DESC_BOB + GROUP_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withGroups(VALID_GROUP_AMY_CS2101,
                 VALID_GROUP_AMY_CS2103T).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);

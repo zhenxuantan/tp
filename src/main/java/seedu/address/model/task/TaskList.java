@@ -58,6 +58,17 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
+     * Replaces the task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the list.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+        int index = internalList.indexOf(target);
+
+        internalList.set(index, editedTask);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Task> asUnmodifiableObservableList() {

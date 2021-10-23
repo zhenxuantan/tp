@@ -23,7 +23,6 @@ public class AddTaskCommand extends Command {
             + "[" + PREFIX_DATE + "DATE]"
             + "[" + PREFIX_RECURRING_FREQUENCY + "RECURRING_FREQUENCY]"
             + "[" + PREFIX_PRIORITY + "PRIORITY]\n"
-
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "Project Meeting "
             + PREFIX_GROUP + "CS2101 "
