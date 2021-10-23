@@ -60,6 +60,9 @@ public class Task {
     public String getPriorityIcon() {
         return priority.getPriorityIcon();
     }
+    public boolean isDone() {
+        return isDone;
+    }
 
     /**
      * Marks task as done.
