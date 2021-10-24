@@ -298,6 +298,7 @@ Action | Format, Examples
 **List** | `list`
 **Help** | `help`
 **Add Task** | `addTask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
+**Edit Task** | `editTask INDEX [d/DESCRIPTION] [g/GROUP] [type/TYPE] [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
 **Delete Task** | `deleteTask index`
 **Done Task** | `doneTask index`
 **Sort Tasks** | `sortTasks p/PARAMETER o/ORDER` <br> e.g., `sortTasks p/desc o/1`
