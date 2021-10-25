@@ -14,6 +14,7 @@ public class FilterTaskPredicate implements Predicate<Task> {
                     + "or 'd/DESCRIPTION' ";
 
     private final String paramAndKeywords;
+    private boolean isValid = true;
 
     /**
      * Constructs a {@code FilterTaskPredicate}.
@@ -22,7 +23,11 @@ public class FilterTaskPredicate implements Predicate<Task> {
      */
     public FilterTaskPredicate(String paramAndKeywords) {
         requireNonNull(paramAndKeywords);
-        checkArgument(isValidCriterion(paramAndKeywords), MESSAGE_CONSTRAINTS);
+        try {
+            checkArgument(isValidCriterion(paramAndKeywords), MESSAGE_CONSTRAINTS);
+        } catch (IllegalArgumentException e) {
+            this.isValid = false;
+        }
         this.paramAndKeywords = paramAndKeywords;
     }
 
@@ -30,6 +35,9 @@ public class FilterTaskPredicate implements Predicate<Task> {
      * Returns true if a given string is a valid FilterTaskPredicate.
      */
     public static boolean isValidCriterion(String test) {
+        if (isNull(test)) {
+            return false;
+        }
         boolean isValid;
         String[] criterion = test.split("/");
         String prefix = criterion[0];
@@ -126,6 +134,10 @@ public class FilterTaskPredicate implements Predicate<Task> {
         }
         return string + " " + suffix.toUpperCase() + " criterion: ";
 
+    }
+
+    public boolean isValidPredicate() {
+        return isValid;
     }
 
 }

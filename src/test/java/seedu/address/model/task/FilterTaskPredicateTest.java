@@ -14,15 +14,11 @@ public class FilterTaskPredicateTest {
     }
 
     @Test
-    public void constructor_invalidParam_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new FilterTaskPredicate("love"));
-    }
-
-    @Test
     public void isValidPredicate() {
         assertFalse(FilterTaskPredicate.isValidCriterion("")); // empty string
         assertFalse(FilterTaskPredicate.isValidCriterion(" ")); // spaces only
         assertFalse(FilterTaskPredicate.isValidCriterion("fail")); // invalid predicate
+        assertFalse(FilterTaskPredicate.isValidCriterion(null)); // null
 
         assertTrue(FilterTaskPredicate.isValidCriterion("g/cs2101")); // valid, lowercase
         assertTrue(FilterTaskPredicate.isValidCriterion("g/cS2103t")); // valid, lowercase and uppercase
@@ -32,5 +28,7 @@ public class FilterTaskPredicateTest {
         assertTrue(FilterTaskPredicate.isValidCriterion("date/2012-12-12")); // valid date
         assertTrue(FilterTaskPredicate.isValidCriterion("d/aaaa")); // valid, lowercase
         assertTrue(FilterTaskPredicate.isValidCriterion("d/AaAAa")); // valid, lowercase and uppercase
+        assertFalse(FilterTaskPredicate.isValidCriterion("pty/MeD")); // invalid, contains uppercase
+        assertTrue(FilterTaskPredicate.isValidCriterion("pty/med")); // valid, lowercase and uppercase
     }
 }
