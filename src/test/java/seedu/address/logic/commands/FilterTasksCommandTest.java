@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -9,6 +10,7 @@ import static seedu.address.testutil.TypicalTasks.getTypicalTaskRecords;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -72,4 +74,52 @@ public class FilterTasksCommandTest {
         String expectedMessage = command.execute(expectedModel).getFeedbackToUser();
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
+
+    @Test
+    public void execute_validPty_success() throws CommandException {
+        ModelManager expectedModel =
+                new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskRecords());
+        Task toFilter = EVENT1;
+        FilterTaskPredicate criterion = new FilterTaskPredicate("pty/" + toFilter.getPriority().toString());
+        FilterTasksCommand command = new FilterTasksCommand(criterion);
+        String expectedMessage = command.execute(expectedModel).getFeedbackToUser();
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidDate_failure() {
+        Task toFilter = EVENT1;
+        String invalidDate = "date/" + toFilter.getDate().toString() + "invalid date";
+        FilterTaskPredicate criterion = new FilterTaskPredicate(invalidDate);
+        FilterTasksCommand command = new FilterTasksCommand(criterion);
+        assertCommandFailure(command, model, Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+    }
+
+    @Test
+    public void execute_invalidPty_failure() {
+        Task toFilter = EVENT1;
+        String invalidPty = "pty/" + toFilter.getPriority().toString() + "invalid pty";
+        FilterTaskPredicate criterion = new FilterTaskPredicate(invalidPty);
+        FilterTasksCommand command = new FilterTasksCommand(criterion);
+        assertCommandFailure(command, model, Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+    }
+
+    @Test
+    public void execute_invalidGroup_failure() {
+        Task toFilter = EVENT1;
+        String invalidGroup = "g/" + toFilter.getGroup().toString() + "invalid group";
+        FilterTaskPredicate criterion = new FilterTaskPredicate(invalidGroup);
+        FilterTasksCommand command = new FilterTasksCommand(criterion);
+        assertCommandFailure(command, model, Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+    }
+
+    @Test
+    public void execute_invalidCriterionSuffix_failure() {
+        Task toFilter = EVENT1;
+        String invalidSuffix = "y/" + toFilter.getPriority().toString() + "invalid pty";
+        FilterTaskPredicate criterion = new FilterTaskPredicate(invalidSuffix);
+        FilterTasksCommand command = new FilterTasksCommand(criterion);
+        assertCommandFailure(command, model, Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+    }
+
 }
