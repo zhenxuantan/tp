@@ -13,8 +13,8 @@
 5. Filtering tasks by modules
 6. Listing all tasks
 
-### Ui Mockup for SWEe-book
-![Ui](docs/images/Ui.png)
+### How SWEe-book looks like
+![Ui](docs/images/UISS.png)
 
 ### User Guide
 The User Guide can be accessed [here](https://github.com/AY2122S1-CS2103T-W12-2/tp/blob/master/docs/UserGuide.md).
