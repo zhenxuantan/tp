@@ -2,18 +2,25 @@
 [![codecov](https://codecov.io/gh/AY2122S1-CS2103T-W12-2/tp/branch/master/graph/badge.svg?token=MORDANUUIH)](https://codecov.io/gh/AY2122S1-CS2103T-W12-2/tp)
 
 # SWEe-book
-**SWEe-book** is a desktop app that makes it easier for students to
+**SWEe-book** is a desktop app that makes it easier for CS2103T/CS2101 students to
 **keep track of their tasks and group mates in different groups**.
 
 ### Features
+1. Adding a contact
+1. Editing a contact
+1. Deleting a contact
+1. Filtering contacts by name
+1. Filtering contacts by group
+1. Listing all contacts
 1. Adding a task
-2. Deleting a task
-3. Retrieving contact information of a group
-4. Sorting tasks
-5. Filtering tasks by modules
-6. Listing all tasks
+1. Editing a task
+1. Deleting a task
+1. Marking a task as done
+1. Sorting tasks
+1. Filtering tasks by modules
+1. Listing all tasks
 
-### Ui Mockup for SWEe-book
+### SWEe-book GUI
 ![Ui](docs/images/Ui.png)
 
 ### User Guide
