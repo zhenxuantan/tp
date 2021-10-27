@@ -51,6 +51,31 @@ public class Name {
                 && fullName.equals(((Name) other).fullName)); // state check
     }
 
+    public boolean equalsIgnoreCaseAndWhiteSpaces(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Name)) {
+            return false;
+        }
+
+        Name otherName = (Name) other;
+        String[] otherNameSplit = otherName.fullName.split(" ");
+        String[] thisNameSplit = fullName.split(" ");
+
+        if (otherNameSplit.length != thisNameSplit.length) {
+            return false;
+        }
+
+        for (int i = 0; i < thisNameSplit.length; i++) {
+            if (!(thisNameSplit[i].trim().equalsIgnoreCase(otherNameSplit[i].trim()))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public int hashCode() {
         return fullName.hashCode();
