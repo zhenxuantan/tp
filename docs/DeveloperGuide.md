@@ -46,9 +46,6 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
-{to be completed}
-
 ### Logic component
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -97,6 +94,24 @@ Lastly, specfically for `Task`,
 * recurring frequency can be in terms of weekly, monthly and yearly
 * priority can be low, medium or high priorities
 * a task can be instantiated as a `Todo`, `Deadlne` or `Event`
+
+### UI component
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+
+![Ui Class Diagram](images/UiClassDiagram.png)
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-W12-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+
+The Sequence Diagram below illustrates the interactions between the `Logic` component and `Model` component for the `execute("sortTasks param/desc o/a")` API call. It also shows how it interacts with the `UI` Component through the illustration of the command's interaction with JavaFx's `ObservableLists` (`FilteredList` and `SortedList`).
+
+![Interactions between logic and model component for `sortTasks param/desc o/a`](images/SortTasksExecutionSequenceDiagram.png)
+
+![Sub-diagram for the parsing of command for `sortTasks param/desc o/a`](images/SortTasksParserSequenceDiagram.png)
+
+The JavaFx package automatically detects any changes to the task list, implemented with JavaFX's `ObservableList`. This includes detecting changes in the comparators and filters applied on it. When the `SortTasksCommand` is executed, it removes any existing filters applied on the task list to reset the task list back to its original state before setting a comparator to it.
+{More explanation to be given}
 
 ### Storage component
 {to be completed}
