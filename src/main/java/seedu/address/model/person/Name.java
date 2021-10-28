@@ -51,6 +51,38 @@ public class Name {
                 && fullName.equals(((Name) other).fullName)); // state check
     }
 
+    /**
+     * A less strct equivalent relation for names, where names can be equal where
+     * 1. Case-sensitivity is ignored.
+     * 2. Whitespaces between words in their names are ignored.
+     * @param other The other name.
+     * @return Returns true if the above condition is met.
+     */
+    public boolean equalsIgnoreCaseAndWhiteSpaces(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Name)) {
+            return false;
+        }
+
+        Name otherName = (Name) other;
+        String[] otherNameSplit = otherName.fullName.split(" ");
+        String[] thisNameSplit = fullName.split(" ");
+
+        if (otherNameSplit.length != thisNameSplit.length) {
+            return false;
+        }
+
+        for (int i = 0; i < thisNameSplit.length; i++) {
+            if (!(thisNameSplit[i].trim().equalsIgnoreCase(otherNameSplit[i].trim()))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public int hashCode() {
         return fullName.hashCode();
