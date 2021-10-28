@@ -1,0 +1,54 @@
+@startuml
+
+!include style.puml
+
+mainframe **sd** Parses and return s:SortTasksCommand with c:SortTaskComparator
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SortTasksCommandParser" as SortTasksCommandParser LOGIC_COLOR
+participant "s:SortTasksCommand" as SortTasksCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "c:SortTaskComparator" as SortTaskComparator MODEL_COLOR
+end box
+
+LogicManager -> AddressBookParser : parseCommand("sortTasks \nparam/desc o/a")
+activate AddressBookParser
+
+create SortTasksCommandParser
+AddressBookParser -> SortTasksCommandParser
+activate SortTasksCommandParser
+
+SortTasksCommandParser --> AddressBookParser
+deactivate SortTasksCommandParser
+
+AddressBookParser -> SortTasksCommandParser : parse("param/desc\no/a")
+activate SortTasksCommandParser
+
+create SortTaskComparator
+SortTasksCommandParser -> SortTaskComparator : parse("desc", "a")
+activate SortTaskComparator
+
+SortTaskComparator --> SortTasksCommandParser : c
+deactivate SortTaskComparator
+
+create SortTasksCommand
+SortTasksCommandParser -> SortTasksCommand : SortTasksCommand(c)
+activate SortTasksCommand
+
+SortTasksCommand --> SortTasksCommandParser : s
+deactivate SortTasksCommand
+
+SortTasksCommandParser --> AddressBookParser : s
+deactivate SortTasksCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortTasksCommandParser -[hidden]-> AddressBookParser
+destroy SortTasksCommandParser
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+@enduml

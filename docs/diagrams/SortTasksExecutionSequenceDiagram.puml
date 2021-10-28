@@ -1,0 +1,58 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "s:SortTasksCommand" as SortTasksCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box ObservableList UI_COLOR_T2
+participant ":FilteredList" as FilteredList UI_COLOR_T3
+participant ":SortedList" as SortedList UI_COLOR_T3
+end box
+
+
+[-> LogicManager : execute("sortTasks param/desc o/a")
+activate LogicManager
+
+ref over LogicManager, SortTasksCommand : Parses and return s:SortTasksCommand\nwith c:SortTaskComparator
+
+LogicManager -> SortTasksCommand : execute()
+activate SortTasksCommand
+
+SortTasksCommand -> Model : updateSortedTaskList(c)
+activate Model
+
+Model -> FilteredList : setPredicate(null)
+activate FilteredList
+
+FilteredList --> Model
+deactivate FilteredList
+
+Model -> SortedList : setComparator(c)
+activate SortedList
+
+SortedList --> Model
+deactivate SortedList
+
+Model --> SortTasksCommand
+deactivate Model
+
+create CommandResult
+SortTasksCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortTasksCommand
+deactivate CommandResult
+
+SortTasksCommand --> LogicManager : result
+deactivate SortTasksCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
