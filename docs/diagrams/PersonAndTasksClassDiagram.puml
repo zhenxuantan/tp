@@ -32,19 +32,19 @@ HiddenOutside --> Task
 Task -right-> "1" Group : is for >
 Person -left-> "1..2" Group : is in >
 
-Task --> Date
-Task --> Description
-Task --> RecurringFrequency
-Task --> Priority
+Task --> "0..1" Date
+Task --> "1" Description
+Task --> "               1" RecurringFrequency
+Task --> "1" Priority
 
 Todo --|> Task
 Deadline --|> Task
 Event --|> Task
 
-Person --> Phone
-Person --> Email
-Person --> Telegram
-Person --> Github
+Person --> "1" Phone
+Person --> "1" Email
+Person --> "1" Telegram
+Person --> "1" Github
 Telegram --|> Social
 Github --|> Social
 

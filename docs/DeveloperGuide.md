@@ -108,6 +108,22 @@ Lastly, specfically for `Task`,
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Edit feature ( `edit` and `editTask` commands)
+The edit feature allows users to edit specific fields in tasks or contacts. The implementation for both contacts (`edit`) and 
+tasks (`editTask`) are similar. Therefore we will generalize the edit feature by exploring how the `edit` command works for contacts.
+Given below is a sequence diagram of the execution of an edit command:
+
+{to be added}
+
+Given below is an example usage scenario of how a contact is edited:
+1. The user enters the edit command with the specified fields to be edited. 
+  (e.g edit 1 n/Johm Doe tg/johndoeee))
+1. SWEe-book updates the contact with the new updated fields, with non-updated fields left unchanged.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For `editTask` command, a date *must* be specified 
+for non-recurring tasks and deadline/event tasks. Else, an error message will be shown to the user.
+</div>
+
 ### Recurring Tasks feature
 The recurring task feature allows users to add tasks that can be repeated by week, month, or year. It is facilitated
 by `RecurringFrequency`, which is a optional component of `Task`. Additionally, the following operations are implemented
@@ -174,6 +190,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                                       | mark a task in the list as done | So that I can keep track of which tasks are done or not yet done      |
 | `* * *`  | long term user                             | quickly check deadlines in order of priority (sort) | Clear the tasks due one at a time                 |
 | `* * *`  | user                                       | filter the task according to the different modules | I know what I can do for each module               |
+| `* *` | user | edit specific fields in a task | conveniently change specific fields without needing to delete and add back a task
 
 *{More to be added}*
 
@@ -181,7 +198,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `SWEe-book` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case (UC01): Delete a person**
+
+
+**Use case (UC01): Add a person**
+
+**MSS**
+
+1.  User adds a person
+2.  System shows the details of the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The details are invalid or incomplete.
+
+    * 2a1. System shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case (UC02): Delete a person**
 
 **MSS**
 
@@ -201,23 +237,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given index is invalid.
 
     * 3a1. System shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case (UC02): Add a person**
-
-**MSS**
-
-1.  User adds a person
-2.  System shows the details of the person
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The details are invalid or incomplete.
-
-    * 2a1. System shows an error message.
 
       Use case resumes at step 2.
 
@@ -265,7 +284,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case (UC06): Delete a task**
+**Use case (UC06): Edit a task**
+
+**MSS**
+
+1. User requests to edit a specific person in the list
+1. System shows the details of the updated person
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The details are invalid or incomplete.
+
+    * 1a1. System shows an error message.
+
+      Use case resumes at step 3.
+
+**Use case (UC07): Delete a task**
 
 1. User requests to list tasks.
 2. System shows a list of tasks.
@@ -281,7 +317,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case (UC07): Have an overview of group mates' contact details**
+**Use case (UC08): Have an overview of group mates' contact details**
 
 1. User keys in a group of which its members' contact details are needed.
 2. System displays the contact information of the group members of specified group
@@ -295,7 +331,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case (UC08): Have a list of tasks**
+**Use case (UC09): Have a list of tasks**
 
 1. User keys in the command `listtasks`.
 2. System displays the list of tasks.
@@ -309,7 +345,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case (UC09): Sort tasks**
+**Use case (UC10): Sort tasks**
 
 1. User keys in the parameter (desc, due, added) and order (0, 1).
 2. System displays the tasks in the sorted order specified.
@@ -323,7 +359,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case (UC10): Filter tasks**
+**Use case (UC11): Filter tasks**
 
 1. User keys in a filter criterion.
 2. System displays the tasks pertaining to the criterion specified.
@@ -335,7 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. User keys in an invalid criterion.
     * 1a1. System displays an error message about invalid criterion. Use case ends.
 
-**Use case (UC11): Mark a task as done**
+**Use case (UC12): Mark a task as done**
 
 1. User requests to list tasks.
 2. System shows a list of tasks.
