@@ -162,9 +162,12 @@ Format: `addtask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [rec
 * `RECURRING_FREQUENCY` refers to one of the 3 different frequencies that the task could occur: `week`, `month` or `year` (where `week` means that the task is recurring weekly)
 
 Examples:
-* `addTask d/Project meeting g/CS2103T type/todo pty/low`
-* `addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high`
-* `addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month`
+* `addTask d/Project meeting g/CS2103T type/todo pty/low` Add a non-recurring `todo` with no date and `low` priority and 
+  task description `Project meeting` to the group `CS2103T`
+* `addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high` Add a non-recurring `deadline` due on `2020-11-02`
+  with `high` priority and task description `Presentation 1`to the group `CS2101`
+* `addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month` Add a `event` that recurs every `month` with 
+  date `2020-10-02` and default `med` priority and task description `Mock QnA` to the group `CS2101`
 
 ### Editing a task: `editTask`
 
@@ -181,7 +184,8 @@ Please specify a date if you are changing a todo with no associated date into a 
 </div>
 
 Examples:
-* `editTask 1 d/OP2 rehearsal g/CS2101 type/Event date/2021-11-11` Edits the description, group, type of task, date of the first task in the task list.
+* `editTask 1 d/OP2 rehearsal g/CS2101 type/Event date/2021-11-11` Edits the description, group, type of task, date of the first task in the task list to be
+  `OP2 rehearsal`, `CS2101`, `Event` and`2021-11-11` respectively. 
 
 ### Deleting a task: `deleteTask`
 
@@ -250,7 +254,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from SWEe-book.
 
 Format: `clear`
 
