@@ -23,7 +23,6 @@ import seedu.address.model.task.TaskList;
  * {@code DoneTaskCommand}.
  */
 public class DoneTaskCommandTest {
-    //TaskRecords testTaskRecords = new TaskRecords();
     private Task referenceTask = getTypicalTaskRecords().getTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
     private Task forTest = new Task(referenceTask.getDescription(), referenceTask.getGroup(), referenceTask.getDate(),
         referenceTask.getTaskType(), referenceTask.getRecurringFrequency(), referenceTask.getPriority());

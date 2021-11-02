@@ -66,7 +66,7 @@ SWEe-book offers **one-stop integration solution to your group work management.*
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access the user guide in cases when error messages are still insufficient for user.
 
 ![help message](images/helpMessage.png)
 
