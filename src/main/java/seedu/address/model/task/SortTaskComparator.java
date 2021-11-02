@@ -49,7 +49,7 @@ public class SortTaskComparator implements Comparator<Task> {
         case "desc":
             return isAscending ? task1.compareDescription(task2) : task2.compareDescription(task1);
         case "date":
-            return isAscending ? task1.compareDate(task2) : task2.compareDate(task1);
+            return isAscending ? task1.compareBefore(task2) : task1.compareAfter(task2);
         case "group":
             return isAscending ? task1.compareGroup(task2) : task2.compareGroup(task1);
         case "pty":

@@ -117,15 +117,30 @@ public class Task {
     /**
      * Comparator for the task's date.
      * @param otherTask the otherTask
-     * @return an integer for comparison
+     * @return an integer for comparison and ensure that dateless tasks are always after tasks with dates
      */
-    public int compareDate(Task otherTask) {
+    public int compareBefore(Task otherTask) {
         if (isNull(getDate())) {
             return 1;
         } else if (isNull(otherTask.getDate())) {
             return -1;
         } else {
             return this.getDate().compareTo(otherTask.getDate());
+        }
+    }
+
+    /**
+     * Comparator for the task's date.
+     * @param otherTask the otherTask
+     * @return an integer for comparison and ensure that dateless tasks are always after tasks with dates
+     */
+    public int compareAfter(Task otherTask) {
+        if (isNull(getDate())) {
+            return 1;
+        } else if (isNull(otherTask.getDate())) {
+            return -1;
+        } else {
+            return otherTask.getDate().compareTo(this.getDate());
         }
     }
 

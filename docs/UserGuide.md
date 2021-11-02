@@ -215,8 +215,8 @@ Sort tasks based on their description or their deadlines (chronologically, or th
 
 Format: `sortTasks param/PARAMETER o/ORDER`
 * The sort is case-insensitive. e.g. CS2103 will be lexicographically identical to cs2103
-* PARAMETER includes 'desc' (for description), 'date' (for a deadline / time of event), and 'group'.
-* ORDER includes 'a' for ascending order (0-9 and A-Z, oldest to newest) and 'd' for descending order(Z-A and 9-0 / newest to oldest)
+* PARAMETER includes 'desc' (for description), 'date' (for a deadline / time of event), 'pty' (for priority) and 'group'.
+* ORDER includes 'a' for ascending order (0-9 and A-Z, oldest to newest, lowest to highest priority) and 'd' for descending order(Z-A and 9-0, newest to oldest, highest to lowest priority)
 * When the tasks are sorted by date, 'todo' tasks will always be at the bottom of the list.
 
 Examples:
@@ -229,7 +229,7 @@ Type | Description | Date
  `Event` | test | 21-09-2020
  `Event` | exam | 22-09-2020
 
-* `sortTasks param/desc o/a` return tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam`
+* `sortTasks param/desc o/d` return tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam`
 * `sortTasks param/date o/a` return tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
 
 ### Filtering tasks by modules: `filterTasks`

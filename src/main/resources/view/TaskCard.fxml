@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -18,22 +19,30 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="id" styleClass="cell_big_label" text="\$id">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-            <HBox>
-               <children>
-                  <Label fx:id="group" styleClass="group_badge" text="\$group" />
-                  <Label fx:id="taskType" styleClass="taskType_badge" text="\$taskType" />
-                  <Label fx:id="priority" styleClass="priority_badge" text="\$priority" />
-               </children>
-            </HBox>
-         <Label fx:id="description" styleClass="cell_big_label" text="\$description" />
-      </HBox>
+         <FlowPane>
+            <children>
+               <HBox alignment="CENTER_LEFT">
+                  <children>
+                 <Label fx:id="id" styleClass="cell_big_label" text="\$id">
+                   <minWidth>
+                     <!-- Ensures that the label text is never truncated -->
+                     <Region fx:constant="USE_PREF_SIZE" />
+                   </minWidth>
+                        <HBox.margin>
+                           <Insets right="5.0" />
+                        </HBox.margin>
+                 </Label>
+                     <Label fx:id="group" alignment="CENTER" contentDisplay="CENTER" styleClass="group_badge" text="\$group" textAlignment="CENTER" />
+                     <Label fx:id="taskType" alignment="CENTER" contentDisplay="CENTER" styleClass="taskType_badge" text="\$taskType" textAlignment="CENTER" />
+                     <Label fx:id="priority" alignment="CENTER" contentDisplay="CENTER" styleClass="priority_badge" text="\$priority" textAlignment="CENTER" />
+                  </children>
+                  <FlowPane.margin>
+                     <Insets right="10.0" />
+                  </FlowPane.margin>
+               </HBox>
+            <Label fx:id="description" minWidth="100.0" styleClass="cell_big_label" text="\$description" wrapText="true" />
+            </children>
+         </FlowPane>
          <HBox>
             <children>
             <Label fx:id="date" styleClass="cell_small_label" text="\$date" />

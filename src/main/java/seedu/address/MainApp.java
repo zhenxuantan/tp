@@ -2,6 +2,7 @@ package seedu.address;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -66,11 +67,14 @@ public class MainApp extends Application {
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        ArrayList<String> warnings = new ArrayList<>();
+
+        model = initModelManager(storage, userPrefs, warnings);
 
         logic = new LogicManager(model, storage);
 
-        ui = new UiManager(logic);
+        ui = new UiManager(logic, warnings);
+
     }
 
     /**
@@ -78,7 +82,7 @@ public class MainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs, ArrayList<String> warnings) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         Optional<ReadOnlyTaskRecords> taskRecordsOptional;
         ReadOnlyAddressBook initialData;
@@ -86,28 +90,44 @@ public class MainApp extends Application {
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                String message = "Contact list data file not found. Will be starting with a sample contact list";
+                warnings.add(message);
+                logger.info(message);
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            String message = "Contact list data file is not in the correct format. "
+                + "Will be starting with an empty contact list";
+            warnings.add(message);
+            logger.warning(message);
             initialData = new AddressBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            String message = "Problem while reading from the contact list data file. "
+                + "Will be starting with an empty contact list";
+            warnings.add(message);
+            logger.warning(message);
             initialData = new AddressBook();
         }
 
         try {
             taskRecordsOptional = storage.readTaskRecords();
             if (!taskRecordsOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample TaskRecords");
+                String message = "Task list data file not found. Will be starting with a sample task list";
+                warnings.add(message);
+                logger.info(message);
             }
             initialTasks = taskRecordsOptional.orElseGet(SampleDataUtil::getSampleTaskRecords);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty TaskRecords");
+            String message = "Task list data file is not in the correct format. "
+                + "Will be starting with an empty task list";
+            warnings.add(message);
+            logger.warning(message);
             initialTasks = new TaskRecords();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty TaskRecords");
+            String message = "Problem while reading from the task list data file. "
+                + "Will be starting with an empty task list";
+            warnings.add(message);
+            logger.warning(message);
             initialTasks = new TaskRecords();
         }
 
