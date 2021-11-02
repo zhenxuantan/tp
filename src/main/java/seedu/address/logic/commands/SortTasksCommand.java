@@ -11,15 +11,16 @@ import seedu.address.model.task.SortTaskComparator;
 public class SortTasksCommand extends Command {
     public static final String COMMAND_WORD = "sortTasks";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts tasks according to given parameter "
-        + "and order (a: ascending, d: descending).\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts tasks according to a given parameter "
+        + "('desc' (for description), 'date' (for a deadline / time of event),\n"
+        + "'pty' (for priority) and 'group') and order ('a' (for ascending), 'd' (for descending)).\n"
         + "Parameters: "
         + PREFIX_PARAMETER + "PARAMETER "
         + PREFIX_ORDER + "ORDER\n"
         + "Example: " + COMMAND_WORD + " "
-        + PREFIX_PARAMETER + "d "
+        + PREFIX_PARAMETER + "desc "
         + PREFIX_ORDER + "a\n"
-        + "Sorts the tasks by description in ascending order (lexicographical / chronological order)";
+        + "Sorts the tasks by description in ascending order (lexicographical order)";
 
     public static final String MESSAGE_SUCCESS = "Sorted tasks by %1$s";
 

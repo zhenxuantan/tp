@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
@@ -24,13 +25,15 @@ public class UiManager implements Ui {
 
     private Logic logic;
     private MainWindow mainWindow;
+    private ArrayList<String> warnings;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
-    public UiManager(Logic logic) {
+    public UiManager(Logic logic, ArrayList<String> warnings) {
         super();
         this.logic = logic;
+        this.warnings = warnings;
     }
 
     @Override
@@ -45,6 +48,15 @@ public class UiManager implements Ui {
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
+            if (!warnings.isEmpty()) {
+                StringBuilder warningContentText = new StringBuilder();
+                for (String s: warnings) {
+                    warningContentText.append(s + "\n\n");
+                }
+                showAlertDialogAndWait(AlertType.ERROR, "Error", "Error in initialising data file(s)",
+                    warningContentText.toString());
+            }
+
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
@@ -55,7 +67,7 @@ public class UiManager implements Ui {
         return new Image(MainApp.class.getResourceAsStream(imagePath));
     }
 
-    void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
+    private void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
         showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);
     }
 
