@@ -11,6 +11,8 @@ import seedu.address.model.task.FilterTaskPredicate;
 public class FilterTasksCommand extends Command {
     public static final String COMMAND_WORD = "filterTasks";
 
+    public static final String MULTIPLE_FIELD_ERROR_MESSAGE = "filterTasks can only accept 1 field at a time.";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": filters tasks based on specified criterion.\n"
             + "Parameters: " + "FILTER_CRITERION\n"
             + "Example: " + COMMAND_WORD + " "
