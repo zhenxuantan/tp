@@ -237,6 +237,7 @@ Filter tasks based on a criterion
 Format: `filterTasks FILTER_CRITERION`
 * Filters the task by the specified `FILTER_CRITERION`
 * `FILTER_CRITERION` refers to either `g/GROUP`, `date/DATE`, `type/TASKTYPE`, `d/DESCRIPTION` or `pty/PRIORITY`
+* FilterTasks only accepts 1 FILTER_CRITERION and not more.
 * Tasks corresponding to the criterion specified will be shown
 
 Examples:
