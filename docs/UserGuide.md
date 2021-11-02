@@ -105,6 +105,7 @@ Format: `edit INDEX [n/NAME] [g/GROUP1] [g/GROUP2] [p/PHONE] [e/EMAIL] [tg/TELEG
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+* `find Betsy` followed by `edit 1` edits the 1st person in the results of the `find` command.
 
 ### Locating persons by name: `find`
 

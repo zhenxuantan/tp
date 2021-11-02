@@ -185,11 +185,14 @@ public class ParserUtil {
     public static String parseUsername(String username) throws ParseException {
         requireNonNull(username);
         String trimmedUsername = username.trim();
+        if (trimmedUsername.isEmpty()) {
+            throw new ParseException(Social.MESSAGE_CONSTRAINTS);
+        }
         if (trimmedUsername.charAt(0) == '@') { // removes any prepended '@' if it is present
             trimmedUsername = trimmedUsername.substring(1);
         }
 
-        if (!Social.isValidUsername(trimmedUsername)) {
+        if (trimmedUsername.isEmpty() || !Social.isValidUsername(trimmedUsername)) {
             throw new ParseException(Social.MESSAGE_CONSTRAINTS);
         }
         return trimmedUsername;

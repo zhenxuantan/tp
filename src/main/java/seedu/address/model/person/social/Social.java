@@ -7,8 +7,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  * This class encapsulates a URL to an online profile.
  */
 public abstract class Social {
-    public static final String MESSAGE_CONSTRAINTS = "Username may only contain alphanumeric characters "
-        + "or single hyphens/underscores, and cannot begin or end with a hyphen/underscores.";
+    public static final String MESSAGE_CONSTRAINTS = "Usernames cannot be blank,"
+        + " and may only contain alphanumeric characters or single hyphens/underscores,"
+        + " and cannot begin or end with a hyphen/underscores.";
     // Adapted from https://github.com/regexhq/regex-username
     private static final String VALIDATION_REGEX = "^([a-zA-Z\\d]+[-_])*[a-zA-Z\\d]+$";
     public final String username;

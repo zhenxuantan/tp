@@ -61,6 +61,14 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns the message constraint that comes from {@code person} havng the same equality
+     * (as defined in Person#isSamePerson) with another person in the address book.
+     * PRECONDITION: there is another person in the addressbook that returns true with {@code person} when called by
+     * Person#isSamePerson.
+     */
+    String getSamePersonConstraintMessage(Person person);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */

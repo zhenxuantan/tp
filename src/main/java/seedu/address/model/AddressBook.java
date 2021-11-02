@@ -67,6 +67,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns the message constraint that comes from {@code person} havng the same equality
+     * (as defined in Person#isSamePerson) with another person in the address book.
+     * PRECONDITION: otherPerson returns false with Person#isSamePerson.
+     */
+    public String getSamePersonConstraintMessage(Person person) {
+        requireNonNull(person);
+        return persons.getSamePersonConstrantMessage(person);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
