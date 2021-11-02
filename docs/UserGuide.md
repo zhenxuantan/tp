@@ -51,12 +51,12 @@ SWEe-book offers **one-stop integration solution to your group work management.*
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `type/TYPE [date/DATE]` can be used as `type/deadline [date/2021-09-11]` or as `type/deadline`.
+  e.g. `type/TYPE [date/DATE]` can be used as `type/deadline [date/2021-09-11]` or as `type/deadline`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -112,7 +112,7 @@ Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -185,7 +185,7 @@ Please specify a date if you are changing a todo with no associated date into a 
 
 Examples:
 * `editTask 1 d/OP2 rehearsal g/CS2101 type/Event date/2021-11-11` Edits the description, group, type of task, date of the first task in the task list to be
-  `OP2 rehearsal`, `CS2101`, `Event` and`2021-11-11` respectively. 
+  `OP2 rehearsal`, `CS2101`, `Event` and`2021-11-11` respectively.
 
 ### Deleting a task: `deleteTask`
 
@@ -213,8 +213,8 @@ Examples:
 Sort tasks based on their description or their deadlines (chronologically, or the reverse), or by time added.
 
 Format: `sortTasks param/PARAMETER o/ORDER`
-* The sort is case-insensitive. e.g CS2103 will be lexicographically identical to cs2103
-* PARAMETER includes 'desc' (for description), 'date' (for deadline / time of event), and 'group'.
+* The sort is case-insensitive. e.g. CS2103 will be lexicographically identical to cs2103
+* PARAMETER includes 'desc' (for description), 'date' (for a deadline / time of event), and 'group'.
 * ORDER includes 'a' for ascending order (0-9 and A-Z, oldest to newest) and 'd' for descending order(Z-A and 9-0 / newest to oldest)
 * When the tasks are sorted by date, 'todo' tasks will always be at the bottom of the list.
 
@@ -228,8 +228,8 @@ Type | Description | Date
  `Event` | test | 21-09-2020
  `Event` | exam | 22-09-2020
 
-* `sortTasks param/desc o/a` returns tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam`
-* `sortTasks param/date o/a` returns returns tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
+* `sortTasks param/desc o/a` return tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam`
+* `sortTasks param/date o/a` return tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
 
 ### Filtering tasks by modules: `filterTasks`
 Filter tasks based on a criterion
@@ -303,8 +303,8 @@ Action | Format, Examples
 **Help** | `help`
 **Add Task** | `addTask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
 **Edit Task** | `editTask INDEX [d/DESCRIPTION] [g/GROUP] [type/TYPE] [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
-**Delete Task** | `deleteTask index`
-**Done Task** | `doneTask index`
+**Delete Task** | `deleteTask INDEX`
+**Done Task** | `doneTask INDEX`
 **Sort Tasks** | `sortTasks p/PARAMETER o/ORDER` <br> e.g., `sortTasks p/desc o/1`
 **Filter Tasks** | `filterTasks FILTER_CRITERION` <br> e.g., `filterTasks g/CS2101`
 **List Tasks** | `listtasks [date/DATE]`
