@@ -252,9 +252,9 @@ Format: `listTasks`
 Examples:
 * `listTasks` returns all tasks
 
-### Clearing all entries : `clear`
+### Clearing all contact entries : `clear`
 
-Clears all entries from SWEe-book.
+Clears all contact entries from SWEe-book.
 
 Format: `clear`
 
