@@ -129,14 +129,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlyTaskRecords getTaskList() {
-        return tasks;
-    }
+    public ReadOnlyTaskRecords getTaskList() { return tasks; }
 
     @Override
-    public void addTask(Task toAdd) {
-        tasks.addTask(toAdd);
-    }
+    public void addTask(Task toAdd) { tasks.addTask(toAdd); }
 
     @Override
     public Task deleteTask(Task task) {
@@ -152,7 +148,7 @@ public class ModelManager implements Model {
 
     @Override
     public void doneTask(Task task) {
-        task.markAsDone();
+        tasks.doneTask(task);
     }
 
     @Override

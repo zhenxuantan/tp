@@ -57,6 +57,17 @@ public class TaskRecords implements ReadOnlyTaskRecords {
     }
 
     /**
+     * Update isDone of given task to true.
+     * @param task
+     */
+    public void doneTask(Task task) {
+        Task original = task;
+        Task doneTask = task;
+        doneTask.markAsDone();
+        this.records.setTask(original, doneTask);
+    }
+
+    /**
      * Replaces the given task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the task list.
      */
