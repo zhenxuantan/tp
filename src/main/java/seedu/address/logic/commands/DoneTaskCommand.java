@@ -21,6 +21,8 @@ public class DoneTaskCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Noted! I've marked this task as done:\n\t %1$s\n\t";
 
+    public static final String MESSAGE_ALREADY_DONE = "This task has already been marked as done!\n\t %1$s\n\t";
+
     private final Index targetIndex;
 
     public DoneTaskCommand(Index index) {
@@ -37,6 +39,9 @@ public class DoneTaskCommand extends Command {
         }
 
         Task doneTask = taskList.get(targetIndex.getZeroBased());
+        if (doneTask.isDone()) {
+            throw new CommandException(String.format(MESSAGE_ALREADY_DONE, doneTask.toString()));
+        }
         model.doneTask(doneTask);
         return new CommandResult(String.format(MESSAGE_SUCCESS, doneTask.toString()));
     }

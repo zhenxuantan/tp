@@ -158,12 +158,12 @@ public class ModelManager implements Model {
 
     @Override
     public void doneTask(Task task) {
-        task.markAsDone();
+        tasks.doneTask(task);
     }
 
     @Override
     public void undoDoneTask(Task task) {
-        task.markAsUndone();
+        tasks.undoDoneTask(task);
     }
 
 
