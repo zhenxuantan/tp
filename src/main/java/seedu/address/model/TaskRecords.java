@@ -57,7 +57,7 @@ public class TaskRecords implements ReadOnlyTaskRecords {
     }
 
     /**
-     * Update isDone of given task to true.
+     * Update given task as done.
      * @param task
      */
     public void doneTask(Task task) {
@@ -65,6 +65,17 @@ public class TaskRecords implements ReadOnlyTaskRecords {
         Task doneTask = task;
         doneTask.markAsDone();
         this.records.setTask(original, doneTask);
+    }
+
+    /**
+     * Update given done task as not done.
+     * @param task
+     */
+    public void undoDoneTask(Task task) {
+        Task original = task;
+        Task undoDoneTask = task;
+        undoDoneTask.markAsUndone();
+        this.records.setTask(original, undoDoneTask);
     }
 
     /**

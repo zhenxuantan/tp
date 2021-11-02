@@ -20,21 +20,26 @@ import seedu.address.model.task.Task;
  * {@code DoneTaskCommand}.
  */
 public class DoneTaskCommandTest {
+    //TaskRecords testTaskRecords = new TaskRecords();
     private Model model = new ModelManager(new AddressBook(), new UserPrefs(), getTypicalTaskRecords());
 
     @Test
     public void execute_validIndex_success() {
         Task doneTask = model.getTasks().get(INDEX_FIRST_PERSON.getZeroBased());
-        doneTask.markAsDone();
+        Task forTest = new Task(doneTask.getDescription(), doneTask.getGroup(), doneTask.getDate(),
+            doneTask.getTaskType(), doneTask.getRecurringFrequency(), doneTask.getPriority());
         DoneTaskCommand doneTaskCommand = new DoneTaskCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DoneTaskCommand.MESSAGE_SUCCESS, doneTask);
+        Task expectedTask = new Task(doneTask.getDescription(), doneTask.getGroup(), doneTask.getDate(),
+            doneTask.getTaskType(), doneTask.getRecurringFrequency(), doneTask.getPriority());
+        expectedTask.markAsDone();
+        String expectedMessage = String.format(DoneTaskCommand.MESSAGE_SUCCESS, expectedTask);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getTaskList());
-        expectedModel.doneTask(doneTask);
 
         assertCommandSuccess(doneTaskCommand, model, expectedMessage, expectedModel);
         model.undoDoneTask(doneTask);
+        System.out.println(doneTask.toString());
     }
 
     @Test
@@ -43,6 +48,15 @@ public class DoneTaskCommandTest {
         DoneTaskCommand doneTaskCommand = new DoneTaskCommand(outOfBoundIndex);
 
         assertCommandFailure(doneTaskCommand, model, Messages.MESSAGE_INVALID_TASK_INDEX);
+    }
+
+    @Test
+    public void execute_alreadyDone_throwsCommandException() {
+        Task doneTask = model.getTasks().get(INDEX_FIRST_PERSON.getZeroBased());
+        DoneTaskCommand doneTaskCommand = new DoneTaskCommand(INDEX_FIRST_PERSON);
+        doneTask.markAsDone();
+        assertCommandFailure(doneTaskCommand, model, String.format(DoneTaskCommand.MESSAGE_ALREADY_DONE,
+            doneTask.toString()));
     }
 
 }

@@ -163,7 +163,7 @@ public class ModelManager implements Model {
 
     @Override
     public void undoDoneTask(Task task) {
-        task.markAsUndone();
+        tasks.undoDoneTask(task);
     }
 
 
