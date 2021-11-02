@@ -105,6 +105,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public String getSamePersonConstraintMessage(Person person) {
+        requireNonNull(person);
+        return addressBook.getSamePersonConstraintMessage(person);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
