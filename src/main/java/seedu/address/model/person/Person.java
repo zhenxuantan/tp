@@ -76,8 +76,8 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null &&
-                (otherPerson.getName().equalsIgnoreCaseAndWhiteSpaces(getName())
+        return otherPerson != null
+                && (otherPerson.getName().equalsIgnoreCaseAndWhiteSpaces(getName())
                 || otherPerson.getPhone().equals(getPhone())
                 || otherPerson.getEmail().value.equalsIgnoreCase(getEmail().value)
                 || otherPerson.getTelegram().username.equalsIgnoreCase(getTelegram().username)
@@ -96,7 +96,7 @@ public class Person {
         }
 
         if (otherPerson.getPhone().equals(getPhone())) {
-           return String.format(MESSAGE_DUPLICATE_PERSON, "phone number", getPhone());
+            return String.format(MESSAGE_DUPLICATE_PERSON, "phone number", getPhone());
         }
 
         if (otherPerson.getEmail().value.equalsIgnoreCase(getEmail().value)) {
