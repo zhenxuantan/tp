@@ -29,7 +29,7 @@ SWEe-book offers **one-stop integration solution to your group work management.*
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe g/CS2103T p/98765432 e/johnd@example.com tg/johndoe gh/johndoe` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe g/CS2103T p/98765432 e/johnd@example.com tg/johndoe gh/johndoe` : Adds a contact named `John Doe` to the SWEe-book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -75,7 +75,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to SWEe-book.
 
 Format: `add n/NAME g/GROUP1 [g/GROUP2] p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERNAME gh/GITHUB_USERNAME`
 
@@ -89,13 +89,13 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in SWEe-book.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in SWEe-book.
 
 Format: `edit INDEX [n/NAME] [g/GROUP1] [g/GROUP2] [p/PHONE] [e/EMAIL] [tg/TELEGRAM] [gh/GITHUB]`
 
@@ -126,7 +126,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from SWEe-book.
 
 Format: `delete INDEX`
 
@@ -135,7 +135,7 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in SWEe-book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Filtering persons by a specified group: `group`
@@ -245,7 +245,7 @@ Examples:
 * `filterTasks date/2021-10-10` shows all the tasks with date of 10 Oct 2021
 
 ### Listing all tasks: `listTasks`
-Shows a list of all tasks in the address book.
+Shows a list of all tasks in SWEe-book.
 
 Format: `listTasks`
 * Lists all tasks for the current user
@@ -271,10 +271,10 @@ SWEe-book data are saved in the hard disk automatically after any command that c
 
 ### Editing the data file
 
-SWEe-book data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+SWEe-book contacts data are saved as a JSON file `[JAR file location]/data/addressbook.json`, whereas tasks management data are saved as `[JAR file location]/data/taskrecords.json`. Advanced users are welcome to update data directly by editing the data files.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, SWEe-book will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -286,7 +286,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SWEe-book home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
