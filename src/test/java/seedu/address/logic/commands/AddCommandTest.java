@@ -50,7 +50,9 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                String.format(Person.MESSAGE_DUPLICATE_PERSON, "name", validPerson.getName()),
+                () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -128,6 +130,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getSamePersonConstraintMessage(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -213,6 +220,12 @@ public class AddCommandTest {
             requireNonNull(person);
             return this.person.isSamePerson(person);
         }
+
+        @Override
+        public String getSamePersonConstraintMessage(Person otherPerson) {
+            requireNonNull(person);
+            return person.getSamePersonConstraintMessage(otherPerson);
+        }
     }
 
     /**
@@ -232,6 +245,7 @@ public class AddCommandTest {
             requireNonNull(person);
             personsAdded.add(person);
         }
+
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {

@@ -134,4 +134,20 @@ public class UniquePersonList implements Iterable<Person> {
         }
         return true;
     }
+
+    /**
+     * Returns the message constraint that comes from {@code person} havng the same equality
+     * (as defined in Person#isSamePerson) with another person in the address book.
+     * PRECONDITION: otherPerson returns false with some person in the addressbook as defined by Person#isSamePerson.
+     */
+    public String getSamePersonConstrantMessage(Person otherPerson) {
+        requireNonNull(otherPerson);
+        for (Person p: internalList) {
+            if (p.isSamePerson(otherPerson)) {
+                return p.getSamePersonConstraintMessage(otherPerson);
+            }
+        }
+        assert false; // should not reach here due to precondition
+        return "";
+    }
 }

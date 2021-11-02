@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -16,6 +17,8 @@ import seedu.address.model.person.social.Telegram;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
+    public static final String MESSAGE_DUPLICATE_PERSON =
+            "A person with this %s (%s) already exists in the address book.";
 
     // Identity fields
     private final Name name;
@@ -65,16 +68,51 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both persons are the same, defined by
+     * a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equalsIgnoreCaseAndWhiteSpaces(getName());
+        return otherPerson != null &&
+                (otherPerson.getName().equalsIgnoreCaseAndWhiteSpaces(getName())
+                || otherPerson.getPhone().equals(getPhone())
+                || otherPerson.getEmail().value.equalsIgnoreCase(getEmail().value)
+                || otherPerson.getTelegram().username.equalsIgnoreCase(getTelegram().username)
+                || otherPerson.getGitHub().username.equalsIgnoreCase(getGitHub().username));
+    }
+
+    /**
+     * Returns an empty string if both persons are the same, defined by
+     * a weaker notion of equality between two persons. Else, returns the corresponding constraint message.
+     * PRECONDITION: otherPerson returns false with this person, when used with Person#isSamePerson.
+     */
+    public String getSamePersonConstraintMessage(Person otherPerson) {
+        requireNonNull(otherPerson);
+        if (otherPerson.getName().equalsIgnoreCaseAndWhiteSpaces(getName())) {
+            return String.format(MESSAGE_DUPLICATE_PERSON, "name", getName());
+        }
+
+        if (otherPerson.getPhone().equals(getPhone())) {
+           return String.format(MESSAGE_DUPLICATE_PERSON, "phone number", getPhone());
+        }
+
+        if (otherPerson.getEmail().value.equalsIgnoreCase(getEmail().value)) {
+            return String.format(MESSAGE_DUPLICATE_PERSON, "email address", getEmail());
+        }
+
+        if (otherPerson.getTelegram().username.equalsIgnoreCase(getTelegram().username)) {
+            return String.format(MESSAGE_DUPLICATE_PERSON, "telegram username", getTelegram());
+        }
+
+        if (otherPerson.getGitHub().username.equalsIgnoreCase(getGitHub().username)) {
+            return String.format(MESSAGE_DUPLICATE_PERSON, "github username", getGitHub());
+        }
+
+        assert false; // should not reach here due to precondition
+        return "";
     }
 
     /**
