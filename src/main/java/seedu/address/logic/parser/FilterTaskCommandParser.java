@@ -36,6 +36,13 @@ public class FilterTaskCommandParser {
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTasksCommand.MESSAGE_USAGE));
         }
+
+        if (numberOfPrefixesPresent(argMultimap, PREFIX_GROUP, PREFIX_TASKTYPE, PREFIX_DATE, PREFIX_PRIORITY,
+                PREFIX_DESCRIPTION) > 1) {
+            throw new ParseException(String.format(FilterTasksCommand.MULTIPLE_FIELD_ERROR_MESSAGE,
+                    FilterTasksCommand.MESSAGE_USAGE));
+        }
+
         if (arePrefixesPresent(argMultimap, PREFIX_DATE)) {
             Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
             return new FilterTasksCommand(new FilterTaskPredicate(PREFIX_DATE + date.getString()));
@@ -66,5 +73,15 @@ public class FilterTaskCommandParser {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    private static int numberOfPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        int count = 0;
+        for (Prefix prefix : prefixes) {
+            if (arePrefixesPresent(argumentMultimap, prefix)) {
+                count++;
+            }
+        }
+        return count;
     }
 }
