@@ -28,9 +28,9 @@ public class AddTaskCommand extends Command {
             + PREFIX_GROUP + "CS2101 "
             + PREFIX_TASKTYPE + "Event "
             + PREFIX_DATE + "2021-11-11 ";
-
+    public static final String MESSAGE_RECURRING_FREQ_NO_DATE =
+            "Note that any Task with recurring frequency must have a date as well!\n" + MESSAGE_USAGE;
     public static final String MESSAGE_SUCCESS = "Got it. I've added this task:\n %1$s \n\t";
-
     private final Task toAdd;
 
     /**

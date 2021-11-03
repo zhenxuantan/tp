@@ -59,7 +59,8 @@ public class AddTaskCommandParser {
         if (taskType.taskType.equals("todo")
             && !arePrefixesPresent(argMultimap, PREFIX_DATE)
             && arePrefixesPresent(argMultimap, PREFIX_RECURRING_FREQUENCY)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddTaskCommand.MESSAGE_RECURRING_FREQ_NO_DATE));
         }
 
         RecurringFrequency recurringFrequency =
