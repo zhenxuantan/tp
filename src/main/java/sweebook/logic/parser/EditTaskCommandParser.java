@@ -2,7 +2,7 @@ package sweebook.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static sweebook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static sweebook.logic.commands.EditCommand.MESSAGE_USAGE;
+import static sweebook.logic.commands.EditTaskCommand.MESSAGE_USAGE;
 import static sweebook.logic.parser.CliSyntax.PREFIX_DATE;
 import static sweebook.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static sweebook.logic.parser.CliSyntax.PREFIX_GROUP;
