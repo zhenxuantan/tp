@@ -74,7 +74,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book and list of tasks (contained in UniquePersonList and TaskList respectively)
+* stores the contact list and task records (contained in UniquePersonList and TaskList respectively)
 * stores the currently 'selected' `Person` and `Task` objects (e.g., results of a search query) as separate _filtered_ lists which is exposed to outsiders as an unmodifiable `ObservableList<Person>` or `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -157,7 +157,7 @@ required.
 Do note that `Date` is required for a `Task` to be recurring. Notably, `Date` is optional for `Todo`.
 
 Given below is an example usage scenario of how a recurring task is added and how it behaves upon re-launching of
-the addressbook application.
+the SWEe-book application.
 
 * Step 1. The user launches the application. A recurring `Task` is added, where the user specifies the
   `recurringFrequency` to be weekly, and the `Date` to be from the previous week. The `Task` is added, but the `Date` is
@@ -197,7 +197,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `*`      | user with many persons in the contact list | sort persons by name           | locate a person easily                                                 |
 | `*`      | user                                       | Add a new task to the list | So that I can keep track of the tasks that needs to be done       |
 | `* * *`  | new user                                   | Have an overview of my groupmate details like telegram, email and name.  | So I can easily contact them |
 | `* * *`  | forgetful user                             | have a list of tasks           | So that I can follow up on it and not miss out tasks                   |

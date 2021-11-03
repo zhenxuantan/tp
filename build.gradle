@@ -10,7 +10,7 @@ run {
     enableAssertions = true
 }
 
-mainClassName = 'seedu.address.Main'
+mainClassName = 'sweebook.Main'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
