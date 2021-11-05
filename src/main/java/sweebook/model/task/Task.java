@@ -1,6 +1,8 @@
 package sweebook.model.task;
 
 import static java.util.Objects.isNull;
+import static java.util.Objects.requireNonNull;
+import static sweebook.commons.util.CollectionUtil.requireAllNonNull;
 
 import sweebook.model.group.Group;
 
@@ -22,6 +24,10 @@ public class Task {
      */
     public Task(Description description, Group group, Date date, TaskType type,
                 RecurringFrequency recurringFrequency, Priority priority) {
+        requireAllNonNull(description, group, type, recurringFrequency, priority);
+        if (!type.equals(new TaskType("todo"))) {
+            requireNonNull(date);
+        }
         this.description = description;
         this.group = group;
         this.type = type;

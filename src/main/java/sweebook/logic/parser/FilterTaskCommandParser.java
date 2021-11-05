@@ -23,7 +23,7 @@ import sweebook.model.task.TaskType;
 /**
  * Parses input arguments and creates a new FilterTasksCommand object
  */
-public class FilterTaskCommandParser {
+public class FilterTaskCommandParser implements Parser<FilterTasksCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterTasksCommand

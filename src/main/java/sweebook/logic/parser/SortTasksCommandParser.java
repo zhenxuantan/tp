@@ -14,7 +14,7 @@ import sweebook.model.task.SortTaskComparator;
 /**
  * Parses input arguments and creates a new SortTaskCommand object
  */
-public class SortTasksCommandParser {
+public class SortTasksCommandParser implements Parser<SortTasksCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the SortTaskCsCommand

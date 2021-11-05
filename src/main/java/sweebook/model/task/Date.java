@@ -1,6 +1,5 @@
 package sweebook.model.task;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static sweebook.commons.util.AppUtil.checkArgument;
 
@@ -43,9 +42,6 @@ public class Date {
 
     @Override
     public String toString() {
-        if (isNull(date)) {
-            return null;
-        }
         return date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
     }
 

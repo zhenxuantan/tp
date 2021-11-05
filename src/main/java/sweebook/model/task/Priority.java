@@ -37,11 +37,7 @@ public class Priority {
      * Returns true if a given string is a valid priority.
      */
     public static boolean isValidPriority(String test) {
-        try {
-            return Arrays.stream(PRIORITIES).anyMatch(p -> p.equals(test));
-        } catch (NumberFormatException e) {
-            return false;
-        }
+        return Arrays.asList(PRIORITIES).contains(test);
     }
 
     @Override

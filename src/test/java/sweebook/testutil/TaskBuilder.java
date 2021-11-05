@@ -83,10 +83,26 @@ public class TaskBuilder {
     }
 
     /**
+     * Sets the {@code Date} of the {@code Task} as null (for Todo) that we are building.
+     */
+    public TaskBuilder withoutDate() {
+        this.date = null;
+        return this;
+    }
+
+    /**
      * Sets the {@code Priority} of the {@code Task} that we are building.
      */
     public TaskBuilder withPriority(String priority) {
         this.priority = new Priority(priority);
+        return this;
+    }
+
+    /**
+     * Sets the {@code RecurringFrequency} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withRecurringFrequency(String recurringFrequency) {
+        this.recurringFrequency = new RecurringFrequency(recurringFrequency);
         return this;
     }
 
