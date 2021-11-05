@@ -59,7 +59,7 @@ SWEe-book offers **one-stop integration solution to your group work management.*
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `clear` and `listTasks`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -158,9 +158,10 @@ for the group specified by g/GROUP due at date specified by date/DATE.
 Format: `addtask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
 * `GROUP` refers to one of the 2 groups: `CS2101` or `CS2103T`
 * `TYPE` refers to one of the 3 types of tasks: `todo`, `event` or `deadline`
-* `DATE` is in YYYY-MM-DD format and is only needed for events or deadlines (i.e. `DATE` is optional for todo tasks)
+* `DATE` is in YYYY-MM-DD format and is only needed for events or deadlines (i.e. `DATE` is optional for Todo tasks)
 * `PRIORITY` refers to one of the 3 levels of priorities / importance of the task: `low`, `med` (default) or `high`
 * `RECURRING_FREQUENCY` refers to one of the 3 different frequencies that the task could occur: `week`, `month` or `year` (where `week` means that the task is recurring weekly)
+    * Any Task that has a recurring frequency must have a date as well, for example a Todo with recurring frequency must have a date.
 
 Examples:
 * `addTask d/Project meeting g/CS2103T type/todo pty/low` Add a non-recurring `todo` with no date and `low` priority and 
@@ -309,4 +310,4 @@ Action | Format, Examples
 **Done Task** | `doneTask INDEX`
 **Sort Tasks** | `sortTasks p/PARAMETER o/ORDER` <br> e.g., `sortTasks p/desc o/1`
 **Filter Tasks** | `filterTasks FILTER_CRITERION` <br> e.g., `filterTasks g/CS2101`
-**List Tasks** | `listtasks [date/DATE]`
+**List Tasks** | `listTasks`
