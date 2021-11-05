@@ -11,20 +11,31 @@ import sweebook.model.task.Task;
  * A utility class containing a list of {@code Task} objects to be used in tests.
  */
 public class TypicalTasks {
+
+    //first set
     public static final Task DEADLINE1 = new TaskBuilder().withDescription("Deadline 1")
         .withGroup("cs2101").withTaskType("deadline").withDate("2021-12-03").build();
     public static final Task EVENT1 = new TaskBuilder().withDescription("event 1")
-        .withGroup("cs2103t").withTaskType("event").withDate("2022-02-03").build();
+        .withGroup("cs2103t").withTaskType("event").withDate("2022-02-03").withRecurringFrequency("year")
+        .withPriority("low").build();
     public static final Task TODO1 = new TaskBuilder().withDescription("todo 1")
-        .withGroup("cs2101").withTaskType("todo").withDate("2022-10-29").build();
-    public static final Task DEADLINE2 = new TaskBuilder().withDescription("Deadline 2")
-        .withGroup("cs2103t").withTaskType("deadline").withDate("2022-07-01").build();
+        .withGroup("cs2101").withTaskType("todo").withDate("2022-10-29").withRecurringFrequency("week")
+        .withPriority("high").build();
 
-    // Manually add
+    //second set
+    public static final Task DEADLINE2 = new TaskBuilder().withDescription("Deadline 2")
+        .withGroup("cs2103t").withTaskType("deadline").withDate("2022-07-01").withRecurringFrequency("month")
+        .withPriority("med").build();
     public static final Task EVENT2 = new TaskBuilder().withDescription("Event 2")
         .withGroup("cs2103t").withTaskType("event").withDate("2022-09-01").build();
     public static final Task TODO2 = new TaskBuilder().withDescription("todo 2")
         .withGroup("cs2101").withTaskType("todo").withDate("2023-01-21").build();
+    public static final Task TODO2_CAPS = new TaskBuilder().withDescription("TODO 2")
+        .withGroup("cs2103t").withTaskType("todo").withoutDate().build();
+
+    //third set
+    public static final Task TODO3 = new TaskBuilder().withDescription("todo 3")
+        .withGroup("cs2103t").withTaskType("todo").withoutDate().build();
 
     private TypicalTasks() {} // prevents instantiation
 

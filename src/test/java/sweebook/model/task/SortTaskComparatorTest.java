@@ -1,14 +1,27 @@
 package sweebook.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static sweebook.model.task.SortTaskComparator.ORDERS;
 import static sweebook.model.task.SortTaskComparator.PARAMETERS;
 import static sweebook.testutil.Assert.assertThrows;
+import static sweebook.testutil.TypicalTasks.DEADLINE1;
+import static sweebook.testutil.TypicalTasks.EVENT1;
 
 import org.junit.jupiter.api.Test;
 
 public class SortTaskComparatorTest {
+
+    private static final SortTaskComparator STC_DESC_A = new SortTaskComparator("desc", "a");
+    private static final SortTaskComparator STC_DESC_D = new SortTaskComparator("desc", "d");
+    private static final SortTaskComparator STC_DATE_A = new SortTaskComparator("date", "a");
+    private static final SortTaskComparator STC_DATE_D = new SortTaskComparator("date", "d");
+    private static final SortTaskComparator STC_GROUP_A = new SortTaskComparator("group", "a");
+    private static final SortTaskComparator STC_GROUP_D = new SortTaskComparator("group", "d");
+    private static final SortTaskComparator STC_PTY_A = new SortTaskComparator("pty", "a");
+    private static final SortTaskComparator STC_PTY_D = new SortTaskComparator("pty", "d");
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -46,5 +59,36 @@ public class SortTaskComparatorTest {
                 assertTrue(SortTaskComparator.isValidComparator(param, order));
             }
         }
+    }
+
+    @Test
+    public void compare() {
+        assertTrue(STC_DESC_A.compare(DEADLINE1, EVENT1) < 0);
+        assertTrue(STC_DESC_D.compare(DEADLINE1, EVENT1) > 0);
+        assertTrue(STC_DATE_A.compare(DEADLINE1, EVENT1) < 0);
+        assertTrue(STC_DATE_D.compare(DEADLINE1, EVENT1) > 0);
+        assertTrue(STC_GROUP_A.compare(DEADLINE1, EVENT1) < 0);
+        assertTrue(STC_GROUP_D.compare(DEADLINE1, EVENT1) > 0);
+        assertTrue(STC_PTY_A.compare(DEADLINE1, EVENT1) > 0);
+        assertTrue(STC_PTY_D.compare(DEADLINE1, EVENT1) < 0);
+    }
+
+    @Test
+    public void testToString() {
+        assertEquals("description in ascending order.", STC_DESC_A.toString());
+        assertEquals("description in descending order.", STC_DESC_D.toString());
+        assertEquals("deadline / event date in ascending order.", STC_DATE_A.toString());
+        assertEquals("deadline / event date in descending order.", STC_DATE_D.toString());
+        assertEquals("group in ascending order.", STC_GROUP_A.toString());
+        assertEquals("group in descending order.", STC_GROUP_D.toString());
+        assertEquals("priority in ascending order.", STC_PTY_A.toString());
+        assertEquals("priority in descending order.", STC_PTY_D.toString());
+    }
+
+    @Test
+    public void testEquals() {
+        assertEquals(new SortTaskComparator("desc", "a"), STC_DESC_A);
+        assertNotEquals(new SortTaskComparator("desc", "d"), STC_DESC_A);
+        assertNotEquals(new SortTaskComparator("date", "a"), STC_DESC_A);
     }
 }
