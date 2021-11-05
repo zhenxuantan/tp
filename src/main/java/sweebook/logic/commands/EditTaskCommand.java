@@ -32,7 +32,7 @@ public class EditTaskCommand extends Command {
             + "by the index number used in the displayed task list. "
             + "Existing values will be overwritten by the input values. To remove recurring frequencies,"
             + " specify \"" + PREFIX_RECURRING_FREQUENCY + "none\".\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer and have a value lower than 2,147,483,648) "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_GROUP + "GROUP] "
             + "[" + PREFIX_TASKTYPE + "TASKTYPE] "
