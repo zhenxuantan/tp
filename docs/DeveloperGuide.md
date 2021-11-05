@@ -52,21 +52,21 @@ Here's a (partial) class diagram of the `Logic` component:
 ![Logic Class diagram](images/LogicClassDiagram.png)
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `SweeBookParser` class to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddTaskCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a task).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("addTask d/project meeting g/CS2101 type/event date/2021-10-10")` API call.
 
-![Interactions Inside the Logic Component for the `addTask d/project meeting g/CS2101 type/event date/2021-10-10` Command](images/AddTaskSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `addTask d/project meeting g/CS2101 type/event date/2021-10-10` Command](images/AddTaskSequenceDiagram1.png)
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 ![Parser class](images/ParserClasses.png)
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddTaskCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `SweeParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddTaskCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SweeBookParser` returns back as a `Command` object.
 
 ### Model component
 ### Overview
@@ -74,7 +74,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the contact list and task records (contained in UniquePersonList and TaskList respectively)
+* stores the list of contacts and list of tasks (contained in UniquePersonList and TaskList respectively)
 * stores the currently 'selected' `Person` and `Task` objects (e.g., results of a search query) as separate _filtered_ lists which is exposed to outsiders as an unmodifiable `ObservableList<Person>` or `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)

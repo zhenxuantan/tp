@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SweeBookParser" as SweeBookParser LOGIC_COLOR
 participant ":AddTaskCommandParser" as AddTaskCommandParser LOGIC_COLOR
 participant "a:AddTaskCommand" as AddTaskCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("addTask d/project meeting \ng/CS2101 type/event date/2021-10-10")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("addTask d/project meeting \ng/CS2101 type/event date/2021-10-10")
-activate AddressBookParser
+LogicManager -> SweeBookParser : parseCommand("addTask d/project meeting \ng/CS2101 type/event date/2021-10-10")
+activate SweeBookParser
 
 create AddTaskCommandParser
-AddressBookParser -> AddTaskCommandParser
+SweeBookParser -> AddTaskCommandParser
 activate AddTaskCommandParser
 
-AddTaskCommandParser --> AddressBookParser
+AddTaskCommandParser --> SweeBookParser
 deactivate AddTaskCommandParser
 
-AddressBookParser -> AddTaskCommandParser : parse("d/project meeting g/CS2101 \ntype/event date/2021-10-10")
+SweeBookParser -> AddTaskCommandParser : parse("d/project meeting g/CS2101 \ntype/event date/2021-10-10")
 activate AddTaskCommandParser
 
 create AddTaskCommand
@@ -36,14 +36,14 @@ activate AddTaskCommand
 AddTaskCommand --> AddTaskCommandParser : a
 deactivate AddTaskCommand
 
-AddTaskCommandParser --> AddressBookParser : a
+AddTaskCommandParser --> SweeBookParser : a
 deactivate AddTaskCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddTaskCommandParser -[hidden]-> AddressBookParser
+AddTaskCommandParser -[hidden]-> SweeBookParser
 destroy AddTaskCommandParser
 
-AddressBookParser --> LogicManager : a
-deactivate AddressBookParser
+SweeBookParser --> LogicManager : a
+deactivate SweeBookParser
 
 LogicManager -> AddTaskCommand : execute()
 activate AddTaskCommand
