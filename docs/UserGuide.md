@@ -81,12 +81,14 @@ Format: `add n/NAME g/GROUP1 [g/GROUP2] p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERN
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Usernames can optionally be prepended with '@'. SWEe-book takes care of it!
+(i.e. `@johndoe` and `johndoe` are equivalent as they will both be parsed into `johndoe`)
 </div>
 
 Examples:
 * `add n/John Doe g/CS2103T p/98765432 e/johnd@example.com tg/@johndoe gh/johndoe`
+  * Adds a contact with name `John Doe`, group `CS2103T`, phone number `98765432`, email `johnd@example.com`, telegram username `johndoe`, github username `johndoe`
 * `add n/Betsy Crowe p/92221234 g/CS2103T g/CS2101 e/betsycrowe@example.com tg/betsyyy gh/crowebetsy`
-
+    * Adds a contact with name `Betsy Crowe`, group `CS2103T` **and** `CS2101`, phone number `92221234 `, email `betsycrowe@example.com`, telegram username `betsyyy`, github username `crowebetsy`
 ### Listing all persons : `list`
 
 Shows a list of all persons in SWEe-book.
@@ -104,8 +106,10 @@ Format: `edit INDEX [n/NAME] [g/GROUP1] [g/GROUP2] [p/PHONE] [e/EMAIL] [tg/TELEG
 * Existing values will be updated to the input values.
 
 Examples:
+* `find Betsy` followed by `edit 1 <arguments>...` edits the 1st person in the results of the `find` command.
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `find Betsy` followed by `edit 1` edits the 1st person in the results of the `find` command.
+   ![result for edit 1 p/91234567 e/johndoe@example.com'](images/EditTaskExample1.png)
+
 
 ### Locating persons by name: `find`
 
@@ -144,11 +148,13 @@ Retrieves the list of people to those who are in the specified group.
 
 Format: `group GROUP_NAME`
 * `GROUP_NAME` refers to one of the 2 groups: CS2101 or CS2103T.
-* `GROUP_NAME` is not case-sensitive.
+* `GROUP_NAME` is case-**in**sensitive.
+* Note that this is not a strict filter (i.e `group CS2103T` can return a person from both CS2103T **and** CS2101 groups)
 
 Examples:
-* `group CS2103T` returns people in CS2103T
 * `group CS2101` returns people in CS2101
+* `group CS2103T` returns people in CS2103T
+  ![result for 'group CS2103T'](images/GroupCommandExample1.png)
 
 ### Adding a Task : `addTask`
 
