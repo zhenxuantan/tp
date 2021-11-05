@@ -125,9 +125,10 @@ The JavaFx package automatically detects any changes to the task list, implement
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Edit feature ( `edit` and `editTask` commands)
+#### Implementation
 The edit feature allows users to edit specific fields in tasks or contacts. The implementation for both contacts (`edit`) and
-tasks (`editTask`) are similar. Therefore we can generalize the implementation of the edit feature by exploring how the `edit` command works for tasks.
-Given below is a sequence diagram of the execution of an edit command:
+tasks (`editTask`) are similar. Therefore we can generalize the implementation of the edit feature by exploring how the `editTask` command works for tasks.
+Given below is a sequence diagram of the execution of an edit command: [Click here for better resolution](https://ay2122s1-cs2103t-w12-2.github.io/tp/images/EditTaskSequenceDiagram.png)
 
 ![Seq-diagram for the parsing of command for `editTask 1 d/OP2 rehearsal g/CS2101 type/Event date/2021-11-11`](images/EditTaskSequenceDiagram.png)
 
@@ -145,6 +146,14 @@ Given below is an example usage scenario of how a contact is edited:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** For `editTask` command, a date **must** be specified 
 for **recurring** tasks and **deadline/event** tasks. Else, an error message will be shown to the user. (It does not make sense for a task that is recurring, or that is a deadline/event, to have no date!)
 </div>
+
+#### Alternative considerations
+* Alternative 1: Update the fields of the old task, without creating a new task.
+    * Pros: Less logic needed, less complexity. (No need for `EditTaskDescriptor` class)
+    * Cons: Hard to debug, and more prone to errors, as we are mutating the object in the list
+    
+
+
 
 ### Recurring Tasks feature
 The recurring task feature allows users to add tasks that can be repeated by week, month, or year. It is facilitated
