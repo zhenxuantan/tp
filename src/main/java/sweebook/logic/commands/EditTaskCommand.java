@@ -108,10 +108,10 @@ public class EditTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX);
         }
 
-        Task personToEdit = lastShownList.get(index.getZeroBased());
-        Task editedTask = createEditedTask(personToEdit, editTaskDescriptor);
+        Task taskToEdit = lastShownList.get(index.getZeroBased());
+        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
-        model.setTask(personToEdit, editedTask);
+        model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }

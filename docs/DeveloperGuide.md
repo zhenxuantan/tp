@@ -14,7 +14,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103T-W12-2/tp/blob/master/src/main/java/sweebook/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-W12-2/tp/blob/master/src/main/java/sweebook/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,7 +69,8 @@ How the parsing works:
 * When called upon to parse a user command, the `SweeParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddTaskCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SweeBookParser` returns back as a `Command` object.
 
 ### Model component
-### Overview
+Here is an overview of the model component.
+
 ![Model class](images/SweebookModelClassDiagram.png)
 
 The `Model` component,
@@ -79,10 +80,10 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-### Person and tasks models
+Taking a closer look at the person and tasks models, here is the class diagram.
 ![Person and tasks class](images/PersonAndTasksClassDiagram.png)
 
-Going more in depth into the `Person` and `Task` models,
+`Person` and `Task` models are similar such that,
 * they share a `Group` class, which can be either `CS2103T` or `CS2101`
 
 Specifically for `Person`,
@@ -124,19 +125,25 @@ The JavaFx package automatically detects any changes to the task list, implement
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Edit feature ( `edit` and `editTask` commands)
-The edit feature allows users to edit specific fields in tasks or contacts. The implementation for both contacts (`edit`) and 
-tasks (`editTask`) are similar. Therefore we will generalize the edit feature by exploring how the `edit` command works for contacts.
+The edit feature allows users to edit specific fields in tasks or contacts. The implementation for both contacts (`edit`) and
+tasks (`editTask`) are similar. Therefore we can generalize the implementation of the edit feature by exploring how the `edit` command works for tasks.
 Given below is a sequence diagram of the execution of an edit command:
 
-{to be added}
+![Seq-diagram for the parsing of command for `editTask 1 d/OP2 rehearsal g/CS2101 type/Event date/2021-11-11`](images/EditTaskSequenceDiagram.png)
+
+The general logic of the `editTask` command is similar to `addTask` (which can be found above),
+with the following differences:
+1. editTask uses a `EditTaskDescriptor` to store the specified values that the user want to change
+1. when EditTaskCommand is executed, we create a new task, where the value of each field is given more priority to the `EditTaskDescriptor` than the non-edited task. (i.e if a field is non-null in EditTaskDescriptor, the value of that field in the new task will be equal to that field in the `EditTaskDescriptor`. Else, it will remain unchanged from the old task)
+1. we then replace this new task with the current task in the model
 
 Given below is an example usage scenario of how a contact is edited:
-1. The user enters the edit command with the specified fields to be edited. 
-  (e.g edit 1 n/Johm Doe tg/johndoeee))
+1. The user enters the edit command with the specified fields to be edited.
+   (e.g edit 1 n/Johm Doe tg/johndoeee))
 1. SWEe-book updates the contact with the new updated fields, with non-updated fields left unchanged.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** For `editTask` command, a date *must* be specified 
-for non-recurring tasks and deadline/event tasks. Else, an error message will be shown to the user.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For `editTask` command, a date **must** be specified 
+for **recurring** tasks and **deadline/event** tasks. Else, an error message will be shown to the user. (It does not make sense for a task that is recurring, or that is a deadline/event, to have no date!)
 </div>
 
 ### Recurring Tasks feature
