@@ -1,0 +1,76 @@
+{
+  "_comment": "ContactList save file which contains the same Person values as in TypicalPersons#getTypicalContactList()",
+  "persons" : [ {
+    "name": "Alice Pauline",
+    "groups": [
+      "CS2103T",
+      "CS2101"
+    ],
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "telegram": "alice",
+    "github": "alice"
+  },
+    {
+      "name": "Benson Meier",
+      "groups": [
+        "CS2103T"
+      ],
+      "phone": "98765432",
+      "email": "johnd@example.com",
+      "telegram": "Bensonmeirer",
+      "github": "benson"
+    },
+    {
+      "name": "Carl Kurz",
+      "groups": [
+        "cs2101",
+        "cs2103t"
+      ],
+      "phone": "95352563",
+      "email": "heinz@example.com",
+      "telegram": "carl",
+      "github": "carl"
+    },
+    {
+      "name": "Daniel Meier",
+      "groups": [
+        "Cs2101"
+      ],
+      "phone": "87652533",
+      "email": "cornelia@example.com",
+      "telegram": "Daniel",
+      "github": "daniel"
+    },
+    {
+      "name": "Elle Meyer",
+      "groups": [
+        "CS2101",
+        "cs2103t"
+      ],
+      "phone": "9482224",
+      "email": "werner@example.com",
+      "telegram": "elle",
+      "github": "elle"
+    },
+    {
+      "name": "Fiona Kunz",
+      "groups": [
+        "CS2103T"
+      ],
+      "phone": "9482427",
+      "email": "lydia@example.com",
+      "telegram": "lydia",
+      "github": "lydia"
+    },
+    {
+      "name": "George Best",
+      "groups": [
+        "CS2103T"
+      ],
+      "phone": "9482442",
+      "email": "george@example.com",
+      "telegram": "george",
+      "github": "george"
+    } ]
+}

@@ -272,7 +272,7 @@ SWEe-book data are saved in the hard disk automatically after any command that c
 
 ### Editing the data file
 
-SWEe-book contacts data are saved as a JSON file `[JAR file location]/data/addressbook.json`, whereas tasks management data are saved as `[JAR file location]/data/taskrecords.json`. Advanced users are welcome to update data directly by editing the data files.
+SWEe-book contacts data are saved as a JSON file `[JAR file location]/data/contactlist.json`, whereas tasks management data are saved as `[JAR file location]/data/taskrecords.json`. Advanced users are welcome to update data directly by editing the data files.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, SWEe-book will discard all data and start with an empty data file at the next run.
