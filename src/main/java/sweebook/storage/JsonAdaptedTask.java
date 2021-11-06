@@ -68,94 +68,123 @@ class JsonAdaptedTask {
      * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
     public Task toModelType() throws IllegalValueException {
-        if (description == null) {
-            throw new IllegalValueException(String.format(
-                    MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
-        }
-        if (!Description.isValidDescription(description)) {
-            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
-        }
-        final Description modelDescription = new Description(description);
+        final Description modelDescription = getDescriptionFromJson(description);
 
-        if (group == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Group.class.getSimpleName()));
-        }
-        if (!Group.isValidGroup(group)) {
-            throw new IllegalValueException(Group.MESSAGE_CONSTRAINTS);
-        }
-        final Group modelGroup = new Group(group);
+        final Group modelGroup = getGroupFromJson(group);
 
-        if (taskType == null) {
-            throw new IllegalValueException(String.format(
-                    MISSING_FIELD_MESSAGE_FORMAT, TaskType.class.getSimpleName()));
-        }
-        if (!TaskType.isValidTaskType(taskType)) {
-            throw new IllegalValueException(TaskType.MESSAGE_CONSTRAINTS);
-        }
-        final TaskType modelTaskType = new TaskType(taskType);
-        final Date modelDate;
-        if (!isNull(date)) {
-            try {
-                DateTimeFormatter storageDtf = DateTimeFormatter.ofPattern("MMM dd yyyy");
-                DateTimeFormatter commandDtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        final TaskType modelTaskType = getTaskTypeFromJson(taskType);
 
-                String formattedDate = commandDtf.format(storageDtf.parse(date));
-                modelDate = new Date(formattedDate);
-            } catch (DateTimeParseException e) {
-                throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
-            }
-        } else {
-            modelDate = null;
-        }
+        final Date modelDate = getDateFromJson(date);
 
-        final Priority modelPriority;
-        if (priority == null) {
-            modelPriority = new Priority("med");
-        } else {
-            if (!Priority.isValidPriority(priority)) {
-                throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
-            }
-            modelPriority = new Priority(priority);
-        }
+        final Priority modelPriority = getPriorityFromJson(priority);
 
-        if (recurringFrequency == null) {
-            throw new IllegalValueException(String.format(
-                    MISSING_FIELD_MESSAGE_FORMAT, RecurringFrequency.class.getSimpleName()));
-        }
-        if (!RecurringFrequency.isValidRecurringFrequency(recurringFrequency)) {
-            throw new IllegalValueException(RecurringFrequency.MESSAGE_CONSTRAINTS);
-        }
-        final RecurringFrequency modelRecurringFreq = new RecurringFrequency(recurringFrequency);
+        final RecurringFrequency modelRecurringFreq = getRecurringFrequencyFromJson(recurringFrequency);
 
+        Task taskFromJson;
         switch (taskType) {
         case "todo":
-            Task task = new Todo(modelDescription, modelGroup, modelDate, modelTaskType,
+            taskFromJson = new Todo(modelDescription, modelGroup, modelDate, modelTaskType,
                 modelRecurringFreq, modelPriority);
-            if (checkIsDone(status)) {
-                task.markAsDone();
-            }
-            return task;
+            break;
         case "event":
-            task = new Event(modelDescription, modelGroup, modelDate, modelTaskType,
+            taskFromJson = new Event(modelDescription, modelGroup, modelDate, modelTaskType,
                 modelRecurringFreq, modelPriority);
-            if (checkIsDone(status)) {
-                task.markAsDone();
-            }
-            return task;
+            break;
         case "deadline":
-            task = new Deadline(modelDescription, modelGroup, modelDate, modelTaskType,
+            taskFromJson = new Deadline(modelDescription, modelGroup, modelDate, modelTaskType,
                 modelRecurringFreq, modelPriority);
-            if (checkIsDone(status)) {
-                task.markAsDone();
-                return task;
-            }
-            return task;
+            break;
         default:
             throw new IllegalValueException(TaskType.MESSAGE_CONSTRAINTS);
         }
+        updateIfTaskDone(taskFromJson, status);
+        return taskFromJson;
     }
 
-    public boolean checkIsDone(String status) {
+    private Description getDescriptionFromJson(String descriptionFromJson) throws IllegalValueException {
+        if (descriptionFromJson == null) {
+            throw new IllegalValueException(String.format(
+                MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+        }
+        if (!Description.isValidDescription(descriptionFromJson)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+        }
+        Description finalDescription = new Description(descriptionFromJson);
+        return finalDescription;
+    }
+
+    private Group getGroupFromJson(String groupFromJson) throws IllegalValueException {
+        if (groupFromJson == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Group.class.getSimpleName()));
+        }
+        if (!Group.isValidGroup(groupFromJson)) {
+            throw new IllegalValueException(Group.MESSAGE_CONSTRAINTS);
+        }
+        Group finalGroup = new Group(groupFromJson);
+        return finalGroup;
+    }
+
+    private TaskType getTaskTypeFromJson(String taskTypeFromJson) throws IllegalValueException {
+        if (taskTypeFromJson == null) {
+            throw new IllegalValueException(String.format(
+                MISSING_FIELD_MESSAGE_FORMAT, TaskType.class.getSimpleName()));
+        }
+        if (!TaskType.isValidTaskType(taskTypeFromJson)) {
+            throw new IllegalValueException(TaskType.MESSAGE_CONSTRAINTS);
+        }
+        TaskType finalTaskType = new TaskType(taskTypeFromJson);
+        return finalTaskType;
+    }
+
+    private Date getDateFromJson(String dateFromJson) throws IllegalValueException {
+        Date finalDate;
+        if (isNull(dateFromJson)) {
+            finalDate = null;
+        }
+        try {
+            DateTimeFormatter storageDtf = DateTimeFormatter.ofPattern("MMM dd yyyy");
+            DateTimeFormatter commandDtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+            String formattedDate = commandDtf.format(storageDtf.parse(dateFromJson));
+            finalDate = new Date(formattedDate);
+        } catch (DateTimeParseException e) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return finalDate;
+    }
+
+    private Priority getPriorityFromJson(String priorityFromJson) throws IllegalValueException {
+        Priority finalPriority;
+        if (isNull(priorityFromJson)) {
+            finalPriority = new Priority("med");
+        }
+        if (!Priority.isValidPriority(priorityFromJson)) {
+            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
+        }
+        finalPriority = new Priority(priorityFromJson);
+        return finalPriority;
+    }
+
+    private RecurringFrequency getRecurringFrequencyFromJson(String recurringFrequencyFromJson)
+        throws IllegalValueException {
+        if (recurringFrequencyFromJson == null) {
+            throw new IllegalValueException(String.format(
+                MISSING_FIELD_MESSAGE_FORMAT, RecurringFrequency.class.getSimpleName()));
+        }
+        if (!RecurringFrequency.isValidRecurringFrequency(recurringFrequencyFromJson)) {
+            throw new IllegalValueException(RecurringFrequency.MESSAGE_CONSTRAINTS);
+        }
+        RecurringFrequency finalRecurringFrequency = new RecurringFrequency(recurringFrequencyFromJson);
+        return finalRecurringFrequency;
+    }
+
+    private void updateIfTaskDone(Task task, String status) {
+        if (isDone(status)) {
+            task.markAsDone();
+        }
+    }
+
+    private boolean isDone(String status) {
         return status.equals("[X]");
     }
 }

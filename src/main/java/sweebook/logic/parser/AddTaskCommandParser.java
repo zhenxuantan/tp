@@ -71,17 +71,18 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         switch (taskType.toString()) {
         case "todo":
             toAdd = new Todo(description, group, date, taskType, recurringFrequency, priority);
-            return new AddTaskCommand(toAdd);
+            break;
         case "event":
             toAdd = new Event(description, group, date, taskType, recurringFrequency, priority);
-            return new AddTaskCommand(toAdd);
+            break;
         case "deadline":
             requireNonNull(date);
             toAdd = new Deadline(description, group, date, taskType, recurringFrequency, priority);
-            return new AddTaskCommand(toAdd);
+            break;
         default:
             throw new ParseException(TaskType.MESSAGE_CONSTRAINTS);
         }
+        return new AddTaskCommand(toAdd);
     }
 
     /**
