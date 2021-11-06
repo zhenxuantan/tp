@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Removed address and tag fields from Person as they were irrelevant to our product.
-  * Added Telegram And Github fields into Person.
+  * Added Telegram And Github, Group fields into Person.
   * Refactored the `add` and `edit` command to reflect both of the above changes
   
 * **New Feature**: Added the ability to edit tasks.
@@ -23,7 +23,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to filter people by group.
   * What it does: allows the user to filter the list of people by group (CS2103T or CS2101)
   * Justification: This feature allows the user to have an overview of their groupmates from a specific group, should there be a need to declutter the contact list.
-  * Highlights: Refactored and add new tests to cover the deleted (address and tag) and newly added fields (github and telegram).
+  * Highlights: Refactored and add new tests to cover the deleted (address and tag) and newly added fields (github and telegram and group).
 
   
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=cyyeu&tabRepo=AY2122S1-CS2103T-W12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
