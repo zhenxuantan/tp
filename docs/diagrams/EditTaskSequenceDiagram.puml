@@ -1,0 +1,88 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SweeBookParser" as SweeBookParser LOGIC_COLOR
+participant ":EditTaskCommandParser" as EditTaskCommandParser LOGIC_COLOR
+participant ":EditTaskDescriptor" as EditTaskDescriptor LOGIC_COLOR
+participant "a:EditTaskCommand" as EditTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("editTask 1 d/OP2 rehearsal g/CS2101 type/Event date/2021-11-11")
+activate LogicManager
+
+LogicManager -> SweeBookParser : parseCommand("editTask 1 d/OP2 rehearsal g/CS2101 type/Event date/2021-11-11")
+activate SweeBookParser
+
+create EditTaskCommandParser
+SweeBookParser -> EditTaskCommandParser
+activate EditTaskCommandParser
+
+EditTaskCommandParser --> SweeBookParser
+deactivate EditTaskCommandParser
+
+SweeBookParser -> EditTaskCommandParser : parse("1 d/OP2 rehearsal g/CS2101 type/Event date/2021-11-11")
+activate EditTaskCommandParser
+
+create EditTaskDescriptor
+EditTaskCommandParser -> EditTaskDescriptor
+activate EditTaskDescriptor
+
+EditTaskDescriptor --> EditTaskCommandParser : descriptor
+deactivate EditTaskDescriptor
+
+create EditTaskCommand
+EditTaskCommandParser -> EditTaskCommand : new EditTaskCommand(index, descriptor)
+activate EditTaskCommand
+
+EditTaskCommand --> EditTaskCommandParser : command
+deactivate EditTaskCommand
+
+EditTaskCommandParser --> SweeBookParser : command
+deactivate EditTaskCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditTaskCommandParser -[hidden]-> SweeBookParser
+destroy EditTaskCommandParser
+
+SweeBookParser --> LogicManager : command
+deactivate SweeBookParser
+
+LogicManager -> EditTaskCommand : execute()
+activate EditTaskCommand
+
+
+EditTaskCommand -> EditTaskCommand : createEditedTask()
+activate EditTaskCommand
+EditTaskCommand -> EditTaskDescriptor
+activate EditTaskDescriptor
+EditTaskDescriptor --> EditTaskCommand
+deactivate EditTaskDescriptor
+
+EditTaskCommand --> EditTaskCommand : editedTask
+deactivate EditTaskCommand
+
+EditTaskCommand -> Model : setTask(taskToEdit, editedTask)
+activate Model
+
+Model --> EditTaskCommand
+deactivate Model
+
+create CommandResult
+EditTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditTaskCommand
+deactivate CommandResult
+
+EditTaskCommand --> LogicManager : result
+deactivate EditTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
