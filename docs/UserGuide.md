@@ -59,7 +59,7 @@ SWEe-book offers **one-stop integration solution to your group work management.*
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `clear` and `listTasks`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -81,11 +81,14 @@ Format: `add n/NAME g/GROUP1 [g/GROUP2] p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERN
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Usernames can optionally be prepended with '@'. SWEe-book takes care of it!
+(i.e. `@johndoe` and `johndoe` are equivalent as they will both be parsed into `johndoe`)
 </div>
 
 Examples:
 * `add n/John Doe g/CS2103T p/98765432 e/johnd@example.com tg/@johndoe gh/johndoe`
+  * Adds a contact with name `John Doe`, group `CS2103T`, phone number `98765432`, email `johnd@example.com`, telegram username `johndoe`, github username `johndoe`
 * `add n/Betsy Crowe p/92221234 g/CS2103T g/CS2101 e/betsycrowe@example.com tg/betsyyy gh/crowebetsy`
+    * Adds a contact with name `Betsy Crowe`, group `CS2103T` **and** `CS2101`, phone number `92221234 `, email `betsycrowe@example.com`, telegram username `betsyyy`, github username `crowebetsy`
 
 ### Listing all persons : `list`
 
@@ -104,8 +107,10 @@ Format: `edit INDEX [n/NAME] [g/GROUP1] [g/GROUP2] [p/PHONE] [e/EMAIL] [tg/TELEG
 * Existing values will be updated to the input values.
 
 Examples:
+* `find Betsy` followed by `edit 1 <arguments>...` edits the 1st person in the results of the `find` command.
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `find Betsy` followed by `edit 1` edits the 1st person in the results of the `find` command.
+   ![result for edit 1 p/91234567 e/johndoe@example.com'](images/EditTaskExample1.png)
+
 
 ### Locating persons by name: `find`
 
@@ -144,11 +149,13 @@ Retrieves the list of people to those who are in the specified group.
 
 Format: `group GROUP_NAME`
 * `GROUP_NAME` refers to one of the 2 groups: CS2101 or CS2103T.
-* `GROUP_NAME` is not case-sensitive.
+* `GROUP_NAME` is case-**in**sensitive.
+* Note that this is not a strict filter (i.e `group CS2103T` can return a person from both CS2103T **and** CS2101 groups)
 
 Examples:
-* `group CS2103T` returns people in CS2103T
 * `group CS2101` returns people in CS2101
+* `group CS2103T` returns people in CS2103T
+  ![result for 'group CS2103T'](images/GroupCommandExample1.png)
 
 ### Adding a Task : `addTask`
 
@@ -158,9 +165,10 @@ for the group specified by g/GROUP due at date specified by date/DATE.
 Format: `addtask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
 * `GROUP` refers to one of the 2 groups: `CS2101` or `CS2103T`
 * `TYPE` refers to one of the 3 types of tasks: `todo`, `event` or `deadline`
-* `DATE` is in YYYY-MM-DD format and is only needed for events or deadlines (i.e. `DATE` is optional for todo tasks)
+* `DATE` is in YYYY-MM-DD format and is only needed for events or deadlines (i.e. `DATE` is optional for Todo tasks)
 * `PRIORITY` refers to one of the 3 levels of priorities / importance of the task: `low`, `med` (default) or `high`
 * `RECURRING_FREQUENCY` refers to one of the 3 different frequencies that the task could occur: `week`, `month` or `year` (where `week` means that the task is recurring weekly)
+    * Any Task that has a recurring frequency must have a date as well, for example a Todo with recurring frequency must have a date.
 
 Examples:
 * `addTask d/Project meeting g/CS2103T type/todo pty/low` Add a non-recurring `todo` with no date and `low` priority and 
@@ -272,7 +280,7 @@ SWEe-book data are saved in the hard disk automatically after any command that c
 
 ### Editing the data file
 
-SWEe-book contacts data are saved as a JSON file `[JAR file location]/data/addressbook.json`, whereas tasks management data are saved as `[JAR file location]/data/taskrecords.json`. Advanced users are welcome to update data directly by editing the data files.
+SWEe-book contacts data are saved as a JSON file `[JAR file location]/data/contactlist.json`, whereas tasks management data are saved as `[JAR file location]/data/taskrecords.json`. Advanced users are welcome to update data directly by editing the data files.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, SWEe-book will discard all data and start with an empty data file at the next run.
@@ -309,4 +317,4 @@ Action | Format, Examples
 **Done Task** | `doneTask INDEX`
 **Sort Tasks** | `sortTasks p/PARAMETER o/ORDER` <br> e.g., `sortTasks p/desc o/1`
 **Filter Tasks** | `filterTasks FILTER_CRITERION` <br> e.g., `filterTasks g/CS2101`
-**List Tasks** | `listtasks [date/DATE]`
+**List Tasks** | `listTasks`

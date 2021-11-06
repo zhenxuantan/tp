@@ -14,7 +14,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103T-W12-2/tp/blob/master/src/main/java/sweebook/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-W12-2/tp/blob/master/src/main/java/sweebook/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -52,37 +52,38 @@ Here's a (partial) class diagram of the `Logic` component:
 ![Logic Class diagram](images/LogicClassDiagram.png)
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `SweeBookParser` class to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddTaskCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a task).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("addTask d/project meeting g/CS2101 type/event date/2021-10-10")` API call.
 
-![Interactions Inside the Logic Component for the `addTask d/project meeting g/CS2101 type/event date/2021-10-10` Command](images/AddTaskSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `addTask d/project meeting g/CS2101 type/event date/2021-10-10` Command](images/AddTaskSequenceDiagram1.png)
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 ![Parser class](images/ParserClasses.png)
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddTaskCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `SweeParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddTaskCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SweeBookParser` returns back as a `Command` object.
 
 ### Model component
-### Overview
+Here is an overview of the model component.
+
 ![Model class](images/SweebookModelClassDiagram.png)
 
 The `Model` component,
 
-* stores the address book and list of tasks (contained in UniquePersonList and TaskList respectively)
+* stores the list of contacts and list of tasks (contained in UniquePersonList and TaskList respectively)
 * stores the currently 'selected' `Person` and `Task` objects (e.g., results of a search query) as separate _filtered_ lists which is exposed to outsiders as an unmodifiable `ObservableList<Person>` or `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-### Person and tasks models
+Taking a closer look at the person and tasks models, here is the class diagram.
 ![Person and tasks class](images/PersonAndTasksClassDiagram.png)
 
-Going more in depth into the `Person` and `Task` models,
+`Person` and `Task` models are similar such that,
 * they share a `Group` class, which can be either `CS2103T` or `CS2101`
 
 Specifically for `Person`,
@@ -124,20 +125,35 @@ The JavaFx package automatically detects any changes to the task list, implement
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Edit feature ( `edit` and `editTask` commands)
-The edit feature allows users to edit specific fields in tasks or contacts. The implementation for both contacts (`edit`) and 
-tasks (`editTask`) are similar. Therefore we will generalize the edit feature by exploring how the `edit` command works for contacts.
-Given below is a sequence diagram of the execution of an edit command:
+#### Implementation
+The edit feature allows users to edit specific fields in tasks or contacts. The implementation for both contacts (`edit`) and
+tasks (`editTask`) are similar. Therefore we can generalize the implementation of the edit feature by exploring how the `editTask` command works for tasks.
+Given below is a sequence diagram of the execution of an edit command: [Click here for better resolution](https://ay2122s1-cs2103t-w12-2.github.io/tp/images/EditTaskSequenceDiagram.png)
 
-{to be added}
+![Seq-diagram for the parsing of command for `editTask 1 d/OP2 rehearsal g/CS2101 type/Event date/2021-11-11`](images/EditTaskSequenceDiagram.png)
+
+The general logic of the `editTask` command is similar to `addTask` (which can be found above),
+with the following differences:
+1. editTask uses a `EditTaskDescriptor` to store the specified values that the user want to change
+1. when EditTaskCommand is executed, we create a new task, where the value of each field is given more priority to the `EditTaskDescriptor` than the non-edited task. (i.e if a field is non-null in EditTaskDescriptor, the value of that field in the new task will be equal to that field in the `EditTaskDescriptor`. Else, it will remain unchanged from the old task)
+1. we then replace this new task with the current task in the model
 
 Given below is an example usage scenario of how a contact is edited:
-1. The user enters the edit command with the specified fields to be edited. 
-  (e.g edit 1 n/Johm Doe tg/johndoeee))
+1. The user enters the edit command with the specified fields to be edited.
+   (e.g edit 1 n/Johm Doe tg/johndoeee))
 1. SWEe-book updates the contact with the new updated fields, with non-updated fields left unchanged.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** For `editTask` command, a date *must* be specified 
-for non-recurring tasks and deadline/event tasks. Else, an error message will be shown to the user.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For `editTask` command, a date **must** be specified 
+for **recurring** tasks and **deadline/event** tasks. Else, an error message will be shown to the user. (It does not make sense for a task that is recurring, or that is a deadline/event, to have no date!)
 </div>
+
+#### Alternative considerations
+* Alternative 1: Update the fields of the old task, without creating a new task.
+    * Pros: Less logic needed, less complexity. (No need for `EditTaskDescriptor` class)
+    * Cons: Hard to debug, and more prone to errors, as we are mutating the object in the list
+    
+
+
 
 ### Recurring Tasks feature
 The recurring task feature allows users to add tasks that can be repeated by week, month, or year. It is facilitated
@@ -157,7 +173,7 @@ required.
 Do note that `Date` is required for a `Task` to be recurring. Notably, `Date` is optional for `Todo`.
 
 Given below is an example usage scenario of how a recurring task is added and how it behaves upon re-launching of
-the addressbook application.
+the SWEe-book application.
 
 * Step 1. The user launches the application. A recurring `Task` is added, where the user specifies the
   `recurringFrequency` to be weekly, and the `Date` to be from the previous week. The `Task` is added, but the `Date` is
@@ -197,7 +213,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `*`      | user with many persons in the contact list | sort persons by name           | locate a person easily                                                 |
 | `*`      | user                                       | Add a new task to the list | So that I can keep track of the tasks that needs to be done       |
 | `* * *`  | new user                                   | Have an overview of my groupmate details like telegram, email and name.  | So I can easily contact them |
 | `* * *`  | forgetful user                             | have a list of tasks           | So that I can follow up on it and not miss out tasks                   |

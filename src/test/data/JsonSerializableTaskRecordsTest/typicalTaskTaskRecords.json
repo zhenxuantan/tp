@@ -13,23 +13,23 @@
     "group" : "CS2103T",
     "date" : "Feb 03 2022",
     "taskType" : "event",
-    "recurringFrequency": "none",
-    "priority": "med"
+    "recurringFrequency": "year",
+    "priority": "low"
   }, {
     "description": "todo 1",
     "status": "[ ]",
     "group": "CS2101",
     "date": "Oct 29 2022",
     "taskType": "todo",
-    "recurringFrequency": "none",
-    "priority": "med"
+    "recurringFrequency": "week",
+    "priority": "high"
     }, {
     "description": "Deadline 2",
     "status": "[ ]",
     "group": "CS2103T",
     "date": "Jul 01 2022",
     "taskType": "deadline",
-    "recurringFrequency": "none",
+    "recurringFrequency": "month",
     "priority": "med"
   } ]
 }
