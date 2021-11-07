@@ -12,12 +12,12 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
     * Implement listTasks to reflect in GUI, so that both contacts and tasks are simultaneously displayed [#49](https://github.com/AY2122S1-CS2103T-W12-2/tp/pull/49)
 
-* **New Feature**: Added the ability to list all tasks added. [#38](https://github.com/AY2122S1-CS2103T-W12-2/tp/pull/38), [#46](https://github.com/AY2122S1-CS2103T-W12-2/tp/pull/46), [$50](https://github.com/AY2122S1-CS2103T-W12-2/tp/pull/50)
+* **New Feature**: Added the ability to list all tasks added. [#37](https://github.com/AY2122S1-CS2103T-W12-2/tp/pull/37), [#46](https://github.com/AY2122S1-CS2103T-W12-2/tp/pull/46), [$50](https://github.com/AY2122S1-CS2103T-W12-2/tp/pull/50)
     * What it does: Allows the user to list all tasks that were previously added to the project.
     * Justification: This feature allows users to view their added tasks, and serves as a start point fetch data for filterTasks and also the tasks appearing on the UI on startup. 
     * Highlights: Upon the editing of the UI to include the task section, the tasks are reflected in the GUI rather than the CLI.
 
-* **New Feature**: Added the ability to add recurring frequencies to tasks. [#64](https://github.com/AY2122S1-CS2103T-W12-2/tp/pull/64)
+* **New Feature**: Added the ability to add recurring frequencies to tasks. [#59](https://github.com/AY2122S1-CS2103T-W12-2/tp/pull/59)
     * What it does: Allows the user to add recurring frequencies to their tasks which can be weekly, monthly, or yearly frequencies. For weekly, 
       the tasks are repeated on the same day of the week, for monthly the tasks are repeated by the date (DD) every month, for yearly the tasks are repeated 
       by the DD/MM every year.
