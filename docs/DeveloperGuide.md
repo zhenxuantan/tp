@@ -115,7 +115,9 @@ The JavaFx package automatically detects any changes to the task list, implement
 {More explanation to be given}
 
 ### Storage component
-{to be completed}
+![Storage Class Diagram](images/StorageClassDiagram1.png)
+
+The Storage component can save SWEe-book task records, contact list and user preference in json format, and read them back into corresponding objects.
 
 
 ---
