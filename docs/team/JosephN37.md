@@ -28,7 +28,7 @@ Given below are my contributions to the project.
         * Added documentation for the feature `FilterTasks`.
         * Cleared Address book remnants in the User Guide.
     * Developer Guide:
-        * Added UML diagram to illustrate AddTask command.
+        * Added UML diagram to illustrate AddTask command, and for storage component.
         * Modified existing UML diagrams from Address book to suit SWEe-book.
 
 * **Community**:
