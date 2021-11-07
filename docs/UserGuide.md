@@ -12,6 +12,7 @@ SWEe-book offers **one-stop integration solution to your group work management.*
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -40,6 +41,7 @@ SWEe-book offers **one-stop integration solution to your group work management.*
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -186,7 +188,7 @@ Format: `editTask INDEX [d/DESCRIPTION] [g/GROUP] [type/TYPE] [date/DATE] [pty/P
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* To set a recurring task to be non-recurring, specify `recurring/none`.
+* To set a recurring task to be non-recurring, specify `recurring/none` as one of the arguments.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Please specify a date if you are changing a todo with no associated date into a deadline/event or recurring task!
@@ -291,6 +293,8 @@ If your changes to the data file makes its format invalid, SWEe-book will discar
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
