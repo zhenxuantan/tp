@@ -84,6 +84,7 @@ public class CommandTestUtil {
     }
 
     // tasks
+    public static final String VALID_DESCRIPTION_FIRST_DEADLINE = "Deadline 1";
     public static final String VALID_DESCRIPTION_TODO = "Update DG";
     public static final String VALID_DESCRIPTION_DEADLINE = "v1.3 milestone";
     public static final String VALID_DESCRIPTION_EVENT = "Project meeting";
@@ -102,6 +103,7 @@ public class CommandTestUtil {
     public static final String VALID_GROUP_CS2103T = "CS2103T";
     public static final String VALID_GROUP_CS2101 = "CS2101";
 
+    public static final String DESCRIPTION_DESC_FIRST_DEADLINE = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_FIRST_DEADLINE;
     public static final String DESCRIPTION_DESC_TODO = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_TODO;
     public static final String DESCRIPTION_DESC_DEADLINE = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_DEADLINE;
     public static final String DESCRIPTION_DESC_EVENT = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_EVENT;

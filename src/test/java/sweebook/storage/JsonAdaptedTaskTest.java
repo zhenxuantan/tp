@@ -19,16 +19,16 @@ public class JsonAdaptedTaskTest {
     private static final String INVALID_DATE = "7771-21-33";
     private static final String INVALID_GROUP = "cs1234";
 
-    private static final String VALID_DESCRIPTION = TypicalTasks.DEADLINE1.getDescription().toString();
-    private static final String VALID_STATUS = TypicalTasks.DEADLINE1.getStatusIcon();
-    private static final String VALID_TASKTYPE = TypicalTasks.DEADLINE1.getTaskType().toString();
-    private static final String VALID_DATE = TypicalTasks.DEADLINE1.getDate().toString();
-    private static final String VALID_GROUP = TypicalTasks.DEADLINE1.getGroup().toString();
+    private static final String VALID_DESCRIPTION = TypicalTasks.FIRST_DEADLINE.getDescription().toString();
+    private static final String VALID_STATUS = TypicalTasks.FIRST_DEADLINE.getStatusIcon();
+    private static final String VALID_TASKTYPE = TypicalTasks.FIRST_DEADLINE.getTaskType().toString();
+    private static final String VALID_DATE = TypicalTasks.FIRST_DEADLINE.getDate().toString();
+    private static final String VALID_GROUP = TypicalTasks.FIRST_DEADLINE.getGroup().toString();
 
     @Test
     public void toModelType_validTaskDetails_returnsTask() throws Exception {
-        JsonAdaptedTask task = new JsonAdaptedTask(TypicalTasks.DEADLINE1);
-        assertEquals(TypicalTasks.DEADLINE1, task.toModelType());
+        JsonAdaptedTask task = new JsonAdaptedTask(TypicalTasks.FIRST_DEADLINE);
+        assertEquals(TypicalTasks.FIRST_DEADLINE, task.toModelType());
     }
 
     @Test
