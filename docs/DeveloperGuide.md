@@ -555,6 +555,30 @@ Given below are instructions to test the app manually.
    2. Test case: `sortTasks param/tasktype o/a` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
    3. Test case: `sortTasks param/date o/c` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
 
+### Marking a task as done
+1. Marking a task's status as done successfully
+    1. Prerequisites: There is at least one task in task list. List all tasks using the `listTasks` command. 
+       Assume there is a task `Project Meeting` that is not done at index 1 of task list.
+
+    2. Test case: `doneTask 1`
+       Expected: Task `Project Meeting` status is updated to done.
+       A success message is shown.
+
+2. Attempting to mark a task as done with invalid index
+    1. Prerequisites: List all tasks using the `listTasks`. Assume there are a total of 4 tasks.
+
+    2. Test case: `doneTask 6`
+       Expected: An error message is shown, indicating that given index exceeded total number of tasks.
+
+   2. Test case: `doneTask -1`
+      Expected: An error message is shown, indicating that index should not be negative.
+
+3. Attempting to mark a task, that is already done, as done
+    1. Prerequisites: List all tasks using the `listTasks`. Assume there is a task `Project Meeting` 
+       that has been marked as done at index 1 of task list.
+
+    2. Test case: `doneTask 1`
+       Expected: An error message is shown, indicating that task has already been marked as done.
 
 ### Adding a task
 1. Adding a task with all fields
@@ -584,4 +608,3 @@ Given below are instructions to test the app manually.
     1. Prerequisite: Have some tasks saved in `[JAR file location]/data/taskrecords.json`
     2. Test case: `listTasks`
        Expected: Task list in GUI is updated to show all saved tasks.
-       
