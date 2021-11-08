@@ -82,6 +82,8 @@ Here is an overview of the model component.
 
 ![Model class](images/SweebookModelClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 The `Model` component,
 
 * stores the list of contacts and list of tasks (contained in UniquePersonList and TaskList respectively)
@@ -159,8 +161,6 @@ Given below is an example usage scenario of how a contact is edited:
 for **recurring** tasks and **deadline/event** tasks. Else, an error message will be shown to the user. (It does not make sense for a task that is recurring, or that is a deadline/event, to have no date!)
 </div>
 
-<div style="page-break-after: always;"></div>
-
 #### Alternative considerations
 * Alternative 1: Update the fields of the old task, without creating a new task.
     * Pros: Less logic needed, less complexity. (No need for `EditTaskDescriptor` class)
@@ -206,6 +206,8 @@ the SWEe-book application.
 Given below is an activity diagram when a user adds a recurring task and restarts his SWEe-book application.
 
 ![Activity-diagram for user adding recurring Task](images/RecurringTaskActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Alternative considerations
 * Alternative 1: Let the user choose when to refresh his tasks to their new dates, rather than on start-up of the application.
