@@ -78,6 +78,7 @@ Shows a window that allows users to copy the website link to access the user gui
 
 Format: `help`
 
+<div style="page-break-after: always;"></div>
 
 ### Adding a person: `add`
 
@@ -119,6 +120,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
    ![result for edit 1 p/91234567 e/johndoe@example.com'](images/EditTaskExample1.png)
 
+<div style="page-break-after: always;"></div>
 
 ### Locating persons by name: `find`
 
@@ -138,8 +140,6 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult1.png)
 
-<div style="page-break-after: always;"></div>
-
 ### Deleting a person : `delete`
 
 Deletes the specified person from SWEe-book.
@@ -153,6 +153,8 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in SWEe-book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+<div style="page-break-after: always;"></div>
 
 ### Filtering persons by a specified group: `group`
 Retrieves the list of people to those who are in the specified group.
@@ -221,6 +223,9 @@ Deletes the task at the specified `INDEX`.
 Examples:
 * `deleteTask 1` deletes the 1st task in the task list.
   ![result for 'deleteTask 1'](images/deleteTaskCommandExample.png)
+
+<div style="page-break-after: always;"></div>
+
 ### Marking a task as done: `doneTask`
 
 Format: `doneTask INDEX`
@@ -253,6 +258,8 @@ Examples:
 * `sortTasks param/date o/d` returns the tasks in reverse chronological order (in terms of their deadlines / event dates)
 
 ![result for 'sortTasks param/date o/a' and 'sortTasks param/date o/a'](images/SortTasksScreenshot.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Filtering tasks by modules: `filterTasks`
 Filter tasks based on a criterion

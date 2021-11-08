@@ -30,7 +30,7 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-How the architecture components interact with each other
+**How the architecture components interact with each other**
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues the
 command `addTask d/project meeting g/CS2101 type/event date/2021-10-10`.
@@ -177,9 +177,12 @@ in `Task`, `TaskList`, `TaskRecords` and `Date`:
 
 `TaskRecords#updateRecurringTasks()` is used in the `ModelManager` on boot-up of the application to update all Tasks, if
 required. Below is a sequence diagram after the initialisation of the `ModelManager`:
+
 ![Seq-diagram for updating dates of recurring Tasks after start up](images/RecurringFrequencySequenceDiagram.png)
 
 Do note that `Date` is required for a `Task` to be recurring. Notably, `Date` is optional for `Todo`.
+
+<div style="page-break-after: always;"></div>
 
 Given below is an example usage scenario of how a recurring task is added and how it behaves upon re-launching of
 the SWEe-book application.
@@ -325,8 +328,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-<div style="page-break-after: always;"></div>
-
 **Use case (UC05): Add a task**
 
 **MSS**
@@ -412,8 +413,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-<div style="page-break-after: always;"></div>
-
 **Extensions**
 
 * 1a. User keys in an invalid parameter or order.
@@ -433,6 +432,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. User keys in an invalid criterion.
     * 1a1. System displays an error message about invalid criterion. Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case (UC12): Mark a task as done**
 
 1. User requests to list tasks.
@@ -448,8 +449,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System displays an error message about invalid index.
 
   Use case ends.
-
-<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
