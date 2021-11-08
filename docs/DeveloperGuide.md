@@ -227,18 +227,6 @@ The JavaFx package automatically detects any changes to the task list, implement
 
 ---
 
-## **Documentation, logging, testing, configuration, dev-ops**
-
-* [Documentation Guide](https://ay2122s1-cs2103t-w12-2.github.io/tp/Documentation.html)
-* [Testing Guide](https://ay2122s1-cs2103t-w12-2.github.io/tp/Testing.html)
-* [Logging Guide](https://ay2122s1-cs2103t-w12-2.github.io/tp/Logging.html)
-* [Configuration Guide](https://ay2122s1-cs2103t-w12-2.github.io/tp/Configuration.html)
-* [DevOps Guide](https://ay2122s1-cs2103t-w12-2.github.io/tp/DevOps.html)
-
----
-
-<div style="page-break-after: always;"></div>
-
 ### Done Tasks Feature
 #### Implementation
 The doneTask feature allows users to mark a specific task as done.
@@ -272,6 +260,18 @@ The following activity diagram summarizes the actions taken when DoneTaskCommand
 * Alternative 2: Integrate updating of task status into ‘editTask’ command
     * Pros: Fewer commands for user to remember as well as fewer commands for developers to maintain
     * Cons: More troublesome to when user just wants to update task status.
+
+
+<div style="page-break-after: always;"></div>
+
+---
+## **Documentation, logging, testing, configuration, dev-ops**
+
+* [Documentation Guide](https://ay2122s1-cs2103t-w12-2.github.io/tp/Documentation.html)
+* [Testing Guide](https://ay2122s1-cs2103t-w12-2.github.io/tp/Testing.html)
+* [Logging Guide](https://ay2122s1-cs2103t-w12-2.github.io/tp/Logging.html)
+* [Configuration Guide](https://ay2122s1-cs2103t-w12-2.github.io/tp/Configuration.html)
+* [DevOps Guide](https://ay2122s1-cs2103t-w12-2.github.io/tp/DevOps.html)
 
 ---
 
