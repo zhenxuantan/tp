@@ -90,6 +90,8 @@ Given below is an activity diagram when a user adds a recurring task and restart
 
 ![Activity-diagram for user adding recurring Task](../images/RecurringTaskActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Alternative considerations
 * Alternative 1: Let the user choose when to refresh his tasks to their new dates, rather than on start-up of the 
   application.
@@ -121,10 +123,14 @@ Examples:
     * Add a non-recurring `todo` with no date and `low` priority and
       task description `Project meeting` to the group `CS2103T`
       ![result for 'addTask d/Project meeting g/CS2103T type/todo pty/low'](../images/addTaskExample1.PNG)
+      
 * `addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high`
     * Add a non-recurring `deadline` due on `2020-11-02`
       with `high` priority and task description `Presentation 1`to the group `CS2101`
       ![result for 'addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high'](../images/addTaskExample2.PNG)
+
+<div style="page-break-after: always;"></div>
+
 * `addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month`
     * Add a `event` that recurs every `month` with
       date `2020-10-02` and default `med` priority and task description `Mock QnA` to the group `CS2101`
