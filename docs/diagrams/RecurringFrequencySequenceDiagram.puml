@@ -14,7 +14,7 @@ create MainApp
 activate MainApp
 
 create ModelManager
-MainApp-> ModelManager : new ModelManager(initialData, userPrefs, initialTasks)
+MainApp-> ModelManager : new ModelManager(initialData,\nuserPrefs, initialTasks)
 activate ModelManager
 
 ModelManager -> TaskRecords : updateRecurringTasks()
