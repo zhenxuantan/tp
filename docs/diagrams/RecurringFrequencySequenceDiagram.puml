@@ -28,7 +28,7 @@ opt is a recurring task
 TaskList -> Task : updateRecurringTaskDate()
 activate Task
 
-opt isLastWeek
+opt is from last week
 Task -> Date : getDateForThisWeek()
 activate Date
 Date --> Task : newDate
