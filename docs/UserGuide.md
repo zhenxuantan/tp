@@ -251,6 +251,8 @@ Examples:
     date `2020-10-02` and default `med` priority and task description `Mock QnA` to the group `CS2101`
     ![result for 'addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month'](images/addTaskExample3.PNG)
 
+<div style="page-break-after: always;"></div>
+
 #### Editing a task: `editTask`
 
 Edits an existing task in the task list.
@@ -270,6 +272,8 @@ Examples:
   * Edits the description, group, type of task, date of the first task in the task list to be
     `OP2 rehearsal`, `CS2101`, `Event` and`2021-11-11` respectively.
     ![result for 'editTask 1 d/OP2 rehearsal g/CS2101 type/Event date/2021-11-11'](images/EditTaskExample1.PNG)
+
+<div style="page-break-after: always;"></div>
 
 #### Deleting a task: `deleteTask`
 
@@ -360,8 +364,6 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -386,6 +388,8 @@ Action | Format, Examples
 --------|------------------
 **Help** | `help`
 **Exit** | `exit`
+
+<div style="page-break-after: always;"></div>
 
 ### Contact Management Commands
 
