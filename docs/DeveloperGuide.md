@@ -196,6 +196,9 @@ the SWEe-book application.
   current week, with the same day.
 * Step 3. The user then launches the application a week after. The `Task` is updated similarly to Step 2, and since it 
   is checked against real-time, it is updated to the current week.
+  
+Given below is an activity diagram when a user adds a recurring task and restarts his SWEe-book application.
+![Activity-diagram for user adding recurring Task](images/RecurringTaskActivityDiagram.png)
 
 #### Alternative considerations
 * Alternative 1: Let the user choose when to refresh his tasks to their new dates, rather than on start-up of the application.
@@ -620,7 +623,3 @@ Given below are instructions to test the app manually.
 
     4. Test case: `deleteTask -3`<br>
        Expected: An error message is shown, indicating that index should not be negative.
-
-
-   
-
