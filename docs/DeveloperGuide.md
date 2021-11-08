@@ -515,6 +515,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## Appendix: Instructions for manual testing
 
+Given below are instructions to test the app manually.
+* Note: These instructions only provide a starting point for testers to work on; testers are expected to do more
+  exploratory testing.
+
 ### Sorting task lists
 
 1. Sorting task list with valid parameter and order
@@ -539,7 +543,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    2. Test case: `sortTasks param/tasktype o/a` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
    3. Test case: `sortTasks param/date o/c` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
 
+### Adding a task
+1. Adding a task with all fields
+    1. Test case: `addTask d/Project Meeting g/CS2101 type/Todo date/2021-11-11 pty/low recurring/week`
+       Expected: Task with all the above fields added to the task list. Task list in GUI is updated with this new task,
+       added to the bottom of the list
+    2. For incorrect addTask commands, try: `addTask d/<any description> g/<not CS2101 or CS2103T> <other valid params>`,
+       `addTask <other valid params> type/<not Todo, Event or Deadline> <other valid params>`,
+       `addTask <other valid params> pty/<not low, med or high> <other valid params>`,
+       `addTask <other valid params> recurring/<not week, month, or year>`
 
+    2. Adding a task without optional fields
+       1. Test case: `addTask d/Assignment g/CS2103T type/Todo`
+          Expected: Task with all the above fields added to the task list. Task list in GUI is updated with this new task,
+          added to the bottom of the list
+       2. Test case: `addTask d/Assignment g/CS2103T type/Event`
+          Expected: No task is added and error is shown. Event type task must have a date attached, date is not optional for
+          events. 
+       3. Test case: `addTask d/Assignment g/CS2103T type/Event`
+          Expected: No task is added and error is shown. Deadline type task must have a date attached, date is not optional
+          for deadlines. 
+       4. Test case: `addTask d/Rehearsal g/CS2101 type/Todo recurring/month`
+          Expected: No task is added and error is shown. Task with recurring field must have a date as well.
+
+### Listing all tasks
+1. List all tasks
+    1. Prerequisite: Have some tasks saved in `[JAR file location]/data/taskrecords.json`
+    2. Test case: `listTasks`
+       Expected: Task list in GUI is updated to show all saved tasks.
    
    
 
