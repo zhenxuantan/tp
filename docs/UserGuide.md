@@ -149,7 +149,9 @@ Examples:
   * Returns `Alex Yeoh`
   
 ![result for 'find alex'](images/findAlexResult.png)
-    
+
+<div style="page-break-after: always;"></div>
+
 * `find alex david`
   * Returns `Alex Yeoh`, `David Li`<br>
 
@@ -164,6 +166,8 @@ Format: `edit INDEX [n/NAME] [g/GROUP1] [g/GROUP2] [p/PHONE] [e/EMAIL] [tg/TELEG
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+
+<div style="page-break-after: always;"></div>
 
 Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` 
@@ -210,6 +214,8 @@ Examples:
 
 ![result for 'group CS2101'](images/groupCs2101.png)
 
+<div style="page-break-after: always;"></div>
+
 * `group CS2103T` 
   * Returns people in CS2103T
 
@@ -241,15 +247,22 @@ Examples:
 * `addTask d/Project meeting g/CS2103T type/todo pty/low`
   * Add a non-recurring `todo` with no date and `low` priority and
     task description `Project meeting` to the group `CS2103T`
-    ![result for 'addTask d/Project meeting g/CS2103T type/todo pty/low'](images/addTaskExample1.PNG)
+
+![result for 'addTask d/Project meeting g/CS2103T type/todo pty/low'](images/addTaskExample1.PNG)
+
+<div style="page-break-after: always;"></div>
+
 * `addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high`
   * Add a non-recurring `deadline` due on `2020-11-02`
     with `high` priority and task description `Presentation 1`to the group `CS2101`
-    ![result for 'addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high'](images/addTaskExample2.PNG)
+
+![result for 'addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high'](images/addTaskExample2.PNG)
+
 * `addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month`
   * Add a `event` that recurs every `month` with
     date `2020-10-02` and default `med` priority and task description `Mock QnA` to the group `CS2101`
-    ![result for 'addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month'](images/addTaskExample3.PNG)
+  
+![result for 'addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month'](images/addTaskExample3.PNG)
 
 <div style="page-break-after: always;"></div>
 
@@ -286,8 +299,6 @@ Deletes the task at the specified `INDEX`.
 Examples:
 * `deleteTask 1` 
   * Deletes the 1st task in the task list.
-
-<div style="page-break-after: always;"></div>
 
 #### Marking a task as done: `doneTask`
 
@@ -400,6 +411,8 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Group** | `group GROUP` <br> e.g., `group CS2103T`
 **List** | `list`
+
+<div style="page-break-after: always;"></div>
 
 ### Task Management Commands
 
