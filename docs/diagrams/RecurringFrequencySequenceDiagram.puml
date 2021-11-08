@@ -28,10 +28,12 @@ opt is a recurring task
 TaskList -> Task : updateRecurringTaskDate()
 activate Task
 
+opt isLastWeek
 Task -> Date : getDateForThisWeek()
 activate Date
 Date --> Task : newDate
 deactivate Date
+end
 
 Task -->TaskList
 deactivate Task
