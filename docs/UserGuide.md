@@ -3,9 +3,13 @@ layout: page
 title: User Guide
 ---
 
-SWEe-book is a **desktop app for CS2103T/CS2101 Computer Science students to manage contacts and tasks pertaining to CS2103T/CS2101 module, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, SWEe-book can get your contact management and task management done faster than traditional GUI apps.
-SWEe-book offers **one-stop integration solution to your group work management.**
+SWEe-book is a **desktop app for CS2103T/CS2101 Computer Science students to manage contacts and tasks 
+pertaining to CS2103T/CS2101 module, optimized for use via a Command Line Interface** (CLI). This means that you can operate 
+the application by typing commands into a Command Box. If you can type fast, SWEe-book can get your contact management and 
+task management done faster than traditional Graphical User Interface (GUI) applications, 
+which allows users to interact with the application through graphical icons such as buttons.<br>
+
+SWEe-book offers **one-stop integration solution to managing tasks and contacts in your CS2103T or CS2101 group.**
 
 
 * Table of Contents
@@ -31,9 +35,9 @@ SWEe-book offers **one-stop integration solution to your group work management.*
 
    * **`add`**`n/John Doe g/CS2103T p/98765432 e/johnd@example.com tg/johndoe gh/johndoe` : Adds a contact named `John Doe` to the SWEe-book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`listTasks`** : Lists all tasks.
 
-   * **`clear`** : Deletes all contacts.
+   * **`deleteTask`**`1` : Deletes the first task shown in the current task list.
 
    * **`exit`** : Exits the app.
 
@@ -51,7 +55,7 @@ SWEe-book offers **one-stop integration solution to your group work management.*
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g. `type/TYPE [date/DATE]` can be used as `type/deadline [date/2021-09-11]` or as `type/deadline`.
+  e.g. `type/TYPE [date/DATE]` can be used as `type/todo [date/2021-09-11]` or as `type/todo`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -206,7 +210,7 @@ Deletes the task at the specified `INDEX`.
 
 Examples:
 * `deleteTask 1` deletes the 1st task in the task list.
-
+  ![result for 'deleteTask 1'](images/deleteTaskCommandExample.png)
 ### Marking a task as done: `doneTask`
 
 Format: `doneTask INDEX`
@@ -214,9 +218,11 @@ Format: `doneTask INDEX`
 Marks the task at the specified `INDEX` as done.
 * The index refers to the index number shown in the displayed task list.
 * The index must be a positive integer 1, 2, 3, …
+* The task must not have been marked as done before.
 
 Examples:
 * `doneTask 1` marks the 1st task in the task list as done.
+  ![result for 'doneTask 1'](images/doneTaskCommandExample.png)
 
 ### Sorting tasks: `sortTasks`
 Sort tasks based on their description or their deadlines (chronologically, or the reverse), or by time added.
