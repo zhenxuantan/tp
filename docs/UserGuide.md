@@ -105,23 +105,6 @@ Format: `list`
 
 <div style="page-break-after: always;"></div>
 
-### Editing a person : `edit`
-
-Edits an existing person in SWEe-book.
-
-Format: `edit INDEX [n/NAME] [g/GROUP1] [g/GROUP2] [p/PHONE] [e/EMAIL] [tg/TELEGRAM] [gh/GITHUB]`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-
-Examples:
-* `find Betsy` followed by `edit 1 <arguments>...` edits the 1st person in the results of the `find` command.
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-   ![result for edit 1 p/91234567 e/johndoe@example.com'](images/EditTaskExample1.png)
-
-<div style="page-break-after: always;"></div>
-
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -139,6 +122,24 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult1.png)
+  
+### Editing a person : `edit`
+
+Edits an existing person in SWEe-book.
+
+Format: `edit INDEX [n/NAME] [g/GROUP1] [g/GROUP2] [p/PHONE] [e/EMAIL] [tg/TELEGRAM] [gh/GITHUB]`
+
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+   ![result for edit 1 p/91234567 e/johndoe@example.com'](images/EditPersonExample1.png)
+* `find Bernice` followed by `edit 1 tg/bernyu gh/bernyu` edits the telegram and github usernames of the 1st person in the results of the `find` command.
+  ![result for find and edit'](images/EditPersonExample2.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a person : `delete`
 
