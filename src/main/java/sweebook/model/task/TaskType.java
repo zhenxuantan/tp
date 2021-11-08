@@ -10,7 +10,7 @@ public class TaskType {
     public final String taskType;
 
     /**
-     * Constructs an {@code Group}.
+     * Constructs a {@code Group}.
      *
      * @param taskType A valid taskType.
      */

@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("editTask 1 d/OP2 rehearsal g/CS2101 type/Event date/2021-11-11")
+[-> LogicManager : execute("editTask 1 d/OP2\nrehearsal g/CS2101\ntype/Event date/2021-11-11")
 activate LogicManager
 
-LogicManager -> SweeBookParser : parseCommand("editTask 1 d/OP2 rehearsal g/CS2101 type/Event date/2021-11-11")
+LogicManager -> SweeBookParser : parseCommand("editTask 1 d/OP2\nrehearsal g/CS2101\ntype/Event date/2021-11-11")
 activate SweeBookParser
 
 create EditTaskCommandParser
@@ -27,7 +27,7 @@ activate EditTaskCommandParser
 EditTaskCommandParser --> SweeBookParser
 deactivate EditTaskCommandParser
 
-SweeBookParser -> EditTaskCommandParser : parse("1 d/OP2 rehearsal g/CS2101 type/Event date/2021-11-11")
+SweeBookParser -> EditTaskCommandParser : parse("1 d/OP2 rehearsal g/CS2101\ntype/Event date/2021-11-11")
 activate EditTaskCommandParser
 
 create EditTaskDescriptor

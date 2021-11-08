@@ -68,7 +68,7 @@ SWEe-book offers **one-stop integration solution to your group work management.*
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the user guide in cases when error messages are still insufficient for user.
+Shows a window that allows users to copy the website link to access the user guide in cases when error messages are still insufficient for user.
 
 ![help message](images/helpMessage.png)
 
@@ -97,6 +97,8 @@ Examples:
 Shows a list of all persons in SWEe-book.
 
 Format: `list`
+
+<div style="page-break-after: always;"></div>
 
 ### Editing a person : `edit`
 
@@ -132,6 +134,8 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult1.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from SWEe-book.
@@ -158,6 +162,8 @@ Examples:
 * `group CS2101` returns people in CS2101
 * `group CS2103T` returns people in CS2103T
   ![result for 'group CS2103T'](images/GroupCommandExample1.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a Task : `addTask`
 
@@ -220,27 +226,25 @@ Marks the task at the specified `INDEX` as done.
 Examples:
 * `doneTask 1` marks the 1st task in the task list as done.
 
+<div style="page-break-after: always;"></div>
+
 ### Sorting tasks: `sortTasks`
-Sort tasks based on their description or their deadlines (chronologically, or the reverse), or by time added.
+Sort tasks based on their descriptions, groups, priorities or deadlines / event dates.
 
 Format: `sortTasks param/PARAMETER o/ORDER`
-* The sort is case-insensitive. e.g. CS2103 will be lexicographically identical to cs2103
-* PARAMETER includes 'desc' (for description), 'date' (for a deadline / time of event), 'pty' (for priority) and 'group'.
-* ORDER includes 'a' for ascending order (0-9 and A-Z, oldest to newest, lowest to highest priority) and 'd' for descending order(Z-A and 9-0, newest to oldest, highest to lowest priority)
-* When the tasks are sorted by date, 'todo' tasks will always be at the bottom of the list.
+* The sort is case-insensitive. e.g. CS2103T will be lexicographically identical to cs2103t, but cs2101 still comes before CS2103T.
+* `PARAMETER` includes `desc` (for description), `date` (for a deadline / date of event), `pty` (for priority) and `group`.
+* `ORDER` includes `a` for ascending order (0-9 and A-Z, oldest to newest, lowest to highest priority) and `d` for descending order(Z-A and 9-0, newest to oldest, highest to lowest priority)
+* When the tasks are sorted by `date`, date-less `Todo` tasks will always be at the bottom of the list.
 
 Examples:
-If the following are in the task list:
+* `sortTasks param/pty o/a` returns the tasks with the lowest priority at the top and highest priority at the bottom
+* `sortTasks param/group o/a` returns CS2101 tasks at the top and CS2103T tasks at the bottom
+* `sortTasks param/desc o/d` returns the tasks with the tasks whose description starts with "Z" at the top, then "Y", and so on.
+* `sortTasks param/date o/a` returns the tasks in chronological order (in terms of their deadlines / event dates)
+* `sortTasks param/date o/d` returns the tasks in reverse chronological order (in terms of their deadlines / event dates)
 
-Type | Description | Date
- ----- | ----- | -----
- `Todo`| user guide  | 28-09-2020
- `Deadline`| quiz | 25-09-2020
- `Event` | test | 21-09-2020
- `Event` | exam | 22-09-2020
-
-* `sortTasks param/desc o/d` return tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam`
-* `sortTasks param/date o/a` return tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
+![result for 'sortTasks param/date o/a' and 'sortTasks param/date o/a'](images/SortTasksScreenshot.png)
 
 ### Filtering tasks by modules: `filterTasks`
 Filter tasks based on a criterion
@@ -253,7 +257,11 @@ Format: `filterTasks FILTER_CRITERION`
 
 Examples:
 * `filterTasks g/CS2101` shows all the tasks related to CS2101 group
-* `filterTasks date/2021-10-10` shows all the tasks with date of 10 Oct 2021
+* `filterTasks date/2021-11-21` shows all the tasks with date of 21 Nov 2021
+
+![result for 'filterTasks g/CS2101' and 'filterTasks date/2021-11-21'](images/FilterTasksScreenshot.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Listing all tasks: `listTasks`
 Shows a list of all tasks in SWEe-book.
@@ -288,10 +296,6 @@ SWEe-book contacts data are saved as a JSON file `[JAR file location]/data/conta
 If your changes to the data file makes its format invalid, SWEe-book will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
@@ -315,7 +319,7 @@ Action | Format, Examples
 **Group** | `group GROUP` <br> e.g., `group CS2103T`
 **List** | `list`
 **Help** | `help`
-**Add Task** | `addTask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
+**Add Task** | `addTask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]` <br> (do note that `DATE` is only optional for `Todo` tasks)
 **Edit Task** | `editTask INDEX [d/DESCRIPTION] [g/GROUP] [type/TYPE] [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
 **Delete Task** | `deleteTask INDEX`
 **Done Task** | `doneTask INDEX`

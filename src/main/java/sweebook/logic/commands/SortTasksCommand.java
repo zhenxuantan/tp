@@ -8,6 +8,9 @@ import sweebook.logic.commands.exceptions.CommandException;
 import sweebook.model.Model;
 import sweebook.model.task.SortTaskComparator;
 
+/**
+ * Sorts the tasks in the task list with a specified parameter and order.
+ */
 public class SortTasksCommand extends Command {
     public static final String COMMAND_WORD = "sortTasks";
 
@@ -41,5 +44,12 @@ public class SortTasksCommand extends Command {
         requireNonNull(model);
         model.updateSortedTaskList(comparator);
         return new CommandResult(returnMessage);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof SortTasksCommand // instanceof handles nulls
+            && comparator.equals(((SortTasksCommand) other).comparator)); // state check
     }
 }

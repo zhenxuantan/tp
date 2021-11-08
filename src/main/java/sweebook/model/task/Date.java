@@ -1,5 +1,6 @@
 package sweebook.model.task;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static sweebook.commons.util.AppUtil.checkArgument;
 
@@ -10,10 +11,11 @@ import java.time.format.DateTimeParseException;
 
 public class Date {
     public static final String MESSAGE_CONSTRAINTS = "Date should be in YYYY-MM-DD, and it should not be blank";
-    private static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("MMM dd yyyy");
+    public static final DateTimeFormatter DTF_STORAGE = DateTimeFormatter.ofPattern("MMM dd yyyy");
+    public static final DateTimeFormatter DTF_COMMAND = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    public final LocalDate date;
-    public final String dateString;
+    private final LocalDate date;
+    private final String dateString;
 
 
     /**
@@ -42,7 +44,7 @@ public class Date {
 
     @Override
     public String toString() {
-        return date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        return date.format(DTF_STORAGE);
     }
 
     public LocalDate getLocalDate() {
@@ -121,44 +123,44 @@ public class Date {
         LocalDate monday = today.with(DayOfWeek.MONDAY);
         switch (date.getDayOfWeek()) {
         case MONDAY:
-            return new Date(monday.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            return new Date(monday.format(DTF_COMMAND));
         case TUESDAY:
-            return new Date(monday.plusDays(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            return new Date(monday.plusDays(1).format(DTF_COMMAND));
         case WEDNESDAY:
-            return new Date(monday.plusDays(2).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            return new Date(monday.plusDays(2).format(DTF_COMMAND));
         case THURSDAY:
-            return new Date(monday.plusDays(3).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            return new Date(monday.plusDays(3).format(DTF_COMMAND));
         case FRIDAY:
-            return new Date(monday.plusDays(4).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            return new Date(monday.plusDays(4).format(DTF_COMMAND));
         case SATURDAY:
-            return new Date(monday.plusDays(5).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            return new Date(monday.plusDays(5).format(DTF_COMMAND));
         case SUNDAY:
-            return new Date(monday.plusDays(6).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            return new Date(monday.plusDays(6).format(DTF_COMMAND));
         default:
             return null;
         }
     }
 
     /**
-     * Get the day for this current date and return the same day for the current week.
-     * @return Date with the same day as current instance but for the current week.
+     * Get the day for this current date and return the same day for the current month.
+     * @return Date with the same day as current instance but for the current month.
      */
     public Date getDateForThisMonth() {
         LocalDate today = LocalDate.now();
         int todayMonth = today.getMonthValue();
         int month = this.date.getMonthValue();
-        return new Date(this.date.plusMonths(todayMonth - month).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        return new Date(this.date.plusMonths(todayMonth - month).format(DTF_COMMAND));
     }
 
     /**
-     * Get the day for this current date and return the same day for the current week.
-     * @return Date with the same day as current instance but for the current week.
+     * Get the day for this current date and return the same day for the current year.
+     * @return Date with the same day as current instance but for the current year.
      */
     public Date getDateForThisYear() {
         LocalDate today = LocalDate.now();
         int todayYear = today.getYear();
         int year = this.date.getYear();
-        return new Date(this.date.plusYears(todayYear - year).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        return new Date(this.date.plusYears(todayYear - year).format(DTF_COMMAND));
     }
 
 }

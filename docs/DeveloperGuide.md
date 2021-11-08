@@ -71,7 +71,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 ![Parser class](images/ParserClasses.png)
 
 How the parsing works:
-* When called upon to parse a user command, the `SweeParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddTaskCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SweeBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `SweeBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddTaskCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SweeBookParser` returns back as a `Command` object.
 
 <div style="page-break-after: always;"></div>
 
@@ -100,7 +100,7 @@ Specifically for `Person`,
 Lastly, specfically for `Task`,
 * a task has a date (to specify a deadline or time of event), description, priority, and recurring frequency
 * recurring frequency can be in terms of weekly, monthly and yearly
-* priority can be low, medium or high priorities
+* priority can be low, medium or high
 * a task can be instantiated as a `Todo`, `Deadlne` or `Event`
 
 <div style="page-break-after: always;"></div>
@@ -113,15 +113,6 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-W12-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
-
-The Sequence Diagram below illustrates the interactions between the `Logic` component and `Model` component for the `execute("sortTasks param/desc o/a")` API call. It also shows how it interacts with the `UI` Component through the illustration of the command's interaction with JavaFx's `ObservableLists` (`FilteredList` and `SortedList`).
-
-![Interactions between logic and model component for `sortTasks param/desc o/a`](images/SortTasksExecutionSequenceDiagram.png)
-
-![Sub-diagram for the parsing of command for `sortTasks param/desc o/a`](images/SortTasksParserSequenceDiagram.png)
-
-The JavaFx package automatically detects any changes to the task list, implemented with JavaFX's `ObservableList`. This includes detecting changes in the comparators and filters applied on it. When the `SortTasksCommand` is executed, it removes any existing filters applied on the task list to reset the task list back to its original state before setting a comparator to it.
-{More explanation to be given}
 
 <div style="page-break-after: always;"></div>
 
@@ -170,9 +161,6 @@ for **recurring** tasks and **deadline/event** tasks. Else, an error message wil
 * Alternative 1: Update the fields of the old task, without creating a new task.
     * Pros: Less logic needed, less complexity. (No need for `EditTaskDescriptor` class)
     * Cons: Hard to debug, and more prone to errors, as we are mutating the object in the list
-    
-
-
 
 ### Recurring Tasks feature
 The recurring task feature allows users to add tasks that can be repeated by week, month, or year. It is facilitated
@@ -203,6 +191,20 @@ the SWEe-book application.
   current week, with the same day.
 * Step 3. The user then launches the application a week after. The `Task` is updated similarly to Step 2, and since it 
   is checked against real-time, it is updated to the current week.
+
+<div style="page-break-after: always;"></div>
+
+### Sort Tasks Feature
+
+The Sequence Diagram below illustrates the interactions between the `Logic` component and `Model` component for the `execute("sortTasks param/desc o/a")` API call. It also shows how it interacts with the `UI` Component through the illustration of the command's interaction with JavaFx's `ObservableLists` (`FilteredList` and `SortedList`).
+
+![Interactions between logic and model component for `sortTasks param/desc o/a`](images/SortTasksExecutionSequenceDiagram.png)
+
+![Sub-diagram for the parsing of command for `sortTasks param/desc o/a`](images/SortTasksParserSequenceDiagram.png)
+
+The JavaFx package automatically detects any changes to the task list, implemented with JavaFX's `ObservableList`. This includes detecting changes in the comparators and filters applied on it. When the `SortTasksCommand` is executed, it removes any existing filters applied on the task list to reset the task list back to its original state before setting a comparator to it. The `FilterTasksCommand` works the same way as well by setting the `comparator` to `null` while setting the `predicate` to the appropriate predicate (filter).  
+
+---
 
 <div style="page-break-after: always;"></div>
 
@@ -244,27 +246,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | filter the task according to the different modules | I know what I can do for each module               |
 | `* *` | user | edit specific fields in a task | conveniently change specific fields without needing to delete and add back a task
 
-*{More to be added}*
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
-(For all use cases below, the **System** is the `SWEe-book` and the **Actor** is the `user`, unless specified otherwise)
-
-
+(For all use cases below, the **System** is the `SWEe-book`, **Actor** is the `user` while **person** can be used interchangeably with contact (as in contact list), unless specified otherwise)
 
 **Use case (UC01): Add a person**
 
 **MSS**
 
-1.  User adds a person
-2.  System shows the details of the person
+1. User adds a person
+2. System shows the details of the person
 
     Use case ends.
 
 **Extensions**
 
 * 2a. The details are invalid or incomplete.
-
     * 2a1. System shows an error message.
 
       Use case resumes at step 2.
@@ -273,10 +272,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons
-2.  System shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  System deletes the person
+1. User requests to list persons
+2. System shows a list of persons
+3. User requests to delete a specific person in the list
+4. System deletes the person
 
     Use case ends.
 
@@ -287,7 +286,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-
     * 3a1. System shows an error message.
 
       Use case resumes at step 2.
@@ -306,7 +304,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 3a. The details are invalid or incomplete.
-
     * 3a1. System shows an error message.
 
       Use case resumes at step 3.
@@ -317,8 +314,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to find a person / a group of people using some keywords
 2. System shows a list of persons pertaining to the keywords
-   
-  Use case ends.
+
+    Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case (UC05): Add a task**
 
@@ -327,7 +326,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User keys in a task.
 2. System shows the details of the task added to task list. 
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -348,7 +347,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The details are invalid or incomplete.
-
     * 1a1. System shows an error message.
 
       Use case resumes at step 3.
@@ -359,15 +357,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. System shows a list of tasks.
 3. User keys in an index.
 4. The task of specified index in task list is removed.
-   
-  Use case ends.
+
+    Use case ends.
 
 **Extensions**
 
 * 1a. User keys in an invalid index.
     * 1a1. System displays an error message about invalid index.
 
-  Use case ends.
+        Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case (UC08): Have an overview of group mates' contact details**
 
@@ -381,14 +381,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. User keys in an invalid group.
     * 1a1. System displays an error message about invalid group.
 
-  Use case ends.
+        Use case ends.
 
 **Use case (UC09): Have a list of tasks**
 
-1. User keys in the command `listtasks`.
+1. User keys in the command to list the tasks.
 2. System displays the list of tasks.
-   
-  Use case ends.
+
+    Use case ends.
 
 **Extensions**
 
@@ -399,24 +399,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case (UC10): Sort tasks**
 
-1. User keys in the parameter (desc, due, added) and order (0, 1).
-2. System displays the tasks in the sorted order specified.
+1. User keys the command, the parameter and order which he wants the tasks to be sorted by.
+2. System displays the tasks in the parameter and order specified.
 
-  Use case ends.
+    Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Extensions**
 
-* 1a. User keys in an invalid parameter or oder.
+* 1a. User keys in an invalid parameter or order.
     * 1a1. System displays an error message about invalid parameter or order.
 
-  Use case ends.
+        Use case ends.
 
 **Use case (UC11): Filter tasks**
 
 1. User keys in a filter criterion.
 2. System displays the tasks pertaining to the criterion specified.
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -439,7 +441,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-*{More to be added}*
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -450,8 +452,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. System still works even if the data file is missing.
 6. If the data file is corrupted, the corrupted file is overwritten with an empty data file.
 7. System will not collect any information from the user to abide by the Personal Data Protection Act.
-
-*{More to be added}*
 
 ### Glossary
 

@@ -25,6 +25,9 @@ import sweebook.model.task.RecurringFrequency;
 import sweebook.model.task.Task;
 import sweebook.model.task.TaskType;
 
+/**
+ * Edits the details of an existing task in the task list.
+ */
 public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "editTask";
 
@@ -112,7 +115,6 @@ public class EditTaskCommand extends Command {
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
         model.setTask(taskToEdit, editedTask);
-        model.updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 

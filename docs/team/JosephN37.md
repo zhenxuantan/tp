@@ -3,7 +3,7 @@ layout: page
 title: Joseph's Project Portfolio Page
 ---
 
-### Project: SWEe-book
+# Project: SWEe-book
 
 SWEe-book is a desktop application used for contact and task management pertaining to CS2103T and CS2101 module. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 

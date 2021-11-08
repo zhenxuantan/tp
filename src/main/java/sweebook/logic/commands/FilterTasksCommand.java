@@ -8,6 +8,9 @@ import sweebook.logic.commands.exceptions.CommandException;
 import sweebook.model.Model;
 import sweebook.model.task.FilterTaskPredicate;
 
+/**
+ * Filters the tasks in the task list with a specified criterion.
+ */
 public class FilterTasksCommand extends Command {
     public static final String COMMAND_WORD = "filterTasks";
 

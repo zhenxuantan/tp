@@ -10,6 +10,9 @@ import sweebook.logic.commands.exceptions.CommandException;
 import sweebook.model.Model;
 import sweebook.model.task.Task;
 
+/**
+ * Deletes a task identified using it's displayed index from the task list.
+ */
 public class DeleteTaskCommand extends Command {
     public static final String COMMAND_WORD = "deleteTask";
 
@@ -24,7 +27,7 @@ public class DeleteTaskCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates an DeleteTaskCommand to add the specified {@code Task}
+     * Creates an DeleteTaskCommand to delete the specified {@code Task}
      */
     public DeleteTaskCommand(Index index) {
         this.targetIndex = index;

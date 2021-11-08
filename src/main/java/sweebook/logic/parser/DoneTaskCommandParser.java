@@ -8,6 +8,7 @@ import sweebook.logic.commands.DoneTaskCommand;
 import sweebook.logic.parser.exceptions.ParseException;
 
 public class DoneTaskCommandParser implements Parser<DoneTaskCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the DoneTaskCommand
      * and returns an DoneTaskCommand object for execution.

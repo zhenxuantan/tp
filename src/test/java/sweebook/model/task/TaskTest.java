@@ -263,6 +263,7 @@ class TaskTest {
         assertTrue(deadline1.compareBefore(event1) < 0);
 
         //compare between date and null (todo)
+        assertTrue(todo2.compareBefore(event1) > 0);
         assertTrue(event1.compareBefore(todo2) < 0);
 
     }
@@ -277,6 +278,7 @@ class TaskTest {
         assertTrue(deadline1.compareAfter(event1) > 0);
 
         //compare between date and null (todo)
+        assertTrue(todo2.compareAfter(event1) < 0);
         assertTrue(event1.compareAfter(todo2) > 0);
     }
 

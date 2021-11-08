@@ -52,8 +52,7 @@ public class TaskRecords implements ReadOnlyTaskRecords {
      * @return deleted Task
      */
     public Task deleteTask(Task task) {
-        Task toDelete = records.delete(task);
-        return toDelete;
+        return records.delete(task);
     }
 
     /**
@@ -91,7 +90,6 @@ public class TaskRecords implements ReadOnlyTaskRecords {
     @Override
     public String toString() {
         return records.asUnmodifiableObservableList().size() + " tasks";
-        // TODO: refine later
     }
 
     @Override

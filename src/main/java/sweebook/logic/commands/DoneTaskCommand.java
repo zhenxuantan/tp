@@ -10,6 +10,9 @@ import sweebook.logic.commands.exceptions.CommandException;
 import sweebook.model.Model;
 import sweebook.model.task.Task;
 
+/**
+ * Marks a task identified using it's displayed index from the task list as done.
+ */
 public class DoneTaskCommand extends Command {
     public static final String COMMAND_WORD = "doneTask";
 

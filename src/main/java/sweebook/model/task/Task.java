@@ -156,13 +156,7 @@ public class Task {
      * @return an integer for comparison
      */
     public int comparePriority(Task otherTask) {
-        if (isNull(getPriority())) {
-            return 1;
-        } else if (isNull(otherTask.getPriority())) {
-            return -1;
-        } else {
-            return this.getPriority().compareTo(otherTask.getPriority());
-        }
+        return this.getPriority().compareTo(otherTask.getPriority());
     }
 
     /**

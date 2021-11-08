@@ -102,80 +102,76 @@ class JsonAdaptedTask {
     }
 
     private Description getDescriptionFromJson(String descriptionFromJson) throws IllegalValueException {
-        if (descriptionFromJson == null) {
+        if (isNull(descriptionFromJson)) {
             throw new IllegalValueException(String.format(
                 MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
         if (!Description.isValidDescription(descriptionFromJson)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        Description finalDescription = new Description(descriptionFromJson);
-        return finalDescription;
+        return new Description(descriptionFromJson);
     }
 
     private Group getGroupFromJson(String groupFromJson) throws IllegalValueException {
-        if (groupFromJson == null) {
+        if (isNull(groupFromJson)) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Group.class.getSimpleName()));
         }
         if (!Group.isValidGroup(groupFromJson)) {
             throw new IllegalValueException(Group.MESSAGE_CONSTRAINTS);
         }
-        Group finalGroup = new Group(groupFromJson);
-        return finalGroup;
+        return new Group(groupFromJson);
     }
 
     private TaskType getTaskTypeFromJson(String taskTypeFromJson) throws IllegalValueException {
-        if (taskTypeFromJson == null) {
+        if (isNull(taskTypeFromJson)) {
             throw new IllegalValueException(String.format(
                 MISSING_FIELD_MESSAGE_FORMAT, TaskType.class.getSimpleName()));
         }
         if (!TaskType.isValidTaskType(taskTypeFromJson)) {
             throw new IllegalValueException(TaskType.MESSAGE_CONSTRAINTS);
         }
-        TaskType finalTaskType = new TaskType(taskTypeFromJson);
-        return finalTaskType;
+        return new TaskType(taskTypeFromJson);
     }
 
     private Date getDateFromJson(String dateFromJson) throws IllegalValueException {
         Date finalDate;
         if (isNull(dateFromJson)) {
             finalDate = null;
-        }
-        try {
-            DateTimeFormatter storageDtf = DateTimeFormatter.ofPattern("MMM dd yyyy");
-            DateTimeFormatter commandDtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        } else {
+            try {
+                DateTimeFormatter storageDtf = Date.DTF_STORAGE;
+                DateTimeFormatter commandDtf = Date.DTF_COMMAND;
 
-            String formattedDate = commandDtf.format(storageDtf.parse(dateFromJson));
-            finalDate = new Date(formattedDate);
-        } catch (DateTimeParseException e) {
-            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+                String formattedDate = commandDtf.format(storageDtf.parse(dateFromJson));
+                finalDate = new Date(formattedDate);
+            } catch (DateTimeParseException e) {
+                throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+            }
         }
         return finalDate;
     }
 
     private Priority getPriorityFromJson(String priorityFromJson) throws IllegalValueException {
-        Priority finalPriority;
         if (isNull(priorityFromJson)) {
-            finalPriority = new Priority("med");
+            throw new IllegalValueException(String.format(
+                MISSING_FIELD_MESSAGE_FORMAT, Priority.class.getSimpleName()));
         }
         if (!Priority.isValidPriority(priorityFromJson)) {
-            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(RecurringFrequency.MESSAGE_CONSTRAINTS);
         }
-        finalPriority = new Priority(priorityFromJson);
-        return finalPriority;
+        return new Priority(priorityFromJson);
     }
 
     private RecurringFrequency getRecurringFrequencyFromJson(String recurringFrequencyFromJson)
         throws IllegalValueException {
-        if (recurringFrequencyFromJson == null) {
+        if (isNull(recurringFrequencyFromJson)) {
             throw new IllegalValueException(String.format(
                 MISSING_FIELD_MESSAGE_FORMAT, RecurringFrequency.class.getSimpleName()));
         }
         if (!RecurringFrequency.isValidRecurringFrequency(recurringFrequencyFromJson)) {
             throw new IllegalValueException(RecurringFrequency.MESSAGE_CONSTRAINTS);
         }
-        RecurringFrequency finalRecurringFrequency = new RecurringFrequency(recurringFrequencyFromJson);
-        return finalRecurringFrequency;
+        return new RecurringFrequency(recurringFrequencyFromJson);
     }
 
     private void updateIfTaskDone(Task task, String status) {
