@@ -67,6 +67,10 @@ SWEe-book offers **one-stop integration solution to managing tasks and contacts 
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `clear` and `listTasks`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  
+* INDEX parameter for all commands requiring INDEX only take values between 1 to MAX_INT inclusive, where MAX_INT is 2147483647. <br>
+  e.g. if you specify `INDEX` as 2147483648 or as 0, for example `deleteTask 2147483648` or `doneTask 0`, an error message will be shown.
+
 
 </div>
 

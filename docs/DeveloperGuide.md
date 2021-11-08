@@ -242,7 +242,8 @@ The JavaFx package automatically detects any changes to the task list, implement
 ### Done Tasks Feature
 #### Implementation
 The doneTask feature allows users to mark a specific task as done.
-Given below is a sequence diagram of the execution of a doneTask command: [Click here for better resolution](https://ay2122s1-cs2103t-w12-2.github.io/tp/images/DoneTaskSequenceDiagram.png)
+Given below is a sequence diagram of the execution of a doneTask command: 
+[Click here for better resolution](https://ay2122s1-cs2103t-w12-2.github.io/tp/images/DoneTaskSequenceDiagram.png)
 
 ![Seq-diagram for the parsing of command for `doneTask 1`](images/DoneTaskSequenceDiagram.png)
 
@@ -253,11 +254,12 @@ Preconditions: Valid task index provided.
 2. The first task in task list is marked as done.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If any of the guard clauses fail, 
-i.e. the index given is negative or otherwise invalid, or the task has already been marked as done, an appropriate exception will be thrown and 
-an appropriate error message will be shown to the user.
+i.e. the index given is negative or otherwise invalid, or the task has already been marked as done, an appropriate 
+exception will be thrown and an appropriate error message will be shown to the user.
 (It does not make sense to mark a task that has been done as done!)
 </div>
-The following activity diagram summarizes the actions taken when DoneTaskCommand is executed: <br>
+The following activity diagram summarizes the actions taken when DoneTaskCommand is executed:<br>
+
 ![DoneTaskActivityDiagram](images/DoneTaskCommandActivityDiagram.png)
 
 #### Alternative considerations
