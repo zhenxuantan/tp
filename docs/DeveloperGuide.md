@@ -709,15 +709,15 @@ Given below are instructions to test the app manually.
        Expected: An error message is shown, indicating that index should not be negative.
 
 
-## Appendix: Effort
+## **Appendix: Effort**
 
-###Adding new UI components
+### Adding new UI components
 * After V1.2, our team had yet to modify the existing AB3 UI , despite already implementing one of the main components of SWEe-book, namely task management, and made some adjustments to the existing contact list component. We encountered some difficulties in reflecting task list in the UI, and also modifying it with features such as FilterTasks and SortTasks, and thus at that time most of the task management is still reflected on the CLI only. Fortunately, our group managed to make use of Java SortedList and FilteredList to help us implement the task management UI component.
 
-###Implementing dynamic features
+### Implementing dynamic features
 * SWEe-book features implemented require the user to type in commands in the CLI to be executed. As our group implemented more features which allow for more variations and contextualization, such as task priority, we realized that this may be too troublesome for a part of our target audience as they may have to type relatively long commands, especially for task management. Thus, to minimize this, we decided to make some feature fields optional. This means that when the user does not specify the field, it will be set to a default value. For example, when task priority is not specified, it will be automatically set to a default value of “medium”. We believe that this will make SWEe-book more convenient to use as our target audience do not need to type too long of a command, while still being given the option to specify more details.
 
-###Showing warnings when the data file is invalid or empty
+### Showing warnings when the data file is invalid or empty
 * When the app starts up, it will load the data from the respective data files (.json files). When an error occurs, it is difficult to display an error message onto the Ui as it would break the current design pattern where a message will only appear through a user-input command from the class CommandResult. Loading from the storage files should not go through a series command. However, It is also not good to not inform the users about the error and just simply give an empty contact list or task list. To counter that, we just simply make the Ui pop-up a new window to inform the users about the error, whether the data files are missing or corrupted.
 
 ## Acknowledgement
