@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SweeBookParser" as SweeBookParser LOGIC_COLOR
+participant ":DoneTaskCommandParser" as DoneTaskCommandParser LOGIC_COLOR
+participant "d:DoneTaskCommand" as DoneTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("doneTask 1")
+activate LogicManager
+
+LogicManager -> SweeBookParser : parseCommand("doneTask 1")
+activate SweeBookParser
+
+create DoneTaskCommandParser
+SweeBookParser -> DoneTaskCommandParser
+activate DoneTaskCommandParser
+
+DoneTaskCommandParser --> SweeBookParser
+deactivate DoneTaskCommandParser
+
+SweeBookParser -> DoneTaskCommandParser : parse("1")
+activate DoneTaskCommandParser
+
+create DoneTaskCommand
+DoneTaskCommandParser -> DoneTaskCommand : new DoneTaskCommand(1)
+activate DoneTaskCommand
+
+DoneTaskCommand --> DoneTaskCommandParser : command
+deactivate DoneTaskCommand
+
+DoneTaskCommandParser --> SweeBookParser : command
+deactivate DoneTaskCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DoneTaskCommandParser -[hidden]-> SweeBookParser
+destroy DoneTaskCommandParser
+
+SweeBookParser --> LogicManager : command
+deactivate SweeBookParser
+
+LogicManager -> DoneTaskCommand : execute()
+activate DoneTaskCommand
+
+DoneTaskCommand -> Model : getTasks()
+activate Model
+
+Model --> DoneTaskCommand
+
+DoneTaskCommand -> Model : doneTask(task)
+
+Model --> DoneTaskCommand
+
+deactivate Model
+
+create CommandResult
+DoneTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DoneTaskCommand
+deactivate CommandResult
+
+DoneTaskCommand --> LogicManager : result
+deactivate DoneTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
