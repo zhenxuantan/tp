@@ -6,13 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static sweebook.testutil.Assert.assertThrows;
-import static sweebook.testutil.TypicalTasks.DEADLINE1;
-import static sweebook.testutil.TypicalTasks.DEADLINE2;
-import static sweebook.testutil.TypicalTasks.EVENT1;
-import static sweebook.testutil.TypicalTasks.TODO1;
-import static sweebook.testutil.TypicalTasks.TODO2;
-import static sweebook.testutil.TypicalTasks.TODO2_CAPS;
-import static sweebook.testutil.TypicalTasks.TODO3;
+import static sweebook.testutil.TypicalTasks.FIRST_DEADLINE;
+import static sweebook.testutil.TypicalTasks.FIRST_EVENT;
+import static sweebook.testutil.TypicalTasks.FIRST_TODO;
+import static sweebook.testutil.TypicalTasks.SECOND_DEADLINE;
+import static sweebook.testutil.TypicalTasks.SECOND_TODO;
+import static sweebook.testutil.TypicalTasks.SECOND_TODO_WITH_CAPS;
+import static sweebook.testutil.TypicalTasks.THIRD_TODO;
 
 import org.junit.jupiter.api.Test;
 
@@ -47,9 +47,9 @@ class TaskTest {
 
     @Test
     void getStatusIcon() {
-        Task deadline1 = new TaskBuilder(DEADLINE1).build();
-        Task event1 = new TaskBuilder(EVENT1).build();
-        Task todo1 = new TaskBuilder(TODO1).build();
+        Task deadline1 = new TaskBuilder(FIRST_DEADLINE).build();
+        Task event1 = new TaskBuilder(FIRST_EVENT).build();
+        Task todo1 = new TaskBuilder(FIRST_TODO).build();
 
         // tasks that are not done
         assertEquals("[ ]", deadline1.getStatusIcon());
@@ -68,9 +68,9 @@ class TaskTest {
 
     @Test
     void getDescription() {
-        Task deadline1 = new TaskBuilder(DEADLINE1).build();
-        Task event1 = new TaskBuilder(EVENT1).build();
-        Task todo1 = new TaskBuilder(TODO1).build();
+        Task deadline1 = new TaskBuilder(FIRST_DEADLINE).build();
+        Task event1 = new TaskBuilder(FIRST_EVENT).build();
+        Task todo1 = new TaskBuilder(FIRST_TODO).build();
 
         assertEquals(new Description("Deadline 1"), deadline1.getDescription());
         assertEquals(new Description("event 1"), event1.getDescription());
@@ -79,9 +79,9 @@ class TaskTest {
 
     @Test
     void getGroup() {
-        Task deadline1 = new TaskBuilder(DEADLINE1).build();
-        Task event1 = new TaskBuilder(EVENT1).build();
-        Task todo1 = new TaskBuilder(TODO1).build();
+        Task deadline1 = new TaskBuilder(FIRST_DEADLINE).build();
+        Task event1 = new TaskBuilder(FIRST_EVENT).build();
+        Task todo1 = new TaskBuilder(FIRST_TODO).build();
 
         assertEquals(new Group("cs2101"), deadline1.getGroup());
         assertEquals(new Group("cs2103t"), event1.getGroup());
@@ -90,10 +90,10 @@ class TaskTest {
 
     @Test
     void getDate() {
-        Task deadline1 = new TaskBuilder(DEADLINE1).build();
-        Task event1 = new TaskBuilder(EVENT1).build();
-        Task todo1 = new TaskBuilder(TODO1).build();
-        Task todo3 = new TaskBuilder(TODO3).build();
+        Task deadline1 = new TaskBuilder(FIRST_DEADLINE).build();
+        Task event1 = new TaskBuilder(FIRST_EVENT).build();
+        Task todo1 = new TaskBuilder(FIRST_TODO).build();
+        Task todo3 = new TaskBuilder(THIRD_TODO).build();
 
         assertEquals(new Date("2021-12-03"), deadline1.getDate());
         assertEquals(new Date("2022-02-03"), event1.getDate());
@@ -103,9 +103,9 @@ class TaskTest {
 
     @Test
     void getTaskType() {
-        Task deadline1 = new TaskBuilder(DEADLINE1).build();
-        Task event1 = new TaskBuilder(EVENT1).build();
-        Task todo1 = new TaskBuilder(TODO1).build();
+        Task deadline1 = new TaskBuilder(FIRST_DEADLINE).build();
+        Task event1 = new TaskBuilder(FIRST_EVENT).build();
+        Task todo1 = new TaskBuilder(FIRST_TODO).build();
 
         assertEquals(new TaskType("deadline"), deadline1.getTaskType());
         assertEquals(new TaskType("event"), event1.getTaskType());
@@ -114,10 +114,10 @@ class TaskTest {
 
     @Test
     void getRecurringFrequency() {
-        Task deadline1 = new TaskBuilder(DEADLINE1).build();
-        Task event1 = new TaskBuilder(EVENT1).build();
-        Task todo1 = new TaskBuilder(TODO1).build();
-        Task deadline2 = new TaskBuilder(DEADLINE2).build();
+        Task deadline1 = new TaskBuilder(FIRST_DEADLINE).build();
+        Task event1 = new TaskBuilder(FIRST_EVENT).build();
+        Task todo1 = new TaskBuilder(FIRST_TODO).build();
+        Task deadline2 = new TaskBuilder(SECOND_DEADLINE).build();
 
         assertEquals(new RecurringFrequency("none"), deadline1.getRecurringFrequency());
         assertEquals(new RecurringFrequency("year"), event1.getRecurringFrequency());
@@ -127,9 +127,9 @@ class TaskTest {
 
     @Test
     void getPriority() {
-        Task deadline1 = new TaskBuilder(DEADLINE1).build();
-        Task event1 = new TaskBuilder(EVENT1).build();
-        Task todo1 = new TaskBuilder(TODO1).build();
+        Task deadline1 = new TaskBuilder(FIRST_DEADLINE).build();
+        Task event1 = new TaskBuilder(FIRST_EVENT).build();
+        Task todo1 = new TaskBuilder(FIRST_TODO).build();
 
         assertEquals(new Priority("med"), deadline1.getPriority());
         assertEquals(new Priority("low"), event1.getPriority());
@@ -138,9 +138,9 @@ class TaskTest {
 
     @Test
     void getPriorityIcon() {
-        Task deadline1 = new TaskBuilder(DEADLINE1).build();
-        Task event1 = new TaskBuilder(EVENT1).build();
-        Task todo1 = new TaskBuilder(TODO1).build();
+        Task deadline1 = new TaskBuilder(FIRST_DEADLINE).build();
+        Task event1 = new TaskBuilder(FIRST_EVENT).build();
+        Task todo1 = new TaskBuilder(FIRST_TODO).build();
 
         assertEquals("!!", deadline1.getPriorityIcon());
         assertEquals("!", event1.getPriorityIcon());
@@ -149,9 +149,9 @@ class TaskTest {
 
     @Test
     void isDone() {
-        Task deadline1 = new TaskBuilder(DEADLINE1).build();
-        Task event1 = new TaskBuilder(EVENT1).build();
-        Task todo1 = new TaskBuilder(TODO1).build();
+        Task deadline1 = new TaskBuilder(FIRST_DEADLINE).build();
+        Task event1 = new TaskBuilder(FIRST_EVENT).build();
+        Task todo1 = new TaskBuilder(FIRST_TODO).build();
 
         // tasks that are not done
         assertFalse(deadline1.isDone);
@@ -170,9 +170,9 @@ class TaskTest {
 
     @Test
     void markAsDone() {
-        Task deadline1 = new TaskBuilder(DEADLINE1).build();
-        Task event1 = new TaskBuilder(EVENT1).build();
-        Task todo1 = new TaskBuilder(TODO1).build();
+        Task deadline1 = new TaskBuilder(FIRST_DEADLINE).build();
+        Task event1 = new TaskBuilder(FIRST_EVENT).build();
+        Task todo1 = new TaskBuilder(FIRST_TODO).build();
 
         // tasks that are not done
         assertFalse(deadline1.isDone());
@@ -191,9 +191,9 @@ class TaskTest {
 
     @Test
     void markAsUndone() {
-        Task deadline1 = new TaskBuilder(DEADLINE1).build();
-        Task event1 = new TaskBuilder(EVENT1).build();
-        Task todo1 = new TaskBuilder(TODO1).build();
+        Task deadline1 = new TaskBuilder(FIRST_DEADLINE).build();
+        Task event1 = new TaskBuilder(FIRST_EVENT).build();
+        Task todo1 = new TaskBuilder(FIRST_TODO).build();
 
         //mark tasks as done first
         deadline1.markAsDone();
@@ -216,9 +216,9 @@ class TaskTest {
 
     @Test
     void testToString() {
-        Task deadline1 = new TaskBuilder(DEADLINE1).build();
-        Task event1 = new TaskBuilder(EVENT1).build();
-        Task todo1 = new TaskBuilder(TODO1).build();
+        Task deadline1 = new TaskBuilder(FIRST_DEADLINE).build();
+        Task event1 = new TaskBuilder(FIRST_EVENT).build();
+        Task todo1 = new TaskBuilder(FIRST_TODO).build();
 
         assertEquals("[ ] Deadline 1", deadline1.toString());
         assertEquals("[ ] event 1", event1.toString());
@@ -236,11 +236,11 @@ class TaskTest {
 
     @Test
     void compareDescription() {
-        Task deadline1 = new TaskBuilder(DEADLINE1).build();
-        Task event1 = new TaskBuilder(EVENT1).build();
-        Task todo1 = new TaskBuilder(TODO1).build();
-        Task todo2 = new TaskBuilder(TODO2).build();
-        Task todo2Caps = new TaskBuilder(TODO2_CAPS).build();
+        Task deadline1 = new TaskBuilder(FIRST_DEADLINE).build();
+        Task event1 = new TaskBuilder(FIRST_EVENT).build();
+        Task todo1 = new TaskBuilder(FIRST_TODO).build();
+        Task todo2 = new TaskBuilder(SECOND_TODO).build();
+        Task todo2Caps = new TaskBuilder(SECOND_TODO_WITH_CAPS).build();
 
         //test comparison between lowercase alphabets
         assertTrue(deadline1.compareDescription(event1) < 0);
@@ -255,9 +255,9 @@ class TaskTest {
 
     @Test
     void compareBefore() {
-        Task deadline1 = new TaskBuilder(DEADLINE1).build();
-        Task event1 = new TaskBuilder(EVENT1).build();
-        Task todo2 = new TaskBuilder(TODO2).build();
+        Task deadline1 = new TaskBuilder(FIRST_DEADLINE).build();
+        Task event1 = new TaskBuilder(FIRST_EVENT).build();
+        Task todo2 = new TaskBuilder(SECOND_TODO).build();
 
         //compare between dates
         assertTrue(deadline1.compareBefore(event1) < 0);
@@ -269,9 +269,9 @@ class TaskTest {
 
     @Test
     void compareAfter() {
-        Task deadline1 = new TaskBuilder(DEADLINE1).build();
-        Task event1 = new TaskBuilder(EVENT1).build();
-        Task todo2 = new TaskBuilder(TODO2).build();
+        Task deadline1 = new TaskBuilder(FIRST_DEADLINE).build();
+        Task event1 = new TaskBuilder(FIRST_EVENT).build();
+        Task todo2 = new TaskBuilder(SECOND_TODO).build();
 
         //compare between dates
         assertTrue(deadline1.compareAfter(event1) > 0);
@@ -282,10 +282,10 @@ class TaskTest {
 
     @Test
     void comparePriority() {
-        Task deadline1 = new TaskBuilder(DEADLINE1).build();
-        Task deadline2 = new TaskBuilder(DEADLINE2).build();
-        Task event1 = new TaskBuilder(EVENT1).build();
-        Task todo1 = new TaskBuilder(TODO1).build();
+        Task deadline1 = new TaskBuilder(FIRST_DEADLINE).build();
+        Task deadline2 = new TaskBuilder(SECOND_DEADLINE).build();
+        Task event1 = new TaskBuilder(FIRST_EVENT).build();
+        Task todo1 = new TaskBuilder(FIRST_TODO).build();
 
         assertTrue(deadline2.comparePriority(event1) > 0);
         assertTrue(event1.comparePriority(todo1) < 0);
@@ -294,9 +294,9 @@ class TaskTest {
 
     @Test
     void compareGroup() {
-        Task deadline1 = new TaskBuilder(DEADLINE1).build();
-        Task event1 = new TaskBuilder(EVENT1).build();
-        Task todo1 = new TaskBuilder(TODO1).build();
+        Task deadline1 = new TaskBuilder(FIRST_DEADLINE).build();
+        Task event1 = new TaskBuilder(FIRST_EVENT).build();
+        Task todo1 = new TaskBuilder(FIRST_TODO).build();
 
         assertTrue(deadline1.compareGroup(event1) < 0);
         assertEquals(0, deadline1.compareGroup(todo1));
@@ -305,15 +305,15 @@ class TaskTest {
 
     @Test
     void testEquals() {
-        Task deadline1 = new TaskBuilder(DEADLINE1).build();
-        Task event1 = new TaskBuilder(EVENT1).build();
-        Task todo1 = new TaskBuilder(TODO1).build();
+        Task deadline1 = new TaskBuilder(FIRST_DEADLINE).build();
+        Task event1 = new TaskBuilder(FIRST_EVENT).build();
+        Task todo1 = new TaskBuilder(FIRST_TODO).build();
 
         assertNotEquals(deadline1, event1);
         assertNotEquals(todo1, event1);
 
-        assertEquals(new TaskBuilder(DEADLINE1).build(), deadline1);
-        assertEquals(new TaskBuilder(TODO1).build(), todo1);
+        assertEquals(new TaskBuilder(FIRST_DEADLINE).build(), deadline1);
+        assertEquals(new TaskBuilder(FIRST_TODO).build(), todo1);
     }
 
 }

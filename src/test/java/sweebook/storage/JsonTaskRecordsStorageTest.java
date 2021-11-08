@@ -68,14 +68,14 @@ public class JsonTaskRecordsStorageTest {
         assertEquals(original, new TaskRecords(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addTask(TypicalTasks.EVENT2);
-        original.deleteTask(TypicalTasks.DEADLINE1);
+        original.addTask(TypicalTasks.SECOND_EVENT);
+        original.deleteTask(TypicalTasks.FIRST_DEADLINE);
         jsonTaskRecordsStorage.saveTaskRecords(original, filePath);
         readBack = jsonTaskRecordsStorage.readTaskRecords(filePath).get();
         assertEquals(original, new TaskRecords(readBack));
 
         // Save and read without specifying file path
-        original.addTask(TypicalTasks.TODO2);
+        original.addTask(TypicalTasks.SECOND_TODO);
         jsonTaskRecordsStorage.saveTaskRecords(original); // file path not specified
         readBack = jsonTaskRecordsStorage.readTaskRecords().get(); // file path not specified
         assertEquals(original, new TaskRecords(readBack));

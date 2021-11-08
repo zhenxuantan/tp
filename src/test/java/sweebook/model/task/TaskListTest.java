@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static sweebook.testutil.Assert.assertThrows;
-import static sweebook.testutil.TypicalTasks.DEADLINE1;
-import static sweebook.testutil.TypicalTasks.EVENT1;
+import static sweebook.testutil.TypicalTasks.FIRST_DEADLINE;
+import static sweebook.testutil.TypicalTasks.FIRST_EVENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -65,16 +65,16 @@ class TaskListTest {
     @Test
     void iterator() {
         TaskList taskList = new TaskList();
-        taskList.add(DEADLINE1);
-        taskList.add(EVENT1);
+        taskList.add(FIRST_DEADLINE);
+        taskList.add(FIRST_EVENT);
 
         assertTrue(taskList.iterator().hasNext());
-        assertEquals(DEADLINE1, taskList.iterator().next());
-        taskList.delete(DEADLINE1);
+        assertEquals(FIRST_DEADLINE, taskList.iterator().next());
+        taskList.delete(FIRST_DEADLINE);
 
         assertTrue(taskList.iterator().hasNext());
-        assertEquals(EVENT1, taskList.iterator().next());
-        taskList.delete(EVENT1);
+        assertEquals(FIRST_EVENT, taskList.iterator().next());
+        taskList.delete(FIRST_EVENT);
 
         assertFalse(taskList.iterator().hasNext());
     }

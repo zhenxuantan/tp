@@ -27,13 +27,15 @@ import sweebook.testutil.TaskBuilder;
  * Contains integration tests (interaction with the Model).
  */
 public class AddTaskCommandTest {
+    //null model
     @Test
     public void constructor_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddTaskCommand(null));
     }
 
+    //successful Task added
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         AddTaskCommandTest.ModelStubAcceptingTaskAdded modelStub = new AddTaskCommandTest.ModelStubAcceptingTaskAdded();
         Task validTask = new TaskBuilder().build();
 

@@ -3,9 +3,13 @@ layout: page
 title: User Guide
 ---
 
-SWEe-book is a **desktop app for CS2103T/CS2101 Computer Science students to manage contacts and tasks pertaining to CS2103T/CS2101 module, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, SWEe-book can get your contact management and task management done faster than traditional GUI apps.
-SWEe-book offers **one-stop integration solution to your group work management.**
+SWEe-book is a **desktop app for CS2103T/CS2101 Computer Science students to manage contacts and tasks 
+pertaining to CS2103T/CS2101 module, optimized for use via a Command Line Interface** (CLI). This means that you can operate 
+the application by typing commands into a Command Box. If you can type fast, SWEe-book can get your contact management and 
+task management done faster than traditional Graphical User Interface (GUI) applications, 
+which allows users to interact with the application through graphical icons such as buttons.<br>
+
+SWEe-book offers **one-stop integration solution to managing tasks and contacts in your CS2103T or CS2101 group.**
 
 
 * Table of Contents
@@ -32,9 +36,9 @@ SWEe-book offers **one-stop integration solution to your group work management.*
 
    * **`add`**`n/John Doe g/CS2103T p/98765432 e/johnd@example.com tg/johndoe gh/johndoe` : Adds a contact named `John Doe` to the SWEe-book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`listTasks`** : Lists all tasks.
 
-   * **`clear`** : Deletes all contacts.
+   * **`deleteTask`**`1` : Deletes the first task shown in the current task list.
 
    * **`exit`** : Exits the app.
 
@@ -53,7 +57,7 @@ SWEe-book offers **one-stop integration solution to your group work management.*
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g. `type/TYPE [date/DATE]` can be used as `type/deadline [date/2021-09-11]` or as `type/deadline`.
+  e.g. `type/TYPE [date/DATE]` can be used as `type/todo [date/2021-09-11]` or as `type/todo`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -161,10 +165,9 @@ Examples:
 
 ### Adding a Task : `addTask`
 
-Adds a new task (determined by what is inputted for type/TYPE) with task description as specified by d/DESCRIPTION
-for the group specified by g/GROUP due at date specified by date/DATE.
+Adds a new task to SWEe-book.
 
-Format: `addtask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
+Format: `addTask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
 * `GROUP` refers to one of the 2 groups: `CS2101` or `CS2103T`
 * `TYPE` refers to one of the 3 types of tasks: `todo`, `event` or `deadline`
 * `DATE` is in YYYY-MM-DD format and is only needed for events or deadlines (i.e. `DATE` is optional for Todo tasks)
@@ -173,11 +176,14 @@ Format: `addtask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [rec
     * Any Task that has a recurring frequency must have a date as well, for example a Todo with recurring frequency must have a date.
 
 Examples:
-* `addTask d/Project meeting g/CS2103T type/todo pty/low` Add a non-recurring `todo` with no date and `low` priority and 
+* `addTask d/Project meeting g/CS2103T type/todo pty/low` 
+    * Add a non-recurring `todo` with no date and `low` priority and 
   task description `Project meeting` to the group `CS2103T`
-* `addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high` Add a non-recurring `deadline` due on `2020-11-02`
+* `addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high` 
+  * Add a non-recurring `deadline` due on `2020-11-02`
   with `high` priority and task description `Presentation 1`to the group `CS2101`
-* `addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month` Add a `event` that recurs every `month` with 
+* `addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month` 
+  * Add a `event` that recurs every `month` with 
   date `2020-10-02` and default `med` priority and task description `Mock QnA` to the group `CS2101`
 
 ### Editing a task: `editTask`
@@ -208,7 +214,7 @@ Deletes the task at the specified `INDEX`.
 
 Examples:
 * `deleteTask 1` deletes the 1st task in the task list.
-
+  ![result for 'deleteTask 1'](images/deleteTaskCommandExample.png)
 ### Marking a task as done: `doneTask`
 
 Format: `doneTask INDEX`
@@ -216,9 +222,11 @@ Format: `doneTask INDEX`
 Marks the task at the specified `INDEX` as done.
 * The index refers to the index number shown in the displayed task list.
 * The index must be a positive integer 1, 2, 3, …
+* The task must not have been marked as done before.
 
 Examples:
 * `doneTask 1` marks the 1st task in the task list as done.
+  ![result for 'doneTask 1'](images/doneTaskCommandExample.png)
 
 ### Sorting tasks: `sortTasks`
 Sort tasks based on their description or their deadlines (chronologically, or the reverse), or by time added.

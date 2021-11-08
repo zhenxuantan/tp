@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static sweebook.model.task.SortTaskComparator.ORDERS;
 import static sweebook.model.task.SortTaskComparator.PARAMETERS;
 import static sweebook.testutil.Assert.assertThrows;
-import static sweebook.testutil.TypicalTasks.DEADLINE1;
-import static sweebook.testutil.TypicalTasks.EVENT1;
+import static sweebook.testutil.TypicalTasks.FIRST_DEADLINE;
+import static sweebook.testutil.TypicalTasks.FIRST_EVENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -63,14 +63,14 @@ public class SortTaskComparatorTest {
 
     @Test
     public void compare() {
-        assertTrue(STC_DESC_A.compare(DEADLINE1, EVENT1) < 0);
-        assertTrue(STC_DESC_D.compare(DEADLINE1, EVENT1) > 0);
-        assertTrue(STC_DATE_A.compare(DEADLINE1, EVENT1) < 0);
-        assertTrue(STC_DATE_D.compare(DEADLINE1, EVENT1) > 0);
-        assertTrue(STC_GROUP_A.compare(DEADLINE1, EVENT1) < 0);
-        assertTrue(STC_GROUP_D.compare(DEADLINE1, EVENT1) > 0);
-        assertTrue(STC_PTY_A.compare(DEADLINE1, EVENT1) > 0);
-        assertTrue(STC_PTY_D.compare(DEADLINE1, EVENT1) < 0);
+        assertTrue(STC_DESC_A.compare(FIRST_DEADLINE, FIRST_EVENT) < 0);
+        assertTrue(STC_DESC_D.compare(FIRST_DEADLINE, FIRST_EVENT) > 0);
+        assertTrue(STC_DATE_A.compare(FIRST_DEADLINE, FIRST_EVENT) < 0);
+        assertTrue(STC_DATE_D.compare(FIRST_DEADLINE, FIRST_EVENT) > 0);
+        assertTrue(STC_GROUP_A.compare(FIRST_DEADLINE, FIRST_EVENT) < 0);
+        assertTrue(STC_GROUP_D.compare(FIRST_DEADLINE, FIRST_EVENT) > 0);
+        assertTrue(STC_PTY_A.compare(FIRST_DEADLINE, FIRST_EVENT) > 0);
+        assertTrue(STC_PTY_D.compare(FIRST_DEADLINE, FIRST_EVENT) < 0);
     }
 
     @Test
