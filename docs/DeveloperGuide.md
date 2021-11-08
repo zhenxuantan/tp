@@ -5,6 +5,9 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 ---
+
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 ### Architecture
@@ -46,6 +49,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -67,6 +72,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 * When called upon to parse a user command, the `SweeParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddTaskCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SweeBookParser` returns back as a `Command` object.
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 Here is an overview of the model component.
@@ -96,6 +103,8 @@ Lastly, specfically for `Task`,
 * priority can be low, medium or high priorities
 * a task can be instantiated as a `Todo`, `Deadlne` or `Event`
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -114,11 +123,21 @@ The Sequence Diagram below illustrates the interactions between the `Logic` comp
 The JavaFx package automatically detects any changes to the task list, implemented with JavaFX's `ObservableList`. This includes detecting changes in the comparators and filters applied on it. When the `SortTasksCommand` is executed, it removes any existing filters applied on the task list to reset the task list back to its original state before setting a comparator to it.
 {More explanation to be given}
 
+<div style="page-break-after: always;"></div>
+
 ### Storage component
-{to be completed}
+![Storage Class Diagram](images/StorageClassDiagram1.png)
+
+The Storage component,
+
+* can save contact list/task records/user preference data in json format, and read them back into corresponding objects.
+* inherits from `ContactListStorage`, `TaskRecordsStorage`, and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* depends on some classes in the Model component (because the Storage component’s job is to save/retrieve objects that belong to the Model)
 
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -184,6 +203,8 @@ the SWEe-book application.
   current week, with the same day.
 * Step 3. The user then launches the application a week after. The `Task` is updated similarly to Step 2, and since it 
   is checked against real-time, it is updated to the current week.
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 

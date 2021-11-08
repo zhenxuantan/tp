@@ -30,6 +30,8 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Managed releases `v1.1` - `v1.2` (2 releases) on GitHub
+  * Merged 21/75 pull requests
+  * Set up GitHub repo and Codecov
   
 * **Documentation**:
   * User Guide:
@@ -41,5 +43,4 @@ Given below are my contributions to the project.
     * Add use case for `editTask` feature
 
 * **Community**:
-  * Set up GitHub repo and Codecov
-  * PRs reviewed (with non-trivial review comments): [#77](https://github.com/AY2122S1-CS2103T-W12-2/tp/pull/77)
+  * Helped to spot bugs in Practical Examinations - Dry Run (PE-D) [Issues](https://github.com/cyyeu/ped/issues)
