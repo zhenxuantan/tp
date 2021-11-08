@@ -1,13 +1,13 @@
 @startuml
 !include style.puml
 
-box Logic LOGIC_COLOR_T1
 participant ":MainApp" as MainApp LOGIC_COLOR
-participant ":ModelManager" as ModelManager LOGIC_COLOR
-participant ":TaskRecords" as TaskRecords LOGIC_COLOR
-participant ":TaskList" as TaskList LOGIC_COLOR
-participant "task:Task" as Task LOGIC_COLOR
-participant "date:Date" as Date LOGIC_COLOR
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":TaskRecords" as TaskRecords MODEL_COLOR
+participant ":TaskList" as TaskList MODEL_COLOR
+participant "task:Task" as Task MODEL_COLOR
+participant "date:Date" as Date MODEL_COLOR
 end box
 
 create MainApp
