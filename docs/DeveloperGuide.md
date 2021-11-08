@@ -552,6 +552,7 @@ Given below are instructions to test the app manually.
    2. Test case: `sortTasks param/tasktype o/a` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
    3. Test case: `sortTasks param/date o/c` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
 
+
 ### Adding a task
 1. Adding a task with all fields
     1. Test case: `addTask d/Project Meeting g/CS2101 type/Todo date/2021-11-11 pty/low recurring/week`
