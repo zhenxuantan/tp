@@ -1,0 +1,22 @@
+@startuml
+start
+:User adds Task with recurring frequency;
+
+:Parse command arguments;
+
+if () then ([input is valid])
+    :Create new task which will recur;
+    :User restarts application;
+    if () then ([date of task needs
+    to be recurred])
+    :Date of task is updated to current week/month/year;
+    stop
+    else ([else])
+    :Task is not updated;
+    stop
+    endif
+else ([else])
+: Throw ParseException;
+stop
+endif
+@enduml
