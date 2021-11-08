@@ -270,7 +270,7 @@ Format: `listTasks`
 * Lists all tasks for the current user
 
 Examples:
-* `listTasks` returns all tasks
+* `listTasks` displays all tasks in right half of the GUI
 
 ### Clearing all contact entries : `clear`
 
@@ -295,10 +295,6 @@ SWEe-book contacts data are saved as a JSON file `[JAR file location]/data/conta
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, SWEe-book will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
