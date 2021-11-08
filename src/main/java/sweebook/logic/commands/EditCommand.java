@@ -99,8 +99,13 @@ public class EditCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(model.getSamePersonConstraintMessage(editedPerson));
+        for (int i = 0; i < model.getContactList().getPersonList().size(); i++) {
+            Person curr = model.getContactList().getPersonList().get(i);
+            if (lastShownList.contains(curr) && lastShownList.indexOf(curr) == index.getZeroBased()) {
+                continue;
+            } else if (curr.isSamePerson(editedPerson)) {
+                throw new CommandException(curr.getSamePersonConstraintMessage(editedPerson));
+            }
         }
 
         model.setPerson(personToEdit, editedPerson);
