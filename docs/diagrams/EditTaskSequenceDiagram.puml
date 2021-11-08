@@ -6,7 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":SweeBookParser" as SweeBookParser LOGIC_COLOR
 participant ":EditTaskCommandParser" as EditTaskCommandParser LOGIC_COLOR
 participant ":EditTaskDescriptor" as EditTaskDescriptor LOGIC_COLOR
-participant "a:EditTaskCommand" as EditTaskCommand LOGIC_COLOR
+participant "command:EditTaskCommand" as EditTaskCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
