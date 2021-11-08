@@ -1,0 +1,14 @@
+@startuml
+start
+if () then ([else])
+    :Retrieve task at given index;
+    if () then ([else])
+        :Update task status to done;
+    else ([task already marked as done])
+        :CommandException;
+    endif
+else ([index is invalid])
+    :CommandException;
+endif
+stop
+@enduml

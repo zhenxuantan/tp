@@ -243,9 +243,18 @@ Given below is a sequence diagram of the execution of a doneTask command: [Click
 ![Seq-diagram for the parsing of command for `doneTask 1`](images/DoneTaskSequenceDiagram.png)
 
 Given below is an example usage scenario of how a task is marked as done:
+Preconditions: Valid task index provided.
 1. User keys in doneTask command with the specific index of task.
    (e.g. doneTask 1)
 2. The first task in task list is marked as done.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If any of the guard clauses fail, 
+i.e. the index given is negative or otherwise invalid, or the task has already been marked as done, an appropriate exception will be thrown and 
+an appropriate error message will be shown to the user.
+(It does not make sense to mark a task that has been done as done!)
+</div>
+The following activity diagram summarizes the actions taken when DoneTaskCommand is executed: <br>
+![DoneTaskActivityDiagram](images/DoneTaskCommandActivityDiagram.png)
 
 #### Alternative considerations
 * Alternative 1 (current choice): Separate updating of a task's status into its own command
