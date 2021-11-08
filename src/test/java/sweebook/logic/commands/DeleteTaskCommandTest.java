@@ -7,9 +7,9 @@ import static sweebook.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static sweebook.testutil.TypicalPersons.getTypicalContactList;
 import static sweebook.testutil.TypicalTasks.getTypicalTaskRecords;
 
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import sweebook.commons.core.index.Index;
 import sweebook.model.Model;
 import sweebook.model.ModelManager;
@@ -23,13 +23,13 @@ import sweebook.model.task.Task;
 public class DeleteTaskCommandTest {
     private Model model = new ModelManager(getTypicalContactList(), new UserPrefs(), getTypicalTaskRecords());
     private ObservableList<Task> taskList = model.getTasks();
-    private Index INDEX_LAST_TASK = Index.fromOneBased(taskList.size());
+    private Index lastTaskIndex = Index.fromOneBased(taskList.size());
 
     // valid task index [1...total_number_of_tasks]
     @Test
     public void execute_validIndex_success() {
-        Task lastTask = model.getTasks().get(INDEX_LAST_TASK.getZeroBased()); //Boundary value
-        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_LAST_TASK);
+        Task lastTask = model.getTasks().get(lastTaskIndex.getZeroBased()); //Boundary value
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(lastTaskIndex);
         String deleteLastTaskExpectedMessage = String.format(DeleteTaskCommand.MESSAGE_SUCCESS, lastTask);
 
         ModelManager deleteLastTaskExpectedModel = new ModelManager(model.getContactList(),
@@ -44,7 +44,8 @@ public class DeleteTaskCommandTest {
         ModelManager deleteFirstTaskExpectedModel = new ModelManager(model.getContactList(),
             new UserPrefs(), model.getTaskList());
         deleteFirstTaskExpectedModel.deleteTask(firstTask);
-        assertCommandSuccess(deleteFirstTaskCommand, model, deleteFirstTaskExpectedMessage, deleteFirstTaskExpectedModel);
+        assertCommandSuccess(deleteFirstTaskCommand, model, deleteFirstTaskExpectedMessage,
+            deleteFirstTaskExpectedModel);
 
         Task secondTask = model.getTasks().get(INDEX_SECOND_TASK.getZeroBased());
         DeleteTaskCommand deleteSecondTaskCommand = new DeleteTaskCommand(INDEX_SECOND_TASK);
@@ -53,13 +54,14 @@ public class DeleteTaskCommandTest {
         ModelManager deleteSecondTaskExpectedModel = new ModelManager(model.getContactList(),
             new UserPrefs(), model.getTaskList());
         deleteSecondTaskExpectedModel.deleteTask(secondTask);
-        assertCommandSuccess(deleteSecondTaskCommand, model, deleteSecondTaskExpectedMessage, deleteSecondTaskExpectedModel);
+        assertCommandSuccess(deleteSecondTaskCommand, model, deleteSecondTaskExpectedMessage,
+            deleteSecondTaskExpectedModel);
     }
 
     // invalid index [total_number_of_tasks + 1 ... MAX_INT]
     @Test
     public void execute_invalidIndex_throwsCommandException() {
-        Index moreThanTotalTasksIndex = Index.fromOneBased(INDEX_LAST_TASK.getOneBased() + 1); //Boundary value
+        Index moreThanTotalTasksIndex = Index.fromOneBased(lastTaskIndex.getOneBased() + 1); //Boundary value
         DeleteTaskCommand deleteMoreThanTotalTasksCommand = new DeleteTaskCommand(moreThanTotalTasksIndex);
 
         CommandTestUtil.assertCommandFailure(deleteMoreThanTotalTasksCommand, model, MESSAGE_INVALID_TASK_INDEX);

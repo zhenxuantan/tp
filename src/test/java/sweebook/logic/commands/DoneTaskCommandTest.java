@@ -8,6 +8,8 @@ import static sweebook.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static sweebook.testutil.TypicalPersons.getTypicalContactList;
 import static sweebook.testutil.TypicalTasks.getTypicalTaskRecords;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -20,9 +22,6 @@ import sweebook.model.ReadOnlyTaskRecords;
 import sweebook.model.UserPrefs;
 import sweebook.model.task.Task;
 import sweebook.model.task.TaskList;
-
-import java.util.List;
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DoneTaskCommand}.
@@ -30,9 +29,10 @@ import java.util.List;
 public class DoneTaskCommandTest {
     private Model model = new ModelManager(getTypicalContactList(), new UserPrefs(), getTypicalTaskRecords());
     private ObservableList<Task> taskList = model.getTasks();
+
     private Model modelCopy = new ModelManager(new ContactList(), new UserPrefs(), new TaskRecordsStub(taskList));
     private ObservableList<Task> taskListCopy = modelCopy.getTasks();
-    private Index INDEX_LAST_TASK = Index.fromOneBased(taskListCopy.size());
+    private Index lastTaskIndex = Index.fromOneBased(taskListCopy.size());
 
     // valid task index [1...total_number_of_tasks]
     @Test
@@ -49,8 +49,8 @@ public class DoneTaskCommandTest {
 
         assertCommandSuccess(doneFirstTaskCommand, modelCopy, expectedDoneFirstTaskMessage, expectedDoneFirstTaskModel);
 
-        DoneTaskCommand doneLastTaskCommand = new DoneTaskCommand(INDEX_LAST_TASK); //Boundary value
-        Task referenceLastTask = modelCopy.getTasks().get(INDEX_LAST_TASK.getZeroBased());
+        DoneTaskCommand doneLastTaskCommand = new DoneTaskCommand(lastTaskIndex); //Boundary value
+        Task referenceLastTask = modelCopy.getTasks().get(lastTaskIndex.getZeroBased());
         Task expectedLastTask = new Task(referenceLastTask.getDescription(), referenceLastTask.getGroup(),
             referenceLastTask.getDate(), referenceLastTask.getTaskType(), referenceLastTask.getRecurringFrequency(),
             referenceLastTask.getPriority());
@@ -64,20 +64,21 @@ public class DoneTaskCommandTest {
         DoneTaskCommand doneSecondTaskCommand = new DoneTaskCommand(INDEX_SECOND_TASK);
         Task referenceSecondTask = modelCopy.getTasks().get(INDEX_SECOND_TASK.getZeroBased());
         Task expectedSecondTask = new Task(referenceSecondTask.getDescription(), referenceSecondTask.getGroup(),
-            referenceSecondTask.getDate(), referenceSecondTask.getTaskType(), referenceSecondTask.getRecurringFrequency(),
-            referenceSecondTask.getPriority());
+            referenceSecondTask.getDate(), referenceSecondTask.getTaskType(),
+            referenceSecondTask.getRecurringFrequency(), referenceSecondTask.getPriority());
         expectedSecondTask.markAsDone();
         String expectedDoneSecondTaskMessage = String.format(MESSAGE_SUCCESS, expectedSecondTask);
         ModelManager expectedDoneSecondTaskModel = new ModelManager(modelCopy.getContactList(), new UserPrefs(),
             modelCopy.getTaskList());
 
-        assertCommandSuccess(doneSecondTaskCommand, modelCopy, expectedDoneSecondTaskMessage, expectedDoneSecondTaskModel);
+        assertCommandSuccess(doneSecondTaskCommand, modelCopy, expectedDoneSecondTaskMessage,
+            expectedDoneSecondTaskModel);
     }
 
     // invalid task index [total_number_of_tasks + 1 ... MAX_INT]
     @Test
     public void execute_invalidIndex_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(INDEX_LAST_TASK.getOneBased() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(lastTaskIndex.getOneBased() + 1);
         DoneTaskCommand doneTaskCommand = new DoneTaskCommand(outOfBoundIndex);
 
         CommandTestUtil.assertCommandFailure(doneTaskCommand, modelCopy, Messages.MESSAGE_INVALID_TASK_INDEX);
@@ -96,9 +97,13 @@ public class DoneTaskCommandTest {
     private class TaskRecordsStub implements ReadOnlyTaskRecords {
         private final TaskList records = new TaskList();
         public TaskRecordsStub(List<Task> tasks) {
-            records.setTasks(tasks);
+            for (int i = 0; i < tasks.size(); i++) {
+                Task toBeCopied = tasks.get(i);
+                Task copy = new Task(toBeCopied.getDescription(), toBeCopied.getGroup(), toBeCopied.getDate(),
+                    toBeCopied.getTaskType(), toBeCopied.getRecurringFrequency(), toBeCopied.getPriority());
+                records.add(copy);
+            }
         }
-
         @Override
         public ObservableList<Task> getTaskList() {
             return records.asUnmodifiableObservableList();
