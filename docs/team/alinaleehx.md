@@ -51,6 +51,8 @@ Given below are my contributions to the project.
     * Developer Guide:
         * Added documentation for `addTasks` command and `deleteTasks` command [#47](https://github.com/AY2122S1-CS2103T-W12-2/tp/pull/47)
         * Added documentation for `doneTasks` command [#69](https://github.com/AY2122S1-CS2103T-W12-2/tp/pull/69)
+          [#149](https://github.com/AY2122S1-CS2103T-W12-2/tp/pull/149)
+          [#151](https://github.com/AY2122S1-CS2103T-W12-2/tp/pull/151)
 
 * **Community**:
     * Helped to spot bugs in Practical Examinations - Dry Run (PE-D) [Issues](https://github.com/alinaleehx/ped/issues)
