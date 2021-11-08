@@ -219,6 +219,33 @@ The JavaFx package automatically detects any changes to the task list, implement
 
 <div style="page-break-after: always;"></div>
 
+### Done Tasks Feature
+#### Implementation
+The doneTask feature allows users to mark a specific task as done.
+Given below is a sequence diagram of the execution of a doneTask command: [Click here for better resolution](https://ay2122s1-cs2103t-w12-2.github.io/tp/images/DoneTaskSequenceDiagram.png)
+
+![Seq-diagram for the parsing of command for `doneTask 1`](images/DoneTaskSequenceDiagram.png)
+
+Given below is an example usage scenario of how a task is marked as done:
+1. User keys in doneTask command with the specific index of task.
+   (e.g. doneTask 1)
+2. The first task in task list is marked as done.
+
+#### Alternative considerations
+* Alternative 1 (current choice): Separate updating of a task's status into its own command
+    * Pros: More streamlined command for ease of use
+        * Our target user (CS2103T students) are likely to update task statuses a with must higher frequency than
+      information like task description or task priority etc.
+      Hence, having a dedicated command to update status of task streamlines the user workflow.
+    * Cons: Additional command increases complexity, harder to maintain.
+* Alternative 2: Integrate updating of task status into ‘editTask’ command
+    * Pros: Fewer commands for user to remember as well as fewer commands for developers to maintain
+    * Cons: More troublesome to when user just wants to update task status.
+
+---
+
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Requirements**
 
 ### Product scope
