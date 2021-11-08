@@ -1,6 +1,5 @@
 package sweebook.model.task;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static sweebook.commons.util.AppUtil.checkArgument;
 

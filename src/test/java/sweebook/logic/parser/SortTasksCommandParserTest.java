@@ -1,21 +1,18 @@
 package sweebook.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import sweebook.logic.commands.SortTasksCommand;
-import sweebook.model.task.SortTaskComparator;
-
 import static sweebook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static sweebook.logic.commands.SortTasksCommand.MESSAGE_USAGE;
 import static sweebook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static sweebook.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import org.junit.jupiter.api.Test;
+
+import sweebook.logic.commands.SortTasksCommand;
+import sweebook.model.task.SortTaskComparator;
+
 class SortTasksCommandParserTest {
 
-    @Test
-    void parse() {
-    }
-
-    private SortTasksCommandParser parser = new SortTasksCommandParser();
+    private final SortTasksCommandParser parser = new SortTasksCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
