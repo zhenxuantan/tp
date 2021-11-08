@@ -23,6 +23,8 @@ Given below is a quick overview of main components and how they interact with ea
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
+<div style="page-break-after: always;"></div>
+
 The rest of the App consists of four components.
 
 * [**`UI`**](#ui-component): The UI of the App.
@@ -157,6 +159,8 @@ Given below is an example usage scenario of how a contact is edited:
 for **recurring** tasks and **deadline/event** tasks. Else, an error message will be shown to the user. (It does not make sense for a task that is recurring, or that is a deadline/event, to have no date!)
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### Alternative considerations
 * Alternative 1: Update the fields of the old task, without creating a new task.
     * Pros: Less logic needed, less complexity. (No need for `EditTaskDescriptor` class)
@@ -219,6 +223,8 @@ The following is the Activity Diagram for the sort tasks command.
 
 ![Activity Diagram for sortTasksCommand](images/SortTasksActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Implementation
 The Sequence Diagram below illustrates the interactions between the `Logic` component and `Model` component for the `execute("sortTasks param/desc o/a")` API call. It also shows how it interacts with the `UI` Component through the illustration of the command's interaction with JavaFx's `ObservableLists` (`FilteredList` and `SortedList`).
 
@@ -249,6 +255,9 @@ i.e. the index given is negative or otherwise invalid, or the task has already b
 exception will be thrown and an appropriate error message will be shown to the user.
 (It does not make sense to mark a task that has been done as done!)
 </div>
+
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes the actions taken when DoneTaskCommand is executed:<br>
 
 ![DoneTaskActivityDiagram](images/DoneTaskCommandActivityDiagram.png)
@@ -263,8 +272,7 @@ The following activity diagram summarizes the actions taken when DoneTaskCommand
 * Alternative 2: Integrate updating of task status into ‘editTask’ command
     * Pros: Fewer commands for user to remember as well as fewer commands for developers to maintain
     * Cons: More troublesome to when user just wants to update task status.
-
-
+    
 <div style="page-break-after: always;"></div>
 
 ---
@@ -485,6 +493,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case (UC11): Filter tasks**
 
 1. User keys in a filter criterion.
@@ -496,8 +506,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User keys in an invalid criterion.
     * 1a1. System displays an error message about invalid criterion. Use case ends.
-
-<div style="page-break-after: always;"></div>
 
 **Use case (UC12): Mark a task as done**
 
@@ -655,6 +663,8 @@ Given below are instructions to test the app manually.
     1. Prerequisites: The task list is from the sample task list data that comes with the jar file is first run.
     2. Test case: `filterTasks pty/1` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
     3. Test case: `filterTasks g/CS2107` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
+
+<div style="page-break-after: always;"></div>
 
 ### Marking a task as done
 
