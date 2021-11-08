@@ -555,8 +555,24 @@ Given below are instructions to test the app manually.
    2. Test case: `sortTasks param/tasktype o/a` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
    3. Test case: `sortTasks param/date o/c` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
 
+### Filtering task lists
+
+1. Filtering task list with a valid criterion
+    1. Prerequisites: The task list is from the sample task list data that comes with the jar file is first run.
+    2. Test case: `filterTasks date/2021-11-11` <br> Expected task list (filtered by date of 11 Nov 2021):
+        1. OP1 script
+    3. Test case: `filterTasks g/CS2103T` <br> Expected task list (filtered by group of CS2103T):
+        1. Update User Guide
+        2. Project Meeting
+
+
+2. Filtering task list with an invalid criterion
+    1. Prerequisites: The task list is from the sample task list data that comes with the jar file is first run.
+    2. Test case: `filterTasks pty/1` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
+    3. Test case: `filterTasks g/CS2107` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
 
 ### Adding a task
+
 1. Adding a task with all fields
     1. Test case: `addTask d/Project Meeting g/CS2101 type/Todo date/2021-11-11 pty/low recurring/week`
        Expected: Task with all the above fields added to the task list. Task list in GUI is updated with this new task,
@@ -580,6 +596,7 @@ Given below are instructions to test the app manually.
           Expected: No task is added and error is shown. Task with recurring field must have a date as well.
 
 ### Listing all tasks
+
 1. List all tasks
     1. Prerequisite: Have some tasks saved in `[JAR file location]/data/taskrecords.json`
     2. Test case: `listTasks`
