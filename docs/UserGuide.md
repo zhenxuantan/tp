@@ -235,15 +235,15 @@ Examples:
 * `addTask d/Project meeting g/CS2103T type/todo pty/low`
   * Add a non-recurring `todo` with no date and `low` priority and
     task description `Project meeting` to the group `CS2103T`
-    ![result for 'addTask d/Project meeting g/CS2103T type/todo pty/low'](images/addTaskExample1.png)
+    ![result for 'addTask d/Project meeting g/CS2103T type/todo pty/low'](images/addTaskExample1.PNG)
 * `addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high`
   * Add a non-recurring `deadline` due on `2020-11-02`
     with `high` priority and task description `Presentation 1`to the group `CS2101`
-    ![result for 'addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high'](images/addTaskExample2.png)
+    ![result for 'addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high'](images/addTaskExample2.PNG)
 * `addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month`
   * Add a `event` that recurs every `month` with
     date `2020-10-02` and default `med` priority and task description `Mock QnA` to the group `CS2101`
-    ![result for 'addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month'](images/addTaskExample3.png)
+    ![result for 'addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month'](images/addTaskExample3.PNG)
 
 #### Editing a task: `editTask`
 
@@ -263,7 +263,7 @@ Examples:
 * `editTask 1 d/OP2 rehearsal g/CS2101 type/Event date/2021-11-11`
   * Edits the description, group, type of task, date of the first task in the task list to be
     `OP2 rehearsal`, `CS2101`, `Event` and`2021-11-11` respectively.
-    ![result for 'editTask 1 d/OP2 rehearsal g/CS2101 type/Event date/2021-11-11'](images/EditTaskExample1.png)
+    ![result for 'editTask 1 d/OP2 rehearsal g/CS2101 type/Event date/2021-11-11'](images/EditTaskExample1.PNG)
 
 #### Deleting a task: `deleteTask`
 
