@@ -87,6 +87,7 @@ public class SortTaskComparatorTest {
 
     @Test
     public void testEquals() {
+        assertEquals(STC_DESC_A, STC_DESC_A);
         assertEquals(new SortTaskComparator("desc", "a"), STC_DESC_A);
         assertNotEquals(new SortTaskComparator("desc", "d"), STC_DESC_A);
         assertNotEquals(new SortTaskComparator("date", "a"), STC_DESC_A);

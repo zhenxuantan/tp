@@ -85,11 +85,7 @@ public class FilterTaskPredicate implements Predicate<Task> {
             return task.getGroup().equals(group);
         case "pty":
             Priority priority = new Priority(paramAndKeywords.substring(4));
-            if (isNull(task.getPriority())) {
-                return false;
-            } else {
-                return task.getPriority().equals(priority);
-            }
+            return task.getPriority().equals(priority);
         case "d":
             Description description = new Description(paramAndKeywords.substring(2));
             return task.getDescription().contains(description);
@@ -110,29 +106,28 @@ public class FilterTaskPredicate implements Predicate<Task> {
         String[] criterion = paramAndKeywords.split("/");
         String prefix = criterion[0];
         String suffix = criterion[1];
-        String string;
+        String string = "";
         switch(prefix) {
         case "date":
-            string = "DATE";
+            string = "date";
             break;
         case "type":
-            string = "TASKTYPE";
+            string = "task type";
             break;
         case "g":
-            string = "GROUP";
+            string = "group";
             break;
         case "d":
-            string = "DESCRIPTION";
+            string = "description";
             suffix = "\"" + suffix + "\"";
             break;
         case "pty":
-            string = "PRIORITY";
+            string = "priority";
             break;
         default:
-            string = "";
             break;
         }
-        return string + " " + suffix.toUpperCase() + " criterion: ";
+        return string + ": " + suffix;
 
     }
 

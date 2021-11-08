@@ -12,9 +12,11 @@ import sweebook.logic.commands.exceptions.CommandException;
 import sweebook.model.Model;
 import sweebook.model.task.Task;
 
+/**
+ * Adds a task to the task list.
+ */
 public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "addTask";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to specified group. "
             + "Parameters: "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
@@ -48,5 +50,4 @@ public class AddTaskCommand extends Command {
         model.addTask(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toString()));
     }
-
 }

@@ -13,7 +13,7 @@ import sweebook.model.ReadOnlyUserPrefs;
 import sweebook.model.UserPrefs;
 
 /**
- * Manages storage of ContactList data in local storage.
+ * Manages storage of ContactList and TaskRecords data in local storage.
  */
 public class StorageManager implements Storage {
 

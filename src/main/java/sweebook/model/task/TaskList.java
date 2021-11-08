@@ -28,8 +28,7 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code tasks}.
      */
     public void setTasks(List<Task> tasks) {
         CollectionUtil.requireAllNonNull(tasks);
@@ -37,7 +36,7 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
-     * Deletes a task in records.
+     * Deletes a task in the task list.
      *
      * @param task task to be deleted.
      */

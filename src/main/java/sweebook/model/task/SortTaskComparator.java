@@ -6,6 +6,9 @@ import static sweebook.commons.util.AppUtil.checkArgument;
 import java.util.Arrays;
 import java.util.Comparator;
 
+/**
+ * Abstracts the compare method for task into a class of its own.
+ */
 public class SortTaskComparator implements Comparator<Task> {
     public static final String MESSAGE_CONSTRAINTS =
         "SortTaskComparator can either have 'desc', 'date', 'group' or 'pty' as PARAM in param/PARAM and"
