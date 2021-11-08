@@ -148,7 +148,7 @@ Examples:
 
 ![result for 'find alex david'](images/findAlexDavidResult1.png)
   
-### Editing a person : `edit`
+#### Editing a person : `edit`
 
 Edits an existing person in SWEe-book.
 

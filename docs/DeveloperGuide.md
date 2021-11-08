@@ -226,7 +226,7 @@ The JavaFx package automatically detects any changes to the task list, implement
 
 ---
 
-## Documentation, logging, testing, configuration, dev-ops
+## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation Guide](https://ay2122s1-cs2103t-w12-2.github.io/tp/Documentation.html)
 * [Testing Guide](https://ay2122s1-cs2103t-w12-2.github.io/tp/Testing.html)
@@ -525,7 +525,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |**Group**| a group of either CS2103T or CS2101 students|
 |**Index**| the ordering of task in the task list|
 
-## Appendix: Instructions for manual testing
+## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 * Note: These instructions only provide a starting point for testers to work on; testers are expected to do more
@@ -538,8 +538,9 @@ Given below are instructions to test the app manually.
     1. Name of `John Doe`, ignoring case-sensitivity and whitespaces between first/middle/last names (i.e "john doe" and "john &nbsp; &nbsp;doe" are the same as "John Doe")
     1. Email of `johnd@example.com`
     1. Telegram and GitHub usernames of `johndoe`
+    
 1. Testcase 1: `add n/John Doe g/CS2103T g/CS2101 p/98765432 e/johnd@example.com tg/johndoe gh/johndoe`
-
+   
    Expected: Command result box shows the person is added with the correct fields specified. The added person should appear as the last person of the contact list in the GUI.
 
 1. Testcase 2: `add n/Jane Doe g/CS2103T g/CS2101 p/98765432 e/janed@example.com tg/janedoe gh/janedoe`
@@ -580,6 +581,7 @@ Given below are instructions to test the app manually.
     1. Assume that the task list only contains the above task.
 
 1. Testcase 1: `editTask 1 type/event`
+   
    Expected: Error message shown as an event needs to have an associated date.
 
 1. Testcase 2: `editTask 1 type/event date/2021-11-11`
