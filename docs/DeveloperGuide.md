@@ -308,11 +308,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with many persons in the contact list | sort persons by name           | locate a person easily                                                 |
 | `*`      | user                                       | Add a new task to the list | keep track of the tasks that needs to be done       |
 | `* * *`  | new user                                   | Have an overview of my groupmate details like telegram, email and name.  | So I can easily contact them |
-| `* * *`  | forgetful user                             | have a list of tasks           | So that I can follow up on it and not miss out tasks                   |
+| `* * *`  | forgetful user                             | have a list of tasks           | follow up on it and not miss out tasks                   |
 | `*`      | user                                       | delete a task in the list      | delete the tasks that are no longer needed               |
 | `*`      | user                                       | mark a task in the list as done | keep track of which tasks are done or not yet done      |
-| `* * *`  | long term user                             | quickly check deadlines in order of priority (sort) | Clear the tasks due one at a time                 |
-| `* * *`  | user                                       | filter the task according to the different modules | I know what I can do for each module               |
+| `* * *`  | long term user                             | quickly check deadlines in order of priority (sort) | clear the tasks due one at a time                 |
+| `* * *`  | user                                       | filter the task according to the different modules | know what I can do for each module               |
 | `* *` | user | edit specific fields in a task | conveniently change specific fields without needing to delete and add back a task
 
 <div style="page-break-after: always;"></div>
