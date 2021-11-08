@@ -88,7 +88,8 @@ the SWEe-book application.
   is checked against real-time, it is updated to the current week.
 
 Given below is an activity diagram when a user adds a recurring task and restarts his SWEe-book application.
-![Activity-diagram for user adding recurring Task](images/RecurringTaskActivityDiagram.png)
+
+![Activity-diagram for user adding recurring Task](../images/RecurringTaskActivityDiagram.png)
 
 #### Alternative considerations
 * Alternative 1: Let the user choose when to refresh his tasks to their new dates, rather than on start-up of the 
@@ -119,32 +120,13 @@ Examples:
 * `addTask d/Project meeting g/CS2103T type/todo pty/low`
     * Add a non-recurring `todo` with no date and `low` priority and
       task description `Project meeting` to the group `CS2103T`
-      ![result for 'addTask d/Project meeting g/CS2103T type/todo pty/low'](images/addTaskExample1.png)
+      ![result for 'addTask d/Project meeting g/CS2103T type/todo pty/low'](../images/addTaskExample1.png)
 * `addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high`
     * Add a non-recurring `deadline` due on `2020-11-02`
       with `high` priority and task description `Presentation 1`to the group `CS2101`
-      ![result for 'addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high'](images/addTaskExample2.png)
+      ![result for 'addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high'](../images/addTaskExample2.png)
 * `addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month`
     * Add a `event` that recurs every `month` with
       date `2020-10-02` and default `med` priority and task description `Mock QnA` to the group `CS2101`
-      ![result for 'addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month'](images/addTaskExample3.png)
-
-### Command summary
-
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME g/GROUP1 [g/GROUP2] p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERNAME gh/GITHUB_USERNAME` <br> e.g., `add n/John Doe g/CS2103T p/98765432 e/johnd@example.com tg/@johndoe gh/johndoe`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [g/GROUP1] [g/GROUP2] [p/PHONE] [e/EMAIL] [tg/TELEGRAM] [gh/GITHUB]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Group** | `group GROUP` <br> e.g., `group CS2103T`
-**List** | `list`
-**Help** | `help`
-**Add Task** | `addTask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
-**Edit Task** | `editTask INDEX [d/DESCRIPTION] [g/GROUP] [type/TYPE] [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
-**Delete Task** | `deleteTask INDEX`
-**Done Task** | `doneTask INDEX`
-**Sort Tasks** | `sortTasks p/PARAMETER o/ORDER` <br> e.g., `sortTasks p/desc o/1`
-**Filter Tasks** | `filterTasks FILTER_CRITERION` <br> e.g., `filterTasks g/CS2101`
-**List Tasks** | `listTasks`
+      ![result for 'addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month'](../images/addTaskExample3.png)
+      

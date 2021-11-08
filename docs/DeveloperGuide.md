@@ -198,6 +198,7 @@ the SWEe-book application.
   is checked against real-time, it is updated to the current week.
   
 Given below is an activity diagram when a user adds a recurring task and restarts his SWEe-book application.
+
 ![Activity-diagram for user adding recurring Task](images/RecurringTaskActivityDiagram.png)
 
 #### Alternative considerations
