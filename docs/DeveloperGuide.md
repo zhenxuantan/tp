@@ -539,7 +539,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    2. Test case: `sortTasks param/tasktype o/a` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
    3. Test case: `sortTasks param/date o/c` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
 
+### Filtering task lists
 
-   
-   
+1. Filtering task list with a valid criterion
+   1. Prerequisites: The task list is from the sample task list data that comes with the jar file is first run.
+   2. Test case: `filterTasks date/2021-11-11` <br> Expected task list (filtered by date of 11 Nov 2021):
+      1. OP1 script 
+   3. Test case: `filterTasks g/CS2103T` <br> Expected task list (filtered by group of CS2103T):
+      1. Update User Guide
+      2. Project Meeting
+    
 
+2. Filtering task list with an invalid criterion
+    1. Prerequisites: The task list is from the sample task list data that comes with the jar file is first run.
+    2. Test case: `filterTasks pty/1` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
+    3. Test case: `filterTasks g/CS2107` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
+        
