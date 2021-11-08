@@ -207,6 +207,12 @@ the SWEe-book application.
 
 ### Sort Tasks Feature
 
+The sort tasks feature allows users to sort the task list according to their needs. They can sort the tasks by their descriptions, groups, priorities and date. They can also choose whether they want the sorting be in ascending or descending order. This gives users 8 different ways to sort their tasks.
+
+The following is the Activity Diagram for the sort tasks command.
+
+![Activity Diagram for sortTasksCommand](images/SortTasksActivityDiagram.png)
+
 The Sequence Diagram below illustrates the interactions between the `Logic` component and `Model` component for the `execute("sortTasks param/desc o/a")` API call. It also shows how it interacts with the `UI` Component through the illustration of the command's interaction with JavaFx's `ObservableLists` (`FilteredList` and `SortedList`).
 
 ![Interactions between logic and model component for `sortTasks param/desc o/a`](images/SortTasksExecutionSequenceDiagram.png)
@@ -214,6 +220,16 @@ The Sequence Diagram below illustrates the interactions between the `Logic` comp
 ![Sub-diagram for the parsing of command for `sortTasks param/desc o/a`](images/SortTasksParserSequenceDiagram.png)
 
 The JavaFx package automatically detects any changes to the task list, implemented with JavaFX's `ObservableList`. This includes detecting changes in the comparators and filters applied on it. When the `SortTasksCommand` is executed, it removes any existing filters applied on the task list to reset the task list back to its original state before setting a comparator to it. The `FilterTasksCommand` works the same way as well by setting the `comparator` to `null` while setting the `predicate` to the appropriate predicate (filter).  
+
+---
+
+## Documentation, logging, testing, configuration, dev-ops
+
+* [Documentation Guide](https://ay2122s1-cs2103t-w12-2.github.io/tp/Documentation.html)
+* [Testing Guide](https://ay2122s1-cs2103t-w12-2.github.io/tp/Testing.html)
+* [Logging Guide](https://ay2122s1-cs2103t-w12-2.github.io/tp/Logging.html)
+* [Configuration Guide](https://ay2122s1-cs2103t-w12-2.github.io/tp/Configuration.html)
+* [DevOps Guide](https://ay2122s1-cs2103t-w12-2.github.io/tp/DevOps.html)
 
 ---
 
@@ -469,3 +485,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |**CLI**|Command-Line Interface|
 |**Group**| a group of either CS2103T or CS2101 students|
 |**Index**| the ordering of task in the task list|
+
+## Appendix: Instructions for manual testing
+
+### Sorting task lists
+
+1. Sorting task list with valid parameter and order
+   1. Prerequisites: The task list is from the sample task list data that comes with the jar file is first run.
+   2. Test case: `sortTasks param/desc o/a` <br> Expected task list (sorted by description in ascending order lexicographically):
+      1. Create slides
+      2. OP1 Presentation
+      3. OP1 script
+      4. Project Meeting
+      5. Update User Guide
+
+   3. Test case: `sortTasks param/date o/d` <br> Expected task list (sorted by date in reverse chronological order)
+      1. Project Meeting (Dec 21 2021)
+      2. Update User Guide (Dec 11 2021)
+      3. OP1 Presentation (Nov 21 2021)
+      4. Create slides (Nov 17 2021)
+      5. OP1 script (Nov 11 2021)
+
+
+2. Sorting task list with invalid parameter, order or both
+   1. Prerequisites: The task list is from the default task list data that comes with the jar file.
+   2. Test case: `sortTasks param/tasktype o/a` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
+   3. Test case: `sortTasks param/date o/c` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
+
+
+   
+   
+
