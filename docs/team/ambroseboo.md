@@ -114,6 +114,8 @@ Format: `addTask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [rec
     * Any Task that has a recurring frequency must have a date as well, for example a Todo with recurring frequency must
       have a date.
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `addTask d/Project meeting g/CS2103T type/todo pty/low`
     * Add a non-recurring `todo` with no date and `low` priority and
