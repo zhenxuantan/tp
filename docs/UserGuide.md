@@ -70,7 +70,9 @@ SWEe-book offers **one-stop integration solution to managing tasks and contacts 
 
 </div>
 
-### Viewing help : `help`
+### General Features
+
+#### Viewing help : `help`
 
 Shows a window that allows users to copy the website link to access the user guide in cases when error messages are still insufficient for user.
 
@@ -80,7 +82,27 @@ Format: `help`
 
 <div style="page-break-after: always;"></div>
 
-### Adding a person: `add`
+#### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+#### Editing the data file
+
+SWEe-book contacts data are saved as a JSON file `[JAR file location]/data/contactlist.json`, whereas tasks management data are saved as `[JAR file location]/data/taskrecords.json`. Advanced users are welcome to update data directly by editing the data files.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, SWEe-book will discard all data and start with an empty data file at the next run.
+</div>
+
+#### Saving the data
+
+SWEe-book data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Contact Management Features
+
+#### Adding a person: `add`
 
 Adds a person to SWEe-book.
 
@@ -97,7 +119,7 @@ Examples:
 * `add n/Betsy Crowe p/92221234 g/CS2103T g/CS2101 e/betsycrowe@example.com tg/betsyyy gh/crowebetsy`
     * Adds a contact with name `Betsy Crowe`, group `CS2103T` **and** `CS2101`, phone number `92221234 `, email `betsycrowe@example.com`, telegram username `betsyyy`, github username `crowebetsy`
 
-### Listing all persons : `list`
+#### Listing all persons : `list`
 
 Shows a list of all persons in SWEe-book.
 
@@ -105,6 +127,27 @@ Format: `list`
 
 <div style="page-break-after: always;"></div>
 
+#### Locating persons by name: `find`
+
+Finds persons whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-**in**sensitive. e.g. `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `find John` 
+  * Returns `john` and `John Doe`
+* `find alex david`
+  * Returns `Alex Yeoh`, `David Li`<br>
+
+![result for 'find alex david'](images/findAlexDavidResult1.png)
+  
 ### Editing a person : `edit`
 
 Edits an existing person in SWEe-book.
@@ -116,31 +159,19 @@ Format: `edit INDEX [n/NAME] [g/GROUP1] [g/GROUP2] [p/PHONE] [e/EMAIL] [tg/TELEG
 * Existing values will be updated to the input values.
 
 Examples:
-* `find Betsy` followed by `edit 1 <arguments>...` edits the 1st person in the results of the `find` command.
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-   ![result for edit 1 p/91234567 e/johndoe@example.com'](images/EditTaskExample1.png)
+* `edit 1 p/91234567 e/johndoe@example.com` 
+  * Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+
+![result for edit 1 p/91234567 e/johndoe@example.com'](images/EditPersonExample1.png)
+
+* `find Bernice` followed by `edit 1 tg/bernyu gh/bernyu` 
+  * Edits the telegram and github usernames of the 1st person in the results of the `find` command.
+
+![result for find and edit'](images/EditPersonExample2.png)
 
 <div style="page-break-after: always;"></div>
 
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult1.png)
-
-### Deleting a person : `delete`
+#### Deleting a person : `delete`
 
 Deletes the specified person from SWEe-book.
 
@@ -151,12 +182,14 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in SWEe-book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2`
+  * Deletes the 2nd person in SWEe-book.
+* `find Betsy` followed by `delete 1`
+  * Deletes the 1st person in the results of the `find` command.
 
 <div style="page-break-after: always;"></div>
 
-### Filtering persons by a specified group: `group`
+#### Filtering persons by a specified group: `group`
 Retrieves the list of people to those who are in the specified group.
 
 Format: `group GROUP_NAME`
@@ -165,13 +198,24 @@ Format: `group GROUP_NAME`
 * Note that this is not a strict filter (i.e `group CS2103T` can return a person from both CS2103T **and** CS2101 groups)
 
 Examples:
-* `group CS2101` returns people in CS2101
-* `group CS2103T` returns people in CS2103T
-  ![result for 'group CS2103T'](images/GroupCommandExample1.png)
+* `group CS2101`
+  * Returns people in CS2101
+* `group CS2103T` 
+  * Returns people in CS2103T
+
+![result for 'group CS2103T'](images/GroupCommandExample1.png)
+
+#### Clearing all contact entries : `clear`
+
+Clears all contact entries from SWEe-book.
+
+Format: `clear`
 
 <div style="page-break-after: always;"></div>
 
-### Adding a Task : `addTask`
+### Task Management Features
+
+#### Adding a Task : `addTask`
 
 Adds a new task to SWEe-book.
 
@@ -194,7 +238,7 @@ Examples:
   * Add a `event` that recurs every `month` with 
   date `2020-10-02` and default `med` priority and task description `Mock QnA` to the group `CS2101`
 
-### Editing a task: `editTask`
+#### Editing a task: `editTask`
 
 Edits an existing task in the task list.
 
@@ -209,59 +253,69 @@ Please specify a date if you are changing a todo with no associated date into a 
 </div>
 
 Examples:
-* `editTask 1 d/OP2 rehearsal g/CS2101 type/Event date/2021-11-11` Edits the description, group, type of task, date of the first task in the task list to be
-  `OP2 rehearsal`, `CS2101`, `Event` and`2021-11-11` respectively.
+* `editTask 1 d/OP2 rehearsal g/CS2101 type/Event date/2021-11-11` 
+  * Edits the description, group, type of task, date of the first task in the task list to be
+    `OP2 rehearsal`, `CS2101`, `Event` and`2021-11-11` respectively.
 
-### Deleting a task: `deleteTask`
+#### Deleting a task: `deleteTask`
 
 Format: `deleteTask INDEX`
 
 Deletes the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
-* The index must be a positive integer 1, 2, 3, …
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `deleteTask 1` deletes the 1st task in the task list.
-  ![result for 'deleteTask 1'](images/deleteTaskCommandExample.png)
+* `deleteTask 1` 
+  * Deletes the 1st task in the task list.
+
+![result for 'deleteTask 1'](images/deleteTaskCommandExample.png)
 
 <div style="page-break-after: always;"></div>
 
-### Marking a task as done: `doneTask`
+#### Marking a task as done: `doneTask`
 
 Format: `doneTask INDEX`
 
 Marks the task at the specified `INDEX` as done.
 * The index refers to the index number shown in the displayed task list.
-* The index must be a positive integer 1, 2, 3, …
+* The index **must be a positive integer** 1, 2, 3, …
 * The task must not have been marked as done before.
 
 Examples:
-* `doneTask 1` marks the 1st task in the task list as done.
-  ![result for 'doneTask 1'](images/doneTaskCommandExample.png)
+* `doneTask 1` 
+  * Marks the 1st task in the task list as done.
+
+![result for 'doneTask 1'](images/doneTaskCommandExample.png)
 
 <div style="page-break-after: always;"></div>
 
-### Sorting tasks: `sortTasks`
+#### Sorting tasks: `sortTasks`
 Sort tasks based on their descriptions, groups, priorities or deadlines / event dates.
 
 Format: `sortTasks param/PARAMETER o/ORDER`
-* The sort is case-insensitive. e.g. CS2103T will be lexicographically identical to cs2103t, but cs2101 still comes before CS2103T.
+* The sort is case-**in**sensitive. e.g. CS2103T will be lexicographically identical to cs2103t, but cs2101 still comes before CS2103T.
 * `PARAMETER` includes `desc` (for description), `date` (for a deadline / date of event), `pty` (for priority) and `group`.
 * `ORDER` includes `a` for ascending order (0-9 and A-Z, oldest to newest, lowest to highest priority) and `d` for descending order(Z-A and 9-0, newest to oldest, highest to lowest priority)
 * When the tasks are sorted by `date`, date-less `Todo` tasks will always be at the bottom of the list.
 
 Examples:
-* `sortTasks param/pty o/a` returns the tasks with the lowest priority at the top and highest priority at the bottom
-* `sortTasks param/group o/a` returns CS2101 tasks at the top and CS2103T tasks at the bottom
-* `sortTasks param/desc o/d` returns the tasks with the tasks whose description starts with "Z" at the top, then "Y", and so on.
-* `sortTasks param/date o/a` returns the tasks in chronological order (in terms of their deadlines / event dates)
-* `sortTasks param/date o/d` returns the tasks in reverse chronological order (in terms of their deadlines / event dates)
+* `sortTasks param/pty o/a` 
+  * Sorts the task list by priority, with the low-priority tasks at the top and high-priority tasks at the bottom
+* `sortTasks param/group o/a` 
+  * Sorts the task list by group, with CS2101 tasks at the top and CS2103T tasks at the bottom
+* `sortTasks param/desc o/d` 
+  * Sorts the task list by description, with the tasks that has description which starts with "Z" at the top, then "Y", and so on.
+* `sortTasks param/date o/a` 
+  * Sorts the task list in chronological order (in terms of their deadlines / event dates)
+* `sortTasks param/date o/d`
+  * Sorts the task list in reverse chronological order (in terms of their deadlines / event dates)
 
 ![result for 'sortTasks param/date o/a' and 'sortTasks param/date o/a'](images/SortTasksScreenshot.png)
 
 <div style="page-break-after: always;"></div>
 
-### Filtering tasks by modules: `filterTasks`
+#### Filtering tasks by modules: `filterTasks`
 Filter tasks based on a criterion
 
 Format: `filterTasks FILTER_CRITERION`
@@ -271,45 +325,24 @@ Format: `filterTasks FILTER_CRITERION`
 * Tasks corresponding to the criterion specified will be shown
 
 Examples:
-* `filterTasks g/CS2101` shows all the tasks related to CS2101 group
-* `filterTasks date/2021-11-21` shows all the tasks with date of 21 Nov 2021
+* `filterTasks g/CS2101`
+  * Shows all the tasks related to CS2101 group
+* `filterTasks date/2021-11-21`
+  * Shows all the tasks with the date of 21 Nov 2021
 
 ![result for 'filterTasks g/CS2101' and 'filterTasks date/2021-11-21'](images/FilterTasksScreenshot.png)
 
 <div style="page-break-after: always;"></div>
 
-### Listing all tasks: `listTasks`
+#### Listing all tasks: `listTasks`
 Shows a list of all tasks in SWEe-book.
 
 Format: `listTasks`
-* Lists all tasks for the current user
+* Lists all tasks for the current user, resetting any sorting and filtering done by the user
 
 Examples:
-* `listTasks` displays all tasks in right half of the GUI
-
-### Clearing all contact entries : `clear`
-
-Clears all contact entries from SWEe-book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-SWEe-book data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-SWEe-book contacts data are saved as a JSON file `[JAR file location]/data/contactlist.json`, whereas tasks management data are saved as `[JAR file location]/data/taskrecords.json`. Advanced users are welcome to update data directly by editing the data files.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, SWEe-book will discard all data and start with an empty data file at the next run.
-</div>
+* `listTasks`
+  * Displays all tasks in right half of the GUI
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -320,9 +353,27 @@ If your changes to the data file makes its format invalid, SWEe-book will discar
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SWEe-book home folder.
 
+**Q**: How do I install Java 11 on my computer?<br>
+**A**: Java 11 can be installed [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html). Please click on the link to proceed to the download page.
+
+**Q**: How can I ensure that Java 11 has been installed on my computer?<br>
+**A**: Open up your terminal and key in `java --version`. You can then see the java version that has been installed. An output of "java 11" means that java 11 has been successfully installed.
+
+**Q**: Can I sync my contacts and tasks with other devices?<br>
+**A**: Unfortunately this is not possible at the moment. But please look out for future updates.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+
+### General Commands
+
+Action | Format, Examples
+--------|------------------
+**Help** | `help`
+**Exit** | `exit`
+
+### Contact Management Commands
 
 Action | Format, Examples
 --------|------------------
@@ -333,7 +384,11 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Group** | `group GROUP` <br> e.g., `group CS2103T`
 **List** | `list`
-**Help** | `help`
+
+### Task Management Commands
+
+Action | Format, Examples
+--------|------------------
 **Add Task** | `addTask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]` <br> (do note that `DATE` is only optional for `Todo` tasks)
 **Edit Task** | `editTask INDEX [d/DESCRIPTION] [g/GROUP] [type/TYPE] [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
 **Delete Task** | `deleteTask INDEX`
