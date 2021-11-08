@@ -162,6 +162,8 @@ for **recurring** tasks and **deadline/event** tasks. Else, an error message wil
     * Pros: Less logic needed, less complexity. (No need for `EditTaskDescriptor` class)
     * Cons: Hard to debug, and more prone to errors, as we are mutating the object in the list
 
+<div style="page-break-after: always;"></div>
+
 ### Recurring Tasks feature
 #### Implementation
 The recurring task feature allows users to add tasks that can be repeated by week, month, or year. It is facilitated
@@ -217,6 +219,7 @@ The following is the Activity Diagram for the sort tasks command.
 
 ![Activity Diagram for sortTasksCommand](images/SortTasksActivityDiagram.png)
 
+#### Implementation
 The Sequence Diagram below illustrates the interactions between the `Logic` component and `Model` component for the `execute("sortTasks param/desc o/a")` API call. It also shows how it interacts with the `UI` Component through the illustration of the command's interaction with JavaFx's `ObservableLists` (`FilteredList` and `SortedList`).
 
 ![Interactions between logic and model component for `sortTasks param/desc o/a`](images/SortTasksExecutionSequenceDiagram.png)
@@ -225,7 +228,7 @@ The Sequence Diagram below illustrates the interactions between the `Logic` comp
 
 The JavaFx package automatically detects any changes to the task list, implemented with JavaFX's `ObservableList`. This includes detecting changes in the comparators and filters applied on it. When the `SortTasksCommand` is executed, it removes any existing filters applied on the task list to reset the task list back to its original state before setting a comparator to it. The `FilterTasksCommand` works the same way as well by setting the `comparator` to `null` while setting the `predicate` to the appropriate predicate (filter).  
 
----
+<div style="page-break-after: always;"></div>
 
 ### Done Tasks Feature
 #### Implementation
@@ -359,6 +362,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 **Use case (UC03): Edit a person's particulars**
 
 **MSS**
@@ -401,6 +406,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. System shows an error message about the incorrect or missing details.
 
   Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case (UC06): Edit a task**
 
@@ -508,6 +515,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -518,6 +527,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6. If the data file is corrupted, the corrupted file is overwritten with an empty data file.
 7. System will not collect any information from the user to abide by the Personal Data Protection Act.
 
+<div style="page-break-after: always;"></div>
+
 ### Glossary
 
 | **Term** | **Meaning** |
@@ -527,6 +538,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |**CLI**|Command-Line Interface|
 |**Group**| a group of either CS2103T or CS2101 students|
 |**Index**| the ordering of task in the task list|
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -554,6 +567,8 @@ Given below are instructions to test the app manually.
 
    Expected: Unable to add person due to the duplicated field. Command result box shows `A person with this <duplicated field> (<duplicated field value>) already exists in the contact list.`
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a contact
 
 1. Prerequisites:
@@ -578,6 +593,8 @@ Given below are instructions to test the app manually.
 
    Expected: Error message shown due to invalid group name.
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a task
 1. Prerequisites:
     1. For each testcase, please use the following task by using the addTask command: `addTask d/finish coding g/CS2101 type/todo`
@@ -595,6 +612,7 @@ Given below are instructions to test the app manually.
    
    Expected: Edits the first task in the list with the correct updated fields. Command result shows edited task fields, and GUI updates the corresponding fields of the task.
 
+<div style="page-break-after: always;"></div>
 
 ### Sorting task lists
 
@@ -619,6 +637,8 @@ Given below are instructions to test the app manually.
    1. Prerequisites: The task list is from the default task list data that comes with the jar file.
    2. Test case: `sortTasks param/tasktype o/a` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
    3. Test case: `sortTasks param/date o/c` <br> Task list does not change and SWEe-book returns an error message with its correct usage.
+
+<div style="page-break-after: always;"></div>
 
 ### Filtering task lists
 
@@ -662,6 +682,8 @@ Given below are instructions to test the app manually.
     2. Test case: `doneTask 1`
        Expected: An error message is shown, indicating that task has already been marked as done.
 
+<div style="page-break-after: always;"></div>
+
 ### Adding a task
 
 1. Adding a task with all fields
@@ -686,6 +708,8 @@ Given below are instructions to test the app manually.
        4. Test case: `addTask d/Rehearsal g/CS2101 type/Todo recurring/month`
           Expected: No task is added and error is shown. Task with recurring field must have a date as well.
 
+<div style="page-break-after: always;"></div>
+
 ### Listing all tasks
 
 1. List all tasks
@@ -708,6 +732,7 @@ Given below are instructions to test the app manually.
     4. Test case: `deleteTask -3`<br>
        Expected: An error message is shown, indicating that index should not be negative.
 
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Effort**
 
@@ -720,8 +745,9 @@ Given below are instructions to test the app manually.
 ### Showing warnings when the data file is invalid or empty
 * When the app starts up, it will load the data from the respective data files (.json files). When an error occurs, it is difficult to display an error message onto the Ui as it would break the current design pattern where a message will only appear through a user-input command from the class CommandResult. Loading from the storage files should not go through a series command. However, It is also not good to not inform the users about the error and just simply give an empty contact list or task list. To counter that, we just simply make the Ui pop-up a new window to inform the users about the error, whether the data files are missing or corrupted.
 
-## Acknowledgement
+<div style="page-break-after: always;"></div>
 
+## Acknowledgement
 
 ### Code reuse
 
