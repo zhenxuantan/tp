@@ -283,8 +283,6 @@ Examples:
 * `deleteTask 1` 
   * Deletes the 1st task in the task list.
 
-![result for 'deleteTask 1'](images/deleteTaskCommandExample.png)
-
 <div style="page-break-after: always;"></div>
 
 #### Marking a task as done: `doneTask`
