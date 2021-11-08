@@ -320,6 +320,15 @@ If your changes to the data file makes its format invalid, SWEe-book will discar
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SWEe-book home folder.
 
+**Q**: How do I install Java 11 on my computer?<br>
+**A**: Java 11 can be installed [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html). Please click on the link to proceed to the download page.
+
+**Q**: How can I ensure that Java 11 has been installed on my computer?<br>
+**A**: Open up your terminal and key in `java --version`. You can then see the java version that has been installed. An output of "java 11" means that java 11 has been successfully installed.
+
+**Q**: Can I sync my contacts and tasks with other devices?<br>
+**A**: Unfortunately this is not possible at the moment. But please look out for future updates.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
