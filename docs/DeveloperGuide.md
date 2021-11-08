@@ -559,7 +559,7 @@ Given below are instructions to test the app manually.
 
     2. Test case: `doneTask 1`
        Expected: Task `Project Meeting` status is updated to done.
-       A success message is shown.
+       A success message, with details of task that is marked as done, is shown.
 
 2. Attempting to mark a task as done with invalid index
     1. Prerequisites: List all tasks using the `listTasks`. Assume there are a total of 4 tasks.
@@ -567,8 +567,8 @@ Given below are instructions to test the app manually.
     2. Test case: `doneTask 6`
        Expected: An error message is shown, indicating that given index exceeded total number of tasks.
 
-   2. Test case: `doneTask -1`
-      Expected: An error message is shown, indicating that index should not be negative.
+    3. Test case: `doneTask -1`
+       Expected: An error message is shown, indicating that index should not be negative.
 
 3. Attempting to mark a task, that is already done, as done
     1. Prerequisites: List all tasks using the `listTasks`. Assume there is a task `Project Meeting` 
@@ -605,6 +605,22 @@ Given below are instructions to test the app manually.
     1. Prerequisite: Have some tasks saved in `[JAR file location]/data/taskrecords.json`
     2. Test case: `listTasks`
        Expected: Task list in GUI is updated to show all saved tasks.
+
+### Deleting a task
+1. Deleting a task from SWEe-book
+    1. Prerequisites: There are 2 tasks in task list. List all tasks using the `listTasks` command. 
+       At index `1` we have `Project Meeting`, and at index `2` we have `Presentation`
+
+    2. Test case: `deleteTask 1`<br>
+       Expected: Task `Project Meeting` is deleted and removed from task list.
+       A success message with details of the deleted task is shown.
+
+    3. Test case: `deleteTask 3`<br>
+       Expected: An error message is shown, indicating that given index exceeded total number of tasks.
+
+    4. Test case: `deleteTask -3`<br>
+       Expected: An error message is shown, indicating that index should not be negative.
+
 
    
 
