@@ -530,6 +530,66 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Given below are instructions to test the app manually.
 * Note: These instructions only provide a starting point for testers to work on; testers are expected to do more
   exploratory testing.
+* Note that only refactored or new features from AB3 are shown here.
+
+### Adding a Contact
+
+1. Prerequisites: No existing contact with the same...
+    1. Name of `John Doe`, ignoring case-sensitivity and whitespaces between first/middle/last names (i.e "john doe" and "john &nbsp; &nbsp;doe" are the same as "John Doe")
+    1. Email of `johnd@example.com`
+    1. Telegram and GitHub usernames of `johndoe`
+1. Testcase 1: `add n/John Doe g/CS2103T g/CS2101 p/98765432 e/johnd@example.com tg/johndoe gh/johndoe`
+
+   Expected: Command result box shows the person is added with the correct fields specified. The added person should appear as the last person of the contact list in the GUI.
+
+1. Testcase 2: `add n/Jane Doe g/CS2103T g/CS2101 p/98765432 e/janed@example.com tg/janedoe gh/janedoe`
+
+   Expected: Unable to add person due to duplicate phone number. Command result box shows `A person with this phone number (98765432) already exists in the contact list.`
+
+1. Other similar testcases: Trying to add any person which does not meet the prerequisites
+
+   Expected: Unable to add person due to the duplicated field. Command result box shows `A person with this <duplicated field> (<duplicated field value>) already exists in the contact list.`
+
+### Editing a contact
+
+1. Prerequisites:
+    1. There are at least 1 contact in the list
+
+1. Testcase 1: `edit 1 tg/@newusername gh/newusername`
+    
+    Expected: Edits the usernames of first contact in the list to the new usernames.
+
+1. Testcase 2: `edit 1 p/91234567`
+
+    Expected: Edits the phone number of first contact in the list to the new phone number.
+
+### Filtering contacts by group
+1. Testcase 1: `group CS2101`
+
+   Expected: Contact list returns the list of people in the group `CS2101`.
+1. Testcase 2: `group CS2103T`
+
+   Expected: Contact list returns the list of people in the group `CS2103T`.
+1. Testcase 3: `group CS1111`
+
+   Expected: Error message shown due to invalid group name.
+
+### Editing a task
+1. Prerequisites:
+    1. For each testcase, please use the following task by using the addTask command: `addTask d/finish coding g/CS2101 type/todo`
+    1. Assume that the task list only contains the above task.
+
+1. Testcase 1: `editTask 1 type/event`
+   Expected: Error message shown as an event needs to have an associated date.
+
+1. Testcase 2: `editTask 1 type/event date/2021-11-11`
+
+   Expected: Edits the first task in the list with the correct updated fields. Command result shows edited task fields, and GUI updates the corresponding fields of the task.
+
+1. Testcase 3: `editTask 1 recurring/week`
+   
+   Expected: Edits the first task in the list with the correct updated fields. Command result shows edited task fields, and GUI updates the corresponding fields of the task.
+
 
 ### Sorting task lists
 
@@ -608,3 +668,16 @@ Given below are instructions to test the app manually.
     1. Prerequisite: Have some tasks saved in `[JAR file location]/data/taskrecords.json`
     2. Test case: `listTasks`
        Expected: Task list in GUI is updated to show all saved tasks.
+       
+## Acknowledgement
+
+### Code reuse
+
+1. The following code is reused from [here](https://github.com/regexhq/regex-username/blob/master/index.js). The code is used to check if usernames are valid via regex.
+   ![code snippet of regex](images/codeReuseRegex.png)
+1. The following code is reused from [here](https://stackoverflow.com/a/5226244). The code is used to enable users to launch hyperlinks in their default browser by clicking on them in the GUI.
+   ![code snippet of hyperlink](images/codeReuseHyperlink.png)
+
+### Documentation and diagrams
+
+A large part of the documentation and diagrams are reused from the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
