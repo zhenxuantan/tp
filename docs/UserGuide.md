@@ -163,10 +163,9 @@ Examples:
 
 ### Adding a Task : `addTask`
 
-Adds a new task (determined by what is inputted for type/TYPE) with task description as specified by d/DESCRIPTION
-for the group specified by g/GROUP due at date specified by date/DATE.
+Adds a new task to SWEe-book.
 
-Format: `addtask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
+Format: `addTask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
 * `GROUP` refers to one of the 2 groups: `CS2101` or `CS2103T`
 * `TYPE` refers to one of the 3 types of tasks: `todo`, `event` or `deadline`
 * `DATE` is in YYYY-MM-DD format and is only needed for events or deadlines (i.e. `DATE` is optional for Todo tasks)
@@ -175,11 +174,14 @@ Format: `addtask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [rec
     * Any Task that has a recurring frequency must have a date as well, for example a Todo with recurring frequency must have a date.
 
 Examples:
-* `addTask d/Project meeting g/CS2103T type/todo pty/low` Add a non-recurring `todo` with no date and `low` priority and 
+* `addTask d/Project meeting g/CS2103T type/todo pty/low` 
+    * Add a non-recurring `todo` with no date and `low` priority and 
   task description `Project meeting` to the group `CS2103T`
-* `addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high` Add a non-recurring `deadline` due on `2020-11-02`
+* `addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high` 
+  * Add a non-recurring `deadline` due on `2020-11-02`
   with `high` priority and task description `Presentation 1`to the group `CS2101`
-* `addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month` Add a `event` that recurs every `month` with 
+* `addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month` 
+  * Add a `event` that recurs every `month` with 
   date `2020-10-02` and default `med` priority and task description `Mock QnA` to the group `CS2101`
 
 ### Editing a task: `editTask`
