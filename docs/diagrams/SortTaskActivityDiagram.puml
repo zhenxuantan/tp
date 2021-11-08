@@ -1,0 +1,22 @@
+@startuml
+start
+:User enters sortTasks command;
+:Parse command word and arguments;
+
+if () then ([user input is valid])
+    :Create sortTasksComparator;
+    :Create sortTasksCommand
+    using the comparator;
+    :Execute sortTasksCommand;
+    :Reset any filters
+    set on the task list;
+    :Set the comparator of
+    the task list with
+    the sortTaskComparator,
+    and sorting it;
+    :Display sorted task list;
+else ([else])
+    :Throw \nParseException;
+
+stop
+@enduml
