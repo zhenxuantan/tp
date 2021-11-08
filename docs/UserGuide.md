@@ -128,7 +128,7 @@ Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g. `hans` will match `Hans`
+* The search is case-**in**sensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -218,7 +218,7 @@ Format: `deleteTask INDEX`
 
 Deletes the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
-* The index must be a positive integer 1, 2, 3, …
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `deleteTask 1` deletes the 1st task in the task list.
@@ -232,7 +232,7 @@ Format: `doneTask INDEX`
 
 Marks the task at the specified `INDEX` as done.
 * The index refers to the index number shown in the displayed task list.
-* The index must be a positive integer 1, 2, 3, …
+* The index **must be a positive integer** 1, 2, 3, …
 * The task must not have been marked as done before.
 
 Examples:
@@ -245,7 +245,7 @@ Examples:
 Sort tasks based on their descriptions, groups, priorities or deadlines / event dates.
 
 Format: `sortTasks param/PARAMETER o/ORDER`
-* The sort is case-insensitive. e.g. CS2103T will be lexicographically identical to cs2103t, but cs2101 still comes before CS2103T.
+* The sort is case-**in**sensitive. e.g. CS2103T will be lexicographically identical to cs2103t, but cs2101 still comes before CS2103T.
 * `PARAMETER` includes `desc` (for description), `date` (for a deadline / date of event), `pty` (for priority) and `group`.
 * `ORDER` includes `a` for ascending order (0-9 and A-Z, oldest to newest, lowest to highest priority) and `d` for descending order(Z-A and 9-0, newest to oldest, highest to lowest priority)
 * When the tasks are sorted by `date`, date-less `Todo` tasks will always be at the bottom of the list.
