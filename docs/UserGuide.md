@@ -145,12 +145,15 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` 
-  * Returns `john` and `John Doe`
+* `find alex` 
+  * Returns `Alex Yeoh`
+  
+![result for 'find alex'](images/findAlexResult.png)
+    
 * `find alex david`
   * Returns `Alex Yeoh`, `David Li`<br>
 
-![result for 'find alex david'](images/findAlexDavidResult1.png)
+![result for 'find alex david'](images/findAlexDavidResult.png)
   
 #### Editing a person : `edit`
 
@@ -204,10 +207,13 @@ Format: `group GROUP_NAME`
 Examples:
 * `group CS2101`
   * Returns people in CS2101
+
+![result for 'group CS2101'](images/groupCs2101.png)
+
 * `group CS2103T` 
   * Returns people in CS2103T
 
-![result for 'group CS2103T'](images/GroupCommandExample1.png)
+![result for 'group CS2103T'](images/groupCs2103t.png)
 
 #### Clearing all contact entries : `clear`
 
