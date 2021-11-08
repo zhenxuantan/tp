@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":SweeBookParser" as SweeBookParser LOGIC_COLOR
 participant ":DoneTaskCommandParser" as DoneTaskCommandParser LOGIC_COLOR
-participant "d:DoneTaskCommand" as DoneTaskCommand LOGIC_COLOR
+participant ":DoneTaskCommand" as DoneTaskCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -33,16 +33,16 @@ create DoneTaskCommand
 DoneTaskCommandParser -> DoneTaskCommand : new DoneTaskCommand(1)
 activate DoneTaskCommand
 
-DoneTaskCommand --> DoneTaskCommandParser : command
+DoneTaskCommand --> DoneTaskCommandParser :
 deactivate DoneTaskCommand
 
-DoneTaskCommandParser --> SweeBookParser : command
+DoneTaskCommandParser --> SweeBookParser :
 deactivate DoneTaskCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 DoneTaskCommandParser -[hidden]-> SweeBookParser
 destroy DoneTaskCommandParser
 
-SweeBookParser --> LogicManager : command
+SweeBookParser --> LogicManager :
 deactivate SweeBookParser
 
 LogicManager -> DoneTaskCommand : execute()
