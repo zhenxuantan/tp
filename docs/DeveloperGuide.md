@@ -163,6 +163,7 @@ for **recurring** tasks and **deadline/event** tasks. Else, an error message wil
     * Cons: Hard to debug, and more prone to errors, as we are mutating the object in the list
 
 ### Recurring Tasks feature
+#### Implementation
 The recurring task feature allows users to add tasks that can be repeated by week, month, or year. It is facilitated
 by `RecurringFrequency`, which is a optional component of `Task`. Additionally, the following operations are implemented
 in `Task`, `TaskList`, `TaskRecords` and `Date`:
@@ -175,7 +176,8 @@ in `Task`, `TaskList`, `TaskRecords` and `Date`:
 * `TaskRecords#updateRecurringTasks()` - Calls for TaskList to update recurring Tasks.
 
 `TaskRecords#updateRecurringTasks()` is used in the `ModelManager` on boot-up of the application to update all Tasks, if
-required.
+required. Below is a sequence diagram after the initialisation of the `ModelManager`:
+![Seq-diagram for updating dates of recurring Tasks after start up](images/RecurringFrequencySequenceDiagram.png)
 
 Do note that `Date` is required for a `Task` to be recurring. Notably, `Date` is optional for `Todo`.
 
@@ -191,6 +193,12 @@ the SWEe-book application.
   current week, with the same day.
 * Step 3. The user then launches the application a week after. The `Task` is updated similarly to Step 2, and since it 
   is checked against real-time, it is updated to the current week.
+
+#### Alternative considerations
+* Alternative 1: Let the user choose when to refresh his tasks to their new dates, rather than on start-up of the application.
+    * Pros: Allows user more control over their recurring tasks
+    * Cons: Less intuitive since tasks are not updated to real-time, having a refresh command just for recurring tasks 
+      is not ideal.
 
 <div style="page-break-after: always;"></div>
 

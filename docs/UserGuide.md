@@ -278,7 +278,7 @@ Format: `listTasks`
 * Lists all tasks for the current user
 
 Examples:
-* `listTasks` returns all tasks
+* `listTasks` displays all tasks in right half of the GUI
 
 ### Clearing all contact entries : `clear`
 

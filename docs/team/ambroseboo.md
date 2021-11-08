@@ -27,7 +27,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=CS2103T-W12-2&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=zoom&tabAuthor=zhenxuantan&tabRepo=AY2122S1-CS2103T-W12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&zA=ambroseboo&zR=AY2122S1-CS2103T-W12-2%2Ftp%5Bmaster%5D&zACS=198.05172413793105&zS=2021-09-17&zFS=CS2103T-W12-2&zU=2021-11-07&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false&until=2021-11-07)
 
 * **Project management**:
-    * Merged and fixed style errors on pull request #5 into the team's repository 
+    * Merged and fixed style errors on pull request #5 and #139 into the team's repository 
 
 * **Documentation**:
     * User Guide:
