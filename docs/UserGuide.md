@@ -106,7 +106,7 @@ SWEe-book offers **one-stop integration solution to managing tasks and contacts 
 
 #### Viewing help : `help`
 
-Shows a window that allows users to copy the website link to access the user guide in cases when error messages are still insufficient for user.
+Shows a window that allows you to copy the website link to access the user guide in cases when error messages are still insufficient.
 
 ![help message](images/helpMessage.png)
 
@@ -130,7 +130,7 @@ If your changes to the data file makes its format invalid, SWEe-book will discar
 
 #### Saving the data
 
-SWEe-book data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+SWEe-book data are saved in the hard disk automatically after any command that changes the data. You do not need to save manually.
 
 ### Contact Management Features
 
@@ -141,8 +141,8 @@ Adds a person to SWEe-book.
 Format: `add n/NAME g/GROUP1 [g/GROUP2] p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERNAME gh/GITHUB_USERNAME`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Usernames can optionally be prepended with '@'. SWEe-book takes care of it!
-(i.e. `@johndoe` and `johndoe` are equivalent as they will both be parsed into `johndoe`)
+You can optionally prepend usernames with '@'. SWEe-book takes care of it!
+(i.e. `@johndoe` and `johndoe` are equivalent as they will both be parsed into the username `johndoe`)
 </div>
 
 Examples:
@@ -229,12 +229,12 @@ Examples:
 <div style="page-break-after: always;"></div>
 
 #### Filtering persons by a specified group: `group`
-Retrieves the list of people to those who are in the specified group.
+Retrieves the list of people that are in the specified group.
 
 Format: `group GROUP_NAME`
 * `GROUP_NAME` refers to one of the 2 groups: CS2101 or CS2103T.
 * `GROUP_NAME` is case-**in**sensitive.
-* Note that this is not a strict filter (i.e `group CS2103T` can return a person from both CS2103T **and** CS2101 groups)
+* Note that this is not a strict filter (i.e `group CS2103T` can return a person who is from both CS2103T **and** CS2101 groups)
 
 Examples:
 * `group CS2101`
@@ -302,7 +302,7 @@ Format: `editTask INDEX [d/DESCRIPTION] [g/GROUP] [type/TYPE] [date/DATE] [pty/P
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* To set a recurring task to be non-recurring, specify `recurring/none` as one of the arguments.
+* To set a recurring task to be non-recurring, you can specify `recurring/none` as one of the arguments.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Please specify a date if you are changing a todo with no associated date into a deadline/event or recurring task!
@@ -393,7 +393,7 @@ Examples:
 Shows a list of all tasks in SWEe-book.
 
 Format: `listTasks`
-* Lists all tasks for the current user, resetting any sorting and filtering done by the user
+* Lists all tasks, resetting any sorting and filtering done by you previously
 
 Examples:
 * `listTasks`
@@ -404,20 +404,21 @@ Examples:
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SWEe-book home folder.
+**A**: You can install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SWEe-book home folder.
 
 **Q**: How do I install Java 11 on my computer?<br>
-**A**: Java 11 can be installed [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html). Please click on the link to proceed to the download page.
+**A**: You can install Java 11 by downloading it [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html). 
 
 **Q**: How can I ensure that Java 11 has been installed on my computer?<br>
 **A**: Open up your terminal and key in `java --version`. You can then see the java version that has been installed. An output of "java 11" means that java 11 has been successfully installed.
 
 **Q**: Can I sync my contacts and tasks with other devices?<br>
-**A**: Unfortunately this is not possible at the moment. But please look out for future updates.
+**A**: Unfortunately, you cannot sync them at the moment. However, please look out for future updates.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+Here, you can view the summary of general, contact management, and task management commands.
 
 ### General Commands
 
