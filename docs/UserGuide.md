@@ -39,7 +39,7 @@ efficient and convenient task and contact management!
 
 ## How to use SWEe-book User Guide
 
-* The Quick Start section below will help you set up your SWEe-book
+* The Quick Start section [below](#quick-start) will help you set up your SWEe-book
 * Click [here](#features) to dive straight to SWEe-book's list of features
 * Alternatively, you can click [here](#command-summary) to refer to the Command Summary Table
 * You can also checkout a list of frequently asked questions (FAQs) [here](#faq), and the SWEe-book's glossary [here](#glossary)!
