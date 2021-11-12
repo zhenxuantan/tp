@@ -11,12 +11,53 @@ which allows users to interact with the application through graphical icons such
 
 SWEe-book offers **one-stop integration solution to managing tasks and contacts in your CS2103T or CS2101 group.**
 
+This SWEe-book User Guide will help you to:
+
+* Manage your contacts 
+  * Add/Delete/Edit your list of contacts
+  * Search through your contacts
+  * Group your contacts together by module
+  
+  
+* Manage your tasks
+  * Add/Delete tasks
+  * Classify tasks as todos, deadlines, or events
+  * Mark your tasks as completed
+  * Filter/Sort tasks 
+  
+Look into the first few sections to get started on using SWEe-book
+
+Browse through the table of contents below to navigate through SWEe-book's features and how to use them for a more 
+efficient and convenient task and contact management!
+
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+
+## How to use SWEe-book User Guide
+
+* The Quick Start section below will help you set up your SWEe-book
+* Click [here](#features) to dive straight to SWEe-book's list of features
+* Alternatively, you can click [here](#command-summary) to refer to the Command Summary Table
+* You can also checkout a list of frequently asked questions (FAQs) [here](#faq), and the SWEe-book's glossary [here](#glossary)!
+
+
+Throughout SWEe-book User Guide,
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes **are there to give you extra information about SWEe-book's features.
+</div>
+<div markdown="span" class="alert alert-primary">:bulb: **Tips **
+provides you quick and useful information.
+</div>
+<div markdown="span" class="alert alert-warning">:exclamation: **Cautions **
+are to warn you of possible pitfalls to avoid!
+</div>
+
+We hope that this user guide will be useful to you in using SWEe-book!
 
 ## Glossary
 
