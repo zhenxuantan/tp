@@ -48,13 +48,11 @@ efficient and convenient task and contact management!
 Throughout SWEe-book User Guide,
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Notes **are there to give you extra information about SWEe-book's features.
+**:information_source: Notes** are there to give you extra information about SWEe-book's features.
 </div>
-<div markdown="span" class="alert alert-primary">:bulb: **Tips **
-provides you quick and useful information.
+<div markdown="span" class="alert alert-primary">:bulb: **Tips** provide you quick and useful information.
 </div>
-<div markdown="span" class="alert alert-warning">:exclamation: **Cautions **
-are to warn you of possible pitfalls to avoid!
+<div markdown="span" class="alert alert-warning">:exclamation: **Cautions** are to warn you of possible pitfalls to avoid!
 </div>
 
 We hope that this user guide will be useful to you in using SWEe-book!
