@@ -341,7 +341,7 @@ Format: `addTask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [rec
 * `PRIORITY` refers to one of the 3 levels of priorities / importance of the task: `low`, `med` (default) or `high`
 * `RECURRING_FREQUENCY` refers to one of the 3 different frequencies that the task could occur: `week`, `month` or `year` (where `week` means that the task is recurring weekly)
     * Any Task that has a recurring frequency must have a date as well, for example a Todo with recurring frequency must have a date.
-
+    * If a Task has a recurring frequency and its date is initialised to be in the last week/month/year, it will be set to the current week/month/year in the next boot up of the application.
 Examples:
 * `addTask d/Project meeting g/CS2103T type/todo pty/low`
   * Add a non-recurring `todo` with no date and `low` priority and
