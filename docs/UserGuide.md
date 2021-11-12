@@ -111,25 +111,26 @@ SWEe-book offers **one-stop integration solution to managing tasks and contacts 
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Clarifications for common terms used in this User Guide:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* **GUI** is short-form for Graphical User Interface, which refers to what the user sees as a graphic. In SWEe-book, the GUI refers to the contact and task lists as shown in the red box below. <br>
+  ![GUI](images/UserGuideGUIRedBox.png)
 
-* Items in square brackets are optional.<br>
-  e.g. `type/TYPE [date/DATE]` can be used as `type/todo [date/2021-09-11]` or as `type/todo`.
+* **CLI** is short-form for Command Line Interface, it is what the user types commands into to query or add information into SWEe-book. It refers to the box at the top which users type into (also known as the command box) and the box directly below it which shows feedback based on what command was typed. They are shown in the coloured boxes below. <br>
+  ![CLI and Command Box](images/UserGuideCLIRedBox.png)
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* **Tasks** are items which you would like to keep track of with a description attached to them. The task list is displayed on the right side of the GUI.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* **Contacts** are items which signify persons who you would like to keep a contact of. The contact list displayed on the left side of the GUI.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `clear` and `listTasks`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-  
-* INDEX parameter for all commands requiring INDEX only take values between 1 to MAX_INT inclusive, where MAX_INT is 2147483647. <br>
-  e.g. if you specify `INDEX` as 2147483648 or as 0, for example `deleteTask 2147483648` or `doneTask 0`, an error message will be shown.
+* **Commands** are what the user types into the command box. They consist of the command keyword (eg. `add`, `find`, `addTask`)and the parameters to the command. Explanation of parameters is shown below.
+
+* **Parameters** are the terms that the user types after the command keyword to narrow the scope of their query. There can any number of parameters to a command, even 0, depending on the command.
+  An example of parameters is in the command format `add n/NAME g/GROUP1 [g/GROUP2] p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERNAME gh/GITHUB_USERNAME`,(`n/NAME`, `g/GROUP1`, `[g/GROUP2]`, `p/PHONE_NUMBER`, `e/EMAIL`, `tg/TELEGRAM_USERNAME`, `gh/GITHUB_USERNAME`) are all parameters. Do note parameters in square brackets (`[g/GROUP2]`) are optional.
+
+* Do note that any highlighted words (eg. `add`) in this User Guide refers to words that can be typed into the command box, or items that will show up in the GUI as a result. <br>
+
+* **INDEX** refers to a number which corresponds to a task's/contact's position in the tasklist/contact list. (eg. INDEX 1 means it's the first task on the task list)
 
 </div>
 
