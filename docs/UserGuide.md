@@ -74,6 +74,34 @@ SWEe-book offers **one-stop integration solution to managing tasks and contacts 
 
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Clarifications for common terms used in this User Guide:**<br>
+
+* GUI is short-form for Graphical User Interface, which refers to what the user sees as a graphic. In SWEe-book, the GUI <br>
+  refers to the contact and task lists as shown in the red box below. <br>
+  ![GUI](images/UserGuideGUIRedBox.png)
+  
+* CLI is short-form for Command Line Interface, it is what the user types commands into to query or add information into <br>
+  SWEe-book. It refers to the box at the top which users types into (also known as the command box) and the box directly <br>
+  below it which shows feedback based on what command was typed. They are shown in the coloured boxes below. <br>
+  ![CLI and Command Box](images/UserGuideCLIRedBox.png)
+  
+* Commands are what the user types into the command box. They consist of the command keyword (eg. `add`, `find`, `addTask`) <br>
+  and the parameters to the command. Explanation of parameters is shown below.
+  
+* Parameters are the terms that the user types after the command keyword to narrow the scope of their query. There can  <br>
+  any number of parameters to a command, even 0, depending on the command.  <br>
+  An example of parameters is in the command <br>
+  format `add n/NAME g/GROUP1 [g/GROUP2] p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERNAME gh/GITHUB_USERNAME`,  <br>
+  (`n/NAME`, `g/GROUP1`, `[g/GROUP2]`, `p/PHONE_NUMBER`, `e/EMAIL`, `tg/TELEGRAM_USERNAME`, `gh/GITHUB_USERNAME`) are all <br>
+  parameters. Do note parameters in square brackets (`[g/GROUP2]`) are optional.
+  
+* Do note that any highlighted words (eg. `add`) in this User Guide refers to words that can be typed into the  <br>
+  command box, or items that will show up in the GUI as a result.
+
+</div>
+
 ### General Features
 
 #### Viewing help : `help`
