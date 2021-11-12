@@ -120,7 +120,7 @@ We hope that this user guide will be useful to you in using SWEe-book!
 
   * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 <div markdown="block" class="alert alert-primary">
 
