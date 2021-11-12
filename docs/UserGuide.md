@@ -57,6 +57,43 @@ Throughout SWEe-book User Guide,
 
 We hope that this user guide will be useful to you in using SWEe-book!
 
+## Glossary
+
+* **GUI** is short-form for Graphical User Interface, which refers to what the user sees as a graphic. In SWEe-book, the GUI <br>
+  refers to the contact and task lists as shown in the red box below. <br>
+
+  ![GUI](images/UserGuideGUIRedBox.png)
+
+* **CLI** is short-form for Command Line Interface, it is what the user types commands into to query or add information into <br>
+  SWEe-book. It refers to the box at the top which users types into (also known as the command box) and the box directly <br>
+  below it which shows feedback based on what command was typed. They are shown in the coloured boxes below. <br>
+
+  ![CLI and Command Box](images/UserGuideCLIRedBox.png)
+
+* **Commands** are what the user types into the command box. They consist of the command keyword (eg. `add`, `find`, `addTask`) <br>
+  and the parameters to the command. Explanation of parameters is shown below.
+
+* **Parameters** are the terms that the user types after the command keyword to narrow the scope of their query. There can  <br>
+  any number of parameters to a command, even 0, depending on the command.  <br>
+  An example of parameters is in the command <br>
+  format `add n/NAME g/GROUP1 [g/GROUP2] p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERNAME gh/GITHUB_USERNAME`,  <br>
+  (`n/NAME`, `g/GROUP1`, `[g/GROUP2]`, `p/PHONE_NUMBER`, `e/EMAIL`, `tg/TELEGRAM_USERNAME`, `gh/GITHUB_USERNAME`) are all <br>
+  parameters. Do note parameters in square brackets (`[g/GROUP2]`) are optional.
+
+* Do note that any highlighted words (e.g. `add`) in this User Guide refers to words that can be typed into the  <br>
+  command box, or items that will show up in the GUI as a result.
+
+* **Lexicographical order** is an order similar to alphabetical order, but more relevant to programming. Just like how "a, b, c" is in alphabetical order, "0, 1, A, b a, b" is in lexicographical order. Notice how the numbers come before upper case letters, which in turn come before lower case letters.
+
+* A **task** can be a todo task, deadline task, or an event task. A  todo is a task that can be date-less (e.g. buy stationary) while a deadline task and an event task must be accompanied by a date parameter.
+
+* An **index** refers to the index number or the position of the contact or task in the contact list or in the task list respectively. This is similar to the "No." column in a table. The first contact in the contact list will have an index of 1.
+
+* An **integer** is a mathematical term which means whole number (without any decimals). 4, 52 and -10 are integers while 2.5, 9.8 and -0.2 are not.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -71,17 +108,40 @@ We hope that this user guide will be useful to you in using SWEe-book!
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+  * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe g/CS2103T p/98765432 e/johnd@example.com tg/johndoe gh/johndoe` : Adds a contact named `John Doe` to the SWEe-book.
+  * **`add`**`n/John Doe g/CS2103T p/98765432 e/johnd@example.com tg/johndoe gh/johndoe` : Adds a contact named `John Doe` to the SWEe-book.
 
-   * **`listTasks`** : Lists all tasks.
+  * **`listTasks`** : Lists all tasks.
 
-   * **`deleteTask`**`1` : Deletes the first task shown in the current task list.
+  * **`deleteTask`**`1` : Deletes the first task shown in the current task list.
 
-   * **`exit`** : Exits the app.
+  * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip:**
+<br>
+* If you are unsure about where the contact list, task list or command input box are, check out the [Ui Design](#ui-design) section.
+
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## UI Design
+
+![UiExplanation](images/UIDesign.png)
+<br>
+* **Command Input Box**: Type your commands here!
+
+* **Message Box**: Displays the details of the result of your commands or error messages.
+
+* **Contact List**: Displays your list of group mates and their relevant information.
+
+* **Task List**: Displays your tasks.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -90,54 +150,26 @@ We hope that this user guide will be useful to you in using SWEe-book!
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g. `type/TYPE [date/DATE]` can be used as `type/todo [date/2021-09-11]` or as `type/todo`.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `clear` and `listTasks`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-  
-* INDEX parameter for all commands requiring INDEX only take values between 1 to MAX_INT inclusive, where MAX_INT is 2147483647. <br>
-  e.g. if you specify `INDEX` as 2147483648 or as 0, for example `deleteTask 2147483648` or `doneTask 0`, an error message will be shown.
-
-
-</div>
-
-<div markdown="block" class="alert alert-info">
-
 **:information_source: Clarifications for common terms used in this User Guide:**<br>
 
-* GUI is short-form for Graphical User Interface, which refers to what the user sees as a graphic. In SWEe-book, the GUI <br>
-  refers to the contact and task lists as shown in the red box below. <br>
+* **GUI** is short-form for Graphical User Interface, which refers to what the user sees as a graphic. In SWEe-book, the GUI refers to the contact and task lists as shown in the red box below. <br>
   ![GUI](images/UserGuideGUIRedBox.png)
-  
-* CLI is short-form for Command Line Interface, it is what the user types commands into to query or add information into <br>
-  SWEe-book. It refers to the box at the top which users types into (also known as the command box) and the box directly <br>
-  below it which shows feedback based on what command was typed. They are shown in the coloured boxes below. <br>
+
+* **CLI** is short-form for Command Line Interface, it is what the user types commands into to query or add information into SWEe-book. It refers to the box at the top which users type into (also known as the command box) and the box directly below it which shows feedback based on what command was typed. They are shown in the coloured boxes below. <br>
   ![CLI and Command Box](images/UserGuideCLIRedBox.png)
-  
-* Commands are what the user types into the command box. They consist of the command keyword (eg. `add`, `find`, `addTask`) <br>
-  and the parameters to the command. Explanation of parameters is shown below.
-  
-* Parameters are the terms that the user types after the command keyword to narrow the scope of their query. There can  <br>
-  any number of parameters to a command, even 0, depending on the command.  <br>
-  An example of parameters is in the command <br>
-  format `add n/NAME g/GROUP1 [g/GROUP2] p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERNAME gh/GITHUB_USERNAME`,  <br>
-  (`n/NAME`, `g/GROUP1`, `[g/GROUP2]`, `p/PHONE_NUMBER`, `e/EMAIL`, `tg/TELEGRAM_USERNAME`, `gh/GITHUB_USERNAME`) are all <br>
-  parameters. Do note parameters in square brackets (`[g/GROUP2]`) are optional.
-  
-* Do note that any highlighted words (eg. `add`) in this User Guide refers to words that can be typed into the  <br>
-  command box, or items that will show up in the GUI as a result.
+
+* **Tasks** are items which you would like to keep track of with a description attached to them. The task list is displayed on the right side of the GUI.
+
+* **Contacts** are items which signify persons who you would like to keep a contact of. The contact list displayed on the left side of the GUI.
+
+* **Commands** are what the user types into the command box. They consist of the command keyword (eg. `add`, `find`, `addTask`)and the parameters to the command. Explanation of parameters is shown below.
+
+* **Parameters** are the terms that the user types after the command keyword to narrow the scope of their query. There can any number of parameters to a command, even 0, depending on the command.
+  An example of parameters is in the command format `add n/NAME g/GROUP1 [g/GROUP2] p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERNAME gh/GITHUB_USERNAME`,(`n/NAME`, `g/GROUP1`, `[g/GROUP2]`, `p/PHONE_NUMBER`, `e/EMAIL`, `tg/TELEGRAM_USERNAME`, `gh/GITHUB_USERNAME`) are all parameters. Do note parameters in square brackets (`[g/GROUP2]`) are optional.
+
+* Do note that any highlighted words (eg. `add`) in this User Guide refers to words that can be typed into the command box, or items that will show up in the GUI as a result. <br>
+
+* **INDEX** refers to a number which corresponds to a task's/contact's position in the tasklist/contact list. (eg. INDEX 1 means it's the first task on the task list)
 
 </div>
 
@@ -145,7 +177,7 @@ We hope that this user guide will be useful to you in using SWEe-book!
 
 #### Viewing help : `help`
 
-Shows a window that allows users to copy the website link to access the user guide in cases when error messages are still insufficient for user.
+Shows a window that allows you to copy the website link to access the user guide in cases when error messages are still insufficient.
 
 ![help message](images/helpMessage.png)
 
@@ -169,7 +201,7 @@ If your changes to the data file makes its format invalid, SWEe-book will discar
 
 #### Saving the data
 
-SWEe-book data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+SWEe-book data are saved in the hard disk automatically after any command that changes the data. You do not need to save manually.
 
 ### Contact Management Features
 
@@ -180,8 +212,8 @@ Adds a person to SWEe-book.
 Format: `add n/NAME g/GROUP1 [g/GROUP2] p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERNAME gh/GITHUB_USERNAME`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Usernames can optionally be prepended with '@'. SWEe-book takes care of it!
-(i.e. `@johndoe` and `johndoe` are equivalent as they will both be parsed into `johndoe`)
+You can optionally prepend usernames with '@'. SWEe-book takes care of it!
+(i.e. `@johndoe` and `johndoe` are equivalent as they will both be parsed into the username `johndoe`)
 </div>
 
 Examples:
@@ -268,12 +300,12 @@ Examples:
 <div style="page-break-after: always;"></div>
 
 #### Filtering persons by a specified group: `group`
-Retrieves the list of people to those who are in the specified group.
+Retrieves the list of people that are in the specified group.
 
 Format: `group GROUP_NAME`
 * `GROUP_NAME` refers to one of the 2 groups: CS2101 or CS2103T.
 * `GROUP_NAME` is case-**in**sensitive.
-* Note that this is not a strict filter (i.e `group CS2103T` can return a person from both CS2103T **and** CS2101 groups)
+* Note that this is not a strict filter (i.e `group CS2103T` can return a person who is from both CS2103T **and** CS2101 groups)
 
 Examples:
 * `group CS2101`
@@ -341,7 +373,7 @@ Format: `editTask INDEX [d/DESCRIPTION] [g/GROUP] [type/TYPE] [date/DATE] [pty/P
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* To set a recurring task to be non-recurring, specify `recurring/none` as one of the arguments.
+* To set a recurring task to be non-recurring, you can specify `recurring/none` as one of the arguments.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Please specify a date if you are changing a todo with no associated date into a deadline/event or recurring task!
@@ -432,7 +464,7 @@ Examples:
 Shows a list of all tasks in SWEe-book.
 
 Format: `listTasks`
-* Lists all tasks for the current user, resetting any sorting and filtering done by the user
+* Lists all tasks, resetting any sorting and filtering done by you previously
 
 Examples:
 * `listTasks`
@@ -443,20 +475,21 @@ Examples:
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SWEe-book home folder.
+**A**: You can install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SWEe-book home folder.
 
 **Q**: How do I install Java 11 on my computer?<br>
-**A**: Java 11 can be installed [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html). Please click on the link to proceed to the download page.
+**A**: You can install Java 11 by downloading it [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html). 
 
 **Q**: How can I ensure that Java 11 has been installed on my computer?<br>
 **A**: Open up your terminal and key in `java --version`. You can then see the java version that has been installed. An output of "java 11" means that java 11 has been successfully installed.
 
 **Q**: Can I sync my contacts and tasks with other devices?<br>
-**A**: Unfortunately this is not possible at the moment. But please look out for future updates.
+**A**: Unfortunately, you cannot sync them at the moment. However, please look out for future updates.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+Here, you can view the summary of general, contact management, and task management commands.
 
 ### General Commands
 
