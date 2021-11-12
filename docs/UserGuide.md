@@ -18,6 +18,43 @@ SWEe-book offers **one-stop integration solution to managing tasks and contacts 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
+## Glossary
+
+* **GUI** is short-form for Graphical User Interface, which refers to what the user sees as a graphic. In SWEe-book, the GUI <br>
+  refers to the contact and task lists as shown in the red box below. <br>
+
+  ![GUI](images/UserGuideGUIRedBox.png)
+
+* **CLI** is short-form for Command Line Interface, it is what the user types commands into to query or add information into <br>
+  SWEe-book. It refers to the box at the top which users types into (also known as the command box) and the box directly <br>
+  below it which shows feedback based on what command was typed. They are shown in the coloured boxes below. <br>
+
+  ![CLI and Command Box](images/UserGuideCLIRedBox.png)
+
+* **Commands** are what the user types into the command box. They consist of the command keyword (eg. `add`, `find`, `addTask`) <br>
+  and the parameters to the command. Explanation of parameters is shown below.
+
+* **Parameters** are the terms that the user types after the command keyword to narrow the scope of their query. There can  <br>
+  any number of parameters to a command, even 0, depending on the command.  <br>
+  An example of parameters is in the command <br>
+  format `add n/NAME g/GROUP1 [g/GROUP2] p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERNAME gh/GITHUB_USERNAME`,  <br>
+  (`n/NAME`, `g/GROUP1`, `[g/GROUP2]`, `p/PHONE_NUMBER`, `e/EMAIL`, `tg/TELEGRAM_USERNAME`, `gh/GITHUB_USERNAME`) are all <br>
+  parameters. Do note parameters in square brackets (`[g/GROUP2]`) are optional.
+
+* Do note that any highlighted words (e.g. `add`) in this User Guide refers to words that can be typed into the  <br>
+  command box, or items that will show up in the GUI as a result.
+
+* **Lexicographical order** is an order similar to alphabetical order, but more relevant to programming. Just like how "a, b, c" is in alphabetical order, "0, 1, A, b a, b" is in lexicographical order. Notice how the numbers come before upper case letters, which in turn come before lower case letters.
+
+* A **task** can be a todo task, deadline task, or an event task. A  todo is a task that can be date-less (e.g. buy stationary) while a deadline task and an event task must be accompanied by a date parameter.
+
+* An **index** refers to the index number or the position of the contact or task in the contact list or in the task list respectively. This is similar to the "No." column in a table. The first contact in the contact list will have an index of 1.
+
+* An **integer** is a mathematical term which means whole number (without any decimals). 4, 52 and -10 are integers while 2.5, 9.8 and -0.2 are not.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -32,15 +69,15 @@ SWEe-book offers **one-stop integration solution to managing tasks and contacts 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+  * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe g/CS2103T p/98765432 e/johnd@example.com tg/johndoe gh/johndoe` : Adds a contact named `John Doe` to the SWEe-book.
+  * **`add`**`n/John Doe g/CS2103T p/98765432 e/johnd@example.com tg/johndoe gh/johndoe` : Adds a contact named `John Doe` to the SWEe-book.
 
-   * **`listTasks`** : Lists all tasks.
+  * **`listTasks`** : Lists all tasks.
 
-   * **`deleteTask`**`1` : Deletes the first task shown in the current task list.
+  * **`deleteTask`**`1` : Deletes the first task shown in the current task list.
 
-   * **`exit`** : Exits the app.
+  * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -70,35 +107,6 @@ SWEe-book offers **one-stop integration solution to managing tasks and contacts 
   
 * INDEX parameter for all commands requiring INDEX only take values between 1 to MAX_INT inclusive, where MAX_INT is 2147483647. <br>
   e.g. if you specify `INDEX` as 2147483648 or as 0, for example `deleteTask 2147483648` or `doneTask 0`, an error message will be shown.
-
-
-</div>
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Clarifications for common terms used in this User Guide:**<br>
-
-* GUI is short-form for Graphical User Interface, which refers to what the user sees as a graphic. In SWEe-book, the GUI <br>
-  refers to the contact and task lists as shown in the red box below. <br>
-  ![GUI](images/UserGuideGUIRedBox.png)
-  
-* CLI is short-form for Command Line Interface, it is what the user types commands into to query or add information into <br>
-  SWEe-book. It refers to the box at the top which users types into (also known as the command box) and the box directly <br>
-  below it which shows feedback based on what command was typed. They are shown in the coloured boxes below. <br>
-  ![CLI and Command Box](images/UserGuideCLIRedBox.png)
-  
-* Commands are what the user types into the command box. They consist of the command keyword (eg. `add`, `find`, `addTask`) <br>
-  and the parameters to the command. Explanation of parameters is shown below.
-  
-* Parameters are the terms that the user types after the command keyword to narrow the scope of their query. There can  <br>
-  any number of parameters to a command, even 0, depending on the command.  <br>
-  An example of parameters is in the command <br>
-  format `add n/NAME g/GROUP1 [g/GROUP2] p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERNAME gh/GITHUB_USERNAME`,  <br>
-  (`n/NAME`, `g/GROUP1`, `[g/GROUP2]`, `p/PHONE_NUMBER`, `e/EMAIL`, `tg/TELEGRAM_USERNAME`, `gh/GITHUB_USERNAME`) are all <br>
-  parameters. Do note parameters in square brackets (`[g/GROUP2]`) are optional.
-  
-* Do note that any highlighted words (eg. `add`) in this User Guide refers to words that can be typed into the  <br>
-  command box, or items that will show up in the GUI as a result.
 
 </div>
 
