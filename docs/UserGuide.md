@@ -44,6 +44,29 @@ SWEe-book offers **one-stop integration solution to managing tasks and contacts 
 
 1. Refer to the [Features](#features) below for details of each command.
 
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip:**
+<br>
+* If you are unsure about where the contact list, task list or command input box are, check out the [Ui Design](#ui-design) section.
+
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## UI Design
+
+![UiExplanation](images/UIDesign.png)
+<br>
+* **Command Input Box**: Type your commands here!
+
+* **Message Box**: Displays the details of the result of your commands or error messages.
+
+* **Contact List**: Displays your list of group mates and their relevant information.
+
+* **Task List**: Displays your tasks.
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
