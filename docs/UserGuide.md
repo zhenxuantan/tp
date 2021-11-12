@@ -110,36 +110,41 @@ We hope that this user guide will be useful to you in using SWEe-book!
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Features
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Clarifications for common terms used in this User Guide:**<br>
+## Glossary
 
 * **GUI** is short-form for Graphical User Interface, which refers to what the user sees as a graphic. In SWEe-book, the GUI refers to the contact and task lists as shown in the red box below. <br>
   
 ![GUI](images/UserGuideGUIRedBox.png)
 
+<div style="page-break-after: always;"></div>
+
 * **CLI** is short-form for Command Line Interface, it is what the user types commands into to query or add information into SWEe-book. It refers to the box at the top which users type into (also known as the command box) and the box directly below it which shows feedback based on what command was typed. They are shown in the coloured boxes below. <br>
   
 ![CLI and Command Box](images/UserGuideCLIRedBox.png)
 
+<div style="page-break-after: always;"></div>
+
 * **Tasks** are items which you would like to keep track of with a description attached to them. The task list is displayed on the right side of the GUI. There are three different types of tasks: a todo, deadline, or an event. A  todo is a task that can be date-less (e.g. buy stationary) while a deadline and an event must be accompanied by a date.
 
 * **Contacts** are items which signify persons who you would like to keep a contact of. The contact list displayed on the left side of the GUI.
+
+<div style="page-break-after: always;"></div>
 
 * **Commands** are what the user types into the command box. They consist of the command keyword (e.g. `add`, `find`, `addTask`)and the parameters to the command. Explanation of parameters is shown below.
 
 * **Parameters** are the terms that the user types after the command keyword to narrow the scope of their query. There can any number of parameters to a command, even 0, depending on the command.
   An example of parameters is in the command format `add n/NAME g/GROUP1 [g/GROUP2] p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERNAME gh/GITHUB_USERNAME`,(`n/NAME`, `g/GROUP1`, `[g/GROUP2]`, `p/PHONE_NUMBER`, `e/EMAIL`, `tg/TELEGRAM_USERNAME`, `gh/GITHUB_USERNAME`) are all parameters. Do note parameters in square brackets (`[g/GROUP2]`) are optional.
 
-* Do note that any highlighted words (eg. `add`) in this User Guide refers to words that can be typed into the command box, or items that will show up in the GUI as a result. <br>
+* Do note that any highlighted words (e.g. `add`) in this User Guide refers to words that can be typed into the command box, or items that will show up in the GUI as a result. <br>
 
 * **INDEX** refers to a number which corresponds to a task's/contact's position in the task list/contact list. (e.g. INDEX 1 means it's the first task on the task list)
 
 * **Lexicographical order** is an order similar to alphabetical order, but more relevant to programming and is more comprehensive. Just like how "a, b, c" is in alphabetical order, "0, 1, A, B, a, b" is in lexicographical order. Notice how the numbers come before upper case letters, which in turn come before lower case letters.
 
-</div>
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## Features
 
 ### General Features
 
