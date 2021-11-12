@@ -128,8 +128,6 @@ We hope that this user guide will be useful to you in using SWEe-book!
 
 * **Contacts** are items which signify persons who you would like to keep a contact of. The contact list displayed on the left side of the GUI.
 
-<div style="page-break-after: always;"></div>
-
 * **Commands** are what the user types into the command box. They consist of the command keyword (e.g. `add`, `find`, `addTask`)and the parameters to the command. Explanation of parameters is shown below.
 
 * **Parameters** are the terms that the user types after the command keyword to narrow the scope of their query. There can any number of parameters to a command, even 0, depending on the command.
