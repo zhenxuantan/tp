@@ -79,7 +79,7 @@ SWEe-book offers **one-stop integration solution to managing tasks and contacts 
 
   * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 <div markdown="block" class="alert alert-primary">
 
